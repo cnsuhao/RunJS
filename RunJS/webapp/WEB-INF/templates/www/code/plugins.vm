@@ -1,0 +1,16 @@
+#set($type=$link.param("p1",'html'))
+#set($ident=$link.param("p2",""))
+#set($code = $project.getCodeByIdent($ident))	
+$request.setAttribute("close_comment",true)
+#if($code)
+	#if($type=="js")
+		$response.setContentType("application/javascript")
+		${code.js}
+	#elseif($type=="css")
+		$response.setContentType("text/css")
+		${code.css}
+	#else
+		$response.setContentType("text/html")
+		${code.html}
+	#end
+#end

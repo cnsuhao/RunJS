@@ -1,0 +1,2 @@
+#set($ident = $link.param("p2",""))
+$response.sendRedirect("/code/${ident}");

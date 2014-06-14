@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>RunJS</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>RunJS Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_runjs.js.html#l47"><code>js\runjs.js:47</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>RunJS 核心类，管理其他各个模块间的相互调用，以及系统流程处理等</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_RunJS" class="method item"> 
+          <h3 class="name"><code>RunJS</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_runjs.js.html#l47"><code>js\runjs.js:47</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_addCtrlHotKey">addCtrlHotKey</a> </li> 
+             <li class="index-item method"> <a href="#method_before_close">before_close</a> </li> 
+             <li class="index-item method"> <a href="#method_checkEditedStatus">checkEditedStatus</a> </li> 
+             <li class="index-item method"> <a href="#method_checkProxy">checkProxy</a> </li> 
+             <li class="index-item method"> <a href="#method_create_project">create_project</a> </li> 
+             <li class="index-item method"> <a href="#method_create_sys_plugin">create_sys_plugin</a> </li> 
+             <li class="index-item method"> <a href="#method_enter_forbidden">enter_forbidden</a> </li> 
+             <li class="index-item method"> <a href="#method_fork">fork</a> </li> 
+             <li class="index-item method"> <a href="#method_fork">fork</a> </li> 
+             <li class="index-item method"> <a href="#method_initAll">initAll</a> </li> 
+             <li class="index-item method"> <a href="#method_initStatus">initStatus</a> </li> 
+             <li class="index-item method"> <a href="#method_loadCode">loadCode</a> </li> 
+             <li class="index-item method"> <a href="#method_logout">logout</a> </li> 
+             <li class="index-item method"> <a href="#method_openid_login">openid_login</a> </li> 
+             <li class="index-item method"> <a href="#method_publish">publish</a> </li> 
+             <li class="index-item method"> <a href="#method_refresh_captcha">refresh_captcha</a> </li> 
+             <li class="index-item method"> <a href="#method_save">save</a> </li> 
+             <li class="index-item method"> <a href="#method_save">save</a> </li> 
+             <li class="index-item method"> <a href="#method_setSysPlugin">setSysPlugin</a> </li> 
+             <li class="index-item method"> <a href="#method_share">share</a> </li> 
+             <li class="index-item method"> <a href="#method_share">share</a> </li> 
+             <li class="index-item method"> <a href="#method_shotcuts">shotcuts</a> </li> 
+             <li class="index-item method"> <a href="#method_window_resize">window_resize</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_event_stack">event_stack</a> </li> 
+             <li class="index-item property"> <a href="#property_Events">Events</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr private"> <a href="#attr_defaultParams">defaultParams</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_addCtrlHotKey" class="method item"> 
+            <h3 class="name"><code>addCtrlHotKey</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>hk</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l718"><code>js\runjs.js:718</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>添加Ctrl快捷键</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">hk</code> <span class="type">JSON</span> 
+               <div class="param-description"> 
+                <p>key:function</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_before_close" class="method item"> 
+            <h3 class="name"><code>before_close</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l184"><code>js\runjs.js:184</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>窗口关闭前判断是否有代码未保存</p> 
+            </div> 
+           </div> 
+           <div id="method_checkEditedStatus" class="method item"> 
+            <h3 class="name"><code>checkEditedStatus</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>doIt</code> </li> 
+              <li class="arg"> <code>cancelIt</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l631"><code>js\runjs.js:631</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>检查当前编辑状态，用于防止某个新操作使得代码未保存</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">doIt</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>检查通过回调</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cancelIt</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>检查未通过回调</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_checkProxy" class="method item"> 
+            <h3 class="name"><code>checkProxy</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>handler</code> </li> 
+              <li class="arg"> <code>data</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l270"><code>js\runjs.js:270</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>在操作前（调用handler）检查是否需要先保存代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">handler</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>回调函数，该函数调用定义在系统流程中或者在当前类的原型中扩展（RunJS.prototype.save）</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">data</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>回调参数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_create_project" class="method item"> 
+            <h3 class="name"><code>create_project</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>type</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l442"><code>js\runjs.js:442</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>创建代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码类型：demo,simple,blank,plugin</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_create_sys_plugin" class="method item"> 
+            <h3 class="name"><code>create_sys_plugin</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>sys</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l502"><code>js\runjs.js:502</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>创建插件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">sys</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>sys为“user”则为用户插件，否则为系统插件</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_enter_forbidden" class="method item"> 
+            <h3 class="name"><code>enter_forbidden</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l195"><code>js\runjs.js:195</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>禁用enter键</p> 
+            </div> 
+           </div> 
+           <div id="method_fork" class="method item"> 
+            <h3 class="name"><code>fork</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l207"><code>js\runjs.js:207</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>fork操作，将当前代码复制一份，自我维护，为系统Fork流程中最终执行的一步</p> 
+            </div> 
+           </div> 
+           <div id="method_fork" class="method item"> 
+            <h3 class="name"><code>fork</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>step</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l152"><code>js\runjs.js:152</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>系统处理流程之[Fork]，流程处理将对各项状态进行检查，例如：检查是否登录、检查代码是否为Demo等<br /> 流程化处理能更好的控制逻辑</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">step</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>流程步骤</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>flow.of(runjs).fork(1);//使用流程化的Fork操作
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_initAll" class="method item"> 
+            <h3 class="name"><code>initAll</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>async</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l657"><code>js\runjs.js:657</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化所有试图</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">async</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否采用异步方式加载视图</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_initStatus" class="method item"> 
+            <h3 class="name"><code>initStatus</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l680"><code>js\runjs.js:680</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化全局状态</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_loadCode" class="method item"> 
+            <h3 class="name"><code>loadCode</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l606"><code>js\runjs.js:606</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化所有视图，重新加载代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_logout" class="method item"> 
+            <h3 class="name"><code>logout</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l703"><code>js\runjs.js:703</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>退出登录</p> 
+            </div> 
+           </div> 
+           <div id="method_openid_login" class="method item"> 
+            <h3 class="name"><code>openid_login</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l690"><code>js\runjs.js:690</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>弹出登录框</p> 
+            </div> 
+           </div> 
+           <div id="method_publish" class="method item"> 
+            <h3 class="name"><code>publish</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>id</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l391"><code>js\runjs.js:391</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>发布代码，发布代码即将当前代码设置为所有人可见</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">id</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码id</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_refresh_captcha" class="method item"> 
+            <h3 class="name"><code>refresh_captcha</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l622"><code>js\runjs.js:622</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>刷新验证码,上下文之 this 需要为验证码图片</p> 
+            </div> 
+           </div> 
+           <div id="method_save" class="method item"> 
+            <h3 class="name"><code>save</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l238"><code>js\runjs.js:238</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>save操作，保存当前各编辑器代码，为系统保存流程中最后一步</p> 
+            </div> 
+           </div> 
+           <div id="method_save" class="method item"> 
+            <h3 class="name"><code>save</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>step</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l63"><code>js\runjs.js:63</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>系统处理流程之[保存]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br /> 流程化处理能更好的控制逻辑</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">step</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>流程步骤</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>flow.of(runjs).save(1);//使用流程化的保存操作
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_setSysPlugin" class="method item"> 
+            <h3 class="name"><code>setSysPlugin</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>pid</code> </li> 
+              <li class="arg"> <code>sys</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l340"><code>js\runjs.js:340</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>将代码转换为系统插件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">pid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码id</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">sys</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>sys为1系统插件，0为用户插件</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_share" class="method item"> 
+            <h3 class="name"><code>share</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>step</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l108"><code>js\runjs.js:108</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>系统处理流程之[分享]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br /> 流程化处理能更好的控制逻辑</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">step</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>流程步骤</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>flow.of(runjs).share(1);//使用流程化的分享操作
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_share" class="method item"> 
+            <h3 class="name"><code>share</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l426"><code>js\runjs.js:426</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>弹出分享对话框</p> 
+            </div> 
+           </div> 
+           <div id="method_shotcuts" class="method item"> 
+            <h3 class="name"><code>shotcuts</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cur</code> </li> 
+              <li class="arg"> <code>event</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l732"><code>js\runjs.js:732</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>快捷键处理</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cur</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>事件绑定对象</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">event</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>事件对象</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_window_resize" class="method item"> 
+            <h3 class="name"><code>window_resize</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l792"><code>js\runjs.js:792</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>重新调整窗口，当窗口变化时调用此方法来是得各视图显示正确</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_event_stack" class="property item"> 
+            <h3 class="name"><code>event_stack</code></h3> 
+            <span class="type">Array</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l22"><code>js\runjs.js:22</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>流程事件栈，在处理如“保存”、“fork”这些需要用流程处理的业务时，需要用到事件栈来调用接下来需要做的</p> 
+            </div> 
+           </div> 
+           <div id="property_Events" class="property item"> 
+            <h3 class="name"><code>Events</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l32"><code>js\runjs.js:32</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>事件绑定规则定义，详情见 <a href="..\classes\Utils.html" class="crosslink">Utils</a> 类中的 <a href="..\classes\Utils.html#method_binder" class="crosslink">binder</a> 方法</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_defaultParams" class="attr item private"> 
+            <a name="config_defaultParams"></a> 
+            <h3 class="name"><code>defaultParams</code></h3> 
+            <span class="type"></span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_runjs.js.html#l12"><code>js\runjs.js:12</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>默认配置参数</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

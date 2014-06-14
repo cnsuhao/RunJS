@@ -1,0 +1,665 @@
+#set($dialog = $link.param("p1",""))
+#set($opt = $link.param("p2",""))
+$request.setAttribute("close_comment",true)
+#if($dialog == "login")
+<script>
+#if($opt.equals("share") || $opt.equals("save") || $opt.equals("fork"))
+	runjs.cur_opt = "${opt}";
+#else
+	runjs.cur_opt = "login";
+#end
+</script>
+<div id="user_login">
+	<div class="user_login setting">
+		#if($opt=="save")
+		<p style="margin-left:20px;">保存代码前请登录，您可以选择以下几种方式登录：</p>
+		#elseif($opt=="share")
+		<p style="margin-left:20px;">分享前请登录，您可以选择以下几种方式登录：</p>
+		#elseif($opt=="fork")
+		<p style="margin-left:20px;">Fork前请登录，您可以选择以下几种方式登录：</p>
+		#else
+		<p style="margin-left:20px;">您可以选择以下几种方式登录,登录后可以：</p>
+		<p style="margin-left:20px;">&nbsp;&nbsp;&nbsp;1、保存代码</p>
+		<p style="margin-left:20px;">&nbsp;&nbsp;&nbsp;2、发布和分享代码</p>
+		<p style="margin-left:20px;">&nbsp;&nbsp;&nbsp;3、Fork 他人的代码</p>
+		#end
+        <a openid="oschina" href="javascript:void(0);">
+			<img src="/img/login_oschina.gif" width="100" height="36"/>
+		</a>
+		<a openid="weibo" href="javascript:void(0);">
+			<img src="/img/login_weibo.gif" width="100" height="36"/>
+		</a>
+		<a openid="qq" href="javascript:void(0);">
+			<img src="/img/login_qq.gif" width="100" height="36"/>
+		</a>
+		<a openid="github" href="javascript:void(0);" class="small" style="margin-left:20px;">
+			<img src="/img/login_github.gif" width="75" height="27"/>
+		</a>
+		<a openid="hotmail" class="small" href="javascript:void(0);">
+			<img src="/img/login_msn.gif" width="75" height="27"/>
+		</a>
+		<a openid="yahoo" class="small"  href="javascript:void(0);">
+			<img src="/img/login_yahoo.gif" width="75" height="27"/>
+		</a>
+		<a openid="google" class="small" style="margin-right:0px;" href="javascript:void(0);">
+			<img src="/img/login_google.gif" width="75" height="27">
+		</a>
+   </div>
+</div>
+#elseif($dialog == "create_project")
+<div class="create_project">
+    <p>请输入长度为1~20字符的代码名称</p>
+	<p>代码名称：<input name="project_name" id="project_name"/></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "rename")
+<div class="rename">
+	#set($code = $project.getCodeByIdent($opt,$g_user))
+	##set($p = $Project.Get($code.project))
+	<p>新名称：<input name="newname" id="newname" value="${code.name}"/></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "rename_catalog")
+<div class="rename">
+	#set($catalog = $CatalogBean.Get($format.to_long($opt)))
+	<p>新名称：<input name="newname" id="newname" value="${catalog.name}"/></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "f1_help")
+<style>
+	.keyshort .key{font-weight:bold;width:120px;display:inline-block;}
+	.keyshort .head{color:#18708B;font-size:18px;}
+</style>
+        <div class="f1_help">
+			<div class="help_wrapper">
+			<div class="setting_content">
+                <div class="setting_left">
+				 <div class="list_item_focus" id="list_item_focus"></div> 
+                 <ul class="setting_list">
+                      <li class="item_focus">快捷键 </li> 
+                      <li>Echo - HTTP 参数接口</li> 
+                 </ul>
+				</div>
+				<div class="setting_right">
+					<div class="right_content setting_on">
+        				<div class="keyshort">
+                            <p style="font-weight:bold;font-size:14pt;color:#A00;">快捷键使用说明</p>
+        					<hr>
+                            <p><span class="key">Ctrl + S</span>保存所有视图代码</p>
+                			<p><span class="key">Ctrl + 1</span>只打开HTML视图</p>
+                			<p><span class="key">Ctrl + 2</span>只打开JavaScript视图</p>
+                			<p><span class="key">Ctrl + 3</span>只打开CSS视图</p>
+                			<p><span class="key">Ctrl + 4</span>只打开实时预览视图</p>
+                			<p><span class="key">Ctrl + 5</span>打开所有视图</p>
+                            <p><span class="key">Ctrl + Shift + F</span>格式化当前代码</p>
+            				<p><span class="key">Ctrl + /</span>注释当前行代码</p>
+            				<p><span class="key">Ctrl + Q</span>折叠/打开HTML或JavaScript代码（或单击行号）</p>
+        				</div>
+                 	</div>
+					<div class="right_content setting_off">
+    					<div class="echo_list">
+                            <p style="font-weight:bold;font-size:14pt;color:#A00;">Echo - HTTP 参数接口说明</p>
+    						<hr>
+    						<p>为方便用户模拟测试表单提交和 HTTP 请求参数，服务器提供以下三个API：</p><p></p>
+    						<p>http://runjs.cn/action/echo/text</p>
+    						<p>http://runjs.cn/action/echo/xml</p>
+    						<p>http://runjs.cn/action/echo/json</p>
+    						<p>三个测试API支持GET和POST两种请求方式，分别以纯文本、XML、JSON 格式返回 HTTP 请求参数，点此<a href="http://runjs.cn/code/gew5wreh" target="_blank">查看使用demo</a>。</p>
+    					</div>
+    				</div>
+				</div>
+			</div>
+			</div>
+        </div>
+#*
+<style>
+	.help_content p{margin-left:20px;}
+	.help_content .key{font-weight:bold;width:120px;display:inline-block;}
+	.help_content .head{color:#18708B;font-size:18px;}
+</style>
+<div class="f1_help">
+	<div class="help_content">
+        <p><span class="head key">快捷键</span><span class="head key">功能</span></p>
+        <p><span class="key">Ctrl + S</span>保存所有视图代码</p>
+		<p><span class="key">Ctrl + 1</span>只打开HTML视图</p>
+		<p><span class="key">Ctrl + 2</span>只打开JavaScript视图</p>
+		<p><span class="key">Ctrl + 3</span>只打开CSS视图</p>
+		<p><span class="key">Ctrl + 4</span>只打开实时预览视图</p>
+		<p><span class="key">Ctrl + 5</span>打开所有视图</p>
+        <p><span class="key">Ctrl + Shift + F</span>格式化当前代码</p>
+		<p><span class="key">Ctrl + /</span>注释当前行代码</p>
+		<p><span class="key">Ctrl + Q</span>折叠/打开HTML或JavaScript代码（或单击行号）</p>
+	</div>
+</div>*#
+#elseif($dialog == "share")
+#set($code = $project.getCodeByIdent($opt,$g_user))
+#if($code)
+#set($prj = $Project.Get($code.project))
+<style>
+	#menu_share{padding:0 30px;}
+	.code_url span{text-align:right;width:40px;display:inline-block;}
+	.code_url a{text-decoration:none;color:#175977}
+	.code_url a img{vertical-align: middle;}
+</style>
+<div id="dialog_share">
+	<ul id="menu_share">
+        <li class="code_url" style="margin-bottom:20px;">
+			<span>分享到</span>：
+			<a class="share_weibo" target="_blank"  style="margin-left:40px;" title="分享到新浪微博" href="http://service.weibo.com/share/share.php?appkey=1683392632&amp;url=http://runjs.cn/detail/${code.ident}&amp;title=代码分享：‘${prj.name}’在线演示，${code.description},%23RunJS%23&amp;source=&amp;sourceUrl=&amp;content=utf-8&amp;pic="><img src="/img/login_weibo.gif"></a>
+			<a class="share_tencent" target="_blank" style="margin-left:100px;" title="分享到腾讯微博" href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=http://runjs.cn/detail/${code.ident}&amp;appkey=8608625f2c2b3e593fa14c86539077b3&amp;site=&amp;title=代码分享：‘${prj.name}’在线演示，${code.description}，%23RunJS%23#"><img src="/img/share_tencent.gif"></a>
+		</li>
+		<li class="code_url"><span>源码</span>：<input class="share_code" type="text" value="http://runjs.cn/code/${code.ident}" onclick="this.focus();this.select();"></li>
+		<li class="code_url"><span>全屏</span>：<input class="share_show" type="text" value="http://sandbox.runjs.cn/show/${code.ident}" onclick="this.focus();this.select();"></li>
+		<li class="code_url"><span>演示</span>：<input class="share_detail" type="text" value="http://runjs.cn/detail/${code.ident}" onclick="this.focus();this.select();"></li>
+		<li class="code_url"><span>引用</span>：<input class="share_iframe" type="text" onclick="this.focus();this.select();" value="&lt;iframe style=&quot;width: 100%; height: 300px&quot; src=&quot;http://sandbox.runjs.cn/show/${code.ident}&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;"></li>
+		<li class="code_url"><span>Gist</span>：<input class="share_detail" type="text" value='<script type="text/javascript" src="http://runjs.cn/gist/${code.ident}"></script>' onclick="this.focus();this.select();"></li>
+		<li class="code_url"><a style="margin-left:45px;" href="http://runjs.cn/help/gist" target="_blank">了解更多关于Gist的用法»</a></li>
+	</ul>
+</div>
+#end
+#elseif($dialog == "publish_version")
+<div id="publish_version">
+    <div class="publishVersion">
+		<p>发布即将当前代码设置为所有人可见的状态，发布过后，该代码将拥有单独的详情页面，能够被分享、评论以及被 Fork </p>
+		<p>请对当前发布代码进行简单描述（1~300字）：</<p>
+        <p><textarea class="project_description"></textarea></p>
+        <p><span class="errorMsg"></span></p>
+	</div>
+</div>
+#elseif($dialog == "update_publish")
+#set($code = $project.getCodeByIdent($opt,$g_user))
+<div id="update_publish" class="publishVersion">
+    <p>请对当前发布代码进行简单描述（1~300字）：</p>
+    <p><textarea class="project_description">${code.description}</textarea></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "editor_setting")
+#set($plugins = $PluginBean.GetSysPlugins())
+<style>
+	.setting_right .plugins li{line-height:20px;margin-bottom:5px;padding:3px 5px;color:white;background-color:#CCC;text-decoration:none;}
+	.setting_right .plugins li a{text-decoration:none;color:white;}
+	.setting_right .plugins li.checked{background-color:#389238;}
+	.setting_right .plugins .status{float:right;}
+</style>
+<div id="editorSetting">
+    <div class="editorSetting setting"> 
+       <div class="setting_content"> 
+            <div class="setting_left"> 
+                 <div class="list_item_focus" id="list_item_focus"> 
+                 </div> 
+                 <ul id="setting_list" class="setting_list">
+                      <li class="item_focus"> 主题 </li> 
+                      <li> 字体 </li> 
+                      #if($g_user.IsAdmin())<li> 插件 </li>#end
+    				  <li>建议和反馈</li>
+                      <li> 关于我们 </li> 
+                 </ul> 
+            </div> 
+            <div class="setting_right" id="setting_right"> 
+                <div class="right_content theme_list #if($opt=="" || $opt=="1")setting_on#{else}setting_off#end">
+					<p style="font-weight:bold;font-size:14pt;color:#A00;">主题设置</p>
+					<hr>
+					<ul>
+                        <li class="default"><a href="javascript:runjs.menu.setTheme('default'#if($g_user),true#end);"><img src="/img/white_theme.png"/></a></li>
+                        <li class="current night"><a href="javascript:runjs.menu.setTheme('night'#if($g_user),true#end);"><img src="/img/black_theme.png"/></a></li>
+                    </ul>
+                </div>
+                <div class="right_content fontsize #if($opt=="2")setting_on#{else}setting_off#end">
+					<p style="font-weight:bold;font-size:14pt;color:#A00;">字体设置</p>
+    				<hr>
+                    <p>
+    					字体：
+    					<select class="editor_font">
+                            <option value="consolas" selected>consolas</option>
+                            <option value="Menlo">Menlo</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="MenschRegular">MenschRegular</option>
+                            <option value="Monaco">Monaco</option>
+                            <option value="monospace">monospace</option>
+    					</select>
+    				</p>
+                    <p>
+    					大小：
+    					<select class="editor_font_size">
+                            <option value="10">10px</option>
+                            <option value="11">11px</option>
+                            <option value="12" selected>12px</option>
+                            <option value="13">13px</option>
+                            <option value="14">14px</option>
+                            <option value="15">15px</option>
+                            <option value="16">16px</option>
+                            <option value="17">17px</option>
+                            <option value="18">18px</option>
+    					</select>
+    				</p>
+                </div>
+                #if($g_user.IsAdmin())
+				<div class="right_content plugin #if($opt=="3")setting_on#{else}setting_off#end" style="overflow-y:auto;height:330px;">
+					<p style="font-weight:bold;font-size:14pt;color:#A00;">插件管理<span style="font-size:12px;color:#666;">(刷新后起效)</span></p>
+					<hr>
+					<ul class="plugins">
+					#foreach($plugin in $plugins)
+                        #set($cur = $CodeBean.Get($plugin.code))
+						#set($checked = #$plugin.IsChecked())
+                        #if($cur)
+							<li class="#if($checked)checked#end" #if(${cur.description.length()}>0)title="${cur.description}"#end>
+                                <a href="/detail/${cur.ident}" target="_blank">$cur.name</a>
+                                <span class="status">
+									#if($checked)
+                                        <a href="javascript:runjs.uncheckPluginProxy(${plugin.id},'#plugin_switcher_${cur.ident}')" id="plugin_switcher_${cur.ident}">已启用</a>
+									#{else}
+                                        <a href="javascript:runjs.checkPluginProxy(${plugin.id},'#plugin_switcher_${cur.ident}')" id="plugin_switcher_${cur.ident}">未启用</a>
+									#end
+								</span>
+							</li>
+                        #end
+					#end
+					</ul>
+				</div>
+				#end
+    			<div class="right_content advice #if($opt=="4")setting_on#{else}setting_off#end">
+                    <p style="font-weight:bold;font-size:14pt;color:#A00;">建议和反馈</p>
+    				<hr>
+    				<p><label>Email:<br><input type="text" id="advice_email" name="email" size="40" value="#if($g_user && $g_user.email)${g_user.email}#end"></input></label></p>
+                    <p><label>建议内容:</label><br><textarea id="advice_content" name="content" style="width:400px;height:140px;"></textarea></p>
+    				<p><span class="errorMsg"></span></p>
+    				<p>验证码：<img src="/action/project/captcha" class="captcha" style="cursor:pointer;vertical-align:middle;" width="60" height="23" onclick="$(this).attr('src','/action/project/captcha?'+(new Date().getTime()));"/>
+    					<input id="captcha_advice" type="text" size="4"/>
+    					<button onclick="runjs.menu.addAdvice();">提交建议</button>
+    				</p>
+    			</div>
+    			<div class="right_content about #if($opt=="5")setting_on#{else}setting_off#end">
+					<p style="font-weight:bold;font-size:14pt;color:#A00;">关于RunJS</p>
+    				<hr>
+    				<p>RunJS是一个给web开发者提供的在线编辑HTML、CSS、JavaScript的平台，方便开发者开发预览web页面。</p>
+    				<p style="font-weight:bold;font-size:10pt;color:#A00;">特性一览：</p>
+    				<p><span style="font-weight:bold;">实时预览</span>：提供HTML、CSS、JS、预览四个区域，更改任何代码都能即时看到效果。</p>
+    				##<p><strong>版本管理</strong>：我们提供代码保存的功能，并且在此基础上有简单的版本管理，可以方便的维护多个代码分支。</p>
+    				<p><span style="font-weight:bold;">分享和Fork</span>：可以方便地将你的代码分享到微博，别人可以Fork你的代码作为一个分支。</p>
+    				<p><span style="font-weight:bold;">文件上传</span>：可以很方便的上传外部js、css、图片等资源来丰富web页面。</p>
+    				<p><span style="font-weight:bold;">人性化编辑器</span>：我们使用<a target="_blank" href="http://www.oschina.net/p/codemirror">CodeMirror</a>构建了方便的编辑器，包括语法高亮、快捷键、自动完成等功能。</p>
+    				##<p style="color:#BBB;">© 奥思网络(OsChina.NET) | 粤ICP备12009483号-7</p>
+    			</div>
+            </div> 
+       </div> 
+      </div>
+</div>
+#elseif($dialog == "projectSetting")
+<div id="projectSetting">
+    <div class="projectSetting setting">
+		项目名称：<input type="text" name="re_project_name" id="re_project_name"/>
+    </div>
+</div>
+#elseif($dialog == "versionSetting")
+<div id="versionSetting">
+    <div class="versionSetting setting">
+        <p>版本名称：<input type="text" name="re_version_name" class="re_project_name"/><button name="deleteVersion" >删除当前版本</button></p>
+		<p>版本描述：</<p>
+        <p><textarea class="prj_description"></textarea></p>
+        <p><label for=""></label></p>
+        <p><button name="publishVersion">发布当前版本</button><span class="errorMsg"></span></p>
+    </div>
+</div>
+#elseif($dialog == "upload")
+<div id="resourceUpload">
+	<div class="resourceUpload">
+		<p>资源上传能够满足设计过程中对外部JS、CSS，图片，以及AJAX请求XML和JSON格式数据的要求</p>
+		<p>注意：</p>
+		<p>1、单个文件必须小于1M，不能重名</p>
+		<p>2、只能上传JS、CSS、图片、XML以及JSON(*.json)文件</p>
+		<p>3、可以上传以下格式图片：jpg,gif,jpeg,tiff,svg,png,ico</p>
+		<form id="upload_form" name="upload_form" action="/action/file/add_file" method="POST" enctype="multipart/form-data">
+            <p style="margin-left:10px;">
+				<input checked="checked" type="radio" name="method" value="file" id="file_method"/>
+                <label for="url_method">上传文件：</label>
+				<input type="file" name="file" size="32" width="150"/>
+			</p>
+            <p style="margin-left:10px;">
+				<input type="radio" name="method" value="url" id="url_method"/>
+				<label for="url_method">URL上传&nbsp;</label>：
+				<input type="text" style="margin-top:10px;" name="url" size="32" class="enter_forbidden"/>
+			</p>
+            <p><span class="errorMsg"></span></p>
+        </form>
+	</div>
+</div>
+#elseif($dialog == "delete_file")
+<div id="delete_file">
+	<p>确认删除该资源文件？</p>
+	<p>验证码：<img src="/action/project/captcha" class="captcha" style="cursor:pointer;vertical-align:middle;" width="60" height="23"/>
+	<input id="captcha_delete_file" type="text" size="4"/></p>
+	<p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "delete_code")
+<div id="delete_code">
+	<p>确认删除该代码？</p>
+	<p>验证码：<img src="/action/project/captcha" class="captcha" style="cursor:pointer;vertical-align:middle;" width="60" height="23"/>
+	<input id="captcha_delete_code" type="text" size="4"/></p>
+	<p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "fork")
+<div id="fork_code">
+    <p>Fork 即将当前代码复制一份，然后自行维护</p>
+    <p>请输入长度为1~20字符的代码名称</p>
+	<p>代码名称：<input name="project_name" id="project_name"/></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "upload_plugin")
+<div id="uploadPlugin">
+    <p>插件上传能够通过简单的上传从本网站下载的ZIP包创建插件</p>
+	<form id="upload_form" name="upload_form" action="/action/plugin/add_sys_plugin" method="POST" enctype="multipart/form-data">
+        <p style="margin-left:10px;">
+			<input checked="checked" type="radio" name="method" value="file" id="file_method"/>
+            <label for="url_method">上传插件：</label>
+			<input type="file" name="file" size="32" width="150"/>
+		</p>
+        <p style="margin-left:10px;">
+			<label>名称：</label>
+			<input type="text" name="name" size="32" width="150" class="enter_forbidden"/>
+		</p>
+		<p><span class="errorMsg"></span></p>
+    </form>
+</div>
+#elseif($dialog == "create_sys_plugin")
+<div id="create_sys_plugin">
+    <p>请输入长度为1~20字符的插件名称</p>
+	<form id="upload_form" name="upload_form" action="/action/plugin/#if($opt.equals('sys') || !$opt)create_sys_plugin#{else}create_normal_plugin#end" method="POST">
+        <p style="margin-left:10px;">
+			<label>名称：</label>
+			<input type="text" name="name" class="enter_forbidden"/>
+			<input type="hidden" name="html"/>
+			<input type="hidden" name="css"/>
+			<input type="hidden" name="js"/>
+		</p>
+		<p><span class="errorMsg"></span></p>
+    </form>
+</div>
+#elseif($dialog == "create_wizard")
+<style>
+	#create_wizard .wizard_button ul,#create_wizard .wizard_info ul{padding: 0 25px;}
+	#create_wizard .wizard_button li{padding:5px;cursor:pointer;width:90px;text-align:center;border:1px solid #CCC;display:inline-block;margin:10px;}
+	#create_wizard .wizard_button li.on{border:1px solid #0A0;}
+	#create_wizard .wizard_button li.disabled{text-decoration:line-through;}
+	#create_wizard .wizard_info li{display:none;margin-left:5px;}
+	#create_wizard .wizard_info li.on{display:block;}
+</style>
+<div id="create_wizard">
+    <div class="wizard_button">
+    	<ul>
+            <li class="on" onclick = "runjs.checkProxy('create_project','blank');"><img src="/img/create_empty_code.png"/>创建空代码</li>
+            <li onclick = "runjs.checkProxy('create_project','simple');"><img src="/img/create_simple_code.png"/>创建模版代码</a></li>
+            <li onclick = "runjs.checkProxy('create_sys_plugin','user');"><img src="/img/create_user_plugin.png"/>创建用户插件</a></li>
+            #if($g_user.IsAdmin())
+				<li onclick = "runjs.checkProxy('uploadPlugin');"><img src="/img/upload_plugin.png"/>上传插件</a></li>
+				<li onclick = "runjs.checkProxy('create_sys_plugin');"><img src="/img/create_sys_plugin.png"/>创建系统插件</li>
+			#end
+    	</ul>
+	</div>
+    <div class="wizard_info">
+        <ul>
+            <li>
+                <p class="name">创建空代码即创建一个HTML、CSS、JavaScript为空的代码</p>
+			</li>
+            <li>
+                <p class="name">创建模版代码即采用我们提供的默认代码模版来填充HTML、CSS、JavaScript</p>
+			</li>
+            <li>
+                <p class="name">插件即一段能够随着当前系统一起加载的脚本（在JavaScript中编辑），能够做到对当前系统进行功能扩展的作用。其中视图的渲染在HTML、CSS视图中编辑。查看<a href="/plugin" target="_blank">如何编写插件»</a></p>
+			</li>
+            <li>
+                <p class="name">上传插件即上传从本站下载的ZIP包，系统将自动新建一个对应内容的插件。</p>
+			</li>
+            <li class="on">
+                <p class="name">创建空代码即创建一个HTML、CSS、JavaScript为空的代码</p>
+			</li>
+		</ul>
+	</div>
+</div>
+#elseif($dialog == "create_catalog")
+<div id="create_catalog">
+    <p>请输入长度为1~20字符的分类名称</p>
+	<p>分类名称：<input name="catalog_name" id="catalog_name"/></p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "choose_catalog")
+#set($catalogs = $CatalogBean.listCatalogByUser($g_user.id))
+<style>
+#choose_catalog .catalog{margin:5px 10px;width:120px;overflow:hidden;display:inline-block;}
+</style>
+<div id="choose_catalog">
+    <p>请从下面分类中选取其中一个进行操作：</p>
+    <p>
+	#foreach($catalog in $catalogs)
+		<div class="catalog">
+			<input type="radio" name="choose_catalog" id="_catalog_${catalog.id}" #if($velocityCount==1)checked#end>
+			<label for="_catalog_${catalog.id}">${catalog.name}</label>
+	    </div>
+		#if($velocityCount%3==0 && $catalogs.size()>3)
+		</p><p>
+		#end
+	#end
+    </p>
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "choose_code_type")
+<style>
+	#choose_code_type .code_type{display:inline-block;width:150px;margin:10px;}
+</style>
+<div id="choose_code_type">
+	#set($ident = $link.param("p3",""))
+	#set($code = $project.getCodeByIdent($ident,$g_user))
+    #if($code)
+        #set($htmlType = $code.GetHTMLType())
+        #set($cssType = $code.GetCSSType())
+        #set($jsType = $code.GetJSType())
+    #else
+        #set($htmlType = 1)
+        #set($cssType = 1)
+        #set($jsType = 1)
+	#end
+	#if($opt=="js")
+   <p>JavaScript 视图选择</p>
+    <div class="code_type">
+        <input #if($jsType==1)checked#end type="radio" value="1" name="choose_js_type" id="js_type_js"/><label for="js_type_js">JavaScript</label>
+	</div>
+    <div class="code_type">
+       <input #if($jsType==2)checked#end type="radio" value="2" name="choose_js_type" id="js_type_coffee"/><label for="js_type_coffee">CoffeeScript</label>
+	</div>
+	#elseif($opt=="css")
+    <p>CSS 视图选择</p>
+    <p>
+    <div class="code_type">
+        <input #if($cssType==1)checked#end type="radio" value="1" name="choose_css_type" id="css_type_css"/><label for="css_type_css">CSS</label>
+	</div>
+    <div class="code_type">
+        <input #if($cssType==2)checked#end type="radio" value="2" name="choose_css_type" id="css_type_less"/><label for="css_type_less">LESS</label>
+	</div>
+	#end
+    <p><span class="errorMsg"></span></p>
+</div>
+#elseif($dialog == "view_notify")
+<style>
+	#view_notify .right_content{height:330px;overflow:auto;}
+	#view_notify .right_content .nomsg{text-align:center;color:#069;font-size:20px;font-weight:bold;top:150px;position:relative;}
+	#view_notify .right_content .unread{margin:0 0 10px 0;border-bottom: 1px solid #E4E4E4;padding-bottom: 10px;}
+	#view_notify .right_content .unread a{color:#069;text-decoration:none;}
+	#view_notify .right_content .unread img{vertical-align:middle;margin-right:5px;}
+	#view_notify .right_content .unread .btn_read{float:right;margin-right:10px;}
+</style>
+<div id="view_notify">
+    <div class="notify"> 
+       <div class="setting_content"> 
+			#set($comment_msgs=$msg_tool.getMsgByType($g_user.id,0))
+			#set($fork_msgs=$msg_tool.getMsgByType($g_user.id,1))
+			#set($up_msgs=$msg_tool.getMsgByType($g_user.id,2))
+			
+			#if($comment_msgs && $comment_msgs.size()!=0)
+			#set($comment_on = true)
+			#else
+			#set($comment_on = false)
+			#end
+			
+			#if($fork_msgs && $fork_msgs.size()!=0)
+			#set($fork_on = true)
+			#else
+			#set($fork_on = false)
+			#end
+			
+			#if($up_msgs && $up_msgs.size()!=0)
+			#set($up_on = true)
+			#else
+			#set($up_on = false)
+			#end
+			
+			#if($comment_on)
+				#set($fork_on = false)
+				#set($up_on = false)
+			#elseif($fork_on)
+				#set($up_on = false)
+			#elseif(!$up_on)
+				#set($comment_on = true)
+			#end
+			
+			#if($comment_on)
+			#set($arrow_top = 10)
+			#end
+			#if($fork_on)
+			#set($arrow_top = 51)
+			#end
+			#if($up_on)
+			#set($arrow_top = 92)
+			#end
+			
+            <div class="setting_left"> 
+                 <div class="list_item_focus" id="list_item_focus" style="top:${arrow_top}px"> 
+                 </div>
+                 <ul id="setting_list" class="setting_list">
+        			<li #if($comment_on)class="item_focus"#end>评论&nbsp;#if($comment_msgs && $comment_msgs.size()>0)($comment_msgs.size())#end</li>
+    				<li #if($fork_on)class="item_focus"#end>Fork&nbsp;#if($fork_msgs && $fork_msgs.size()>0)($fork_msgs.size())#end</li>
+    				<li #if($up_on)class="item_focus"#end>顶&nbsp;#if($up_msgs && $up_msgs.size()>0)($up_msgs.size())#end</li>
+                 </ul> 
+            </div> 
+            <div class="setting_right" id="setting_right">
+                <div class="right_content #if($comment_on)setting_on#{else}setting_off#end">
+    				#if($comment_msgs && $comment_msgs.size()>0)
+    					#foreach($m in $comment_msgs)
+            				#set($code=$CodeBean.Get($m.refer))
+            				#set($sender=$User.Get($m.sender))
+    						#if(${sender.portrait} && $sender.portrait.length()>0)
+                    			#set($__p = $sender.portrait)
+                    		#else
+                    			#set($__p = "http://gravatar.com/avatar/${project.MD5($sender.email)}size=100")
+                    		#end
+            				#if($code)
+    							<div #if($m.status == 0)class="unread"#end id="msg_${m.id}">
+    								<a><img src="$__p" width="24" height="24" alt="${sender.name}">$format.text($sender.name)</a>
+    									在&nbsp;<span class="time">$date.friendly_time($request,$m.create_time)</span>&nbsp;
+    									评论了你的代码&nbsp;(<a href="/detail/$code.ident" target="_blank">$format.text($code.name)</a>)&nbsp;
+    									<a class="btn_read" href="javascript:runjs.menu.read_msg($m.id)" id="m_${m.id}">标记已阅</a>
+    							</div>
+            				#end
+            			#end
+    				#else
+    				<div class="nomsg">
+    					当前没有未读评论
+    				</div>
+    				#end
+                </div>
+                <div class="right_content #if($fork_on)setting_on#{else}setting_off#end">
+    				#if($fork_msgs && $fork_msgs.size()>0)
+    					#foreach($f in $fork_msgs)
+            				#set($code=$CodeBean.Get($f.refer))
+            				#set($sender=$User.Get($f.sender))
+							#if(${sender.portrait} && $sender.portrait.length()>0)
+                    			#set($__p = $sender.portrait)
+                    		#else
+                    			#set($__p = "http://gravatar.com/avatar/${project.MD5($sender.email)}size=100")
+                    		#end
+            				#if($code)
+    							<div #if($f.status == 0)class="unread"#end id="msg_${f.id}"><img src="$__p" width="24" height="24" alt="${sender.name}">$format.text($sender.name)</a>
+    								在&nbsp;<span class="time">$date.friendly_time($request,$f.create_time)</span>&nbsp;
+    								Fork了你的代码 &nbsp;(<a href="/detail/$code.ident" target="_blank">$format.text($code.name)</a>)&nbsp;
+    								<a class="btn_read" href="javascript:runjs.menu.read_msg($f.id)" id="m_${f.id}">标记已阅</a>
+    							</div>
+            				#end
+            			#end
+    				#else
+    				<div class="nomsg">
+    					当前没有未读提醒
+    				</div>
+    				#end
+                </div>
+                <div class="right_content #if($up_on)setting_on#{else}setting_off#end">
+    				#if($up_msgs && $up_msgs.size()>0)
+    					#foreach($u in $up_msgs)
+            				#set($code=$CodeBean.Get($u.refer))
+            				#set($sender=$User.Get($u.sender))
+							#if(${sender.portrait} && $sender.portrait.length()>0)
+                    			#set($__p = $sender.portrait)
+                    		#else
+                    			#set($__p = "http://gravatar.com/avatar/${project.MD5($sender.email)}size=100")
+                    		#end
+            				#if($code)
+    							<div #if($u.status == 0)class="unread"#end id="msg_${u.id}"><img src="$__p" width="24" height="24" alt="${sender.name}">$format.text($sender.name)</a>
+    								在&nbsp;<span class="time">$date.friendly_time($request,$u.create_time)</span>&nbsp;
+									顶了你的代码&nbsp; (<a href="/detail/$code.ident" target="_blank">$format.text($code.name)</a>)&nbsp;
+    								<a class="btn_read" href="javascript:runjs.menu.read_msg($u.id)" id="m_${u.id}">标记已阅</a>
+    							</div>
+            				#end
+            			#end
+    				#else
+    				<div class="nomsg">
+    					当前没有未读提醒
+    				</div>
+    				#end
+                </div>
+            </div> 
+       </div> 
+      </div>
+</div>
+#elseif($dialog == "wizards")
+	#if($opt=="create_plugin")
+		#set($sys = $link.param("p3","user"))
+        <style>
+			.create_plugin .right_content{height:330px;overflow:auto;}
+			.create_plugin .onEventsList{}
+			.create_plugin .onEventsList li{margin:10px;}
+			.create_plugin .onEventsList li input{margin-right:5px;}
+			.create_plugin .onEventsList li .onEventsDescription{float:right}
+		</style>
+        <div class="create_plugin">
+            <div class="setting_content">
+                <div class="setting_left">
+                    <div class="list_item_focus"></div>
+                    <ul class="setting_list">
+						<li class="item_focus">
+							步骤1:插件名称
+                        </li>
+						<li>
+							步骤2:自动引入
+                        </li>
+					</ul>
+				</div>
+                <div class="setting_right">
+					<div class="right_content setting_on">
+                        <p>请输入长度为1~20字符的非中文插件名称</p>
+						<form id="upload_form" name="upload_form" action="/action/plugin/#if($sys.equals("sys"))create_sys_plugin#{else}create_normal_plugin#end" method="POST">
+                        	<p>代码名称：<input name="name" id="plugin_name" class="enter_forbidden"/></p>
+                			<input type="hidden" name="html"/>
+                			<input type="hidden" name="css"/>
+                			<input type="hidden" name="js"/>
+                        </form>
+                        <p><span class="errorMsg"></span></p>
+                    </div>
+					<div class="right_content setting_off">
+                        <p><h4>选择需要自动引入的事件：</h4></p>
+						<div>
+							<ul class="onEventsList">
+                            </ul>
+						</div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	#end
+#end

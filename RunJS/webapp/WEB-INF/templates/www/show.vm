@@ -1,0 +1,17 @@
+#set($ident=$link.param("p1"))
+#set($code = $project.getCodeByIdent($ident))	
+#if($code)
+	${code.html}
+    #if($code.GetCSSType() == 1)
+	<style>${code.css}</style>
+	#elseif($code.GetCSSType() == 2)
+	<style>$project.less_compile(${code.css})</style>
+	#end
+    #if($code.GetJSType() == 1)
+		<script>${code.js}</script>
+	#elseif($code.GetJSType() == 2)
+		<script>$project.coffee_compile(${code.js})</script>
+	#end
+#else
+	$response.sendError(404)
+#end

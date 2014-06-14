@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Editor</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Editor Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_editor.js.html#l56"><code>js\editor.js:56</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>按视图划分，Editor负责编辑器视图的显示及操作</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Editor" class="method item"> 
+          <h3 class="name"><code>Editor</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_editor.js.html#l56"><code>js\editor.js:56</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_chooseCssType">chooseCssType</a> </li> 
+             <li class="index-item method"> <a href="#method_chooseJsType">chooseJsType</a> </li> 
+             <li class="index-item method"> <a href="#method_codeMD5">codeMD5</a> </li> 
+             <li class="index-item method"> <a href="#method_getCodeOfView">getCodeOfView</a> </li> 
+             <li class="index-item method"> <a href="#method_getCombinedHtml">getCombinedHtml</a> </li> 
+             <li class="index-item method"> <a href="#method_getDefaultEditorValue">getDefaultEditorValue</a> </li> 
+             <li class="index-item method"> <a href="#method_getEditorCode">getEditorCode</a> </li> 
+             <li class="index-item method"> <a href="#method_getRemoteCode">getRemoteCode</a> </li> 
+             <li class="index-item method"> <a href="#method_hide_quick_tools">hide_quick_tools</a> </li> 
+             <li class="index-item method"> <a href="#method_initCodeMirror">initCodeMirror</a> </li> 
+             <li class="index-item method"> <a href="#method_initView">initView</a> </li> 
+             <li class="index-item method"> <a href="#method_loadPlugin">loadPlugin</a> </li> 
+             <li class="index-item method"> <a href="#method_loadPluginTpl">loadPluginTpl</a> </li> 
+             <li class="index-item method"> <a href="#method_loadTemplate">loadTemplate</a> </li> 
+             <li class="index-item method"> <a href="#method_loadTplSnippet">loadTplSnippet</a> </li> 
+             <li class="index-item method"> <a href="#method_refreshEditors">refreshEditors</a> </li> 
+             <li class="index-item method"> <a href="#method_removeEditedStatus">removeEditedStatus</a> </li> 
+             <li class="index-item method"> <a href="#method_setCMFont">setCMFont</a> </li> 
+             <li class="index-item method"> <a href="#method_setEditedStatus">setEditedStatus</a> </li> 
+             <li class="index-item method"> <a href="#method_setTheme">setTheme</a> </li> 
+             <li class="index-item method"> <a href="#method_show_quick_tools">show_quick_tools</a> </li> 
+             <li class="index-item method"> <a href="#method_updatePreview">updatePreview</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_Events">Events</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr private"> <a href="#attr_defaultParams">defaultParams</a> </li> 
+             <li class="index-item attr private"> <a href="#attr_update_delay">update_delay</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_chooseCssType" class="method item"> 
+            <h3 class="name"><code>chooseCssType</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l124"><code>js\editor.js:124</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>选择CSS编辑类型：CSS 或 LESS</p> 
+            </div> 
+           </div> 
+           <div id="method_chooseJsType" class="method item"> 
+            <h3 class="name"><code>chooseJsType</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l95"><code>js\editor.js:95</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>选择JS编辑类型：JavaScript或CoffeeScript</p> 
+            </div> 
+           </div> 
+           <div id="method_codeMD5" class="method item"> 
+            <h3 class="name"><code>codeMD5</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l153"><code>js\editor.js:153</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取当前代码的MD5值</p> 
+            </div> 
+           </div> 
+           <div id="method_getCodeOfView" class="method item"> 
+            <h3 class="name"><code>getCodeOfView</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l317"><code>js\editor.js:317</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取当前编辑器内textarea代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>view 视图选择器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>type 编辑器类型 'html'|'css'|'js'</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_getCombinedHtml" class="method item"> 
+            <h3 class="name"><code>getCombinedHtml</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l465"><code>js\editor.js:465</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取HTML+JS+CSS组合过后的最终页面代码，用于在预览视图中实时显示</p> 
+            </div> 
+           </div> 
+           <div id="method_getDefaultEditorValue" class="method item"> 
+            <h3 class="name"><code>getDefaultEditorValue</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l545"><code>js\editor.js:545</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取默认代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>type 代码类型 'html'|'css'|'js'</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_getEditorCode" class="method item"> 
+            <h3 class="name"><code>getEditorCode</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l441"><code>js\editor.js:441</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取CodeMirro编辑器代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>type 编辑器类型 'html'|'css'|'js'</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_getRemoteCode" class="method item"> 
+            <h3 class="name"><code>getRemoteCode</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">JSON</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l261"><code>js\editor.js:261</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>以同步方式加载模版代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>type 代码片段类型'html'|'css'|'js'</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">JSON</span>: code 返回{html:&quot;&quot;,css:&quot;&quot;,js:&quot;&quot;}结构数据 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_hide_quick_tools" class="method item"> 
+            <h3 class="name"><code>hide_quick_tools</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l47"><code>js\editor.js:47</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>隐藏视图右上角快速工具条</p> 
+            </div> 
+           </div> 
+           <div id="method_initCodeMirror" class="method item"> 
+            <h3 class="name"><code>initCodeMirror</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l332"><code>js\editor.js:332</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化CodeMirror</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>view 视图选择器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否使用编辑器textarea的默认代码</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_initView" class="method item"> 
+            <h3 class="name"><code>initView</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l69"><code>js\editor.js:69</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>编辑器视图初始化</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>async 是否采取异步方式初始化视图</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_loadPlugin" class="method item"> 
+            <h3 class="name"><code>loadPlugin</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l185"><code>js\editor.js:185</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>加载插件模版代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>pname 插件类名</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>onMethod Plugins/onEvents 个数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_loadPluginTpl" class="method item"> 
+            <h3 class="name"><code>loadPluginTpl</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l207"><code>js\editor.js:207</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>加载插件模版代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>onMethod Plugins/onEvents 个数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_loadTemplate" class="method item"> 
+            <h3 class="name"><code>loadTemplate</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l161"><code>js\editor.js:161</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>给三个视图异步加载代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识，ident为空则加载默认模版代码，ident不为空则尝试加载用户的对应代码</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_loadTplSnippet" class="method item"> 
+            <h3 class="name"><code>loadTplSnippet</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">JSON</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l275"><code>js\editor.js:275</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>从远程加载代码片段，如果ident为空，则加载模版代码片段</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>ident 代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>type 代码片段类型'html'|'css'|'js'</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>async 是否采用异步方式加载</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>callback 异步方式的回调函数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">JSON</span>: code 返回{html:&quot;&quot;,css:&quot;&quot;,js:&quot;&quot;}结构数据 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_refreshEditors" class="method item"> 
+            <h3 class="name"><code>refreshEditors</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l605"><code>js\editor.js:605</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>刷新编辑器，当编辑器外观或大小被改变时调用</p> 
+            </div> 
+           </div> 
+           <div id="method_removeEditedStatus" class="method item"> 
+            <h3 class="name"><code>removeEditedStatus</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l250"><code>js\editor.js:250</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>移除编辑状态</p> 
+            </div> 
+           </div> 
+           <div id="method_setCMFont" class="method item"> 
+            <h3 class="name"><code>setCMFont</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l573"><code>js\editor.js:573</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>设置CodeMirror字体，根据全局变量 Setting 中的fontfamily和fontsize属性设置字体</p> 
+            </div> 
+           </div> 
+           <div id="method_setEditedStatus" class="method item"> 
+            <h3 class="name"><code>setEditedStatus</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l223"><code>js\editor.js:223</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>检查并设置编辑器编辑状态</p> 
+            </div> 
+           </div> 
+           <div id="method_setTheme" class="method item"> 
+            <h3 class="name"><code>setTheme</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l556"><code>js\editor.js:556</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>根据全局变量 Setting 中的theme属性设置主题，当前只是 default 和 night两种主题</p> 
+            </div> 
+           </div> 
+           <div id="method_show_quick_tools" class="method item"> 
+            <h3 class="name"><code>show_quick_tools</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l38"><code>js\editor.js:38</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>显示视图右上角快速工具条</p> 
+            </div> 
+           </div> 
+           <div id="method_updatePreview" class="method item"> 
+            <h3 class="name"><code>updatePreview</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+              <li class="arg"> <code>!~YUIDOC_LINE~!</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l510"><code>js\editor.js:510</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>更新预览视图的内容</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>chtml 组合过后的HTML+CSS+JS代码</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">!~YUIDOC_LINE~!</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否强制更新</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_Events" class="property item"> 
+            <h3 class="name"><code>Events</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l26"><code>js\editor.js:26</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>事件绑定规则定义，详情见 <a href="..\classes\Utils.html" class="crosslink">Utils</a> 类中的 <a href="..\classes\Utils.html#method_binder" class="crosslink">binder</a> 方法</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_defaultParams" class="attr item private"> 
+            <a name="config_defaultParams"></a> 
+            <h3 class="name"><code>defaultParams</code></h3> 
+            <span class="type"></span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l12"><code>js\editor.js:12</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>默认配置参数</p> 
+            </div> 
+           </div> 
+           <div id="attr_update_delay" class="attr item private"> 
+            <a name="config_update_delay"></a> 
+            <h3 class="name"><code>update_delay</code></h3> 
+            <span class="type"></span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_editor.js.html#l502"><code>js\editor.js:502</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>更新视图的定时器实例，用来实现延时更新</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

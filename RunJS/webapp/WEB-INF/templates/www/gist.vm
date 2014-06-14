@@ -1,0 +1,32 @@
+#set($ident=$link.param("p1",""))
+#set($type=$link.param("p2","all"))
+#set($theme=$link.param("p3","default"))
+#set($code = $project.getCodeByIdent($ident))
+#set($host = "http://runjs.cn")
+#if($code)
+	$GistTool.getGist($ident,$type)
+    #if($theme == "default")
+    	#set($theme_style = "shCoreDefault.css")
+    #elseif($theme == "django")
+    	#set($theme_style = "shCoreDjango.css")
+    #elseif($theme == "eclipse")
+    	#set($theme_style = "shCoreEclipse.css")
+    #elseif($theme == "emacs")
+    	#set($theme_style = "shCoreEmacs.css")
+    #elseif($theme == "fadetogrey")
+    	#set($theme_style = "shCoreFadeToGrey.css")
+    #elseif($theme == "midnight")
+    	#set($theme_style = "shCoreMidnight.css")
+    #elseif($theme == "rdark")
+    	#set($theme_style = "shCoreRDark.css")
+    #else
+    	#set($theme = "default")
+    	#set($theme_style = "shCoreDefault.css")
+    #end
+    document.write('<link rel="stylesheet" href="${host}/css/gist_theme/$theme_style"/>');
+#else
+	document.write('<div class="runjs_gist"><div class="gist_header"></div><div class="gist_content">'+"<div style='font-family: 微软雅黑, Verdana, sans-serif, 宋体;color:#A00;text-align:center;'>该代码不存在或已被原作者删除，了解更多请访问&nbsp;<a href='${host}'>RunJS</a></div>"+'</div><div class="gist_bottom"><span class="powerby">Powered By <a href="${host}">RunJS</a></span></div></div>');
+#end
+document.write('<link rel="stylesheet" href="${host}/css/gist_theme/gist.css?20121204"/>');
+$response.setContentType("application/x-javascript")
+$request.setAttribute("close_comment",true)

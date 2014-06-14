@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\api.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\api.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+var Api = {
+	ajax:{
+		// 添加项目 旧！
+		add_project : function(pro_name, html, css, js,callback) {
+			$.post(&quot;/action/project/add&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;pro_name&quot; : pro_name,
+				&quot;html&quot; : html,
+				&quot;css&quot; : css,
+				&quot;js&quot; : js
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 添加代码 新！
+		add_code : function(code_name, html, css, js,callback) {
+			$.post(&quot;/action/code/add&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;code_name&quot; : code_name,
+				&quot;html&quot; : html,
+				&quot;css&quot; : css,
+				&quot;js&quot; : js
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 保存当前代码 旧！
+		update : function(id, html, css, js,sign,callback,force) {
+			$.post(&quot;/action/project/update&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;css&quot; : css,
+				&quot;js&quot; : js,
+				&quot;html&quot; : html,
+				&quot;sign&quot;:sign,
+				&quot;force&quot;:force
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 保存当前代码 新！
+		update_code : function(id, html, css, js,sign,callback,force) {
+			$.post(&quot;/action/code/update&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;css&quot; : css,
+				&quot;js&quot; : js,
+				&quot;html&quot; : html,
+				&quot;sign&quot;:sign,
+				&quot;force&quot;:force
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 存为新版本
+		new_version : function(id, html, css, js,callback) {
+			$.post(&quot;/action/project/new_version&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;css&quot; : css,
+				&quot;js&quot; : js,
+				&quot;html&quot; : html
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// fork代码 旧！
+		fork : function(pro_id, ver, pro_name,callback) {
+			$.post(&quot;/action/project/fork&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;pro_id&quot; : pro_id,
+				&quot;ver&quot; : ver,
+				&quot;pro_name&quot; : pro_name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// fork代码 新！
+		fork_code : function(id, code_name,callback) {
+			$.post(&quot;/action/code/fork&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;code_name&quot; : code_name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 删除指定版本的代码
+		delete_version : function(captcha,pro_id, ver,sign,callback,force) {
+			$.post(&quot;/action/project/delete_version&quot;, {
+				&quot;captcha_&quot;:captcha,
+				&quot;v_code&quot;:User.v_code,
+				&quot;pro_id&quot; : pro_id,
+				&quot;ver&quot; : ver,
+				&quot;sign&quot;:sign,
+				&quot;force&quot;:force
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+
+		/**
+		 * 删除代码，新!
+		 * 
+		 */
+		delete_code:function(captcha,id,callback){
+			$.post(&quot;/action/code/delete&quot;, {
+				&quot;captcha_&quot;:captcha,
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+
+		// 删除项目
+		delete_project : function(captcha,pro_id,callback) {
+			$.post(&quot;/action/project/delete_project&quot;, {
+				&quot;captcha_&quot;:captcha,
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : pro_id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 添加评论
+		add_comment　: function(code_id, content,callback) {
+			$.post(&quot;/action/project/add_comment&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : code_id,
+				&quot;content&quot; : content
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 删除评论
+		delete_comment : function(comment_id,callback) {
+			$.post(&quot;/action/project/delete_comment&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : comment_id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 投票，顶踩等
+		vote : function (code_id, type,callback) {
+			$.post(&quot;/action/project/vote&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : code_id,
+				&quot;type&quot; : type
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+
+		login : function (name,callback) {
+			$.post(&quot;/action/ajax/login&quot;, {
+				&quot;username&quot; : name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 登出
+		logout : function (callback) {
+			$.post(&quot;/action/ajax/logout&quot;,'uid='+User.user, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 通过id获取代码
+		getCode : function(id,callback) {
+			$.post(&quot;/action/api/getCode&quot;, {
+				&quot;id&quot; : id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 项目重命名
+		project_rename : function(id,name,callback){
+			$.post(&quot;/action/project/rename&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;pro_id&quot; : id,
+				&quot;name&quot;:name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 代码重命名 旧！
+		code_rename : function(id,name,callback){
+			$.post(&quot;/action/project/rename_code&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;code_id&quot; : id,
+				&quot;name&quot;:name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 代码重命名 新！
+		code_rename : function(id,name,callback){
+			$.post(&quot;/action/code/rename&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;name&quot;:name
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 用户设置项，主题等
+		setting : function(name,value,callback){
+			$.post(&quot;/action/api/setting&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;name&quot; : name,
+				&quot;value&quot;:value
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 发布代码 旧！
+		 */
+		publish : function(id,description,callback){
+			$.post(&quot;/action/project/post&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;description&quot;:description
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 发布代码 新！
+		 */
+		publish_code : function(id,description,callback){
+			$.post(&quot;/action/code/post&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;description&quot;:description
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 更新代码信息 旧！
+		update_info : function(id,name,description,callback){
+			$.post(&quot;/action/project/update_info&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;name&quot; : name,
+				&quot;description&quot;:description
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 更新代码信息 新！
+		update_code_info : function(id,name,description,callback){
+			$.post(&quot;/action/code/update_info&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id,
+				&quot;name&quot; : name,
+				&quot;description&quot;:description
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		
+		// 收藏
+		favor : function(code_id,callback){
+			$.post(&quot;/action/project/favor&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : code_id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		// 取消收藏
+		un_favor : function(favor_id,callback){
+			$.post(&quot;/action/project/un_favor&quot;, {
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : favor_id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 添加url文件
+		 */
+		add_url_file : function(url,callback){
+			$.post(&quot;/action/file/add_url_file&quot;,{
+				&quot;v_code&quot;:User.v_code,
+				&quot;url&quot;:url
+			},function(msg){
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 删除文件
+		 */
+		delete_file : function(captcha,id,callback){
+			$.post(&quot;/action/file/delete_file&quot;, {
+				&quot;captcha_&quot;:captcha,
+				&quot;v_code&quot;:User.v_code,
+				&quot;id&quot; : id
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 添加建议
+		 */
+		add_advice : function(captcha,ident,email,content,callback){
+			$.post(&quot;/action/advice/add_advice&quot;,{
+				&quot;captcha_&quot;:captcha,
+				&quot;ident&quot;:ident,
+				&quot;email&quot;:email,
+				&quot;content&quot;:content
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 发送消息
+		 */
+		send_msg:function(receiver,content,callback){
+			$.post(&quot;/action/msg/sendMsg&quot;,{
+				&quot;receiver&quot;:receiver,
+				&quot;content&quot;:content
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 阅读消息
+		 */
+		read_msg:function(id,callback){
+			var params = '?';
+			$.each(id,function(i,cur){
+				params+=&quot;id=&quot;+cur;
+				if(i&lt;id.length-1){
+					params+=&quot;&amp;&quot;;
+				}
+			});
+			if(params=='?'){
+				params+=&quot;id=&quot;+id;
+			}
+			$.post(&quot;/action/msg/readMsg&quot;+params,params, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 阅读所有的未读消息
+		 */
+		read_all_msg:function(type,callback){
+			$.post(&quot;/action/msg/readAllMsg&quot;,{
+				&quot;v_code&quot;:User.v_code,
+				&quot;type&quot;:type,
+			}, function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 将插件加到市场
+		 */
+		add_to_market:function(id,callback){
+			$.post(&quot;/action/plugin/add_to_market&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 将代码更新到插件市场，id为code的id.
+		 */
+		update_to_market:function(id,callback){
+			$.post(&quot;/action/plugin/update_to_market&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 从插件市场移出
+		 */
+		delete_from_market:function(id,callback){
+			$.post(&quot;/action/plugin/delete_from_market&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 将代码设置为插件
+		 */
+		set_plugin:function(id,sys,callback){
+			$.post(&quot;/action/plugin/set_code_plugin&quot;,{
+				&quot;id&quot;:id,
+				&quot;sys&quot;:sys
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 审核插件
+		 */
+		check_plugin:function(id,callback){
+			$.post(&quot;/action/plugin/check&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 取消审核插件
+		 */
+		uncheck_plugin:function(id,callback){
+			$.post(&quot;/action/plugin/uncheck&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 加到广场
+		 */
+		add_to_square:function(id,callback){
+			$.post(&quot;/action/square/add&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 更新到广场
+		 */
+		update_to_square:function(id,callback){
+			$.post(&quot;/action/square/update&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 添加分类
+		 */
+		add_catalog:function(name,callback){
+			$.post(&quot;/action/catalog/add&quot;,{
+				&quot;name&quot;:name
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 分类重命名
+		 */
+		rename_catalog:function(name,id,callback){
+			$.post(&quot;/action/catalog/rename&quot;,{
+				&quot;name&quot;:name,
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 删除分类，该分类必须没有代码
+		 */
+		delete_catalog:function(id,callback){
+			$.post(&quot;/action/catalog/delete&quot;,{
+				&quot;id&quot;:id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 移动到分类
+		 */
+		move_to_catalog:function(code_id,catalog_id,callback){
+			$.post(&quot;/action/catalog/move_to&quot;,{
+				&quot;id&quot;:code_id,
+				&quot;catalog&quot;:catalog_id
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		/**
+		 * 设置代码类型
+		 */
+		set_code_type:function(id,code_type,type,callback){
+			$.post(&quot;/action/code/set_code_type&quot;,{
+				&quot;id&quot;:id,
+				&quot;code&quot;:code_type,
+				&quot;type&quot;:type
+			},function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		},
+		less_compile:function(less,callback){
+			$.post(&quot;/action/ajax/less_compile&quot;,less,function(msg) {
+				if(typeof callback != 'undefined')return callback(msg);
+			});
+		}
+	}
+};
+
+
+
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

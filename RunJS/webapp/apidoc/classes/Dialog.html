@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Dialog</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Dialog Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_dialog.js.html#l19"><code>js\dialog.js:19</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>该类用来处理弹出框，使用 <a href="http://www.oschina.net/p/zebra_dialog" target="_blank">Zebra Dialog</a> 插件实现</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Dialog" class="method item"> 
+          <h3 class="name"><code>Dialog</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_dialog.js.html#l19"><code>js\dialog.js:19</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_errorMsg">errorMsg</a> </li> 
+             <li class="index-item method"> <a href="#method_get">get</a> </li> 
+             <li class="index-item method"> <a href="#method_getField">getField</a> </li> 
+             <li class="index-item method"> <a href="#method_onSettingItemClick">onSettingItemClick</a> </li> 
+             <li class="index-item method"> <a href="#method_setValueOf">setValueOf</a> </li> 
+             <li class="index-item method"> <a href="#method_valueOf">valueOf</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_option">option</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_errorMsg" class="method item"> 
+            <h3 class="name"><code>errorMsg</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>d</code> </li> 
+              <li class="arg"> <code>msg</code> </li> 
+              <li class="arg"> <code>sel</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l143"><code>js\dialog.js:143</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>在对话框中显示错误信息</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">d</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>Zebra Dialog 实例的 html 内容</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">msg</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>要显示的错误信息</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">sel</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>在该选择器下寻找错误显示区域</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 正常显示错误返回true，否则返回false 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+dialog.errorMsg(d,&quot;代码名称不能为空&quot;);//在对话框中显示错误信息
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_get" class="method item"> 
+            <h3 class="name"><code>get</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>name</code> </li> 
+              <li class="arg"> <code>msg</code> </li> 
+              <li class="arg"> <code>callback</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Object</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l31"><code>js\dialog.js:31</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取一个 dialog 并显示，第一个参数为 dialog 的标识名称，对应 option 中的一条配置信息以及 dialog 模版内容； 第二个参数之后，遇到 string 则将其当作候补 dialog 模版内容：若 ajax 加载远端模版内容为空时，则当作候补内容显示； 遇到 function 或者 array 则将其中的 function 全部作为 events 中的元素，按照 option 中的 buttons 的 callback 依次注册事件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>对话框名称</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">msg</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>对话框中显示的描述信息（当无法从远端加载对应的内容时显示，也可以在公用一个对话框时用来显示描述信息，例如确认操作窗口）</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">callback</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>对话框中的按钮对应的处理事件，顺序与界面上的排序相反</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Object</span>: dialog 返回 Zebra Dialog 实例 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code> var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_getField" class="method item"> 
+            <h3 class="name"><code>getField</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>d</code> </li> 
+              <li class="arg"> <code>type</code> </li> 
+              <li class="arg"> <code>idx</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Object</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l86"><code>js\dialog.js:86</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>从对话框中寻找某控件或元素</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">d</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>Zebra Dialog 实例的 html 内容</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>查找条件，jQuery选择器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">idx</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>索引</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Object</span>: element 返回该控件或元素，未找到则返回 undefined 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+dialog.getField(d,&quot;input[type='checkbox']&quot;,0);//从对话框中查找第一个(索引为0)的 checkbox 控件
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_onSettingItemClick" class="method item"> 
+            <h3 class="name"><code>onSettingItemClick</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>d</code> </li> 
+              <li class="arg"> <code>step</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l171"><code>js\dialog.js:171</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>用来处理设置菜单左侧选项被点击的动作</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">d</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>Zebra Dialog 实例的 html 内容</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">step</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>激活第 step 个选项</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+dialog.onSettingItemClick(d,0);//激活设置窗口第一个选项
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_setValueOf" class="method item"> 
+            <h3 class="name"><code>setValueOf</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>d</code> </li> 
+              <li class="arg"> <code>type</code> </li> 
+              <li class="arg"> <code>idx</code> </li> 
+              <li class="arg"> <code>value</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l126"><code>js\dialog.js:126</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>通过 getField 拿到对话框中的某元素 并设置它的 value</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">d</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>Zebra Dialog 实例的 html 内容</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>查找条件，jQuery选择器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">idx</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>索引</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">value</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>设置值</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+dialog.setValueOf(d,&quot;input[type='checkbox']&quot;,0,&quot;1212&quot;)//在对话框中查找第一个(索引为0)的 checkbox 控件，并获得其 value
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_valueOf" class="method item"> 
+            <h3 class="name"><code>valueOf</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>d</code> </li> 
+              <li class="arg"> <code>type</code> </li> 
+              <li class="arg"> <code>idx</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">String</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l110"><code>js\dialog.js:110</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>通过 getField 拿到对话框中的某元素 并获取它的 value</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">d</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>Zebra Dialog 实例的 html 内容</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>查找条件，jQuery选择器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">idx</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>索引</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">String</span>: value 返回当前元素的value 未找到元素则返回 undefined 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>var d = dialog.get(&quot;confirm2&quot;,doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容
+dialog.valueOf(d,&quot;input[type='checkbox']&quot;,0)//在对话框中查找第一个(索引为0)的 checkbox 控件，并获得其 value
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_option" class="property item"> 
+            <h3 class="name"><code>option</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_dialog.js.html#l195"><code>js\dialog.js:195</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>定义了所有的Zebra Dialog对话框的配置参数</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

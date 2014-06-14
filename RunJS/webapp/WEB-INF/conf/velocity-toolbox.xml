@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<toolbox>
+
+	<tool>
+		<key>resource</key>
+		<scope>request</scope>
+		<class>net.oschina.common.utils.ResourceTool</class>
+	</tool>
+
+	<tool>
+		<key>osc_tool</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.toolbox.GlobalTool</class>
+	</tool>
+
+	<tool>
+		<key>link</key>
+		<scope>request</scope>
+		<class>net.oschina.common.utils.LinkTool</class>
+	</tool>
+
+	<tool>
+		<key>format</key>
+		<scope>application</scope>
+		<class>net.oschina.common.utils.FormatTool</class>
+	</tool>
+
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>net.oschina.common.utils.DateTimeTool</class>
+	</tool>
+
+	<tool>
+		<key>project</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.toolbox.ProjectTool</class>
+	</tool>
+
+	<tool>
+		<key>msg_tool</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.toolbox.MsgTool</class>
+	</tool>
+
+	<tool>
+		<key>Project</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.Project</class>
+	</tool>
+
+	<tool>
+		<key>User</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.User</class>
+	</tool>
+
+	<tool>
+		<key>CodeBean</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.Code</class>
+	</tool>
+
+	<tool>
+		<key>CommentBean</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.Comment</class>
+	</tool>
+	<tool>
+		<key>PluginBean</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.Plugin</class>
+	</tool>
+	<tool>
+		<key>CatalogBean</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.beans.Catalog</class>
+	</tool>
+	<tool>
+		<key>Square</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.toolbox.SquareTool</class>
+	</tool>
+	<tool>
+		<key>GistTool</key>
+		<scope>application</scope>
+		<class>net.oschina.runjs.toolbox.GistTool</class>
+	</tool>
+</toolbox>

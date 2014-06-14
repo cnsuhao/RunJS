@@ -1,0 +1,92 @@
+#if($g_user.IsAdmin())
+#set($from = $link.param("from"))
+#set($to = $link.param("to"))
+#set($codes=$project.getUpdateCode($from,$to))
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+<title>RunJS</title>
+<script>
+function show(ident){
+	$("#code_show").attr("src","http://sandbox.runjs.cn/show/"+ident);
+}
+function delete_code(id,ident){
+	if(confirm("确定要删除么，代码以及所有评论都将被删除"))
+	jQuery.post("/action/admin/delete_code","id="+id,function(msg){
+		msg=eval("("+msg+")");	
+		if(msg.ident==ident){	
+			alert("删除成功");
+			location.href="/admin"
+		}
+		else
+			alert(msg.msg);
+	});
+}
+function delete_project(id){
+	if(confirm("确定要删除么，所有代码都将被删除"))
+	jQuery.post("/action/admin/delete_project","id="+id,function(msg){
+		msg=eval("("+msg+")");	
+		if(msg.id==id){	
+			alert("删除成功");
+			location.href="/admin"
+		}
+		else
+			alert(msg.msg);
+	});
+}
+$(document).ready(function (){
+    $("#filte").click(function(){
+    	location.href="/admin?"+$("#quick_date").val();
+    });
+});
+</script>
+<style>
+table tr td{font-size:10pt;}
+</style>
+</head>
+<body>
+    <table width="100%" height="900px">
+    <tr>
+	<td width="20%">
+    	<div class="Filters">
+    		<label> 过滤日期：</label>
+    		<select id="quick_date">
+    			<option value="from=${date.date_offset(-30)}&to=${date.date_offset(1)}">常用日期</option>
+    			<option value="from=${date.date_offset(0)}&to=${date.date_offset(1)}">今天</option>
+    			<option value="from=${date.date_offset(-1)}&to=${date.date_offset(0)}">昨天</option>
+    			<option value="from=${date.date_offset(-1)}&to=${date.date_offset(1)}">最近两天</option>
+    			<option value="from=${date.date_offset(-6)}&to=${date.date_offset(1)}">一周内</option>
+    			<option value="from=${date.date_offset(-29)}&to=${date.date_offset(1)}">一个月内</option>
+    		</select><button id="filte">过滤</button>
+    	</div>
+		<table>
+		<tr>
+    		<th>ident</th>
+    		<th>作者</th>
+    		<th>更新时间</th>
+    		<th>删除代码</th>
+			<th>删除项目</th>
+		</tr>
+		#foreach($code in $codes)
+		#set($pro=$Project.Get($code.project))
+		#set($u = $User.getUserById(${code.user}))
+		<tr>
+			<td><a href='javascript:show("$code.ident");'>${code.ident}</a></td>
+			<td>${u.name}</td>
+			<td>$date.friendly_time($request,$code.update_time)</td>
+			<td><a href='javascript:delete_code("$code.id","$code.ident");'>删除代码</a></td>
+			<td><a href='javascript:delete_project("$pro.id");'>删除项目</a></td>
+		</tr>
+		#end
+		</table>
+	</td>
+	<td width="80%" style="border-left:1px solid #ccc;"><iframe id="code_show" src="http://runjs.cn" width="100%" scrolling="yes" frameborder="0" height="100%"></iframe></td>
+	</tr>
+    </table>
+</body>
+</html>
+#else
+	$link.redirect("/");
+#end

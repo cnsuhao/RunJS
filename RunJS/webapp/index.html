@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>RunJs</title>
+<link rel="stylesheet" type="text/css"
+	href="/js/CodeMirror-2.25/lib/codemirror.css" />
+<link rel="stylesheet" type="text/css"
+	href="/js/CodeMirror-2.25/theme/night.css" />
+<link rel="stylesheet" href="/css/style1.css" type="text/css"
+	media="screen">
+<script type="text/javascript"
+	src="/js/CodeMirror-2.25/lib/codemirror.js"></script>
+<script type="text/javascript" src="/js/CodeMirror-2.25/mode/xml/xml.js"></script>
+<script type="text/javascript"
+	src="/js/CodeMirror-2.25/mode/htmlmixed/htmlmixed.js"></script>
+<script type="text/javascript"
+	src="/js/CodeMirror-2.25/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="/js/CodeMirror-2.25/mode/css/css.js"></script>
+<script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/js/base1.js"></script>
+<script type="text/javascript" src="/js/resize.js"></script>
+<script type="text/javascript" src="/js/test.js"></script>
+</head>
+<body>
+	<form action="">
+		<div class="header">
+			<div class="headerMenu">
+				<div class="menuItem login">
+					<div class="btn">登录</div>
+				</div>
+				<div class="btnGroup menuItem">	
+					<div class="btn">保存(s)</div>
+					<div class="btn">分支</div>
+				</div>
+				<div class="share select menuItem">
+					<div class="title">分享到&nbsp;|v</div>
+					<ul>
+						<li>weibo</li>
+						<li>tencent</li>
+						<li>oschina</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="explorer">
+			<button id="create_project">创建项目</button>
+		</div>
+		<div class="core">
+			<div class="toolBar">
+				<div class="select toolItem library" id="jquery">
+				</div>			
+				<div class="select toolItem library" id="mootools">
+				</div>			
+				<div class="select toolItem library" id="bootstrap">
+				</div>			
+				<div class="select toolItem library" id="dojo">
+				</div>			
+				<div class="select toolItem library" id="jquerymobile">
+				</div>
+			</div>
+			<fieldset class="editorSet left">
+				<div class="editor html top">
+					<textarea rows="10" cols="40" id="code_html">
+<!Doctype html>
+<html>
+	<head>
+		<title>RunJs</title>
+	</head>
+	<body>
+		<button onclick="hello();" class="btn btn-primary">Say Hello!</button>
+	</body>
+</html></textarea>
+				</div>
+				<div class="handler handler_horizontal"></div>
+				<div class="editor js bottom">
+					<textarea rows="10" cols="40" id="code_js">function hello(){
+	alert("Hello RunJs");
+}</textarea>
+				</div>
+			</fieldset>
+			<div class="handler handler_vertical"></div>
+			<fieldset class="editorSet right">
+				<div class="editor css top">
+					<textarea rows="10" cols="40" id="code_css">button{
+	border:1px solid #ccc;
+	cursor:pointer;
+}</textarea>
+				</div>
+				<div class="handler handler_horizontal"></div>
+				<div class="editor view bottom">
+					<iframe id="preview" frameborder="0">效果</iframe>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+	<div class="dialog">
+		<div class="create_project">
+			项目名称:<input name="project_name" id="project_name"/>
+		</div>
+	</div>
+</body>
+</html>

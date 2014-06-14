@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Menu</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Menu Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_menu.js.html#l48"><code>js\menu.js:48</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>按视图划分，Menu负责处理顶部菜单视图的显示及操作</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Menu" class="method item"> 
+          <h3 class="name"><code>Menu</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_menu.js.html#l48"><code>js\menu.js:48</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_addAdvice">addAdvice</a> </li> 
+             <li class="index-item method private"> <a href="#method_checkMsg">checkMsg</a> </li> 
+             <li class="index-item method"> <a href="#method_editor_setting">editor_setting</a> </li> 
+             <li class="index-item method"> <a href="#method_help">help</a> </li> 
+             <li class="index-item method"> <a href="#method_initView">initView</a> </li> 
+             <li class="index-item method"> <a href="#method_ready_msg">ready_msg</a> </li> 
+             <li class="index-item method"> <a href="#method_setFond">setFond</a> </li> 
+             <li class="index-item method"> <a href="#method_setTheme">setTheme</a> </li> 
+             <li class="index-item method"> <a href="#method_showMsg">showMsg</a> </li> 
+             <li class="index-item method"> <a href="#method_view_notify">view_notify</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_Events">Events</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr private"> <a href="#attr_defaultParams">defaultParams</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_addAdvice" class="method item"> 
+            <h3 class="name"><code>addAdvice</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l248"><code>js\menu.js:248</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>添加建议，该方法必须在弹出help窗口后才能被调用</p> 
+            </div> 
+           </div> 
+           <div id="method_checkMsg" class="method item private"> 
+            <h3 class="name"><code>checkMsg</code></h3> 
+            <span class="paren">()</span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l64"><code>js\menu.js:64</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>检查是否有最新的消息提醒</p> 
+            </div> 
+           </div> 
+           <div id="method_editor_setting" class="method item"> 
+            <h3 class="name"><code>editor_setting</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l95"><code>js\menu.js:95</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>显示编辑器菜单，并处理其中的设置</p> 
+            </div> 
+           </div> 
+           <div id="method_help" class="method item"> 
+            <h3 class="name"><code>help</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l172"><code>js\menu.js:172</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>显示帮助菜单</p> 
+            </div> 
+           </div> 
+           <div id="method_initView" class="method item"> 
+            <h3 class="name"><code>initView</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>async</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l80"><code>js\menu.js:80</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>菜单视图初始化</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">async</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否采取异步方式初始化视图</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_ready_msg" class="method item"> 
+            <h3 class="name"><code>ready_msg</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ids</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l127"><code>js\menu.js:127</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>标记提醒已读</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ids</code> <span class="type">Array</span> 
+               <div class="param-description"> 
+                <p>需要标记的id数组或唯一id</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_setFond" class="method item"> 
+            <h3 class="name"><code>setFond</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l219"><code>js\menu.js:219</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>设置字体，字体根据当前绑定的select元素值来设置</p> 
+            </div> 
+           </div> 
+           <div id="method_setTheme" class="method item"> 
+            <h3 class="name"><code>setTheme</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>theme</code> </li> 
+              <li class="arg"> <code>store</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l190"><code>js\menu.js:190</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>设置编辑器主题</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">theme</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>主题类型</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">store</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否保存到服务器</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_showMsg" class="method item"> 
+            <h3 class="name"><code>showMsg</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>count</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l118"><code>js\menu.js:118</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>显示消息提醒</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">count</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>显示提醒条数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_view_notify" class="method item"> 
+            <h3 class="name"><code>view_notify</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l146"><code>js\menu.js:146</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>查看消息提醒</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_Events" class="property item"> 
+            <h3 class="name"><code>Events</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l22"><code>js\menu.js:22</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>事件绑定规则定义，详情见 <a href="..\classes\Utils.html" class="crosslink">Utils</a> 类中的 <a href="..\classes\Utils.html#method_binder" class="crosslink">binder</a> 方法</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_defaultParams" class="attr item private"> 
+            <a name="config_defaultParams"></a> 
+            <h3 class="name"><code>defaultParams</code></h3> 
+            <span class="type"></span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_menu.js.html#l11"><code>js\menu.js:11</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>默认配置参数</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

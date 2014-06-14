@@ -1,0 +1,48 @@
+.runjs_gist {
+	border: 1px solid #CCC;
+	padding: 0px;
+	margin: 0px;
+}
+
+.runjs_gist a {
+	color: #069;
+	text-decoration: none;
+}
+
+.runjs_gist a:hover {
+	text-decoration: underline;
+}
+
+.gist_content {
+	margin: 10px;
+}
+
+.gist_header .gist_code {
+	margin-left: 10px;
+}
+
+.gist_header,.gist_bottom {
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	font-family: 微软雅黑, Verdana, sans-serif, 宋体;
+	font-size: 12px;
+	background-color:#EEE;
+}
+
+.gist_bottom .powerby {
+	margin-right: 10px;
+	float: right;
+	color:#000;
+}
+
+.runjs_gist .code_title {
+	font-family: 微软雅黑, Verdana, sans-serif, 宋体;
+	font-size: 14px;
+	color: #069;
+	margin:5px 0;
+}
+
+.syntaxhighlighter{
+	margin-bottom:20px;
+}

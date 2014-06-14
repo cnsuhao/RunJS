@@ -1,0 +1,49 @@
+1、对话框默认焦点
+	例如，新建项目，input默认焦点（减少鼠标操作次数）
+2、未登录的情况下，如果我打开自己的代码，却选择了保存，登录成功后不是更新代码而是创建项目，这不对，其实我是想更新代码。
+3、常用js库应该提供方便的去除功能，比如说我加了一个jquery库，发现我想加入的版本不对，在想去掉就必须删除代码，略显麻烦
+4、项目列表、版本列表倒序，新的项目新的版本比较常用。如果一个项目版本太多默认显示10个，下面显示查看所有（共...版本）。同样项目太多也是这样
+5、还是觉得ajax化比较好一点，也不用全部都ajax，例如一些基本的操作保存已经是ajax的，但是创建新版本，版本之间的切换最好也ajax。另外，刷新页面服务器端的查询次数比较多（目前没有缓存）
+6、已编辑未保存的在页面title上加上*或者【未保存】。
+7、提供可以设置代码的字体、字体大小的选项（以后的事）
+8、存为新版本不应该跟fork放在一起
+9、
+
+
+10、提示字体字号设置大一点，字体美观一点
+11、编辑器字体字号设置项，可以通过
+.CodeMirror {
+	font-family: consolas, Menlo, Courier New, MenschRegular, Monaco,
+		monospace;
+	font-size: 14px;
+	height: 100%;
+}
+来设置，并保存为用户的设置项。
+12、代码折叠  
+使用实例
+  var foldFunc_html = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder);
+  window.editor_html = CodeMirror.fromTextArea(te_html, {
+    mode: "text/html",
+    lineNumbers: true,
+    lineWrapping: true,
+    onGutterClick: foldFunc_html,
+    extraKeys: {"Ctrl-Q": function(cm){foldFunc_html(cm, cm.getCursor().line);}}
+  })
+  foldFunc_html(editor_html, 1);
+  foldFunc_html(editor_html, 15);
+  
+13、创建新版本的逻辑需要梳理一下
+14、代码已编辑了，这时候如果创建项目、创建新版本等ajax调用后有刷新页面的情况下需要提示用户是否保存代码。
+15、另外代码如果已经编辑了，这时候点注销，再点不重新加载，会出bug，这时候在ctrl+s保存会出现错误。（跟上一个问题类似，都是未保存代码的状态检查问题。）
+16、未登录的状况下编辑后保存可能会将当前的代码覆盖掉workspace中的默认代码
+17、当前编辑行高亮，实例代码
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+  mode: "application/xml",
+  lineNumbers: true,
+  lineWrapping: true,
+  onCursorActivity: function() {
+    editor.setLineClass(hlLine, null, null);
+    hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+  }
+});
+var hlLine = editor.setLineClass(0, "activeline");

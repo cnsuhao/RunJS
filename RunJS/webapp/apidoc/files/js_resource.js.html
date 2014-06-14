@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\resource.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\resource.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+/**
+ * 常用 JavaScript 库。
+ * 
+ * @class Resource
+ * @type {Object}
+ */
+var Resource2 = Resource = {
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/windjs&quot; target=&quot;_blank&quot;&gt;Wind.js&lt;/a&gt;
+	 * 是一个异步编程的JS库，作者为老赵
+	 * 
+	 * @property Wind.js
+	 * @type {Object}
+	 */
+	wind : {
+		text : &quot;Wind.js&quot;,
+		scripts : [ {
+			text : &quot;Wind.js 0.7.0&quot;,
+			ident : &quot;wind_070&quot;,
+			url : [ &quot;/js/sandbox/wind.js/wind-core.js&quot;,
+					&quot;/js/sandbox/wind.js/wind-compiler.js&quot;,
+					&quot;/js/sandbox/wind.js/wind-builderbase.js&quot;,
+					&quot;/js/sandbox/wind.js/wind-async.js&quot; ]
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/bootstrap&quot; target=&quot;_blank&quot;&gt;Bootstrap&lt;/a&gt;
+	 * 是一个Twitter开发的web前端框架 *
+	 * 
+	 * @property Bootstrap
+	 * @type {Object}
+	 */
+	bootstrap : {
+		text : &quot;Bootstrap&quot;,
+		requires : [ 'jquery_172' ],
+		scripts : [ {
+			ident : 'bootstrap_221',
+			text : &quot;Bootstrap v2.2.1&quot;,
+			url : &quot;/js/sandbox/bootstrap-2.2.1/js/bootstrap.min.js&quot;,
+			style : &quot;/js/sandbox/bootstrap-2.2.1/css/bootstrap.min.css&quot;
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/yui&quot; target=&quot;_blank&quot;&gt;YUI&lt;/a&gt;
+	 * 雅虎出品的web前端框架
+	 * 
+	 * @property YUI
+	 * @type {Object}
+	 */
+	yui : {
+		text : &quot;YUI&quot;,
+		scripts : [ {
+			text : &quot;YUI 3.3.0&quot;,
+			ident : 'yui_330',
+			url : &quot;/js/sandbox/yui/yui-3.3.0-min.js&quot;
+		}, {
+			text : &quot;YUI 2.8.2&quot;,
+			ident : 'yui_282',
+			url : &quot;/js/sandbox/yui/yuiloader-2.8.2-min.js&quot;
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/mootools&quot; target=&quot;_blank&quot;&gt;MooTools&lt;/a&gt;
+	 * MooTools是一个简洁，模块化，面向对象的JavaScript框架。
+	 * 
+	 * @property MooTools
+	 * @type {Object}
+	 */
+	mootools : {
+		text : &quot;MooTools&quot;,
+		scripts : [
+				{
+					ident : &quot;mootools_145&quot;,
+					text : &quot;Mootools 1.4.5&quot;,
+					ident : &quot;mootools_145&quot;,
+					url : &quot;/js/sandbox/mootools/mootools-core-1.4.5-full-nocompat-yc.js&quot;
+				}, {
+					ident : &quot;mootools_125&quot;,
+					text : &quot;Mootools 1.2.5&quot;,
+					ident : &quot;mootools_125&quot;,
+					url : &quot;/js/sandbox/mootools/mootools-1.2.5-core-yc.js&quot;
+				} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/prototype&quot; target=&quot;_blank&quot;&gt;Prototype&lt;/a&gt;
+	 * Prototype.js 是一个由Sam Stephenson写的JavaScript包,一个Ajax框架。
+	 * 
+	 * @property Prototype
+	 * @type {Object}
+	 */
+	prototype : {
+		text : &quot;Prototype&quot;,
+		scripts : [ {
+			ident : &quot;prototype_1710&quot;,
+			text : &quot;Prototype 1.7.1.0&quot;,
+			url : &quot;/js/sandbox/prototype/1.7.1.0/prototype.js&quot;
+		}, {
+			ident : &quot;prototype_1700&quot;,
+			text : &quot;Prototype 1.7.0.0&quot;,
+			url : &quot;/js/sandbox/prototype/1.7.0.0/prototype.js&quot;
+		}, {
+			ident : &quot;prototype_1610&quot;,
+			text : &quot;Prototype 1.6.1.0&quot;,
+			url : &quot;/js/sandbox/prototype/1.6.1.0/prototype.js&quot;
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/jquery&quot; target=&quot;_blank&quot;&gt;jQuery&lt;/a&gt;
+	 * jQuery 一个很常用Ajax框架。
+	 * 
+	 * @property jQuery
+	 * @type {Object}
+	 */
+	jquery : {
+		text : &quot;jQuery&quot;,
+		scripts : [ {
+			ident : 'jquery_183',
+			text : &quot;jQuery 1.8.3&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.8.3.min.js&quot;
+		}, {
+			ident : 'jquery_182',
+			text : &quot;jQuery 1.8.2&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.8.2.min.js&quot;
+		}, {
+			ident : 'jquery_180',
+			text : &quot;jQuery 1.8.0&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.8.0.min.js&quot;
+		}, {
+			ident : 'jquery_172',
+			text : &quot;jQuery 1.7.2&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.7.2.min.js&quot;
+		}, {
+			ident : 'jquery_164',
+			text : &quot;jQuery 1.6.4&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.6.4.min.js&quot;
+		}, {
+			ident : 'jquery_151',
+			text : &quot;jQuery 1.5.1&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.5.1.min.js&quot;
+		}, {
+			ident : 'jquery_144',
+			text : &quot;jQuery 1.4.4&quot;,
+			url : &quot;/js/sandbox/jquery/jquery-1.4.4.min.js&quot;
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/jquery+ui&quot; target=&quot;_blank&quot;&gt;jQuery UI&lt;/a&gt;
+	 * jQuery UI 一个很基于jQuery的web前端UI框架。
+	 * 
+	 * @property jQuery UI
+	 * @type {Object}
+	 */
+	jqueryui : {
+		text : &quot;jQuery UI&quot;,
+		requires : [ 'jquery_182' ],
+		scripts : [ {
+			ident : &quot;jqueryui_191&quot;,
+			text : &quot;jQuery UI 1.9.1&quot;,
+			url : &quot;/js/sandbox/jquery-ui/1.9.1/js/jquery-ui-1.9.1.custom.min.js&quot;,
+			style : &quot;/js/sandbox/jquery-ui/1.9.1/css/smoothness/jquery-ui-1.9.1.custom.min.css&quot;
+		} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/jquerymobile&quot; target=&quot;_blank&quot;&gt;jQuery
+	 * Mobile&lt;/a&gt; jQuery Mobile 一个很基于jQuery的移动前端UI框架。
+	 * 
+	 * @property jQuery Mobile
+	 * @type {Object}
+	 */
+	jquerymobile : {
+		text : &quot;jQuery Mobile&quot;,
+		requires : [ 'jquery_182' ],
+		scripts : [
+				{
+					ident : &quot;jquerymobile_120&quot;,
+					text : &quot;jQuery Mobile 1.2.0&quot;,
+					url : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.2.0/jquery.mobile-1.2.0.css&quot;
+				},
+				{
+					ident : &quot;jquerymobile_111&quot;,
+					text : &quot;jQuery Mobile 1.1.1&quot;,
+					url : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.1.1/jquery.mobile-1.1.1.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.1.1/jquery.mobile-1.1.1.css&quot;
+				},
+				{
+					ident : &quot;jquerymobile_101&quot;,
+					text : &quot;jQuery Mobile 1.0.1&quot;,
+					url : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.0.1/jquery.mobile-1.0.1.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-mobile/jquery.mobile-1.0.1/jquery.mobile-1.0.1.css&quot;
+				} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/dojo&quot; target=&quot;_blank&quot;&gt;Dojo&lt;/a&gt; Dojo
+	 * 一个很优雅的ajax框架。
+	 * 
+	 * @property Dojo
+	 * @type {Object}
+	 */
+	dojo : {
+		text : &quot;Dojo&quot;,
+		scripts : [ {
+			ident : &quot;dojo_181&quot;,
+			text : &quot;Dojo 1.8.1&quot;,
+			url : &quot;/js/sandbox/dojo/dojo-1.8.1.min.js&quot;
+		}, {
+			ident : &quot;dojo_180&quot;,
+			text : &quot;Dojo 1.8.0&quot;,
+			url : &quot;/js/sandbox/dojo/dojo-1.8.0.min.js&quot;
+		}, {
+			ident : &quot;dojo_160&quot;,
+			text : &quot;Dojo 1.6.0&quot;,
+			url : &quot;/js/sandbox/dojo/dojo-1.6.0.min.js&quot;
+		}, {
+			ident : &quot;dojo_141&quot;,
+			text : &quot;Dojo 1.4.1&quot;,
+			url : &quot;/js/sandbox/dojo/dojo-1.4.1.min.js&quot;
+		} ]
+	},
+	jqueryplugins : {
+		text : &quot;jQuery 插件&quot;,
+		scripts : [
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/cookie&quot;&gt;jQuery cookie&lt;/a&gt;
+				 * jQuery cookie 一个操作cookie的jQuery插件
+				 * 
+				 * @property jquery cookie
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins1_jquery_cookie_13&quot;,
+					text : &quot;jQuery cookie&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jquery.cookie-1.3.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/form+plugin&quot;&gt;jQuery form&lt;/a&gt;
+				 * jQuery cookie 一个操作表单的jQuery插件
+				 * 
+				 * @property jquery form
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins2_jqueryform_282&quot;,
+					text : &quot;jQuery forms 2.8.2&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jquery.form-2.82.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/cookies&quot;&gt;jQuery cookies&lt;/a&gt;
+				 * jQuery cookies 另一个操作cookie的jQuery插件
+				 * 
+				 * @property jquery cookies
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins3_jquery_cookies_220&quot;,
+					text : &quot;jQuery cookies 2.2.0&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jquery.cookies.2.2.0.min.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/validity&quot;&gt;jQuery validity&lt;/a&gt;
+				 * jQuery validity 一个jQuery验证插件
+				 * 
+				 * @property jquery validity
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins4_jquery_validity_120&quot;,
+					text : &quot;jQuery validity 1.2.0&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jquery-validity/jQuery.validity.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-plugins/jquery-validity/jquery.validity.css&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/uploadify&quot;&gt;jQuery uploadify&lt;/a&gt;
+				 * jQuery uploadify 一个jQuery上传插件
+				 * 
+				 * @property jquery uploadify
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins5_jquery_uploadify_32&quot;,
+					text : &quot;jQuery uploadify 3.2&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/uploadify/jquery.uploadify.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-plugins/uploadify/uploadify.css&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/jqgrid&quot;&gt;jQuery jqGrid&lt;/a&gt;
+				 * jqGrid 一个jQuery网格插件
+				 * 
+				 * @property jquery jqGrid
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins6_jquery_jqgrid_441&quot;,
+					text : &quot;jQuery jqGrid 4.4.1&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jqGrid/js/jquery.jqGrid.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-plugins/jqGrid/css/ui.jqgrid.css&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/colorbox&quot;&gt;jQuery colorbox&lt;/a&gt;
+				 * colorbox 一个jQuery自定义灯箱插件
+				 * 
+				 * @property jquery colorbox
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins7_jquery_colorbox_132&quot;,
+					text : &quot;jQuery ColorBox 1.3.2&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jquery.colorbox-min.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/fancybox&quot;&gt;jQuery fancybox&lt;/a&gt;
+				 * fancybox 一个jQuery对话框插件
+				 * 
+				 * @property jquery fancybox
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins8_fancybox_213&quot;,
+					text : &quot;jQuery fancyBox 2.1.3&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/fancybox/jquery.fancybox.pack.js&quot;,
+					style : &quot;/js/sandbox/jquery-plugins/fancybox/jquery.fancybox.css&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a
+				 * href=&quot;http://www.oschina.net/p/wilq32.rotateimage&quot;&gt;jQueryRotate&lt;/a&gt;
+				 * jQueryRotate 旋转图片的 jQuery 插件
+				 * 
+				 * @property jquery jQueryRotate
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;jqueryplugins9_jquery_rotate_22&quot;,
+					text : &quot;jQuery Rotate 2.2&quot;,
+					url : &quot;/js/sandbox/jquery-plugins/jQueryRotate.2.2.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				} ]
+	},
+	/**
+	 * &lt;a href=&quot;http://www.oschina.net/p/jqmobi&quot;&gt;jQ.Mobi&lt;/a&gt;
+	 * jQ.Mobi是jQuery的部分重写版本，但针对HTML5和移动设备做了优化
+	 * 
+	 * @property jquery jQ.Mobi
+	 * @type {Object}
+	 */
+	jqmobi : {
+		text : &quot;jqMobi&quot;,
+		scripts : [ {
+			text : &quot;jqMobi.min.js&quot;,
+			ident : &quot;jqmobi_min&quot;,
+			url : &quot;/js/sandbox/jqmobi/jq.mobi.min.js&quot;,
+			style : &quot;/js/sandbox/jqmobi/icons.css&quot;
+		}, {
+			text : &quot;jq.ui.min.js&quot;,
+			ident : &quot;jqmobi1_ui&quot;,
+			requires : [ &quot;jqmobi_min&quot; ],
+			url : &quot;/js/sandbox/jqmobi/jq.ui.min.js&quot;,
+			style : &quot;/js/sandbox/jqmobi/jq.ui.css&quot;
+		}, {
+			text : &quot;jq.popup.js&quot;,
+			ident : &quot;jqmobi2_ui&quot;,
+			requires : [ &quot;jqmobi_min&quot; ],
+			url : &quot;/js/sandbox/jqmobi/plugins/jq.popup.js&quot;,
+			style : &quot;/js/sandbox/jqmobi/plugins/css/jq.popup.css&quot;
+		} ]
+	},
+	others : {
+		text : &quot;Others&quot;,
+		scripts : [
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/dwz&quot;&gt;DWZ UI&lt;/a&gt;
+				 * DWZ富客户端框架(jQuery RIA framework), 是中国人自己开发的基于jQuery实现的Ajax
+				 * RIA开源框架.
+				 * 
+				 * @property DWZ UI
+				 * @type {Object}
+				 */
+				{
+					text : &quot;DWZ UI 1.4.4&quot;,
+					ident : &quot;others_dwzui_144&quot;,
+					url : &quot;/js/sandbox/dwz-ria-1.4.4/js/dwz.min.js&quot;,
+					style : [ &quot;/js/sandbox/dwz-ria-1.4.4/themes/css/core.css&quot;,
+							&quot;/js/sandbox/dwz-ria-1.4.4/themes/css/print.css&quot;,
+							&quot;/js/sandbox/dwz-ria-1.4.4/themes/css/ieHack.css&quot;,
+							&quot;/js/sandbox/dwz-ria-1.4.4/themes/css/login.css&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/ztree&quot;&gt;zTree&lt;/a&gt; zTree 是利用
+				 * JQuery 的核心代码，实现一套能完成大部分常用功能的 Tree 插件
+				 * 
+				 * @property zTree
+				 * @type {Object}
+				 */
+				{
+					text : &quot;zTree 3.4&quot;,
+					ident : &quot;others_ztree_34&quot;,
+					url : &quot;/js/sandbox/ztree-3.4/jquery.ztree.all-3.4.min.js&quot;,
+					requires : [ &quot;jquery_182&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/extjs&quot;&gt;ExtJS&lt;/a&gt; ExtJS
+				 * 主要用来开发RIA富客户端的AJAX应用，主要用于创建前端用户界面，与后台技术无关的前端ajax框架。
+				 * 
+				 * @property ExtJS
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_extjs_411a&quot;,
+					text : &quot;ExtJS 4.1.1a&quot;,
+					url : &quot;/js/sandbox/extjs/ext-all.js&quot;,
+					style : &quot;/js/sandbox/extjs/resources/css/ext-all.css&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/backbone&quot;&gt;Backbone&lt;/a&gt;
+				 * Backbone.js 是一种重量级javascript MVC 应用框架
+				 * 
+				 * @property Backbone.js
+				 * @type {Object}
+				 */
+				{
+					text : &quot;Backbone 0.9.1&quot;,
+					ident : &quot;others_backbone_091&quot;,
+					url : &quot;/js/sandbox/other/backbone-min.js&quot;,
+					requires : [ 'others_underscore_133' ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/coffeescript&quot;&gt;coffeescript&lt;/a&gt;
+				 * CoffeeScript这一门编程语言构建在JavaScript之上，其被编译成高效的JavaScript
+				 * 
+				 * @property coffeescript
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_coffeescript&quot;,
+					text : &quot;CoffeeScript&quot;,
+					url : &quot;/js/sandbox/other/coffee-script.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/coffeescript&quot;&gt;coffeescript&lt;/a&gt;
+				 * CoffeeScript这一门编程语言构建在JavaScript之上，其被编译成高效的JavaScript
+				 * 
+				 * @property coffeescript
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_es5_shim_124&quot;,
+					text : &quot;ES5 shim 1.2.4&quot;,
+					url : &quot;/js/sandbox/other/es5-shim.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/lesscss&quot;&gt;less&lt;/a&gt; Less CSS
+				 * 是一个使用广泛的 CSS 预处理器，通过简单的语法和变量对 CSS 进行扩展，可减少很多 CSS 的代码量。
+				 * 
+				 * @property less
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_less_130&quot;,
+					text : &quot;Less 1.3.0&quot;,
+					url : &quot;/js/sandbox/other/less-1.3.0.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/modernizr&quot;&gt;Modernizr&lt;/a&gt;
+				 * Modernizr 是一个利用 JS 和 CSS 来检测浏览器说支持功能的小工具。
+				 * 
+				 * @property Modernizr
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_modernizr_262&quot;,
+					text : &quot;Modernizr 2.6.2&quot;,
+					url : &quot;/js/sandbox/other/modernizr.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/processing_js&quot;&gt;processing&lt;/a&gt;
+				 * Processing.js是一个开放的编程语言，在不使用Flash或Java小程序的前提下,
+				 * 可以实现程序图像、动画和互动的应用。
+				 * 
+				 * @property Modernizr
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_processing_141&quot;,
+					text : &quot;Processing 1.4.1&quot;,
+					url : &quot;/js/sandbox/other/processing-1.4.1.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/raphael&quot;&gt;Rapha&euml;l&lt;/a&gt;
+				 * Rapha&euml;l 是一个小型的 JavaScript 库，用来简化在页面上显示向量图的工作。
+				 * 
+				 * @property Modernizr
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_raphael_210&quot;,
+					text : &quot;Raphael 2.1.0&quot;,
+					url : &quot;/js/sandbox/other/raphael-min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/sammy-js&quot;&gt;Sammy.js&lt;/a&gt;
+				 * Sammy.js 是一个微型的 JavaScript 框架用来简化 JavaScript 应用程序的编写
+				 * 
+				 * @property Sammy.js
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_sammy_063&quot;,
+					text : &quot;Sammy 0.6.3&quot;,
+					url : &quot;/js/sandbox/other/sammy.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/jquery+easyui&quot;&gt;jQuery
+				 * easyui&lt;/a&gt; jQuery easyui
+				 * 为网页开发提供了一堆的常用UI组件，包括菜单、对话框、布局、窗帘、表格、表单等等.
+				 * 
+				 * @property jQuery easyui
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_jquery_easyui_131&quot;,
+					text : &quot;jQuery easy UI 1.3.1&quot;,
+					url : &quot;/js/sandbox/jquery-easyui/jquery.easyui.min.js&quot;,
+					style : &quot;/js/sandbox/jquery-easyui/themes/default/easyui.css&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/sencha-touch&quot;&gt;Sencha Touch&lt;/a&gt;
+				 * Sencha Touch是专门为移动设备开发应用的Javascript框架。
+				 * 
+				 * @property Sencha Touch
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_sencha_touch_2011&quot;,
+					text : &quot;Sencha Touch 2.0.1.1&quot;,
+					url : &quot;/js/sandbox/sencha-touch-2.0.1.1/sencha-touch.js&quot;,
+					style : &quot;/js/sandbox/sencha-touch-2.0.1.1/resources/css/sencha-touch.css&quot;
+				},
+
+				{
+					ident : &quot;others_twitterlib&quot;,
+					text : &quot;TwitterLib&quot;,
+					url : &quot;/js/sandbox/other/twitterlib.min.js&quot;
+				},
+				/**
+				 * &lt;a
+				 * href=&quot;http://www.oschina.net/p/underscore_js&quot;&gt;Underscore.js&lt;/a&gt;
+				 * Underscore.js 是一个实用的JavaScript工具库，提供了类似 Prototype
+				 * 功能的编程支持，但没有对 JavaScript 内置的对象进行扩展。
+				 * 
+				 * @property Underscore.js
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_underscore_133&quot;,
+					text : &quot;underscore 1.3.3&quot;,
+					url : &quot;/js/sandbox/other/underscore-min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/zeptojs&quot;&gt;Zepto.js&lt;/a&gt;
+				 * Zepto.js 是支持移动WebKit浏览器的JavaScript框架，具有与jQuery兼容的语法。
+				 * 
+				 * @property Underscore.js
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_zepto_10rc1&quot;,
+					text : &quot;Zepto 1.0rc1&quot;,
+					url : &quot;/js/sandbox/other/zepto.min.js&quot;
+				}, {
+					ident : &quot;others_script_aculo_us_183&quot;,
+					text : &quot;script.aculo.us 1.8.3&quot;,
+					url : &quot;/js/sandbox/prototype/scriptaculous.js&quot;,
+					requires : [ &quot;prototype_1710&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/canvastext&quot;&gt;CanvasText&lt;/a&gt;
+				 * CanvasText就是一个Javascript的类库，能让你像使用HTML和CSS的语法来操作canvas绘制文字，使用CanvasText可以少写很多代码就能实现漂亮的效果。
+				 * 
+				 * @property CanvasText
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_canvastext_041&quot;,
+					text : &quot;CanvasText-0.4.1&quot;,
+					url : &quot;/js/sandbox/other/CanvasText-0.4.1.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/jcanvascript&quot;&gt;jCanvaScript&lt;/a&gt;
+				 * jCanvaScript是一个面向HTML5画布（canvas）的Javascript类库，它提供了许多方法用于简化处理HTML5画布（canvas）元素的内容，只要支持canvas和Javascript的浏览器都可以使用它，包括iPhone、iPad和Android等平台。
+				 * 
+				 * @property jCanvaScript
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_jcanvascript_1518&quot;,
+					text : &quot;jCanvaScript-1.5.18&quot;,
+					url : &quot;/js/sandbox/other/jCanvaScript.1.5.18.min.js&quot;
+				},
+				/**
+				 * &lt;a
+				 * href=&quot;http://www.oschina.net/p/jquery-html5-uploader&quot;&gt;jQuery
+				 * HTML5 Uploader&lt;/a&gt; jQuery HTML5 Uploader 是一个轻量级的 jQuery
+				 * 插件用来直接从电脑中拖放文件到浏览器并实现上传的功能，目前该功能只支持 Firefox 和 Chrome 浏览器。
+				 * 
+				 * @property jQuery HTML5 Uploader
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_jquery_html5_uploader&quot;,
+					text : &quot;jQuery HTML5 Uploader&quot;,
+					url : &quot;/js/sandbox/other/jquery.html5uploader.min.js&quot;,
+					requires : [ &quot;jquery_183&quot; ]
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/kineticjs&quot;&gt;jQuery HTML5
+				 * Uploader&lt;/a&gt; jQuery HTML5 Uploader 是一个轻量级的 jQuery
+				 * 插件用来直接从电脑中拖放文件到浏览器并实现上传的功能，目前该功能只支持 Firefox 和 Chrome 浏览器。
+				 * 
+				 * @property jQuery HTML5 Uploader
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_kinetic_v412&quot;,
+					text : &quot;kinetic-v4.1.2&quot;,
+					url : &quot;/js/sandbox/other/kinetic-v4.1.2.min.js&quot;
+				},
+				/**
+				 * &lt;a href=&quot;http://www.oschina.net/p/angularjs&quot;&gt;AngularJS&lt;/a&gt;
+				 * AngularJS (Angular.JS) 是一组用来开发Web页面的框架、模板以及数据绑定和丰富UI组件。
+				 * 
+				 * @property jQuery HTML5 Uploader
+				 * @type {Object}
+				 */
+				{
+					ident : &quot;others_angular_103&quot;,
+					text : &quot;AngularJS-1.0.3&quot;,
+					url : &quot;/js/sandbox/other/angular.min.js&quot;
+				} ]
+	}
+};
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

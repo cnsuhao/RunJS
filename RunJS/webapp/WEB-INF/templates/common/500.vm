@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>应用程序出错</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="$link.css('error.css')" type="text/css" media="screen" />
+</head>
+<body>
+#set($__nothing = $osc_tool.report_error($request))
+  <div id='msg-box'>
+	<div class='logo'><a href="$link.root()"><img src="$link.img('logo_3.gif')" border="0" alt=""></a></div>
+    <div class='title'>您访问的页面发生错误!</div>
+    <div class='msg'>我们已经将此错误信息记录下来，并将尽快处理，为此造成您的不便请多见谅</div>		
+    <div class='nav'><a href="$link.root()">&gt; 返回首页 &lt;</a></div>
+  </div>
+</body>
+</html>

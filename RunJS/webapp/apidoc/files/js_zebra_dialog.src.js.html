@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\zebra_dialog.src.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\zebra_dialog.src.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+﻿/**
+ *  Zebra_Dialog
+ *
+ *  A small (4KB minified), compact (one JS file, no dependencies other than jQuery 1.5.2+) and highly configurable
+ *  dialog box plugin for jQuery meant to replace JavaScript's &quot;alert&quot; and &quot;confirmation&quot; dialog boxes.
+ *
+ *  Can also be used as a notification widget - when configured to show no buttons and to close automatically - for updates
+ *  or errors, without distracting users from their browser experience by displaying obtrusive alerts.
+ *
+ *  Features:
+ *
+ *  -   great looks - out of the box
+ *  -   5 types of dialog boxes available: confirmation, information, warning, error and question;
+ *  -   easily customizable appearance by changing the CSS file
+ *  -   create modal or non-modal dialog boxes
+ *  -   easily add custom buttons
+ *  -   position the dialog box wherever you want - not just in the middle of the screen
+ *  -   use callback functions to handle user's choice
+ *  -   works in all major browsers (Firefox, Opera, Safari, Chrome, Internet Explorer 6, 7, 8, 9)
+ *
+ *  Visit {@link http://stefangabos.ro/jquery/zebra-dialog/} for more information.
+ *
+ *  For more resources visit {@link http://stefangabos.ro/}
+ *
+ *  @author     Stefan Gabos &lt;contact@stefangabos.ro&gt;
+ *  @version    1.2 (last revision: April 07, 2012)
+ *  @copyright  (c) 2011 - 2012 Stefan Gabos
+ *  @license    http://www.gnu.org/licenses/lgpl-3.0.txt GNU LESSER GENERAL PUBLIC LICENSE
+ *  @package    Zebra_Dialog
+ */
+;(function($) {
+
+    $.Zebra_Dialog = function() {
+
+        // default options
+        var defaults = {
+
+            animation_speed:            250,            //  The speed, in milliseconds, by which the overlay and the
+                                                        //  dialog box will be animated when closing.
+                                                        //
+                                                        //  Default is 250
+
+            auto_close:                 false,          //  The number of milliseconds after which to automatically
+                                                        //  close the dialog box or FALSE to not automatically close the
+                                                        //  dialog box.
+                                                        //
+                                                        //  Default is FALSE
+
+            buttons:                    true,           //  Use this for localization and for adding custom buttons.
+                                                        //
+                                                        //  If set to TRUE, the default buttons will be used, depending
+                                                        //  on the type of the dialog box: ['Yes', 'No'] for &quot;question&quot;
+                                                        //  type and ['Ok'] for the other dialog box types.
+                                                        //
+                                                        //  For custom buttons, use an array containing the captions of
+                                                        //  the buttons to display: ['My button 1', 'My button 2'].
+                                                        //
+                                                        //  Set to FALSE if you want no buttons.
+                                                        //
+                                                        //  Note that when the dialog box is closed as a result of clicking
+                                                        //  a button, the &quot;onClose&quot; event is triggered and the callback
+                                                        //  function (if any) receives as argument the caption of the
+                                                        //  clicked button.
+                                                        //
+                                                        //  See the comments for the &quot;onClose&quot; event below for more
+                                                        //  information.
+                                                        //
+                                                        //  You can also attach callback functions to individual buttons
+                                                        //  by using objects in the form of:
+                                                        //
+                                                        //  [
+                                                        //   {caption: 'My button 1', callback: function() { // code }},
+                                                        //   {caption: 'My button 2', callback: function() { // code }}
+                                                        //  ]
+                                                        //
+                                                        //  The main difference is that a callback function attached this
+                                                        //  way ia executed as soon as the button is clicked rather than
+                                                        //  *after* the dialog box is closed, as it is the case with the
+                                                        //  &quot;onClose&quot; event.
+                                                        //
+                                                        //  Callback functions attached to buttons get as argument the
+                                                        //  entire dialog box jQuery object.
+
+            custom_class:                false,         //  An extra class to add to the dialog box's container. Useful
+                                                        //  for customizing a dialog box elements' styles at run-time.
+                                                        //
+                                                        //  For example, setting this value to &quot;mycustom&quot; and in the
+                                                        //  CSS file having something like
+                                                        //  .mycustom .ZebraDialog_Title { background: red }
+                                                        //  would set the dialog box title's background to red.
+                                                        //
+                                                        //  See the CSS file for what can be changed.
+                                                        //
+                                                        //  Default is FALSE
+
+            keyboard:                   true,           //  When set to TRUE, pressing the ESC key will close the dialog
+                                                        //  box.
+                                                        //
+                                                        //  Default is TRUE.
+
+            message:                    '',             //  The message in the dialog box - this is passed as argument
+                                                        //  when the plugin is called.
+
+            modal:                      true,           //  When set to TRUE there will be a semitransparent overlay
+                                                        //  behind the dialog box, preventing users from clicking 
+                                                        //  the page's content.
+                                                        //
+                                                        //  Default is TRUE
+
+            overlay_close:              true,           //  Should the dialog box close when the overlay is clicked?
+                                                        //
+                                                        //  Default is TRUE
+
+            overlay_opacity:            .9,             //  The opacity of the overlay (between 0 and 1)
+                                                        //
+                                                        //  Default is .9
+
+            position:                   'center',       //  Position of the dialog box.
+                                                        //
+                                                        //  Can be either &quot;center&quot; (which would center the dialog box) or
+                                                        //  an array with 2 elements, in the form of
+                                                        //  {'horizontal_position +/- offset', 'vertical_position +/- offset'}
+                                                        //  (notice how everything is enclosed in quotes) where
+                                                        //  &quot;horizontal_position&quot; can be &quot;left&quot;, &quot;right&quot; or &quot;center&quot;,
+                                                        //  &quot;vertical_position&quot; can be &quot;top&quot;, &quot;bottom&quot; or &quot;middle&quot;, and
+                                                        //  &quot;offset&quot; represents an optional number of pixels to add/substract
+                                                        //  from the respective horizontal or vertical position.
+                                                        //
+                                                        //  Positions are relative to the viewport (the area of the
+                                                        //  browser that is visible to the user)!
+                                                        //
+                                                        //  Examples:
+                                                        //
+                                                        //  ['left + 20', 'top + 20'] would position the dialog box in the
+                                                        //  top-left corner, shifted 20 pixels inside.
+                                                        //
+                                                        //  ['right - 20', 'bottom - 20'] would position the dialog box
+                                                        //  in the bottom-right corner, shifted 20 pixels inside.
+                                                        //
+                                                        //  ['center', 'top + 20'] would position the dialog box in
+                                                        //  center-top, shifted 20 pixels down.
+                                                        //
+                                                        //  Default is &quot;center&quot;.
+
+            title:                      '',             //  Title of the dialog box
+                                                        //
+                                                        //  Default is &quot;&quot; (an empty string - no title)
+
+            type:                       'information',  //  Dialog box type.
+                                                        //
+                                                        //  Can be any of the following:
+                                                        //
+                                                        //  - confirmation
+                                                        //  - error
+                                                        //  - information
+                                                        //  - question
+                                                        //  - warning
+                                                        //
+                                                        //  If you don't want an icon, set the &quot;type&quot; property to FALSE.
+                                                        //
+                                                        //  By default, all types except &quot;question&quot; have a single button
+                                                        //  with the caption &quot;Ok&quot;; type &quot;question&quot; has two buttons, with
+                                                        //  the captions &quot;Ok&quot; and &quot;Cancel&quot; respectively.
+                                                        //
+                                                        //  Default is &quot;information&quot;.
+
+            vcenter_short_message:      true,           //  Should short messages be vertically centered?
+                                                        //
+                                                        //  Default is TRUE
+
+            width:                      0,              //  By default, the width of the dialog box is set in the CSS
+                                                        //  file. Use this property to override the default width at
+                                                        //  run-time.
+                                                        //
+                                                        //  Must be an integer, greater than 0. Anything else will instruct
+                                                        //  the script to use the default value, as set in the CSS file.
+                                                        //  Value should be no less than 200 for optimal output.
+                                                        //
+                                                        //  Default is 0 - use the value from the CSS file.
+
+            onClose:                null,               //  Event fired when *after* the dialog box is closed.
+                                                        //
+                                                        //  For executing functions *before* the closing of the dialog
+                                                        //  box, see the &quot;buttons&quot; attribute.
+                                                        //
+                                                        //  The callback function (if any) receives as argument the
+                                                        //  caption of the clicked button or boolean FALSE if the dialog
+                                                        //  box is closed by pressing the ESC key or by clicking on the
+                                                        //  overlay.
+														
+			single:					true				//当前只会出现一个dialog
+
+        }
+
+        // to avoid confusions, we use &quot;plugin&quot; to reference the current instance of the object
+        var plugin = this;
+
+        // this will hold the merged default, and user-provided options
+        plugin.settings = {};
+
+        // by default, we assume there are no custom options provided
+        options = {};
+
+        // if plugin is initialized so that first argument is a string
+        // that string is the message to be shown in the dialog box
+        if (typeof arguments[0] == 'string') options.message = arguments[0];
+            
+        // if plugin is initialized so that first or second argument is an object
+        if (typeof arguments[0] == 'object' || typeof arguments[1] == 'object')
+
+            // extend the options object with the user-provided options
+            options = $.extend(options, (typeof arguments[0] == 'object' ? arguments[0] : arguments[1]));
+			
+		plugin.options = options;
+
+        /**
+         *  Constructor method
+         *
+         *  @return object  Returns a reference to the plugin
+         */
+        plugin.init = function(message,_buttons,speed,title,autoclose) {
+		
+
+            // the plugin's final properties are the merged default and user-provided options (if any)
+            plugin.settings = $.extend({}, defaults, plugin.options);
+
+ 			if(plugin.settings.single){
+				$(&quot;.ZebraDialog,.ZebraDialogOverlay&quot;).remove();
+			}
+			
+           // check if browser is Internet Explorer 6 and set a flag accordingly as we need to perform some extra tasks
+            // later on for Internet Explorer 6
+            plugin.isIE6 = ($.browser.msie &amp;&amp; parseInt($.browser.version, 10) == 6) || false;
+
+            // if dialog box should be modal
+            if (plugin.settings.modal) {
+
+                // create the overlay
+                plugin.overlay = jQuery('&lt;div&gt;', {
+
+                    'class':    'ZebraDialogOverlay'
+
+                // set some css properties of the overlay
+                }).css({
+
+                    'position': (plugin.isIE6 ? 'absolute' : 'fixed'),  //  for IE6 we emulate the &quot;position:fixed&quot; behaviour
+                    'left':     0,                                      //  the overlay starts at the top-left corner of the
+                    'top':      0,                                      //  browser window (later on we'll stretch it)
+                    'opacity':  plugin.settings.overlay_opacity,        //  set the overlay's opacity
+                    'z-index':  1000                                    //  set a high value for z-index
+
+                });
+
+                // if dialog box can be closed by clicking the overlay
+                if (plugin.settings.overlay_close)
+
+                    // when the overlay is clicked
+                    // remove the overlay and the dialog box from the DOM
+                    plugin.overlay.bind('click', function() {plugin.close()});
+
+                // append the overlay to the DOM
+                plugin.overlay.appendTo('body');
+
+            }
+
+            // create the dialog box
+            plugin.dialog = jQuery('&lt;div&gt;', {
+
+                'class':        'ZebraDialog' + (plugin.settings.custom_class ? ' ' + plugin.settings.custom_class : '')
+
+            // set some css properties of the dialog box
+            }).css({
+
+                'position':     (plugin.isIE6 ? 'absolute' : 'fixed'),  //  for IE6 we emulate the &quot;position:fixed&quot; behaviour
+                'left':         0,                                      //  by default, place it in the top-left corner of the
+                'top':          0,                                      //  browser window (we'll position it later)
+                'z-index':      1001,                                   //  the z-index must be higher than the overlay's z-index
+                'visibility':   'hidden'                                //  the dialog box is hidden for now
+
+            });
+
+            // if a notification message
+            if (!plugin.settings.buttons &amp;&amp; plugin.settings.auto_close)
+
+                // assign a unique id to each notification
+                plugin.dialog.attr('id', 'ZebraDialog_' + Math.floor(Math.random() * 9999999));
+
+            // check to see if the &quot;width&quot; property is given as an integer
+            // try to convert to a integer
+            var tmp = parseInt(plugin.settings.width);
+
+            // if converted value is a valid number
+            if (!isNaN(tmp) &amp;&amp; tmp == plugin.settings.width &amp;&amp; tmp.toString() == plugin.settings.width.toString() &amp;&amp; tmp &gt; 0)
+
+                // set the dialog box's width
+                plugin.dialog.css({'width' : plugin.settings.width});
+
+            if(typeof title != &quot;undefined&quot;)
+            	plugin.settings.title = title;
+            
+            // if dialog box has a title
+            if (plugin.settings.title)
+
+                // create the title
+                jQuery('&lt;h3&gt;', {
+
+                    'class':    'ZebraDialog_Title'
+
+                // set the title's text
+                // and append the title to the dialog box
+                }).html(plugin.settings.title).appendTo(plugin.dialog);
+
+            // create the container of the actual message
+            // we save it as a reference because we'll use it later in the &quot;draw&quot; method
+            // if the &quot;vcenter_short_message&quot; property is TRUE
+            plugin.message = jQuery('&lt;div&gt;', {
+
+                // if a known dialog box type is specified, also show the appropriate icon
+                'class':    'ZebraDialog_Body' + (get_type() != '' ? ' ZebraDialog_Icon ZebraDialog_' + get_type() : '')
+
+            });
+
+            // if short messages are to be centered vertically
+            if (plugin.settings.vcenter_short_message)
+
+                // create a secondary container for the message and add everything to the message container
+                // (we'll later align the container vertically)
+                jQuery('&lt;div&gt;').html(typeof message != 'undefined'?message:plugin.settings.message).appendTo(plugin.message);
+
+            // if short messages are not to be centered vertically
+            else
+
+                // add the message to the message container
+                plugin.message.html(message?message:plugin.settings.message);
+
+            // add the message container to the dialog box
+            plugin.message.appendTo(plugin.dialog);
+
+            // get the buttons that are to be added to the dialog box
+            var buttons = typeof _buttons == 'undefined'?get_buttons(_buttons):_buttons;
+
+            // if there are any buttons to be added to the dialog box
+            if (buttons) {
+
+                // create the button bar
+                var button_bar = jQuery('&lt;div&gt;', {
+
+                    'class':    'ZebraDialog_Buttons'
+
+                // append it to the dialog box
+                }).appendTo(plugin.dialog);
+
+                // iterate through the buttons that are to be attached to the dialog box
+                $.each(buttons, function(index, value) {
+
+                    // create button
+                    var button = jQuery('&lt;a&gt;', {
+
+                        'href':     'javascript:void(0)',
+                        'class':    'ZebraDialog_Button' + index
+
+                    });
+
+                    // if button is given as an object, with a caption and a callback function
+                    // set the button's caption
+                    if ($.isPlainObject(value)) button.html(value.caption);
+
+                    // if button is given as a plain string, set the button's caption accordingly
+                    else button.html(value);
+
+                    // handle the button's click event
+                    button.bind('click', function() {
+
+						var returnValue = true;
+                        // execute the callback function when button is clicked
+                        if (undefined != value.callback) 
+							returnValue = value.callback(plugin);
+
+                        // remove the overlay and the dialog box from the DOM
+                        // also pass the button's label as argument
+						if((typeof autoclose == &quot;undefined&quot; || autoclose) &amp;&amp; (returnValue || typeof returnValue == 'undefined'))
+							plugin.close(undefined != value.caption ? value.caption : value)
+
+                    });
+					
+					//绑定enter按键
+					if(typeof value.enter != 'undefined' &amp;&amp; value.enter)
+					plugin.dialog.keydown(function(event){
+						if(event.keyCode==13){
+							button.click();
+							event.preventDefault();
+						}
+					});
+
+                    // append the button to the button bar
+                    button.appendTo(button_bar);
+
+                });
+
+                // since buttons are floated,
+                // we need to clear floats
+                jQuery('&lt;div&gt;', {
+
+                    'style':    'clear:both'
+
+                }).appendTo(button_bar);
+
+            }
+
+            // return a reference to the object itself
+            return plugin;
+
+        }
+        
+		/**
+		 *
+		 *
+		 */
+		plugin.show = function(msg,buttons,speed,title,auto){
+			
+			if(typeof msg == 'boolean'){
+				plugin.init(undefined,undefined,250,undefined,msg);
+			}else{
+				plugin.init(msg,buttons,speed,title,auto);
+			}		
+            // insert the dialog box in the DOM
+            plugin.dialog.appendTo('body');
+
+            // if the browser window is resized
+            $(window).bind('resize', draw);
+
+            // if dialog box can be closed by pressing the ESC key
+            if (plugin.settings.keyboard)
+
+                // if a key is pressed
+                $(document).bind('keyup', _keyup);
+
+            // if browser is Internet Explorer 6 we attach an event to be fired whenever the window is scrolled
+            // that is because in IE6 we have to simulate &quot;position:fixed&quot;
+            if (plugin.isIE6)
+
+                // if window is scrolled
+                $(window).bind('scroll', _scroll);
+
+            // if plugin is to be closed automatically after a given number of milliseconds
+            if (plugin.settings.auto_close !== false) {
+
+                // if, in the meantime, the box is clicked
+                plugin.dialog.bind('click', function(e) {
+
+                    // stop the timeout
+                    clearTimeout(plugin.timeout);
+
+                    // close the box now
+                    plugin.close();
+
+                });
+
+                // call the &quot;close&quot; method after the given number of milliseconds
+                plugin.timeout = setTimeout(plugin.close, typeof speed == 'undefined'?plugin.settings.auto_close:speed);
+
+            }
+
+            // draw the overlay and the dialog box
+            draw();
+		}
+
+        /**
+         *  Close the dialog box
+         *
+         *  @return void
+         */
+        plugin.close = function(caption) {
+
+            // remove all the event listeners
+            if (plugin.settings.keyboard) $(document).unbind('keyup', _keyup);
+
+            if (plugin.isIE6) $(window).unbind('scroll', _scroll);
+
+            $(window).unbind('resize', draw);
+
+            // if an overlay exists
+            if (plugin.overlay)
+
+                // animate overlay's css properties
+                plugin.overlay.animate({
+
+                    opacity: 0  // fade out the overlay
+
+                },
+
+                // animation speed
+                plugin.settings.animation_speed,
+
+                // when the animation is complete
+                function() {
+
+                    // remove the overlay from the DOM
+                    plugin.overlay.remove();
+
+                });
+
+            // animate dialog box's css properties
+            plugin.dialog.animate({
+
+                top: 0,     // move the dialog box to the top
+                opacity: 0  // fade out the dialog box
+
+            },
+
+            // animation speed
+            plugin.settings.animation_speed,
+
+            // when the animation is complete
+            function() {
+
+                // remove the dialog box from the DOM
+                plugin.dialog.remove();
+
+                // if a callback function exists for when closing the dialog box
+                if (plugin.settings.onClose &amp;&amp; typeof plugin.settings.onClose == 'function')
+
+                    // execute the callback function
+                    plugin.settings.onClose(undefined != caption ? caption : '');
+
+            });
+
+        }
+
+        /**
+         *  Draw the overlay and the dialog box
+         *
+         *  @return void
+         *
+         *  @access private
+         */
+        var draw = function() {
+
+            var
+
+                // get the viewport width and height
+                viewport_width = $(window).width(),
+                viewport_height = $(window).height(),
+
+                // get dialog box's width and height
+                dialog_width = plugin.dialog.width(),
+                dialog_height = plugin.dialog.height(),
+
+                // the numeric representations for some constants that may exist in the &quot;position&quot; property
+                values = {
+
+                    'left':     0,
+                    'top':      0,
+                    'right':    viewport_width - dialog_width,
+                    'bottom':   viewport_height - dialog_height,
+                    'center':   (viewport_width - dialog_width) / 2,
+                    'middle':   (viewport_height - dialog_height) / 2
+
+                };
+
+            // reset these values
+            plugin.dialog_left = undefined;
+            plugin.dialog_top = undefined;
+
+            // if there is an overlay
+            // (the dialog box is modal)
+            if (plugin.settings.modal)
+
+                // stretch the overlay to cover the entire viewport
+                plugin.overlay.css({
+
+                    'width':    viewport_width,
+                    'height':   viewport_height
+
+                });
+
+            // if
+            if (
+
+                // the position is given as an array
+                $.isArray(plugin.settings.position) &amp;&amp;
+
+                // the array has exactly two elements
+                plugin.settings.position.length == 2 &amp;&amp;
+
+                // first element is a string
+                typeof plugin.settings.position[0] == 'string' &amp;&amp;
+
+                // first element contains only &quot;left&quot;, &quot;right&quot;, &quot;center&quot;, numbers, spaces, plus and minus signs
+                plugin.settings.position[0].match(/^(left|right|center)[\s0-9\+\-]*$/) &amp;&amp;
+
+                // second element is a string
+                typeof plugin.settings.position[1] == 'string' &amp;&amp;
+
+                // second element contains only &quot;top&quot;, &quot;bottom&quot;, &quot;middle&quot;, numbers, spaces, plus and minus signs
+                plugin.settings.position[1].match(/^(top|bottom|middle)[\s0-9\+\-]*$/)
+
+            ) {
+
+                // make sure both entries are lowercase
+                plugin.settings.position[0] = plugin.settings.position[0].toLowerCase();
+                plugin.settings.position[1] = plugin.settings.position[1].toLowerCase();
+
+                // iterate through the array of replacements
+                $.each(values, function(index, value) {
+
+                    // we need to check both the horizontal and vertical values
+                    for (var i = 0; i &lt; 2; i++) {
+
+                        // replace if there is anything to be replaced
+                        var tmp = plugin.settings.position[i].replace(index, value);
+
+                        // if anything could be replaced
+                        if (tmp != plugin.settings.position[i])
+
+                            // evaluate string as a mathematical expression and set the appropriate value
+                            if (i == 0) plugin.dialog_left = eval(tmp); else plugin.dialog_top = eval(tmp);
+
+                    }
+
+                });
+
+            }
+
+            // if &quot;dialog_left&quot; and/or &quot;dialog_top&quot; values are still not set
+            if (undefined == plugin.dialog_left || undefined == plugin.dialog_top) {
+
+                // the dialog box will be in its default position, centered
+                plugin.dialog_left = values['center'];
+                plugin.dialog_top = values['middle'];
+
+            }
+
+            // if short messages are to be centered vertically
+            if (plugin.settings.vcenter_short_message) {
+
+                var
+
+                    // the secondary container - the one that contains the message
+                    message = plugin.message.find('div:first'),
+
+                    // the height of the secondary container
+                    message_height = message.height(),
+
+                    // the main container's height
+                    container_height = plugin.message.height();
+
+                // if we need to center the message vertically
+                if (message_height &lt; container_height)
+
+                    // center the message vertically
+                    message.css({
+
+                        'margin-top':   (container_height - message_height) / 2
+
+                    });
+
+            }
+
+            // position the dialog box and make it visible
+            plugin.dialog.css({
+
+                'left':         plugin.dialog_left,
+                'top':          plugin.dialog_top,
+                'visibility':   'visible'
+
+            });
+
+            // move the focus to the first of the dialog box's buttons
+            plugin.dialog.find('a[class^=ZebraDialog_Button]:first').focus();
+
+            // if the browser is Internet Explorer 6, call the &quot;emulate_fixed_position&quot; method
+            // (if we do not apply a short delay, it sometimes does not work as expected)
+            if (plugin.isIE6) setTimeout(emulate_fixed_position, 500);
+
+        }
+
+        /**
+         *  Emulates &quot;position:fixed&quot; for Internet Explorer 6.
+         *
+         *  @return void
+         *
+         *  @access private
+         */
+        var emulate_fixed_position = function() {
+
+            var
+
+                // get how much the window is scrolled both horizontally and vertically
+                scroll_top = $(window).scrollTop(),
+                scroll_left = $(window).scrollLeft();
+
+            // if an overlay exists
+            if (plugin.settings.modal)
+
+                // make sure the overlay is stays positioned at the top of the viewport
+                plugin.overlay.css({
+
+                    'top':  scroll_top,
+                    'left': scroll_left
+
+                });
+
+            // make sure the dialog box always stays in the correct position
+            plugin.dialog.css({
+
+                'left': plugin.dialog_left + scroll_left,
+                'top':  plugin.dialog_top + scroll_top
+
+            });
+
+        }
+
+        /**
+         *  Returns an array containing the buttons that are to be added to the dialog box.
+         *
+         *  If no custom buttons are specified, the returned array depends on the type of the dialog box.
+         *
+         *  @return array       Returns an array containing the buttons that are to be added to the dialog box.
+         *
+         *  @access private
+         */
+        var get_buttons = function(buttons) {
+
+            // if plugin.settings.buttons is not TRUE and is not an array either, don't go further
+            if (plugin.settings.buttons !== true &amp;&amp; !$.isArray(plugin.settings.buttons)) return false;
+
+            // if default buttons are to be used
+            if (plugin.settings.buttons === true)
+
+                // there are different buttons for different dialog box types
+                switch (plugin.settings.type) {
+
+                    // for &quot;question&quot; type
+                    case 'question':
+
+                        // there are two buttons
+                        plugin.settings.buttons = ['Yes', 'No'];
+
+                        break;
+
+                    // for the other types
+                    default:
+
+                        // there is only one button
+                        plugin.settings.buttons = ['Ok'];
+
+                }
+
+            // return the buttons in reversed order
+            // (buttons need to be added in reverse order because they are floated to the right)
+            return plugin.settings.buttons;
+
+        }
+
+        /**
+         *  Returns the type of the dialog box, or FALSE if type is not one of the five known types.
+         *
+         *  Values that may be returned by this method are:
+         *  -   Confirmation
+         *  -   Error
+         *  -   Information
+         *  -   Question
+         *  -   Warning
+         *
+         *  @return boolean     Returns the type of the dialog box, or FALSE if type is not one of the five known types.
+         *
+         *  @access private
+         */
+        var get_type = function() {
+
+            // see what is the type of the dialog box
+            switch (plugin.settings.type) {
+
+                // if one of the five supported types
+                case 'confirmation':
+                case 'error':
+                case 'information':
+                case 'question':
+                case 'warning':
+
+                    // return the dialog box's type, first letter capital
+                    return plugin.settings.type.charAt(0).toUpperCase() + plugin.settings.type.slice(1).toLowerCase();
+
+                    break;
+
+                // if unknown type
+                default:
+
+                    // return FALSE
+                    return false;
+
+            }
+
+        }
+
+        /**
+         *  Function to be called when the &quot;onKeyUp&quot; event occurs
+         *
+         *  Why as a separate function and not inline when binding the event? Because only this way we can &quot;unbind&quot; it
+         *  when we close the dialog box
+         *
+         *  @return boolean     Returns TRUE
+         *
+         *  @access private
+         */
+        var _keyup = function(e) {
+
+            // if pressed key is ESC
+            // remove the overlay and the dialog box from the DOM
+            if (e.which == 27) plugin.close();
+
+            // let the event bubble up
+            return true;
+
+        }
+
+        /**
+         *  Function to be called when the &quot;onScroll&quot; event occurs in Internet Explorer 6.
+         *
+         *  Why as a separate function and not inline when binding the event? Because only this way we can &quot;unbind&quot; it
+         *  when we close the dialog box
+         *
+         *  @return void
+         *
+         *  @access private
+         */
+        var _scroll = function() {
+
+            // make sure the overlay and the dialog box always stay in the correct position
+            emulate_fixed_position();
+
+        }
+
+        // fire up the plugin!
+        // call the &quot;constructor&quot; method
+        return plugin.init();
+
+    }
+
+})(jQuery);
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

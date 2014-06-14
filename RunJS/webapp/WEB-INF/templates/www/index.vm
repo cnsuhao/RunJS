@@ -1,0 +1,247 @@
+#set($dys=$msg_tool.getAlldynamics(1,15))
+#set($p1 = $link.param('p1',''))
+#if($format.not_empty($p1))
+#set($__nothing = $link.redirect('/'))
+#else
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="RunJS,在线编写、展示html、js、css代码，拥有实时预览、分享、Fork、代码高亮、自动完成等多项特性，提供文件上传、多种登录方式。" />
+	<meta name="keywords" content="RunJS runjs JavaScript CSS HTML 在线运行 展示 效果"/>
+	<title>RunJS - 在线编辑、展示、分享、交流你的 JavaScript 代码</title>
+		<link rel="stylesheet" type="text/css" href='/css/index.css?20121211'>
+		<script src="/js/sandbox/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var cur_page = 1;
+			RURL=location.href;
+    		$(document).ready(function() {
+            	$(".getIn .dl").mouseenter(function() {
+            		#*$(this).find("dt").stop().animate({
+            			opacity : 0
+            		}, "normal");
+            		$(this).find(".description").stop().animate({
+            			opacity : 0
+            		}, "normal");
+            		$(this).find(".ribbonWrapper").stop().animate({
+            			opacity : 0
+            		}, "normal");*#
+            		$(this).find(".gradientBg").stop().animate({
+            			opacity : 0.4
+            		}, "slow");
+            	});
+            
+            	$(".getIn .dl").mouseleave(function() {
+            		#*$(this).find("dt").stop().animate({
+            			opacity : 1
+            		}, "slow");
+            		$(this).find(".description").stop().animate({
+            			opacity : 1
+            		}, "slow");
+            		$(this).find(".ribbonWrapper").stop().animate({
+            			opacity : 1
+            		}, "slow");*#
+            		$(this).find(".gradientBg").stop().animate({
+            			opacity : 1
+            		}, "normal");
+            	});
+				
+				$(".select").mouseover(function() {
+        			$(this).find("ul").show();
+        		}).mouseout(function() {
+        			$(this).find("ul").hide();
+        		});
+        
+        		$(".select li").click(function() {
+        			$(this).parent().hide();
+        		});
+				$(".msg_ul li a").click(function(){
+					jQuery.post("/action/msg/readMsg","id="+$(this).parent().attr("id"));
+				});
+				//公告无限滚动
+    			var notice_ul = $(".notice ul");
+				var notice_lis = notice_ul.find("li");
+    			var count = notice_lis.length;
+				var width = 0;
+				jQuery.each(notice_lis,function(idx,li){
+					width += $(li).width();
+				});
+    			notice_ul.css({width:width+20*count});
+				var margin_left = 0;
+				var direction = "left";
+				var stop = false;
+				setInterval(function(){
+					if(stop)
+						return;
+					notice_ul.css("margin-left",margin_left);
+					var li = $(".notice ul li:eq(0)");
+					if(margin_left + li.width()+20 <= 0){
+						var li2 = li.clone();
+						$(".notice ul").append(li2);
+						li.remove();
+						margin_left = 0;
+						notice_ul.css("margin-left",margin_left);
+					}
+					margin_left=margin_left-1;
+				},20);
+				$(".notice").mouseover(function(){
+					stop = true;
+				}).mouseout(function(){
+					stop = false;
+				});
+            });
+
+			function login(type){
+				var url = "http://runjs.cn/action/openid/before_login?op=" + type;
+				openwindow(url, 'loginPage', 800, 600);
+			}
+			function logout(uid){
+            	jQuery.post("/action/ajax/logout",'uid='+uid, function(msg) {
+            		location.href="/";
+            	});
+            }
+			
+			function openwindow(url, name, iWidth, iHeight) {
+			var url; // 转向网页的地址;
+			var name; // 网页名称，可为空;
+			var iWidth; // 弹出窗口的宽度;
+			var iHeight; // 弹出窗口的高度;
+			var iTop = (window.screen.availHeight - 30 - iHeight) / 2; // 获得窗口的垂直位置;
+			var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; // 获得窗口的水平位置;
+			window.open(url,name,
+				'height='
+						+ iHeight
+						+ ',,innerHeight='
+						+ iHeight
+						+ ',width='
+						+ iWidth
+						+ ',innerWidth='
+						+ iWidth
+						+ ',top='
+						+ iTop
+						+ ',left='
+						+ iLeft
+						+ ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+			}
+			function more_dy(){
+				$("#get_more").html("加载中...");
+				jQuery.get("/widget/_more_dy/"+(cur_page+1),function(m){
+					$("#get_more").html("点击加载更多");
+					$(".userOperate ul").append(m);
+					cur_page++;
+				});
+			}
+		</script>
+	</head>
+	<body>
+	<!--     头部header开始    -->
+     <div class="header">
+		<a href="/">
+        <div class="logo">
+            <h3>RunJS</h3>
+        </div>
+		</a>
+        <div class="headerMenu">
+			<div class="menuItem btnGroup login">
+				#if(!$g_user)
+				<div class="select" id="login" >
+				<div class="title">登录<div class="arrow_bottom"></div></div>
+                <ul>
+                    <li><a href="javascript:login('oschina')">开源中国</a></li>
+					<li><a href="javascript:login('qq')">腾讯QQ</a></li>
+					<li><a href="javascript:login('weibo')">新浪微博</a></li>
+					<li><a href="javascript:login('google')">Google</a></li>
+					<li><a href="javascript:login('github')">Github</a></li>
+					<li><a href="javascript:login('hotmail')">Hotmail</a></li>
+					<li><a href="javascript:login('yahoo')">Yahoo</a></li>
+				</ul>
+    			</div>
+				#else
+					<div class="btn" id="logout" onclick="javascript:logout($g_user.id);">退出($format.html(${g_user.name}))</div>
+				#end
+			</div>
+		</div>
+    </div>
+	<div class="index_content">
+      <h2> RunJS - 在线编辑、展示、分享、交流你的  JavaScript 代码</h2>
+      <div class="getIn clearfix">
+		<a href="/square">
+        <dl class="dl">
+          <dt>广场</dt>
+          <dd class="gradientBg"></dd>
+          <dd class="description">展示最新最热的优质代码</dd>
+          <dd class="img"><img src='$link.img("square.jpg")' width="300" height="150" alt="展示最新最热的优质代码"/>
+          </dd>        
+        </dl>
+        </a>
+		<a href="/code">
+        <dl class="dl">
+          <dt>编辑器</dt>
+          <dd class="gradientBg"></dd>
+          <dd class="description">在线编辑、实时预览你的  JavaScript 代码</dd>
+          <dd class="img"><img src='$link.img("editor.jpg")' width="300" height="150" alt="在线编辑、实时预览你的 JavaScript 代码" />
+          </dd>
+        </dl>
+        </a>
+		<a href="/plugin">
+        <dl class="dl">
+          <dt>个性插件</dt>
+          <dd class="ribbonWrapper">
+            <div class="ribbon">NEW</div>
+          </dd>
+          <dd class="gradientBg"></dd>
+          <dd class="description">自由扩展、自我增强、打造属于自己的编辑器</dd>        
+          <dd class="img"><img src='$link.img("plugin_color_picker.png")' width="300" height="150" alt="自由扩展、自我增强、打造属于自己的编辑器"/>
+        </dl>
+        </a>
+      </div>
+      <div class="content_main clearfix">
+		#**
+        <div class="notice clearfix">
+          <h3>公告</h3>
+          <ul>
+            <li>RunJS 首页改版啦！</li>
+            <li>RunJS 推出 Gist 功能！</li>
+            <li>RunJS 最新推出代码广场！</li>
+            <li>RunJS 增加对 CoffeeScript 的支持！</li>
+			<li>RunJS 增加对 Less 的支持！</li>
+            <li>RunJS 新增用户动态显示！</li>
+            <li>RunJS 新增代码分类功能！</li>
+            <li>RunJS 即将上线个性插件功能！</li>
+          </ul>
+        </div>
+		*#
+        <div class="userOperate">
+          <ul>
+			#foreach($dy in $dys)
+				#show_dynamic2($dy)
+			#end
+          </ul>
+		  <a href="javascript:more_dy();" id="get_more" style="float:right;margin-top:10px;">点击加载更多...</a>
+        </div>
+		<div class="help">
+          <h3>常见问题帮助</h3>
+          <ul>
+            <li><a href="/help/runjs" target="_blank">RunJS 是什么？</a></li>
+            <li><a href="/help/create" target="_blank">如何在 RunJS 上创建代码？</a></li>
+            <li><a href="/help/save" target="_blank">如何保存我的代码？ </a></li>
+            <li><a href="/help/fork" target="_blank">Fork 是什么?如何 Fork 别人的代码？</a></li>
+            <li><a href="/help/post" target="_blank">如何分享我的代码？</a></li>
+            <li><a href="/help/upload" target="_blank">如何上传图片、js、css 等资源文件?</a></li>
+            <li><a href="/help/jslib" target="_blank">如何使用一些第三方js库？</a></li>
+			<li><a href="/help/ajax" target="_blank">如何在代码中做 Ajax 调用的演示？</a></li>
+		 	<li><a href="/help/ie" target="_blank">如何在低版本的 IE 中查看代码效果？</a></li>
+			<li><a href="/help/gist" target="_blank">如何在外站嵌入RunJS的代码？</a></li>
+			<li><a href="/help/less" target="_blank">如何使用 CoffeeScript 和 Less 来写代码？</a></li>
+            <li><a href="/help/plugin" target="_blank">当用户插件使编辑器无法正常使用怎么办？</a></li>
+		  	<li><a href="/help/bug" target="_blank">发现了 RunJS 的 bug 或者有建议？</a></li>
+		  </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>© <a href="http://www.oschina.net">开源中国</a> | <a href="/help"> RunJS 帮助</a> | <a href="http://www.aliyun.com" target="_blank">阿里云</a><span style="color:#AAA;">提供服务器和带宽</span> | <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备12009483号-7</a> | <script src="http://s17.cnzz.com/stat.php?id=5147163&web_id=5147163" language="JavaScript"></script></p>
+    </div>
+	</body>
+</html>
+#end

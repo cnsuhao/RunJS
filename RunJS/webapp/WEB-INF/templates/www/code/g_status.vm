@@ -1,0 +1,80 @@
+#set($host = "http://runjs.cn")
+#set($shost = "http://sandbox.runjs.cn")
+#if(!$code)
+#set($ident = $link.param("p1",""))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#if($g_user)
+	#set($projects = $project.getAllProjectByUser($g_user.id))
+	#set($hasNoCode = $projects && $projects.size()==0)##当前用户无代码
+	#if(!$code && !$hasNoCode && !$ident.equals("after_login"))##登录后仍有事件需要处理则不自动加载已有代码
+    	#foreach($p in $projects)
+			#set($versions = $project.getAllVersionByProject($p.id))
+			#foreach($v in $versions)
+				#if(!$code)
+					#set($code = $v)
+				#end
+			#end
+		#end
+	#end
+	#set($isMyCode = $code && $g_user.id == $code.user)
+	#set($isOtherCode = $code && $g_user.id != $code.user)
+	#set($isDemo = !$isMyCode && !$isOtherCode)
+#else
+	#set($hasNoCode = true)##当前用户无代码
+#end
+$request.setAttribute("close_comment",true)
+#end
+#set($plugin = $PluginBean.GetPluginByCode($code.id))
+#if($code)
+    #set($htmlType = $code.GetHTMLType())
+    #set($cssType = $code.GetCSSType())
+    #set($jsType = $code.GetJSType())
+#else
+    #set($htmlType = 1)
+    #set($cssType = 1)
+    #set($jsType = 1)
+#end
+g_status = {
+	once:#if($once)true#{else}false#end,
+	login:#if($g_user)true#{else}false#end,
+	isMyCode:#if($isMyCode)true#{else}false#end,
+	isOtherCode:#if($isOtherCode)true#{else}false#end,
+	hasNoCode:#if($hasNoCode)true#{else}false#end,
+	isDemo:#if($isDemo)true#{else}false#end,
+	#if($code)posted:#if($code.IsPosted())true#{else}false#end,#end
+	sign:#if($code)'$code.sign'#{else}''#end,
+	codeid:#if($code)${code.id}#{else}0#end,
+	codename:#if($code)'${code.name}'#{else}''#end,
+	project:#if($code)${code.project}#{else}0#end,
+	version:#if($code)${code.num}#{else}0#end,
+	ident:#if($code)'${code.ident}'#{else}''#end,
+	host:'${host}',
+	shost:'${shost}',
+	mode:#if($plugin)'plugin'#{else}'code'#end,
+	htmlType:$htmlType,
+	cssType:$cssType,
+	jsType:$jsType
+};
+User = {
+	user:#if($g_user)$g_user.id#{else}0#end,
+	v_code:'#if($g_user)${g_user.GetVCode()}#{else}#end',
+	admin:#if($g_user && $g_user.IsAdmin())true#{else}false#end
+};
+#set($settings = $project.getSetByUser($g_user.id))
+#if($settings && $settings.size()>0)
+Setting = {
+	#foreach($s in $settings)
+		#set($svalue = $project.escape(${s.value}))
+		${s.name}:'${svalue}'#if($velocityCount < $settings.size()),#end
+		#if($s.name.equals("theme") && $svalue.equals("default"))
+			#set($defaultTheme = true)
+		#end
+	#end
+};
+#else
+Setting = {
+	theme:"night"
+};
+#end
+if(isNotEmpty(g_status.ident))
+	updateUrl(g_status.host + editor_path+"/" + g_status.ident);

@@ -1,0 +1,41 @@
+$request.setAttribute("close_comment",true)
+#set($mode=$link.param("p1","code"))
+#set($type=$link.param("p2","js"))
+#if($mode=="plugin")
+ 	#set($plugins = $PluginBean.GetEditPlugins($g_user))
+#else
+ 	#set($plugins = $PluginBean.GetSysPlugins())
+	#if($plugins)
+	#set($userplugins = $PluginBean.GetUserPlugins($g_user,1,2))
+		#if($userplugins)
+			#set($temp=$plugins.addAll($userplugins))
+		#end
+	#end
+#end
+#if($type=="js")
+$response.setContentType("text/javascript")
+#foreach($plugin in $plugins)
+#set($cur = $CodeBean.Get($plugin.code))
+#if($cur && $cur.js && $cur.js.trim().length()>0)
+/*${cur.name}#if(${cur.description}) - ${cur.description}#end*/
+#if($cur.GetJSType() == 1)
+${cur.js}
+#elseif($cur.GetJSType() == 2)
+$project.coffee_compile(${cur.js})
+#end
+#end
+#end
+#elseif($type=="css")
+$response.setContentType("text/css")
+#foreach($plugin in $plugins)
+#set($cur = $CodeBean.Get($plugin.code))
+#if($cur && $cur.css && $cur.css.trim().length()>0)
+/*${cur.name}#if(${cur.description}) - ${cur.description}#end*/
+#if($cur.GetCSSType() == 1)
+${cur.css}
+#elseif($cur.GetCSSType() == 2)
+$project.less_compile(${cur.css})
+#end
+#end
+#end
+#end

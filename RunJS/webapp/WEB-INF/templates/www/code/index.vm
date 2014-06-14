@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="RunJS,在线编写、展示html、js、css代码，拥有实时预览、分享、Fork、代码高亮、自动完成等多项特性，提供文件上传、多种登录方式。" />
+<meta name="keywords" content="RunJS runjs JavaScript CSS HTML 在线运行 展示 效果"/>
+<title>RunJS</title>
+<!--[if lt IE 10]>
+<script type="text/javascript">
+	var unsupport = true;
+</script>
+<![endif]-->
+<script type="text/javascript">
+	if(unsupport == true){
+		location.href = "/unsupport";
+	}
+</script>
+<link rel="stylesheet" type="text/css"
+	href="/js/CodeMirror-2.25/lib/codemirror.css" />
+<link rel="stylesheet" type="text/css"
+	href="/js/CodeMirror-2.25/theme/theme.css?20121021" />
+<link rel="stylesheet" href="/css/theme.css?20121211" type="text/css"/>
+<link rel="stylesheet" href="/css/zebra_dialog.css" type="text/css"/>
+<link rel="stylesheet" href="/css/style1.css?2012120502" type="text/css"/>
+<link rel="stylesheet" href="/js/CodeMirror-2.25/lib/util/simple-hint.css" type="text/css"/>
+<script type="text/javascript">editor_path = "/code"</script>
+<script type="text/javascript" src="/js/all.js?2012121305"></script>
+#*<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="/js/CodeMirror-2.25/mode/coffeescript/coffeescript.js"></script>
+<script type="text/javascript" src="/js/CodeMirror-2.25/mode/less/less.js"></script>
+<script type="text/javascript" src="/js/resource.js"></script>
+<script type="text/javascript" src="/js/coffee-script.js"></script>
+<script type="text/javascript" src="/js/api.js"></script>
+<script type="text/javascript" src="/js/zebra_dialog.js"></script>
+<script type="text/javascript" src="/js/resize2.js"></script>
+<script type="text/javascript" src="/js/utils.js"></script>
+<script type="text/javascript" src="/js/explorer.js"></script>
+<script type="text/javascript" src="/js/editor.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+<script type="text/javascript" src="/js/dialog.js"></script>
+<script type="text/javascript" src="/js/flow.js"></script>
+<script type="text/javascript" src="/js/runjs.js"></script>
+<script type="text/javascript" src="/js/plugins.js"></script>*#
+#set($g_status = "g_status.vm")
+##set($once = true)
+#set($mode = $link.param("mode","code"))
+#set($ident = $link.param("p1",""))
+#set($action = $link.param("p2",""))
+#set($enablePlugins = $link.param("plugin","true"))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#if(!$code)
+#set($isDemo = true)
+#end
+#if($g_user)
+	#set($projects = $project.getAllProjectByUser($g_user.id))
+	##当用户已登录并且当前代码存在并是自己的代码时，或者代码不存在并且当前用户没有代码时显示Explorer
+	#set($isMyCode = $code && $g_user.id == $code.user)
+	#set($isOtherCode = $code && $g_user.id != $code.user)
+	#set($hasNoCode = $projects && $projects.size()==0)##当前用户无代码
+	#set($show_explorer =  !$isOtherCode)
+#end
+<script type="text/javascript">
+	//初始化全局状态
+	#invoke("${g_status}")
+	g_mode = '${mode}';
+</script>
+#if($enablePlugins.equals("true"))
+<link rel="stylesheet" href="${host}/code/sys_plugins/${mode}/css/plugin_${mode}_css" type="text/css"/>
+<script src="${host}/code/sys_plugins/${mode}/js/plugin_${mode}_js" type="text/javascript"></script>
+#end
+#if($enablePlugins.equals("on"))
+$PluginBean.turn($g_user,true,true)
+#elseif($enablePlugins.equals("off"))
+$PluginBean.turn($g_user,false,false)
+#end
+<script type="text/javascript">
+	var runjs;
+	$(document).ready(function(){
+		dialog = new Dialog();
+		flow = new Flow();
+		var explorer = new Explorer({
+			target:$(".explorer"),
+			fold:$(".fold_control"),
+			core:$(".core"),
+			show:#if($show_explorer)true#{else}false#end
+		});
+		var editor = new Editor({
+			target:$(".editor_wrapper")
+		});
+		var menu = new Menu({
+			target:$(".headerMenu"),
+		});
+		runjs = new RunJS({
+			editor:editor,
+			explorer:explorer,
+			menu:menu,
+			flow:flow,
+			dialog:dialog,
+			plugins:plugins,
+			cur_opt:"login",
+			mode:'${mode}'
+		});
+		#if($action.length()!=0)runjs.checkProxy('${action}');#end
+	});
+</script>
+</head>
+<body class="#if($defaultTheme)DefaultTheme#{else}NightTheme#end">
+	<div id="main_container">
+		<div class="header">
+			<a href="/">
+			<div class="logo">
+				<h1>RunJS</h1>
+			</div>
+			</a>
+			<div class="headerMenu">#if($once)#invoke("menu.vm")#end</div>
+		</div>
+		
+		<div class="explorer" #if(!$show_explorer)style="display:none;"#end>
+			#if($once)#invoke("explorer.vm")#end
+		</div>
+        <div class="fold_control on" #if(!$show_explorer)style="display:none;"#end></div>
+		<div id="core" class="core #if($show_explorer)core_margin#{else}core_margin1#end">
+			<div class="toolBar">
+			</div>
+			<div class="editor_wrapper">
+				#if($once)#invoke("editor.vm")#end
+			</div>
+		</div>
+	</div>
+</body>
+</html>

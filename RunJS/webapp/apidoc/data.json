@@ -1,0 +1,3538 @@
+{
+    "project": {},
+    "files": {
+        "js\\api.js": {
+            "name": "js\\api.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\coffee-script.js": {
+            "name": "js\\coffee-script.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\dialog.js": {
+            "name": "js\\dialog.js",
+            "modules": {},
+            "classes": {
+                "Dialog": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\editor.js": {
+            "name": "js\\editor.js",
+            "modules": {},
+            "classes": {
+                "Editor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\explorer.js": {
+            "name": "js\\explorer.js",
+            "modules": {},
+            "classes": {
+                "Explorer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\global_variables.js": {
+            "name": "js\\global_variables.js",
+            "modules": {},
+            "classes": {
+                "Global_Variables": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\jquery.cookies.2.2.0.min.js": {
+            "name": "js\\jquery.cookies.2.2.0.min.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\menu.js": {
+            "name": "js\\menu.js",
+            "modules": {},
+            "classes": {
+                "Menu": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\onEvents.js": {
+            "name": "js\\onEvents.js",
+            "modules": {},
+            "classes": {
+                "onEvents": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\plugins.js": {
+            "name": "js\\plugins.js",
+            "modules": {},
+            "classes": {
+                "Plugins": 1,
+                "Plugin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\resource.js": {
+            "name": "js\\resource.js",
+            "modules": {},
+            "classes": {
+                "Resource": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\runjs.js": {
+            "name": "js\\runjs.js",
+            "modules": {},
+            "classes": {
+                "RunJS": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\utils.js": {
+            "name": "js\\utils.js",
+            "modules": {},
+            "classes": {
+                "Utils": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js\\zebra_dialog.src.js": {
+            "name": "js\\zebra_dialog.src.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Dialog": {
+            "name": "Dialog",
+            "shortname": "Dialog",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\dialog.js",
+            "line": 19,
+            "description": "该类用来处理弹出框，使用 <a href=\"http://www.oschina.net/p/zebra_dialog\" target=\"_blank\">Zebra Dialog</a> 插件实现",
+            "is_constructor": 1
+        },
+        "Editor": {
+            "name": "Editor",
+            "shortname": "Editor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\editor.js",
+            "line": 56,
+            "description": "按视图划分，Editor负责编辑器视图的显示及操作",
+            "is_constructor": 1
+        },
+        "Explorer": {
+            "name": "Explorer",
+            "shortname": "Explorer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\explorer.js",
+            "line": 58,
+            "description": "按视图划分，Explorer负责处理左边资源管理器视图的显示及操作",
+            "is_constructor": 1
+        },
+        "Global_Variables": {
+            "name": "Global_Variables",
+            "shortname": "Global_Variables",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\global_variables.js",
+            "line": 1,
+            "description": "全局变量定义，定义了 全局状态信息、用户账户相关信息、用户设置信息"
+        },
+        "Menu": {
+            "name": "Menu",
+            "shortname": "Menu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\menu.js",
+            "line": 48,
+            "description": "按视图划分，Menu负责处理顶部菜单视图的显示及操作",
+            "is_constructor": 1
+        },
+        "onEvents": {
+            "name": "onEvents",
+            "shortname": "onEvents",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\onEvents.js",
+            "line": 1,
+            "description": "系统事件，个模块在某特定条件下自动触发的事件，为了更便于查看，将 {{#crossLink \"Plugins\"}}{{/crossLink}} 中的 onEvents 抽离出来单独说明"
+        },
+        "Plugins": {
+            "name": "Plugins",
+            "shortname": "Plugins",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\plugins.js",
+            "line": 25,
+            "description": "插件辅助类，用来创建、管理插件",
+            "is_constructor": 1
+        },
+        "Plugin": {
+            "name": "Plugin",
+            "shortname": "Plugin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\plugins.js",
+            "line": 213,
+            "description": "插件类"
+        },
+        "Resource": {
+            "name": "Resource",
+            "shortname": "Resource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\resource.js",
+            "line": 1,
+            "description": "常用 JavaScript 库。",
+            "type": "{Object}"
+        },
+        "RunJS": {
+            "name": "RunJS",
+            "shortname": "RunJS",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\runjs.js",
+            "line": 47,
+            "description": "RunJS 核心类，管理其他各个模块间的相互调用，以及系统流程处理等",
+            "is_constructor": 1
+        },
+        "Utils": {
+            "name": "Utils",
+            "shortname": "Utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\utils.js",
+            "line": 9,
+            "description": "模块工具类，用来初始化各模块视图、自定绑定事件以及其他辅助功能等",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "js\\api.js",
+            "line": 102,
+            "description": "删除代码，新!",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 217,
+            "description": "发布代码 旧！",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 229,
+            "description": "发布代码 新！",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 282,
+            "description": "添加url文件",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 293,
+            "description": "删除文件",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 305,
+            "description": "添加建议",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 318,
+            "description": "发送消息",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 329,
+            "description": "阅读消息",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 347,
+            "description": "阅读所有的未读消息",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 358,
+            "description": "将插件加到市场",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 368,
+            "description": "将代码更新到插件市场，id为code的id.",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 378,
+            "description": "从插件市场移出",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 388,
+            "description": "将代码设置为插件",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 399,
+            "description": "审核插件",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 409,
+            "description": "取消审核插件",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 419,
+            "description": "加到广场",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 429,
+            "description": "更新到广场",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 439,
+            "description": "添加分类",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 449,
+            "description": "分类重命名",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 460,
+            "description": "删除分类，该分类必须没有代码",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 470,
+            "description": "移动到分类",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\api.js",
+            "line": 481,
+            "description": "设置代码类型",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\coffee-script.js",
+            "line": 1,
+            "description": "CoffeeScript Compiler v1.4.0\nhttp://coffeescript.org\n\nCopyright 2011, Jeremy Ashkenas\nReleased under the MIT License",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 31,
+            "description": "获取一个 dialog 并显示，第一个参数为 dialog 的标识名称，对应 option 中的一条配置信息以及 dialog 模版内容；\n 第二个参数之后，遇到 string 则将其当作候补 dialog 模版内容：若 ajax 加载远端模版内容为空时，则当作候补内容显示；\n 遇到 function 或者 array 则将其中的 function 全部作为 events 中的元素，按照 option 中的 buttons 的 callback 依次注册事件",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "对话框名称",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "对话框中显示的描述信息（当无法从远端加载对应的内容时显示，也可以在公用一个对话框时用来显示描述信息，例如确认操作窗口）",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "对话框中的按钮对应的处理事件，顺序与界面上的排序相反",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "dialog 返回 Zebra Dialog 实例",
+                "type": "Object"
+            },
+            "example": [
+                "\n \tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 86,
+            "description": "从对话框中寻找某控件或元素",
+            "itemtype": "method",
+            "name": "getField",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "Zebra Dialog 实例的 html 内容",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "查找条件，jQuery选择器",
+                    "type": "String"
+                },
+                {
+                    "name": "idx",
+                    "description": "索引",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "element 返回该控件或元素，未找到则返回 undefined",
+                "type": "Object"
+            },
+            "example": [
+                "\n\tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容\n\tdialog.getField(d,\"input[type='checkbox']\",0);//从对话框中查找第一个(索引为0)的 checkbox 控件"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 110,
+            "description": "通过 getField 拿到对话框中的某元素 并获取它的 value",
+            "itemtype": "method",
+            "name": "valueOf",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "Zebra Dialog 实例的 html 内容",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "查找条件，jQuery选择器",
+                    "type": "String"
+                },
+                {
+                    "name": "idx",
+                    "description": "索引",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "value 返回当前元素的value 未找到元素则返回 undefined",
+                "type": "String"
+            },
+            "example": [
+                "\n\tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容\n\tdialog.valueOf(d,\"input[type='checkbox']\",0)//在对话框中查找第一个(索引为0)的 checkbox 控件，并获得其 value"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 126,
+            "description": "通过 getField 拿到对话框中的某元素 并设置它的 value",
+            "itemtype": "method",
+            "name": "setValueOf",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "Zebra Dialog 实例的 html 内容",
+                    "type": "String"
+                },
+                {
+                    "name": "type",
+                    "description": "查找条件，jQuery选择器",
+                    "type": "String"
+                },
+                {
+                    "name": "idx",
+                    "description": "索引",
+                    "type": "Number"
+                },
+                {
+                    "name": "value",
+                    "description": "设置值",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n\tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容\n\tdialog.setValueOf(d,\"input[type='checkbox']\",0,\"1212\")//在对话框中查找第一个(索引为0)的 checkbox 控件，并获得其 value"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 143,
+            "description": "在对话框中显示错误信息",
+            "itemtype": "method",
+            "name": "errorMsg",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "Zebra Dialog 实例的 html 内容",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "要显示的错误信息",
+                    "type": "String"
+                },
+                {
+                    "name": "sel",
+                    "description": "在该选择器下寻找错误显示区域",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "正常显示错误返回true，否则返回false",
+                "type": "Boolean"
+            },
+            "example": [
+                "\n\tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容\n\tdialog.errorMsg(d,\"代码名称不能为空\");//在对话框中显示错误信息"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 171,
+            "description": "用来处理设置菜单左侧选项被点击的动作",
+            "itemtype": "method",
+            "name": "onSettingItemClick",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "Zebra Dialog 实例的 html 内容",
+                    "type": "String"
+                },
+                {
+                    "name": "step",
+                    "description": "激活第 step 个选项",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n\tvar d = dialog.get(\"confirm2\",doNothing,doNothing).dialog;//弹出一个Zebra Dialog，并获取 Dialog 的 HTML 内容\n\tdialog.onSettingItemClick(d,0);//激活设置窗口第一个选项"
+            ],
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\dialog.js",
+            "line": 195,
+            "description": "定义了所有的Zebra Dialog对话框的配置参数",
+            "itemtype": "property",
+            "name": "option",
+            "type": "{JSON}",
+            "class": "Dialog"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 12,
+            "description": "默认配置参数",
+            "itemtype": "attribute",
+            "name": "defaultParams",
+            "access": "private",
+            "tagname": "",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 26,
+            "description": "事件绑定规则定义，详情见 {{#crossLink \"Utils\"}}{{/crossLink}} 类中的 {{#crossLink\n\"Utils/binder\"}}{{/crossLink}} 方法",
+            "itemtype": "property",
+            "name": "Events",
+            "type": "{JSON}",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 38,
+            "description": "显示视图右上角快速工具条",
+            "itemtype": "method",
+            "name": "show_quick_tools",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 47,
+            "description": "隐藏视图右上角快速工具条",
+            "itemtype": "method",
+            "name": "hide_quick_tools",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 69,
+            "description": "编辑器视图初始化",
+            "itemtype": "method",
+            "name": "initView",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "async 是否采取异步方式初始化视图",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 95,
+            "description": "选择JS编辑类型：JavaScript或CoffeeScript",
+            "itemtype": "method",
+            "name": "chooseJsType",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 124,
+            "description": "选择CSS编辑类型：CSS 或 LESS",
+            "itemtype": "method",
+            "name": "chooseCssType",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 153,
+            "description": "获取当前代码的MD5值",
+            "itemtype": "method",
+            "name": "codeMD5",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 161,
+            "description": "给三个视图异步加载代码",
+            "itemtype": "method",
+            "name": "loadTemplate",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识，ident为空则加载默认模版代码，ident不为空则尝试加载用户的对应代码",
+                    "type": "String"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 185,
+            "description": "加载插件模版代码",
+            "itemtype": "method",
+            "name": "loadPlugin",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "pname 插件类名",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "onMethod {{#crossLink \"Plugins/onEvents\"}}{{/crossLink}} 个数",
+                    "type": "Number"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 207,
+            "description": "加载插件模版代码",
+            "itemtype": "method",
+            "name": "loadPluginTpl",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "onMethod {{#crossLink \"Plugins/onEvents\"}}{{/crossLink}} 个数",
+                    "type": "Number"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 223,
+            "description": "检查并设置编辑器编辑状态",
+            "itemtype": "method",
+            "name": "setEditedStatus",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 250,
+            "description": "移除编辑状态",
+            "itemtype": "method",
+            "name": "removeEditedStatus",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 261,
+            "description": "以同步方式加载模版代码",
+            "itemtype": "method",
+            "name": "getRemoteCode",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "type 代码片段类型'html'|'css'|'js'",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "code 返回{html:\"\",css:\"\",js:\"\"}结构数据",
+                "type": "JSON"
+            },
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 275,
+            "description": "从远程加载代码片段，如果ident为空，则加载模版代码片段",
+            "itemtype": "method",
+            "name": "loadTplSnippet",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "ident 代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "type 代码片段类型'html'|'css'|'js'",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "async 是否采用异步方式加载",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "callback 异步方式的回调函数",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "code 返回{html:\"\",css:\"\",js:\"\"}结构数据",
+                "type": "JSON"
+            },
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 317,
+            "description": "获取当前编辑器内textarea代码",
+            "itemtype": "method",
+            "name": "getCodeOfView",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "view 视图选择器",
+                    "type": "Object"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "type 编辑器类型 'html'|'css'|'js'",
+                    "type": "String"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 332,
+            "description": "初始化CodeMirror",
+            "itemtype": "method",
+            "name": "initCodeMirror",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "view 视图选择器",
+                    "type": "Object"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "是否使用编辑器textarea的默认代码",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 441,
+            "description": "获取CodeMirro编辑器代码",
+            "itemtype": "method",
+            "name": "getEditorCode",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "type 编辑器类型 'html'|'css'|'js'",
+                    "type": "String"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 465,
+            "description": "获取HTML+JS+CSS组合过后的最终页面代码，用于在预览视图中实时显示",
+            "itemtype": "method",
+            "name": "getCombinedHtml",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 502,
+            "description": "更新视图的定时器实例，用来实现延时更新",
+            "itemtype": "attribute",
+            "name": "update_delay",
+            "access": "private",
+            "tagname": "",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 510,
+            "description": "更新预览视图的内容",
+            "itemtype": "method",
+            "name": "updatePreview",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "chtml 组合过后的HTML+CSS+JS代码",
+                    "type": "String"
+                },
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "是否强制更新",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 545,
+            "description": "获取默认代码",
+            "itemtype": "method",
+            "name": "getDefaultEditorValue",
+            "params": [
+                {
+                    "name": "!~YUIDOC_LINE~!",
+                    "description": "type 代码类型 'html'|'css'|'js'",
+                    "type": "String"
+                }
+            ],
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 556,
+            "description": "根据全局变量 Setting 中的theme属性设置主题，当前只是 default 和 night两种主题",
+            "itemtype": "method",
+            "name": "setTheme",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 573,
+            "description": "设置CodeMirror字体，根据全局变量 Setting 中的fontfamily和fontsize属性设置字体",
+            "itemtype": "method",
+            "name": "setCMFont",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\editor.js",
+            "line": 605,
+            "description": "刷新编辑器，当编辑器外观或大小被改变时调用",
+            "itemtype": "method",
+            "name": "refreshEditors",
+            "class": "Editor"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 11,
+            "description": "默认配置参数",
+            "itemtype": "attribute",
+            "name": "defaultParams",
+            "access": "private",
+            "tagname": "",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 22,
+            "description": "事件绑定规则定义，详情见 {{#crossLink \"Utils\"}}{{/crossLink}} 类中的 {{#crossLink\n\"Utils/binder\"}}{{/crossLink}} 方法",
+            "itemtype": "property",
+            "name": "Events",
+            "type": "{JSON}",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 72,
+            "description": "资源管理器视图初始化",
+            "itemtype": "method",
+            "name": "initView",
+            "params": [
+                {
+                    "name": "show",
+                    "description": "是否显示资源管理器",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "async",
+                    "description": "是否采取异步方式初始化视图",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 92,
+            "description": "弹出代码创建流程对话框",
+            "itemtype": "method",
+            "name": "create_wizard",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 114,
+            "description": "弹出资源上传对话框并处理上传",
+            "itemtype": "method",
+            "name": "add_resource",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 160,
+            "description": "更新代码的发布信息",
+            "itemtype": "method",
+            "name": "update_publish",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "cid",
+                    "description": "需更新的代码id",
+                    "type": "Number"
+                },
+                {
+                    "name": "name",
+                    "description": "需更新的代码新名称",
+                    "type": "String"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 194,
+            "description": "重命名代码",
+            "itemtype": "method",
+            "name": "rename_code",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "cid",
+                    "description": "代码ID",
+                    "type": "Number"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 227,
+            "description": "删除代码",
+            "itemtype": "method",
+            "name": "delete_code",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "代码ID",
+                    "type": "Number"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 256,
+            "description": "创建分类",
+            "itemtype": "method",
+            "name": "createCatalog",
+            "params": [
+                {
+                    "name": "cid",
+                    "description": "代码ID",
+                    "type": "Number"
+                },
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 297,
+            "description": "移动到分类",
+            "itemtype": "method",
+            "name": "moveToCatalog",
+            "params": [
+                {
+                    "name": "cid",
+                    "description": "代码ID",
+                    "type": "Number"
+                },
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 327,
+            "description": "删除资源文件",
+            "itemtype": "method",
+            "name": "delete_resource",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "资源类型：css,js,image,other",
+                    "type": "String"
+                },
+                {
+                    "name": "id",
+                    "description": "资源ID",
+                    "type": "Number"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 358,
+            "description": "重命名分类",
+            "itemtype": "method",
+            "name": "rename_catalog",
+            "params": [
+                {
+                    "name": "cid",
+                    "description": "分类ID，若cname为空，则cid的值应为：{cname:\"\",cid:id}",
+                    "type": "Number"
+                },
+                {
+                    "name": "cname",
+                    "description": "分类新名称",
+                    "type": "String"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 392,
+            "description": "删除分类",
+            "itemtype": "method",
+            "name": "delete_catalog",
+            "params": [
+                {
+                    "name": "cid",
+                    "description": "分类ID",
+                    "type": "Number"
+                },
+                {
+                    "name": "cname",
+                    "description": "分类新名称",
+                    "type": "String"
+                }
+            ],
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 484,
+            "description": "移除所有设置上下文菜单",
+            "itemtype": "method",
+            "name": "removeMenu",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\explorer.js",
+            "line": 503,
+            "description": "显示/隐藏Explorer视图",
+            "itemtype": "method",
+            "name": "fold_view",
+            "class": "Explorer"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 7,
+            "description": "{{#crossLink \"RunJS\"}}{{/crossLink}} 实例",
+            "itemtype": "property",
+            "name": "runjs",
+            "type": "{RunJS}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 23,
+            "description": "<a href=\"..\\classes\\Editor.html\" class=\"crosslink\">Editor</a> 实例，以 runjs.editor 访问该实例",
+            "itemtype": "property",
+            "name": "runjs.editor",
+            "type": "{Editor}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 32,
+            "description": "<a href=\"..\\classes\\Explorer.html\" class=\"crosslink\">Explorer</a> 实例，以 runjs.explorer 访问该实例",
+            "itemtype": "property",
+            "name": "runjs.explorer",
+            "type": "{Explorer}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 44,
+            "description": "<a href=\"..\\classes\\Menu.html\" class=\"crosslink\">Menu</a> 实例，以 runjs.menu 访问该实例",
+            "itemtype": "property",
+            "name": "runjs.menu",
+            "type": "{Menu}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 53,
+            "description": "<a href=\"..\\classes\\Dialog.html\" class=\"crosslink\">Dialog</a> 实例",
+            "itemtype": "property",
+            "name": "dialog",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 59,
+            "description": "<a href=\"..\\classes\\Flow.html\" class=\"crosslink\">Flow</a> 实例",
+            "itemtype": "property",
+            "name": "flow",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 65,
+            "description": "全局状态信息,通过 runjs.initStatus(ident) 可更新当前代码状态信息",
+            "itemtype": "property",
+            "name": "g_status",
+            "type": "{JSON}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 71,
+            "description": "是否已登录",
+            "itemtype": "property",
+            "name": "g_status.login",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 77,
+            "description": "当前代码是否为我的代码",
+            "itemtype": "property",
+            "name": "g_status.isMyCode",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 83,
+            "description": "当前代码是否为他人的代码",
+            "itemtype": "property",
+            "name": "g_status.isOtherCode",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 89,
+            "description": "当前用户是否为存在代码",
+            "itemtype": "property",
+            "name": "g_status.hasNoCode",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 95,
+            "description": "当前代码是否为示例代码",
+            "itemtype": "property",
+            "name": "g_status.isDemo",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 101,
+            "description": "当前代码是否已发布",
+            "itemtype": "property",
+            "name": "g_status.posted",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 107,
+            "description": "代码签名，每次保存过后签名将改变，防止两个编辑器同时编辑同一份代码导致代码丢失",
+            "itemtype": "property",
+            "name": "g_status.sign",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 113,
+            "description": "代码ID",
+            "itemtype": "property",
+            "name": "g_status.codeid",
+            "type": "{Nubmer}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 119,
+            "description": "代码名称",
+            "itemtype": "property",
+            "name": "g_status.codename",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 125,
+            "description": "代码唯一表示，<span style=\"color:#A00\">[注]</span>该属性被频繁使用",
+            "itemtype": "property",
+            "name": "g_status.ident",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 131,
+            "description": "host路径",
+            "itemtype": "property",
+            "name": "g_status.host",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 137,
+            "description": "沙盒路径",
+            "itemtype": "property",
+            "name": "g_status.shost",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 143,
+            "description": "开发模式，'code'为一般模式，'plugin'为插件开发模式",
+            "itemtype": "property",
+            "name": "g_status.mode",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 149,
+            "description": "HTML代码类型",
+            "itemtype": "property",
+            "name": "g_status.htmlType",
+            "type": "{Number}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 155,
+            "description": "CSS代码类型，1为CSS，2为LESS",
+            "itemtype": "property",
+            "name": "g_status.cssType",
+            "type": "{Number}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 161,
+            "description": "JavaScript代码类型，1为JavaScript，2为CoffeeScript",
+            "itemtype": "property",
+            "name": "g_status.jsType",
+            "type": "{Number}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 169,
+            "description": "<a href=\"..\\classes\\Utils.html\" class=\"crosslink\">Utils</a> 实例",
+            "itemtype": "property",
+            "name": "g_utils",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 175,
+            "description": "编辑器所在路径",
+            "itemtype": "property",
+            "name": "editor_path",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 182,
+            "description": "用户相关属性",
+            "itemtype": "property",
+            "name": "User",
+            "type": "{JSON}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 188,
+            "description": "用户ID",
+            "itemtype": "property",
+            "name": "User.user",
+            "type": "{Number}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 194,
+            "description": "用户安全标识，与服务器端进行ajax交互式所需参数",
+            "itemtype": "property",
+            "name": "User.v_code",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 200,
+            "description": "是否为管理员",
+            "itemtype": "property",
+            "name": "User.admin",
+            "type": "{Boolean}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 208,
+            "description": "用户设置信息",
+            "itemtype": "property",
+            "name": "Setting",
+            "type": "{JSON}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 214,
+            "description": "编辑器主题，\"night\"|\"default\"",
+            "itemtype": "property",
+            "name": "Setting.theme",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 220,
+            "description": "字体大小",
+            "itemtype": "property",
+            "name": "Setting.fontsize",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\global_variables.js",
+            "line": 226,
+            "description": "字体类型",
+            "itemtype": "property",
+            "name": "Setting.fontfamily",
+            "type": "{String}",
+            "class": "Global_Variables"
+        },
+        {
+            "file": "js\\jquery.cookies.2.2.0.min.js",
+            "line": 1,
+            "description": "Copyright (c) 2005 - 2010, James Auldridge\nAll rights reserved.\n\nLicensed under the BSD, MIT, and GPL (your choice!) Licenses:\n http://code.google.com/p/cookies/wiki/License",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 11,
+            "description": "默认配置参数",
+            "itemtype": "attribute",
+            "name": "defaultParams",
+            "access": "private",
+            "tagname": "",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 22,
+            "description": "事件绑定规则定义，详情见 {{#crossLink \"Utils\"}}{{/crossLink}} 类中的 {{#crossLink\n\"Utils/binder\"}}{{/crossLink}} 方法",
+            "itemtype": "property",
+            "name": "Events",
+            "type": "{JSON}",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 64,
+            "description": "检查是否有最新的消息提醒",
+            "itemtype": "method",
+            "name": "checkMsg",
+            "access": "private",
+            "tagname": "",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 80,
+            "description": "菜单视图初始化",
+            "itemtype": "method",
+            "name": "initView",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "async",
+                    "description": "是否采取异步方式初始化视图",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 95,
+            "description": "显示编辑器菜单，并处理其中的设置",
+            "itemtype": "method",
+            "name": "editor_setting",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 118,
+            "description": "显示消息提醒",
+            "itemtype": "method",
+            "name": "showMsg",
+            "params": [
+                {
+                    "name": "count",
+                    "description": "显示提醒条数",
+                    "type": "Number"
+                }
+            ],
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 127,
+            "description": "标记提醒已读",
+            "itemtype": "method",
+            "name": "ready_msg",
+            "params": [
+                {
+                    "name": "ids",
+                    "description": "需要标记的id数组或唯一id",
+                    "type": "Array"
+                }
+            ],
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 146,
+            "description": "查看消息提醒",
+            "itemtype": "method",
+            "name": "view_notify",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 172,
+            "description": "显示帮助菜单",
+            "itemtype": "method",
+            "name": "help",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 190,
+            "description": "设置编辑器主题",
+            "itemtype": "method",
+            "name": "setTheme",
+            "params": [
+                {
+                    "name": "theme",
+                    "description": "主题类型",
+                    "type": "String"
+                },
+                {
+                    "name": "store",
+                    "description": "是否保存到服务器",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 219,
+            "description": "设置字体，字体根据当前绑定的select元素值来设置",
+            "itemtype": "method",
+            "name": "setFond",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\menu.js",
+            "line": 248,
+            "description": "添加建议，该方法必须在弹出help窗口后才能被调用",
+            "itemtype": "method",
+            "name": "addAdvice",
+            "class": "Menu"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 7,
+            "description": "当编辑器视图初始化或重置后时调用",
+            "itemtype": "method",
+            "name": "onEditorViewInit",
+            "params": [
+                {
+                    "name": "editor",
+                    "description": "编辑器模块实例",
+                    "type": "Editor"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 16,
+            "description": "当顶部菜单视图初始化或重置后调用",
+            "itemtype": "method",
+            "name": "onMenuViewInit",
+            "params": [
+                {
+                    "name": "menu",
+                    "description": "菜单模块实例",
+                    "type": "Menu"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 25,
+            "description": "当左边的资源管理器初始化或重置后调用",
+            "itemtype": "method",
+            "name": "onExplorerViewInit",
+            "params": [
+                {
+                    "name": "explorer",
+                    "description": "资源管理器模块实例",
+                    "type": "Explorer"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 34,
+            "description": "上下文菜单加载后调用",
+            "itemtype": "method",
+            "name": "onContextMenuLoad",
+            "params": [
+                {
+                    "name": "menu",
+                    "description": "上下文菜单jQuery包装对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 43,
+            "description": "上下文菜单消失后调用",
+            "itemtype": "method",
+            "name": "onContextMenuRemove",
+            "params": [
+                {
+                    "name": "menu",
+                    "description": "上下文菜单jQuery包装对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 52,
+            "description": "上下文菜单显示前调用",
+            "itemtype": "method",
+            "name": "beforeContextMenuLoad",
+            "params": [
+                {
+                    "name": "menu",
+                    "description": "上下文菜单jQuery包装对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 61,
+            "description": "当对话框弹出后调用",
+            "itemtype": "method",
+            "name": "onDialogLoad",
+            "params": [
+                {
+                    "name": "dialog",
+                    "description": "Zebra Dialog 窗口实例",
+                    "type": "Object"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 70,
+            "description": "当引入脚本时调用",
+            "itemtype": "method",
+            "name": "onScriptImport",
+            "params": [
+                {
+                    "name": "script",
+                    "description": "如果当前是从toolbar区域引入的则返回脚本的唯一标识，否则则返回引入的脚本链接地址",
+                    "type": "String"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 79,
+            "description": "当HTML编辑器内容有改变时调用",
+            "itemtype": "method",
+            "name": "onHtmlEditorChange",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的HTML编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 88,
+            "description": "当JavaScript编辑器视图内容变化时调用",
+            "itemtype": "method",
+            "name": "onJsEditorChange",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的JavaScript编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 97,
+            "description": "当CSS编辑器内容变化时调用",
+            "itemtype": "method",
+            "name": "onCssEditorChange",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的CSS编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 106,
+            "description": "当Html编辑器中光标变动时调用",
+            "itemtype": "method",
+            "name": "onHtmlCursorActivity",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的HTML编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 115,
+            "description": "当Js编辑器中光标变动时调用",
+            "itemtype": "method",
+            "name": "onJsCursorActivity",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的JavaScript编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\onEvents.js",
+            "line": 124,
+            "description": "当Css编辑器中光标变动时调用",
+            "itemtype": "method",
+            "name": "onCssCursorActivity",
+            "params": [
+                {
+                    "name": "cm",
+                    "description": "CodeMirror 实例，当前的CSS编辑器",
+                    "type": "CodeMirror"
+                }
+            ],
+            "class": "onEvents"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 9,
+            "description": "定义所有的系统事件",
+            "itemtype": "property",
+            "name": "onEvents",
+            "type": "{Array}",
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 16,
+            "description": "定义所有的系统事件的描述信息",
+            "itemtype": "property",
+            "name": "onEventsDescription",
+            "type": "{Array}",
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 34,
+            "description": "初始化事件栈",
+            "itemtype": "method",
+            "name": "initEventsStack",
+            "access": "private",
+            "tagname": "",
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 45,
+            "description": "引入JavaScript库，该方法将向 head 中添加一个以 link 为 src 的 script 标签",
+            "itemtype": "method",
+            "name": "importJavaScript",
+            "params": [
+                {
+                    "name": "link",
+                    "description": "引入js库链接地址",
+                    "type": "String"
+                }
+            ],
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 65,
+            "description": "引入 Css 文件，该方法将向 head 中引入一个以 link 为 href 的 link 标签",
+            "itemtype": "method",
+            "name": "importCss",
+            "params": [
+                {
+                    "name": "link",
+                    "description": "引入css链接地址",
+                    "type": "String"
+                }
+            ],
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 85,
+            "description": "构建新的插件",
+            "itemtype": "method",
+            "name": "newPlugin",
+            "params": [
+                {
+                    "name": "indent",
+                    "description": "插件唯一标识（即代码的 url 唯一标识）",
+                    "type": "String"
+                },
+                {
+                    "name": "plugin",
+                    "description": "插件类的引用",
+                    "type": "Object"
+                },
+                {
+                    "name": "opt",
+                    "description": "插件的默认配置项",
+                    "type": "Object"
+                }
+            ],
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 103,
+            "description": "初始化所有插件，并调用插件的 init 方法",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 120,
+            "description": "根据唯一标识获取某插件实例",
+            "itemtype": "method",
+            "name": "getPlugin",
+            "return": {
+                "description": "plugin 插件实例",
+                "type": "String"
+            },
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 131,
+            "description": "判断是为有效系统事件，即是否为<a href=\"#attr_onEvents\">onEvent</a>中成员",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "事件名称",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "isValidOnEvent",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 142,
+            "description": "判断不是有效系统事件，即不为 <a href=\"#attr_onEvents\">onEvents</a> 中成员",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "事件名称",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "isInvalidOnEvent",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 153,
+            "description": "获取插件注册的某名称事件栈",
+            "itemtype": "method",
+            "name": "getEvents",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "注册事件的名称，为 <a href=\"#attr_onEvents\">onEvents</a> 中成员",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "事件数组",
+                "type": "Array"
+            },
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 165,
+            "description": "为某插件添加事件",
+            "itemtype": "method",
+            "name": "addEvent",
+            "params": [
+                {
+                    "name": "plugin",
+                    "description": "插件实例",
+                    "type": "Object"
+                },
+                {
+                    "name": "name",
+                    "description": "注册事件名称",
+                    "type": "String"
+                },
+                {
+                    "name": "event",
+                    "description": "回调函数",
+                    "type": "Function"
+                }
+            ],
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 179,
+            "description": "调用某事件的所有事件栈方法",
+            "itemtype": "method",
+            "name": "fireEvent",
+            "params": [
+                {
+                    "name": "event：调用的事件名称",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "data：为调用的事件传递的参数",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "如果当前事件为无效方法，则返回 undefined",
+                "type": "Undefined"
+            },
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 207,
+            "description": "Plugins 实例[全局]",
+            "itemtype": "attribute",
+            "name": "plugins",
+            "class": "Plugins"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 225,
+            "description": "默认初始方法",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Plugin"
+        },
+        {
+            "file": "js\\plugins.js",
+            "line": 233,
+            "description": "为当前插件添加事件",
+            "itemtype": "method",
+            "name": "addEvent",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "注册事件名称",
+                    "type": "String"
+                },
+                {
+                    "name": "event",
+                    "description": "回调函数",
+                    "type": "Function"
+                }
+            ],
+            "class": "Plugin"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 8,
+            "description": "<a href=\"http://www.oschina.net/p/windjs\" target=\"_blank\">Wind.js</a>\n是一个异步编程的JS库，作者为老赵",
+            "itemtype": "property",
+            "name": "Wind.js",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 26,
+            "description": "<a href=\"http://www.oschina.net/p/bootstrap\" target=\"_blank\">Bootstrap</a>\n是一个Twitter开发的web前端框架 *",
+            "itemtype": "property",
+            "name": "Bootstrap",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 43,
+            "description": "<a href=\"http://www.oschina.net/p/yui\" target=\"_blank\">YUI</a>\n雅虎出品的web前端框架",
+            "itemtype": "property",
+            "name": "YUI",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 62,
+            "description": "<a href=\"http://www.oschina.net/p/mootools\" target=\"_blank\">MooTools</a>\nMooTools是一个简洁，模块化，面向对象的JavaScript框架。",
+            "itemtype": "property",
+            "name": "MooTools",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 84,
+            "description": "<a href=\"http://www.oschina.net/p/prototype\" target=\"_blank\">Prototype</a>\nPrototype.js 是一个由Sam Stephenson写的JavaScript包,一个Ajax框架。",
+            "itemtype": "property",
+            "name": "Prototype",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 107,
+            "description": "<a href=\"http://www.oschina.net/p/jquery\" target=\"_blank\">jQuery</a>\njQuery 一个很常用Ajax框架。",
+            "itemtype": "property",
+            "name": "jQuery",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 146,
+            "description": "<a href=\"http://www.oschina.net/p/jquery+ui\" target=\"_blank\">jQuery UI</a>\njQuery UI 一个很基于jQuery的web前端UI框架。",
+            "itemtype": "property",
+            "name": "jQuery UI",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 163,
+            "description": "<a href=\"http://www.oschina.net/p/jquerymobile\" target=\"_blank\">jQuery\nMobile</a> jQuery Mobile 一个很基于jQuery的移动前端UI框架。",
+            "itemtype": "property",
+            "name": "jQuery Mobile",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 193,
+            "description": "<a href=\"http://www.oschina.net/p/dojo\" target=\"_blank\">Dojo</a> Dojo\n一个很优雅的ajax框架。",
+            "itemtype": "property",
+            "name": "Dojo",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 223,
+            "description": "<a href=\"http://www.oschina.net/p/cookie\">jQuery cookie</a>\njQuery cookie 一个操作cookie的jQuery插件",
+            "itemtype": "property",
+            "name": "jquery cookie",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 236,
+            "description": "<a href=\"http://www.oschina.net/p/form+plugin\">jQuery form</a>\njQuery cookie 一个操作表单的jQuery插件",
+            "itemtype": "property",
+            "name": "jquery form",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 249,
+            "description": "<a href=\"http://www.oschina.net/p/cookies\">jQuery cookies</a>\njQuery cookies 另一个操作cookie的jQuery插件",
+            "itemtype": "property",
+            "name": "jquery cookies",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 262,
+            "description": "<a href=\"http://www.oschina.net/p/validity\">jQuery validity</a>\njQuery validity 一个jQuery验证插件",
+            "itemtype": "property",
+            "name": "jquery validity",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 276,
+            "description": "<a href=\"http://www.oschina.net/p/uploadify\">jQuery uploadify</a>\njQuery uploadify 一个jQuery上传插件",
+            "itemtype": "property",
+            "name": "jquery uploadify",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 290,
+            "description": "<a href=\"http://www.oschina.net/p/jqgrid\">jQuery jqGrid</a>\njqGrid 一个jQuery网格插件",
+            "itemtype": "property",
+            "name": "jquery jqGrid",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 304,
+            "description": "<a href=\"http://www.oschina.net/p/colorbox\">jQuery colorbox</a>\ncolorbox 一个jQuery自定义灯箱插件",
+            "itemtype": "property",
+            "name": "jquery colorbox",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 317,
+            "description": "<a href=\"http://www.oschina.net/p/fancybox\">jQuery fancybox</a>\nfancybox 一个jQuery对话框插件",
+            "itemtype": "property",
+            "name": "jquery fancybox",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 331,
+            "description": "<a\nhref=\"http://www.oschina.net/p/wilq32.rotateimage\">jQueryRotate</a>\njQueryRotate 旋转图片的 jQuery 插件",
+            "itemtype": "property",
+            "name": "jquery jQueryRotate",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 346,
+            "description": "<a href=\"http://www.oschina.net/p/jqmobi\">jQ.Mobi</a>\njQ.Mobi是jQuery的部分重写版本，但针对HTML5和移动设备做了优化",
+            "itemtype": "property",
+            "name": "jquery jQ.Mobi",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 377,
+            "description": "<a href=\"http://www.oschina.net/p/dwz\">DWZ UI</a>\nDWZ富客户端框架(jQuery RIA framework), 是中国人自己开发的基于jQuery实现的Ajax\nRIA开源框架.",
+            "itemtype": "property",
+            "name": "DWZ UI",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 394,
+            "description": "<a href=\"http://www.oschina.net/p/ztree\">zTree</a> zTree 是利用\nJQuery 的核心代码，实现一套能完成大部分常用功能的 Tree 插件",
+            "itemtype": "property",
+            "name": "zTree",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 407,
+            "description": "<a href=\"http://www.oschina.net/p/extjs\">ExtJS</a> ExtJS\n主要用来开发RIA富客户端的AJAX应用，主要用于创建前端用户界面，与后台技术无关的前端ajax框架。",
+            "itemtype": "property",
+            "name": "ExtJS",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 420,
+            "description": "<a href=\"http://www.oschina.net/p/backbone\">Backbone</a>\nBackbone.js 是一种重量级javascript MVC 应用框架",
+            "itemtype": "property",
+            "name": "Backbone.js",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 433,
+            "description": "<a href=\"http://www.oschina.net/p/coffeescript\">coffeescript</a>\nCoffeeScript这一门编程语言构建在JavaScript之上，其被编译成高效的JavaScript",
+            "itemtype": "property",
+            "name": "coffeescript",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 445,
+            "description": "<a href=\"http://www.oschina.net/p/coffeescript\">coffeescript</a>\nCoffeeScript这一门编程语言构建在JavaScript之上，其被编译成高效的JavaScript",
+            "itemtype": "property",
+            "name": "coffeescript",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 457,
+            "description": "<a href=\"http://www.oschina.net/p/lesscss\">less</a> Less CSS\n是一个使用广泛的 CSS 预处理器，通过简单的语法和变量对 CSS 进行扩展，可减少很多 CSS 的代码量。",
+            "itemtype": "property",
+            "name": "less",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 469,
+            "description": "<a href=\"http://www.oschina.net/p/modernizr\">Modernizr</a>\nModernizr 是一个利用 JS 和 CSS 来检测浏览器说支持功能的小工具。",
+            "itemtype": "property",
+            "name": "Modernizr",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 481,
+            "description": "<a href=\"http://www.oschina.net/p/processing_js\">processing</a>\nProcessing.js是一个开放的编程语言，在不使用Flash或Java小程序的前提下,\n可以实现程序图像、动画和互动的应用。",
+            "itemtype": "property",
+            "name": "Modernizr",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 494,
+            "description": "<a href=\"http://www.oschina.net/p/raphael\">Raphaël</a>\nRaphaël 是一个小型的 JavaScript 库，用来简化在页面上显示向量图的工作。",
+            "itemtype": "property",
+            "name": "Modernizr",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 506,
+            "description": "<a href=\"http://www.oschina.net/p/sammy-js\">Sammy.js</a>\nSammy.js 是一个微型的 JavaScript 框架用来简化 JavaScript 应用程序的编写",
+            "itemtype": "property",
+            "name": "Sammy.js",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 518,
+            "description": "<a href=\"http://www.oschina.net/p/jquery+easyui\">jQuery\neasyui</a> jQuery easyui\n为网页开发提供了一堆的常用UI组件，包括菜单、对话框、布局、窗帘、表格、表单等等.",
+            "itemtype": "property",
+            "name": "jQuery easyui",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 532,
+            "description": "<a href=\"http://www.oschina.net/p/sencha-touch\">Sencha Touch</a>\nSencha Touch是专门为移动设备开发应用的Javascript框架。",
+            "itemtype": "property",
+            "name": "Sencha Touch",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 551,
+            "description": "<a\nhref=\"http://www.oschina.net/p/underscore_js\">Underscore.js</a>\nUnderscore.js 是一个实用的JavaScript工具库，提供了类似 Prototype\n功能的编程支持，但没有对 JavaScript 内置的对象进行扩展。",
+            "itemtype": "property",
+            "name": "Underscore.js",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 565,
+            "description": "<a href=\"http://www.oschina.net/p/zeptojs\">Zepto.js</a>\nZepto.js 是支持移动WebKit浏览器的JavaScript框架，具有与jQuery兼容的语法。",
+            "itemtype": "property",
+            "name": "Underscore.js",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 582,
+            "description": "<a href=\"http://www.oschina.net/p/canvastext\">CanvasText</a>\nCanvasText就是一个Javascript的类库，能让你像使用HTML和CSS的语法来操作canvas绘制文字，使用CanvasText可以少写很多代码就能实现漂亮的效果。",
+            "itemtype": "property",
+            "name": "CanvasText",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 594,
+            "description": "<a href=\"http://www.oschina.net/p/jcanvascript\">jCanvaScript</a>\njCanvaScript是一个面向HTML5画布（canvas）的Javascript类库，它提供了许多方法用于简化处理HTML5画布（canvas）元素的内容，只要支持canvas和Javascript的浏览器都可以使用它，包括iPhone、iPad和Android等平台。",
+            "itemtype": "property",
+            "name": "jCanvaScript",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 606,
+            "description": "<a\nhref=\"http://www.oschina.net/p/jquery-html5-uploader\">jQuery\nHTML5 Uploader</a> jQuery HTML5 Uploader 是一个轻量级的 jQuery\n插件用来直接从电脑中拖放文件到浏览器并实现上传的功能，目前该功能只支持 Firefox 和 Chrome 浏览器。",
+            "itemtype": "property",
+            "name": "jQuery HTML5 Uploader",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 621,
+            "description": "<a href=\"http://www.oschina.net/p/kineticjs\">jQuery HTML5\nUploader</a> jQuery HTML5 Uploader 是一个轻量级的 jQuery\n插件用来直接从电脑中拖放文件到浏览器并实现上传的功能，目前该功能只支持 Firefox 和 Chrome 浏览器。",
+            "itemtype": "property",
+            "name": "jQuery HTML5 Uploader",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\resource.js",
+            "line": 634,
+            "description": "<a href=\"http://www.oschina.net/p/angularjs\">AngularJS</a>\nAngularJS (Angular.JS) 是一组用来开发Web页面的框架、模板以及数据绑定和丰富UI组件。",
+            "itemtype": "property",
+            "name": "jQuery HTML5 Uploader",
+            "type": "{Object}",
+            "class": "Resource"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 12,
+            "description": "默认配置参数",
+            "itemtype": "attribute",
+            "name": "defaultParams",
+            "access": "private",
+            "tagname": "",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 22,
+            "description": "流程事件栈，在处理如“保存”、“fork”这些需要用流程处理的业务时，需要用到事件栈来调用接下来需要做的",
+            "itemtype": "property",
+            "name": "event_stack",
+            "type": "{Array}",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 32,
+            "description": "事件绑定规则定义，详情见 {{#crossLink \"Utils\"}}{{/crossLink}} 类中的 {{#crossLink\n\"Utils/binder\"}}{{/crossLink}} 方法",
+            "itemtype": "property",
+            "name": "Events",
+            "type": "{JSON}",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 63,
+            "description": "系统处理流程之[保存]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br>\n流程化处理能更好的控制逻辑",
+            "itemtype": "method",
+            "name": "save",
+            "params": [
+                {
+                    "name": "step",
+                    "description": "流程步骤",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                " \n\tflow.of(runjs).save(1);//使用流程化的保存操作"
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 108,
+            "description": "系统处理流程之[分享]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br>\n流程化处理能更好的控制逻辑",
+            "itemtype": "method",
+            "name": "share",
+            "params": [
+                {
+                    "name": "step",
+                    "description": "流程步骤",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n\tflow.of(runjs).share(1);//使用流程化的分享操作"
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 152,
+            "description": "系统处理流程之[Fork]，流程处理将对各项状态进行检查，例如：检查是否登录、检查代码是否为Demo等<br>\n流程化处理能更好的控制逻辑",
+            "itemtype": "method",
+            "name": "fork",
+            "params": [
+                {
+                    "name": "step",
+                    "description": "流程步骤",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n\tflow.of(runjs).fork(1);//使用流程化的Fork操作"
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 184,
+            "description": "窗口关闭前判断是否有代码未保存",
+            "itemtype": "method",
+            "name": "before_close",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 195,
+            "description": "禁用enter键",
+            "itemtype": "method",
+            "name": "enter_forbidden",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 207,
+            "description": "fork操作，将当前代码复制一份，自我维护，为系统Fork流程中最终执行的一步",
+            "itemtype": "method",
+            "name": "fork",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 238,
+            "description": "save操作，保存当前各编辑器代码，为系统保存流程中最后一步",
+            "itemtype": "method",
+            "name": "save",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 270,
+            "description": "在操作前（调用handler）检查是否需要先保存代码",
+            "itemtype": "method",
+            "name": "checkProxy",
+            "params": [
+                {
+                    "name": "handler",
+                    "description": "回调函数，该函数调用定义在系统流程中或者在当前类的原型中扩展（RunJS.prototype.save）",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "回调参数",
+                    "type": "Object"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 340,
+            "description": "将代码转换为系统插件",
+            "itemtype": "method",
+            "name": "setSysPlugin",
+            "params": [
+                {
+                    "name": "pid",
+                    "description": "代码id",
+                    "type": "Number"
+                },
+                {
+                    "name": "sys",
+                    "description": "sys为1系统插件，0为用户插件",
+                    "type": "Number"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 391,
+            "description": "发布代码，发布代码即将当前代码设置为所有人可见",
+            "itemtype": "method",
+            "name": "publish",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "代码id",
+                    "type": "Number"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 426,
+            "description": "弹出分享对话框",
+            "itemtype": "method",
+            "name": "share",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 442,
+            "description": "创建代码",
+            "itemtype": "method",
+            "name": "create_project",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "代码类型：demo,simple,blank,plugin",
+                    "type": "String"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 502,
+            "description": "创建插件",
+            "itemtype": "method",
+            "name": "create_sys_plugin",
+            "params": [
+                {
+                    "name": "sys",
+                    "description": "sys为“user”则为用户插件，否则为系统插件",
+                    "type": "String"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 606,
+            "description": "初始化所有视图，重新加载代码",
+            "itemtype": "method",
+            "name": "loadCode",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 622,
+            "description": "刷新验证码,上下文之 this 需要为验证码图片",
+            "itemtype": "method",
+            "name": "refresh_captcha",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 631,
+            "description": "检查当前编辑状态，用于防止某个新操作使得代码未保存",
+            "itemtype": "method",
+            "name": "checkEditedStatus",
+            "params": [
+                {
+                    "name": "doIt",
+                    "description": "检查通过回调",
+                    "type": "Function"
+                },
+                {
+                    "name": "cancelIt",
+                    "description": "检查未通过回调",
+                    "type": "Function"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 657,
+            "description": "初始化所有试图",
+            "itemtype": "method",
+            "name": "initAll",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "async",
+                    "description": "是否采用异步方式加载视图",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 680,
+            "description": "初始化全局状态",
+            "itemtype": "method",
+            "name": "initStatus",
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码唯一标识",
+                    "type": "String"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 690,
+            "description": "弹出登录框",
+            "itemtype": "method",
+            "name": "openid_login",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 703,
+            "description": "退出登录",
+            "itemtype": "method",
+            "name": "logout",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 718,
+            "description": "添加Ctrl快捷键",
+            "itemtype": "method",
+            "name": "addCtrlHotKey",
+            "params": [
+                {
+                    "name": "hk",
+                    "description": "key:function",
+                    "type": "JSON"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 732,
+            "description": "快捷键处理",
+            "itemtype": "method",
+            "name": "shotcuts",
+            "params": [
+                {
+                    "name": "cur",
+                    "description": "事件绑定对象",
+                    "type": "Object"
+                },
+                {
+                    "name": "event",
+                    "description": "事件对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\runjs.js",
+            "line": 792,
+            "description": "重新调整窗口，当窗口变化时调用此方法来是得各视图显示正确",
+            "itemtype": "method",
+            "name": "window_resize",
+            "class": "RunJS"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 18,
+            "description": "事件自动绑定 events:<br> \n事件映射列表 映射规则：<br>\n\"event(事件) -> selector(选择器)\":\"handler(事件处理器)\"<br>\nevents = { <br>\n\t\t\"click->[document]\":\"doc_click_handler\" <br>\n}<br>\n<span style=\"color:#A00\">[注]</span>如果selector带有中括号[]则表明为系统全局变量，如window,document<br>\n需要以 call(module) 的方式把上下文设置成当前的模块实例",
+            "example": [
+                "\n\tg_utils.binder.call(module)"
+            ],
+            "itemtype": "method",
+            "name": "binder",
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 88,
+            "description": "初始化参数：初始化arguments第一个参数（json格式），将其设置为当前对象的成员属性， params为json格式数据<br>",
+            "itemtype": "method",
+            "name": "initParams",
+            "example": [
+                "\n\tg_utils.initParams.call(module)"
+            ],
+            "params": [
+                {
+                    "name": "params",
+                    "description": "JSON类型数据",
+                    "type": "Object"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 113,
+            "description": "初始化视图\n自动像viewLink+\"/\"+ident路径请求模版，返回后插入到target中，初始化完成执行afterInit回调，并将当前对象当作调用上下文对象",
+            "itemtype": "method",
+            "name": "initParams",
+            "example": [
+                "\n\tg_utils.initView.call(module,ident,callback,async)"
+            ],
+            "params": [
+                {
+                    "name": "ident",
+                    "description": "代码的唯一标识",
+                    "type": "String"
+                },
+                {
+                    "name": "afterInit",
+                    "description": "当视图初始化好后调用的回调函数",
+                    "type": "Function"
+                },
+                {
+                    "name": "async",
+                    "description": "是否采用异步方式加载数据，true或undefined时为异步方式，false为同步方式",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 158,
+            "description": "采用同步或异步方式加载远端资源",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "link",
+                    "description": "请求链接地址",
+                    "type": "String"
+                },
+                {
+                    "name": "async",
+                    "description": "是否采用异步方式加载数据",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "callback",
+                    "description": "采用异步方式的回调函数",
+                    "type": "Function"
+                },
+                {
+                    "name": "data",
+                    "description": "发送请求时附带参数数据",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "responseText 采用同步方式时直接返回结果，采用异步方式时将返回 undefined",
+                "type": "String"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 181,
+            "description": "处理服务器端返回的JSON类型数据结果，判断是否为出错信息，并提供两种方式处理错误",
+            "itemtype": "method",
+            "name": "errorHandler",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "服务器传来待处理的 JSON 格式字符串",
+                    "type": "String"
+                },
+                {
+                    "name": "success",
+                    "description": "无错误时的回调函数，该回调将获得处理过后的 JSON 数据",
+                    "type": "Function"
+                },
+                {
+                    "name": "error",
+                    "description": "服务器端传来错误信息时调用，将返回出错 JSON 数据",
+                    "type": "Function"
+                },
+                {
+                    "name": "diy",
+                    "description": "是否立即使用 error 回调函数处理错误，true为立即使用error处理，false和undefined为系统使用弹窗显示错误然后再调用error回调处理",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 217,
+            "description": "阻止浏览器默认事件",
+            "itemtype": "method",
+            "name": "stopDefault",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "浏览器事件对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 227,
+            "description": "初始状态信息，该方法用来从服务器端加载一段js，用eval执行来初始化全局变量",
+            "itemtype": "method",
+            "name": "initStatus",
+            "params": [
+                {
+                    "name": "link",
+                    "description": "请求链接地址",
+                    "type": "String"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 238,
+            "description": "获得以“http://”开头的链接地址，并加上当前域的HOST名称,例如 g_utils.getHttpLink(\"/code/abcdefg\")将返回\"http://runjs.cn/code/abcdefg\"",
+            "itemtype": "method",
+            "name": "getHttpLink",
+            "return": {
+                "description": "link 返回处理好的链接地址",
+                "type": "String"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 259,
+            "description": "Utils 类实例[全局]",
+            "itemtype": "attribute",
+            "name": "g_utils",
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 265,
+            "description": "判断当前对象是否为空",
+            "itemtype": "method",
+            "name": "isEmpty",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "empty 当为 null,undefined,\"\" 将返回true",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 275,
+            "description": "判断当前对象是否非空",
+            "itemtype": "method",
+            "name": "isNotEmpty",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 285,
+            "description": "判断是否为函数",
+            "itemtype": "method",
+            "name": "isFunc",
+            "params": [
+                {
+                    "name": "fun",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 295,
+            "description": "判断不是函数",
+            "itemtype": "method",
+            "name": "isNotFunc",
+            "params": [
+                {
+                    "name": "fun",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 305,
+            "description": "判断 cur 是否为 type 类型",
+            "itemtype": "method",
+            "name": "typeOf",
+            "params": [
+                {
+                    "name": "cur",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n\ttypeOf(\"Hello\",\"string\");//将返回true"
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 320,
+            "description": "判断是否为数组",
+            "itemtype": "method",
+            "name": "isArray",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 330,
+            "description": "判断不是数组",
+            "itemtype": "method",
+            "name": "isNotArray",
+            "params": [
+                {
+                    "name": "arr",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 340,
+            "description": "获取当前模块名",
+            "itemtype": "method",
+            "name": "className",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n className(g_utils);//返回 \"Utils\""
+            ],
+            "return": {
+                "description": ""
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 359,
+            "description": "判断两个对象是否为相同的类",
+            "itemtype": "method",
+            "name": "isSameClass",
+            "params": [
+                {
+                    "name": "cur",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "cur2",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 373,
+            "description": "判断两个对象为不同类",
+            "itemtype": "method",
+            "name": "isDifClass",
+            "params": [
+                {
+                    "name": "cur",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "cur2",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 384,
+            "description": "以 window.open 方式打开弹窗",
+            "itemtype": "method",
+            "name": "openwindow",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "iWidth",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "iHeight",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 402,
+            "description": "返回 true 且啥也不处理的回调函数，用于{{#crossLink \"Dialog\"}}{{/crossLink}}中设置无所作为的按钮的事件",
+            "itemtype": "method",
+            "name": "doNothing",
+            "example": [
+                "\n\tdialog.get(\"confrim2\",doNothing,doNow);//doNow 为回调函数"
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 413,
+            "description": "更新浏览器地址栏链接地址",
+            "itemtype": "method",
+            "name": "updateUrl",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 424,
+            "description": "判断当前是否处在iframe中",
+            "itemtype": "method",
+            "name": "isIframe",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 433,
+            "description": "判断当前不处在iframe中",
+            "itemtype": "method",
+            "name": "isIframe",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\utils.js",
+            "line": 442,
+            "description": "利用数组的join构造字符串，提高字符串拼接效率",
+            "itemtype": "method",
+            "name": "buildString",
+            "params": [
+                {
+                    "name": "arguments",
+                    "description": "",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "拼接后的字符串",
+                "type": "String"
+            },
+            "class": "Utils"
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 1,
+            "description": "Zebra_Dialog\n\nA small (4KB minified), compact (one JS file, no dependencies other than jQuery 1.5.2+) and highly configurable\ndialog box plugin for jQuery meant to replace JavaScript's \"alert\" and \"confirmation\" dialog boxes.\n\nCan also be used as a notification widget - when configured to show no buttons and to close automatically - for updates\nor errors, without distracting users from their browser experience by displaying obtrusive alerts.\n\nFeatures:\n\n-   great looks - out of the box\n-   5 types of dialog boxes available: confirmation, information, warning, error and question;\n-   easily customizable appearance by changing the CSS file\n-   create modal or non-modal dialog boxes\n-   easily add custom buttons\n-   position the dialog box wherever you want - not just in the middle of the screen\n-   use callback functions to handle user's choice\n-   works in all major browsers (Firefox, Opera, Safari, Chrome, Internet Explorer 6, 7, 8, 9)\n\nVisit {@link http://stefangabos.ro/jquery/zebra-dialog/} for more information.\n\nFor more resources visit {@link http://stefangabos.ro/}",
+            "author": "Stefan Gabos <contact@stefangabos.ro>",
+            "version": "1.2 (last revision: April 07, 2012)",
+            "copyright": "(c) 2011 - 2012 Stefan Gabos",
+            "license": "http://www.gnu.org/licenses/lgpl-3.0.txt GNU LESSER GENERAL PUBLIC LICENSE",
+            "package": "Zebra_Dialog",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 216,
+            "description": "Constructor method",
+            "return": {
+                "description": "object  Returns a reference to the plugin"
+            },
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 415,
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 468,
+            "description": "Close the dialog box",
+            "return": {
+                "description": "void"
+            },
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 530,
+            "description": "Draw the overlay and the dialog box",
+            "return": {
+                "description": "void"
+            },
+            "access": "private",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 678,
+            "description": "Emulates \"position:fixed\" for Internet Explorer 6.",
+            "return": {
+                "description": "void"
+            },
+            "access": "private",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 714,
+            "description": "Returns an array containing the buttons that are to be added to the dialog box.\n\nIf no custom buttons are specified, the returned array depends on the type of the dialog box.",
+            "return": {
+                "description": "array       Returns an array containing the buttons that are to be added to the dialog box."
+            },
+            "access": "private",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 756,
+            "description": "Returns the type of the dialog box, or FALSE if type is not one of the five known types.\n\nValues that may be returned by this method are:\n-   Confirmation\n-   Error\n-   Information\n-   Question\n-   Warning",
+            "return": {
+                "description": "boolean     Returns the type of the dialog box, or FALSE if type is not one of the five known types."
+            },
+            "access": "private",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 797,
+            "description": "Function to be called when the \"onKeyUp\" event occurs\n\nWhy as a separate function and not inline when binding the event? Because only this way we can \"unbind\" it\nwhen we close the dialog box",
+            "return": {
+                "description": "boolean     Returns TRUE"
+            },
+            "access": "private",
+            "class": ""
+        },
+        {
+            "file": "js\\zebra_dialog.src.js",
+            "line": 818,
+            "description": "Function to be called when the \"onScroll\" event occurs in Internet Explorer 6.\n\nWhy as a separate function and not inline when binding the event? Because only this way we can \"unbind\" it\nwhen we close the dialog box",
+            "return": {
+                "description": "void"
+            },
+            "access": "private",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: params with param",
+            "line": " js\\plugins.js:153"
+        },
+        {
+            "message": "replacing incorrect tag: params with param",
+            "line": " js\\utils.js:88"
+        },
+        {
+            "message": "unknown tag: version",
+            "line": " js\\zebra_dialog.src.js:1"
+        },
+        {
+            "message": "unknown tag: copyright",
+            "line": " js\\zebra_dialog.src.js:1"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " js\\zebra_dialog.src.js:1"
+        },
+        {
+            "message": "unknown tag: package",
+            "line": " js\\zebra_dialog.src.js:1"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:530"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:678"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:714"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:756"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:797"
+        },
+        {
+            "message": "unknown tag: access",
+            "line": " js\\zebra_dialog.src.js:818"
+        },
+        {
+            "message": "Missing item type\n删除代码，新!",
+            "line": " js\\api.js:102"
+        },
+        {
+            "message": "Missing item type\n发布代码 旧！",
+            "line": " js\\api.js:217"
+        },
+        {
+            "message": "Missing item type\n发布代码 新！",
+            "line": " js\\api.js:229"
+        },
+        {
+            "message": "Missing item type\n添加url文件",
+            "line": " js\\api.js:282"
+        },
+        {
+            "message": "Missing item type\n删除文件",
+            "line": " js\\api.js:293"
+        },
+        {
+            "message": "Missing item type\n添加建议",
+            "line": " js\\api.js:305"
+        },
+        {
+            "message": "Missing item type\n发送消息",
+            "line": " js\\api.js:318"
+        },
+        {
+            "message": "Missing item type\n阅读消息",
+            "line": " js\\api.js:329"
+        },
+        {
+            "message": "Missing item type\n阅读所有的未读消息",
+            "line": " js\\api.js:347"
+        },
+        {
+            "message": "Missing item type\n将插件加到市场",
+            "line": " js\\api.js:358"
+        },
+        {
+            "message": "Missing item type\n将代码更新到插件市场，id为code的id.",
+            "line": " js\\api.js:368"
+        },
+        {
+            "message": "Missing item type\n从插件市场移出",
+            "line": " js\\api.js:378"
+        },
+        {
+            "message": "Missing item type\n将代码设置为插件",
+            "line": " js\\api.js:388"
+        },
+        {
+            "message": "Missing item type\n审核插件",
+            "line": " js\\api.js:399"
+        },
+        {
+            "message": "Missing item type\n取消审核插件",
+            "line": " js\\api.js:409"
+        },
+        {
+            "message": "Missing item type\n加到广场",
+            "line": " js\\api.js:419"
+        },
+        {
+            "message": "Missing item type\n更新到广场",
+            "line": " js\\api.js:429"
+        },
+        {
+            "message": "Missing item type\n添加分类",
+            "line": " js\\api.js:439"
+        },
+        {
+            "message": "Missing item type\n分类重命名",
+            "line": " js\\api.js:449"
+        },
+        {
+            "message": "Missing item type\n删除分类，该分类必须没有代码",
+            "line": " js\\api.js:460"
+        },
+        {
+            "message": "Missing item type\n移动到分类",
+            "line": " js\\api.js:470"
+        },
+        {
+            "message": "Missing item type\n设置代码类型",
+            "line": " js\\api.js:481"
+        },
+        {
+            "message": "Missing item type\nCoffeeScript Compiler v1.4.0\nhttp://coffeescript.org\n\nCopyright 2011, Jeremy Ashkenas\nReleased under the MIT License",
+            "line": " js\\coffee-script.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2005 - 2010, James Auldridge\nAll rights reserved.\n\nLicensed under the BSD, MIT, and GPL (your choice!) Licenses:\n http://code.google.com/p/cookies/wiki/License",
+            "line": " js\\jquery.cookies.2.2.0.min.js:1"
+        },
+        {
+            "message": "Missing item type\nZebra_Dialog\n\nA small (4KB minified), compact (one JS file, no dependencies other than jQuery 1.5.2+) and highly configurable\ndialog box plugin for jQuery meant to replace JavaScript's \"alert\" and \"confirmation\" dialog boxes.\n\nCan also be used as a notification widget - when configured to show no buttons and to close automatically - for updates\nor errors, without distracting users from their browser experience by displaying obtrusive alerts.\n\nFeatures:\n\n-   great looks - out of the box\n-   5 types of dialog boxes available: confirmation, information, warning, error and question;\n-   easily customizable appearance by changing the CSS file\n-   create modal or non-modal dialog boxes\n-   easily add custom buttons\n-   position the dialog box wherever you want - not just in the middle of the screen\n-   use callback functions to handle user's choice\n-   works in all major browsers (Firefox, Opera, Safari, Chrome, Internet Explorer 6, 7, 8, 9)\n\nVisit {@link http://stefangabos.ro/jquery/zebra-dialog/} for more information.\n\nFor more resources visit {@link http://stefangabos.ro/}",
+            "line": " js\\zebra_dialog.src.js:1"
+        },
+        {
+            "message": "Missing item type\nConstructor method",
+            "line": " js\\zebra_dialog.src.js:216"
+        },
+        {
+            "message": "Missing item type",
+            "line": " js\\zebra_dialog.src.js:415"
+        },
+        {
+            "message": "Missing item type\nClose the dialog box",
+            "line": " js\\zebra_dialog.src.js:468"
+        },
+        {
+            "message": "Missing item type\nDraw the overlay and the dialog box",
+            "line": " js\\zebra_dialog.src.js:530"
+        },
+        {
+            "message": "Missing item type\nEmulates \"position:fixed\" for Internet Explorer 6.",
+            "line": " js\\zebra_dialog.src.js:678"
+        },
+        {
+            "message": "Missing item type\nReturns an array containing the buttons that are to be added to the dialog box.\n\nIf no custom buttons are specified, the returned array depends on the type of the dialog box.",
+            "line": " js\\zebra_dialog.src.js:714"
+        },
+        {
+            "message": "Missing item type\nReturns the type of the dialog box, or FALSE if type is not one of the five known types.\n\nValues that may be returned by this method are:\n-   Confirmation\n-   Error\n-   Information\n-   Question\n-   Warning",
+            "line": " js\\zebra_dialog.src.js:756"
+        },
+        {
+            "message": "Missing item type\nFunction to be called when the \"onKeyUp\" event occurs\n\nWhy as a separate function and not inline when binding the event? Because only this way we can \"unbind\" it\nwhen we close the dialog box",
+            "line": " js\\zebra_dialog.src.js:797"
+        },
+        {
+            "message": "Missing item type\nFunction to be called when the \"onScroll\" event occurs in Internet Explorer 6.\n\nWhy as a separate function and not inline when binding the event? Because only this way we can \"unbind\" it\nwhen we close the dialog box",
+            "line": " js\\zebra_dialog.src.js:818"
+        }
+    ]
+}

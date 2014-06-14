@@ -1,0 +1,2 @@
+#set($msgs=$msg_tool.getUnreadMsgByUser($g_user.id))
+$msgs.size()

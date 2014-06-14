@@ -1,0 +1,7 @@
+#set($ident=$link.param("p1"))
+#set($code = $project.getCodeByIdent($ident))	
+#if($code)
+	${code.html}
+#else
+	$response.sendError(404)
+#end

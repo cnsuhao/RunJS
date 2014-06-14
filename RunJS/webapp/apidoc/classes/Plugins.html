@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Plugins</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Plugins Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_plugins.js.html#l25"><code>js\plugins.js:25</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>插件辅助类，用来创建、管理插件</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Plugins" class="method item"> 
+          <h3 class="name"><code>Plugins</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_plugins.js.html#l25"><code>js\plugins.js:25</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_addEvent">addEvent</a> </li> 
+             <li class="index-item method"> <a href="#method_fireEvent">fireEvent</a> </li> 
+             <li class="index-item method"> <a href="#method_getEvents">getEvents</a> </li> 
+             <li class="index-item method"> <a href="#method_getPlugin">getPlugin</a> </li> 
+             <li class="index-item method"> <a href="#method_importCss">importCss</a> </li> 
+             <li class="index-item method"> <a href="#method_importJavaScript">importJavaScript</a> </li> 
+             <li class="index-item method"> <a href="#method_init">init</a> </li> 
+             <li class="index-item method private"> <a href="#method_initEventsStack">initEventsStack</a> </li> 
+             <li class="index-item method private"> <a href="#method_isInvalidOnEvent">isInvalidOnEvent</a> </li> 
+             <li class="index-item method private"> <a href="#method_isValidOnEvent">isValidOnEvent</a> </li> 
+             <li class="index-item method"> <a href="#method_newPlugin">newPlugin</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_onEvents">onEvents</a> </li> 
+             <li class="index-item property"> <a href="#property_onEventsDescription">onEventsDescription</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr"> <a href="#attr_plugins">plugins</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_addEvent" class="method item"> 
+            <h3 class="name"><code>addEvent</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>plugin</code> </li> 
+              <li class="arg"> <code>name</code> </li> 
+              <li class="arg"> <code>event</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l165"><code>js\plugins.js:165</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>为某插件添加事件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">plugin</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>插件实例</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>注册事件名称</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">event</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>回调函数</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_fireEvent" class="method item"> 
+            <h3 class="name"><code>fireEvent</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>event：调用的事件名称</code> </li> 
+              <li class="arg"> <code>data：为调用的事件传递的参数</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Undefined</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l179"><code>js\plugins.js:179</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>调用某事件的所有事件栈方法</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">event：调用的事件名称</code> <span class="type">String</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">data：为调用的事件传递的参数</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Undefined</span>: 如果当前事件为无效方法，则返回 undefined 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_getEvents" class="method item"> 
+            <h3 class="name"><code>getEvents</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>name</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Array</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l153"><code>js\plugins.js:153</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取插件注册的某名称事件栈</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>注册事件的名称，为 <a href="#attr_onEvents">onEvents</a> 中成员</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Array</span>: 事件数组 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_getPlugin" class="method item"> 
+            <h3 class="name"><code>getPlugin</code></h3> 
+            <span class="paren">()</span> 
+            <span class="returns-inline"> <span class="type">String</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l120"><code>js\plugins.js:120</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>根据唯一标识获取某插件实例</p> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">String</span>: plugin 插件实例 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_importCss" class="method item"> 
+            <h3 class="name"><code>importCss</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>link</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l65"><code>js\plugins.js:65</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>引入 Css 文件，该方法将向 head 中引入一个以 link 为 href 的 link 标签</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">link</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>引入css链接地址</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_importJavaScript" class="method item"> 
+            <h3 class="name"><code>importJavaScript</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>link</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l45"><code>js\plugins.js:45</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>引入JavaScript库，该方法将向 head 中添加一个以 link 为 src 的 script 标签</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">link</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>引入js库链接地址</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_init" class="method item"> 
+            <h3 class="name"><code>init</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l103"><code>js\plugins.js:103</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化所有插件，并调用插件的 init 方法</p> 
+            </div> 
+           </div> 
+           <div id="method_initEventsStack" class="method item private"> 
+            <h3 class="name"><code>initEventsStack</code></h3> 
+            <span class="paren">()</span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l34"><code>js\plugins.js:34</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化事件栈</p> 
+            </div> 
+           </div> 
+           <div id="method_isInvalidOnEvent" class="method item private"> 
+            <h3 class="name"><code>isInvalidOnEvent</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>name</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l142"><code>js\plugins.js:142</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断不是有效系统事件，即不为 <a href="#attr_onEvents">onEvents</a> 中成员</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>事件名称</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isValidOnEvent" class="method item private"> 
+            <h3 class="name"><code>isValidOnEvent</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>name</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l131"><code>js\plugins.js:131</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断是为有效系统事件，即是否为<a href="#attr_onEvents">onEvent</a>中成员</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>事件名称</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_newPlugin" class="method item"> 
+            <h3 class="name"><code>newPlugin</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>indent</code> </li> 
+              <li class="arg"> <code>plugin</code> </li> 
+              <li class="arg"> <code>opt</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l85"><code>js\plugins.js:85</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>构建新的插件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">indent</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>插件唯一标识（即代码的 url 唯一标识）</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">plugin</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>插件类的引用</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">opt</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>插件的默认配置项</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_onEvents" class="property item"> 
+            <h3 class="name"><code>onEvents</code></h3> 
+            <span class="type">Array</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l9"><code>js\plugins.js:9</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>定义所有的系统事件</p> 
+            </div> 
+           </div> 
+           <div id="property_onEventsDescription" class="property item"> 
+            <h3 class="name"><code>onEventsDescription</code></h3> 
+            <span class="type">Array</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l16"><code>js\plugins.js:16</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>定义所有的系统事件的描述信息</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_plugins" class="attr item"> 
+            <a name="config_plugins"></a> 
+            <h3 class="name"><code>plugins</code></h3> 
+            <span class="type"></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_plugins.js.html#l207"><code>js\plugins.js:207</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>Plugins 实例[全局]</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

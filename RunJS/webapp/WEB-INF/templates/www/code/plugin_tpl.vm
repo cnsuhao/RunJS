@@ -1,0 +1,32 @@
+#set($ident=$link.param("p1",""))
+#set($pluginName = $link.param("p2","PluginName"))
+#set($onEventsCount = $link.lparam("p3",1) - 1)
+#set($code = $project.getCodeByIdent($ident,$g_user))
+$pluginName = (function(){
+	
+	var PT = ${pluginName}.prototype;
+	
+	var instance;
+	
+	PT.Events = {
+		/*
+		 *"click->.selector":"onSelectorClick"
+		 *事件自动绑定，当选择器.selector被单击时执行PT.onSelectorClick方法
+		 */
+	};
+	
+	PT.init = function(){
+		//该方法在插件实例化后自动执行,此方法先于所有的on方法
+		instance = this;
+	};
+	#if($onEventsCount>=0)
+	#foreach($i in [0..$onEventsCount])
+	PT.#onEvent${i}# = function(){
+		//#onEvent${i}Description#
+	};
+	#end
+	#end
+});
+
+plugins.newPlugin("#if($code)${code.ident}#{else}此处填写当前代码标识#end",$pluginName);
+$request.setAttribute("close_comment",true)

@@ -1,0 +1,480 @@
+## 全局宏定义文件
+
+#*
+ * 以相对路径方式嵌入动态页面
+ * 作者: 刘柄成(javayou@gmail.com)
+ *#
+#macro(invoke $__p_page)
+#if($__p_page.startsWith("/"))
+#parse($__p_page)
+#else
+#set($__uri = $resource.this_vm())
+#set($__path = $__uri.substring(0, $__uri.lastIndexOf("/")))
+#parse("$__path/$__p_page")
+#end
+#end
+
+#*
+ * 以相对路径方式嵌入静态页面
+ * 作者: 刘柄成(javayou@gmail.com)
+ *#
+#macro(insert $__p_page)
+#if($__p_page.startsWith("/"))
+#include($__p_page)
+#else
+#set($__uri = $resource.this_vm())
+#set($__path = $__uri.substring(0, $__uri.lastIndexOf("/")))
+#include("$__path/$__p_page")
+#end
+#end
+
+#**
+*展示动态,detail页面,个人等
+*#
+#macro(show_dynamic $__dy)
+	#set($_dy_user = $User.Get($__dy.user))
+	#if($__dy.type == 0)
+		<span class="time">$date.friendly_time($request,${_dy_user.create_time})</span>加入了RunJS
+	#elseif($__dy.type == 1)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#if($_dy_code)
+		<span class="time">$date.friendly_time($request,${_dy_code.post_time})</span>发布了代码 (<a href="/detail/$_dy_code.ident">$format.html(${_dy_code.name})</a>)
+		#end
+	#elseif($__dy.type == 2)
+		#set($_dy_comment=$CommentBean.Get($__dy.refer))
+		#set($_dy_code=$CodeBean.Get($_dy_comment.code))
+		#if($_dy_code && $_dy_comment)
+		<span class="time">$date.friendly_time($request,${_dy_comment.create_time})</span>评论了代码 (<a href="/detail/$_dy_code.ident">$format.html(${_dy_code.name})</a>)
+		#end
+	#elseif($__dy.type == 3)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#set($_dy_fork_code=$CodeBean.Get($_dy_code.fork))
+		#if($_dy_code)
+		<span class="time">$date.friendly_time($request,${__dy.create_time})</span>Fork了代码  (<a href="/detail/$_dy_fork_code.ident">$format.html(${_dy_fork_code.name})</a>),<a href="/detail/$_dy_code.ident">查看详情</a>
+		#end
+	#elseif($__dy.type == 4)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#if($_dy_code)
+		顶了代码 (<a href="/detail/$_dy_code.ident">$format.html(${_dy_code.name})</a>)
+		#end
+	#end
+#end
+
+##展示用户来源
+#macro(show_from $__user_)
+	#set($__blog = $__user_.blog)
+	#if($__user_ && $__user_.type)
+	来自
+	#if("qq" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.qq.com#{end}" target="_blank">腾讯QQ</a>
+	#elseif("oschina" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.oschina.net#{end}" target="_blank">开源中国</a>
+	#elseif("github" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.github.com#{end}" target="_blank">github</a>
+	#elseif("google" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.google.com#{end}" target="_blank">Google</a>
+	#elseif("yahoo" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.yahoo.com#{end}" target="_blank">Yahoo</a>
+	#elseif("hotmail" == $__user_.type)
+		<a href="#if($__blog)$__blog#{else}http://www.hotmail.com#{end}" target="_blank">Hotmail</a>
+	#elseif("weibo" == $__user_.type)
+		<a href="#if($__user_.account)http://weibo.com/u/$__user_.account#{else}http://www.weibo.com#{end}" target="_blank">新浪微博</a>
+	#end
+	#end
+#end
+#**
+*展示动态2，首页，广场。
+*#
+#macro(show_dynamic2 $__dy)
+	#set($_dy_user = $User.Get($__dy.user))
+	#if($_dy_user && $_dy_user.name)
+		#if(${_dy_user.portrait} && $_dy_user.portrait.length()>0)
+			#set($_dy_p = $_dy_user.portrait)
+		#else
+			#set($_dy_p = "http://gravatar.com/avatar/${project.MD5($_dy_user.email)}size=100")
+		#end
+	#if($__dy.type == 1)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#if($_dy_code)
+		<li>
+			<span class="userOperate_time">$date.friendly_time($request,${_dy_code.post_time})</span>
+			<a class="dy_user"><img src="$_dy_p" width="24" height="24" alt="${_dy_user.name}">$_dy_user.name</a>
+			发布了代码 (<a href="/detail/$_dy_code.ident" target="_blank">$format.html(${_dy_code.name})</a>)
+		</li>
+		#end
+	#elseif($__dy.type == 2)
+		#set($_dy_comment=$CommentBean.Get($__dy.refer))
+		#set($_dy_code=$CodeBean.Get($_dy_comment.code))
+		#if($_dy_code && $_dy_comment)
+			<li>
+			<span class="userOperate_time">$date.friendly_time($request,${_dy_comment.create_time})</span>
+			<a class="dy_user"><img src="$_dy_p" width="24" height="24" alt="${_dy_user.name}">$_dy_user.name</a>
+			评论了代码 (<a href="/detail/$_dy_code.ident" target="_blank">$format.html(${_dy_code.name})</a>)
+			</li>
+		#end
+	#elseif($__dy.type == 3)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#set($_dy_fork_code=$CodeBean.Get($_dy_code.fork))
+		#if($_dy_code && $_dy_code.IsPosted() && $_dy_fork_code.IsPosted())
+		<li>
+			<span class="userOperate_time">$date.friendly_time($request,${_dy_code.create_time})</span>
+			<a class="dy_user"><img src="$_dy_p" width="24" height="24" alt="${_dy_user.name}">$_dy_user.name</a>
+			Fork了代码  (<a href="/detail/$_dy_fork_code.ident" target="_blank">$format.html(${_dy_fork_code.name})</a>),<a href="/detail/$_dy_code.ident" target="_blank">查看详情</a>
+		</li>
+		#end
+	#elseif($__dy.type == 4)
+		#set($_dy_code = $CodeBean.Get($__dy.refer))
+		#if($_dy_code)
+		<li>
+			<span class="userOperate_time">$date.friendly_time($request,${__dy.create_time})</span>
+			<a class="dy_user"><img src="$_dy_p" width="24" height="24" alt="${_dy_user.name}">$_dy_user.name</a>
+			顶了代码 (<a href="/detail/$_dy_code.ident" target="_blank">$format.html(${_dy_code.name})</a>)
+		</li>
+		#end
+	#end
+	#end
+#end
+#*
+ * 初始化js日历控件
+ * 作者: 刘柄成(javayou@gmail.com)
+ *#
+#macro(calendar_setup)
+#if(!$__calendar_static_import)
+<link rel="stylesheet" type="text/css" media="all" href="$link.js("calendar/css/calendar-tas.css")" title="win2k-cold-1" />
+<script type="text/javascript" src="$link.js("calendar/calendar.js")"></script>
+<script type="text/javascript" src="$link.js("calendar/calendar-zh.js")"></script>
+<script type="text/javascript" src="$link.js("calendar/calendar-init.js")"></script>
+#set($__calendar_static_import = true)
+#end
+#end
+
+#*
+ * 生成可视化编辑器
+ * 作者: Winter Lau(javayou@gmail.com)
+ *#
+#macro(make_editor $textarea_id $buttons1 $buttons2)
+#if(!$__tinymce_js)
+<script type="text/javascript" src="$link.js("tiny_mce_339/tiny_mce.js")"></script>
+#set($__tinymce_js = 1)
+#end
+<script type="text/javascript">
+<!--
+tinyMCE.init({
+	content_css : "$link.css('editor_content.css?ver=20100914')",
+	language : "zh",
+	mode : "exact",
+	elements : "$textarea_id",
+	theme : "advanced",
+	plugins : "safari,emotions,media,advimage,inlinepopups,noneditable,table",
+	##convert_urls: true,
+	relative_urls : false,
+	remove_script_host : false,
+	##document_base_url : "${link.contextURL}/",
+	button_tile_map : true,
+	invalid_elements : "script,iframe",
+	theme_advanced_buttons1 : "$buttons1",
+	theme_advanced_buttons2 : "$buttons2",
+	theme_advanced_buttons3 : "",
+	theme_advanced_toolbar_location : "top",
+	theme_advanced_toolbar_align : "left",
+	theme_advanced_path_location : "none",
+	theme_advanced_statusbar_location: "none",
+	ask : false,
+	tab_focus : ":prev,:next"
+});
+tinyMCE.baseURL = '$link.js("tiny_mce_339")';
+//-->
+</script>
+#end
+
+#*
+ * 生成翻页链接
+ * 作者: Winter Lau(javayou@gmail.com)
+ *#
+#macro(pager $__uri $__obj_count $__page_size)
+#if($__obj_count > $__page_size)
+    #if($__uri.indexOf("?")>=0)#set($param_char='&')#else#set($param_char='?')#end
+    #if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+		#set($__p_uri = "${__uri}${param_char}")
+	#else
+		#set($__p_uri = $__uri)
+	#end
+    #set($PAGE_COUNT = $osc_tool.page_count($__obj_count, $__page_size))
+    #set($__p = $link.param("p",1))
+	#if($__p <= $PAGE_COUNT)
+    #set($pre_page = $__p - 1)
+    #set($next_page = $__p + 1)
+	#if($__p > 3)
+    	#set($begin_idx = $__p - 3)
+	#else
+		#set($begin_idx = 1)
+	#end	
+    #set($end_idx = $begin_idx + 9)
+    #if($end_idx > $PAGE_COUNT)#set($end_idx = $PAGE_COUNT)#end
+    <ul class="pager">
+        #if($__p > 1)
+			<li class='page prev'><a href="${__p_uri}p=$pre_page">&lt;</a></li>
+		#end
+		#if($begin_idx > 1)
+			<li class='page'><a href="${__p_uri}">1</a></li>
+		#end
+		#foreach($idx in [$begin_idx..$end_idx])
+			#if($idx != $__p)
+				<li class='page'><a href="${__p_uri}p=$idx">$idx</a></li>
+			#else
+				<li class='page current'><a href="${__p_uri}p=$idx">$idx</a></li>
+			#end
+		#end
+		#if($end_idx < $PAGE_COUNT)
+			<li class='page'><a href="${__p_uri}p=$PAGE_COUNT">$PAGE_COUNT</a></li>
+		#end
+		#if($__p < $PAGE_COUNT)
+			<li class='page next'><a href="${__p_uri}p=$next_page">&gt;</a></li>
+		#end
+    </ul>
+	#end
+#end
+#end
+#*
+ * 生成翻页链接
+ * 作者: Winter Lau(javayou@gmail.com)
+ *#
+#macro(pager2 $__uri $__obj_count $__page_size $anchor)
+	#pager3($__uri,$__obj_count,$__page_size,"p",$anchor)
+#end
+#*
+ * 生成翻页链接
+ * 作者: Winter Lau(javayou@gmail.com)
+ *#
+#macro(pager3 $__uri $__obj_count $__page_size $__pn $anchor)
+#if($__obj_count > $__page_size)
+    #if($__uri.indexOf("?")>=0)#set($param_char='&')#else#set($param_char='?')#end
+    #if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+		#set($__p_uri = "${__uri}${param_char}")
+	#else
+		#set($__p_uri = $__uri)
+	#end
+    #set($PAGE_COUNT = $osc_tool.page_count($__obj_count, $__page_size))
+    #set($__p = $link.param($__pn,1))
+	#if($__p <= $PAGE_COUNT)
+    #set($pre_page = $__p - 1)
+    #set($next_page = $__p + 1)
+	#if($__p > 3)
+    	#set($begin_idx = $__p - 3)
+	#else
+		#set($begin_idx = 1)
+	#end	
+    #set($end_idx = $begin_idx + 9)
+    #if($end_idx > $PAGE_COUNT)#set($end_idx = $PAGE_COUNT)#end
+    <ul class="pager">
+        #if($__p > 1)<li class='page prev'><a href="${__p_uri}${__pn}=$pre_page#$anchor">&lt;</a></li>#end#if($begin_idx > 1)<li class='page'><a href="${__p_uri}#$anchor">1</a></li>#end#foreach($idx in [$begin_idx..$end_idx])#if($idx != $__p)<li class='page'><a href="${__p_uri}${__pn}=$idx#$anchor">$idx</a></li>#else<li class='page current'><a href="${__p_uri}p=$idx">$idx</a></li>#end#end#if($end_idx < $PAGE_COUNT)<li class='page'><a href="${__p_uri}${__pn}=$PAGE_COUNT#$anchor">$PAGE_COUNT</a></li>#end#if($__p < $PAGE_COUNT)<li class='page next'><a href="${__p_uri}${__pn}=$next_page#$anchor">&gt;</a></li>#end
+    </ul>
+	#end
+#end
+#end
+#*
+ * 生成翻页链接(WAP方式)
+ * 作者: Winter Lau(ld@dlog.cn)
+ *#
+#macro(wap_pager $__uri $__obj_count $__page_size)
+#if($__obj_count > $__page_size)
+    #if($__uri.indexOf("?")>=0)#set($param_char='&')#else#set($param_char='?')#end
+    #if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+		#set($__p_uri = "${__uri}${param_char}")
+	#else
+		#set($__p_uri = $__uri)
+	#end
+    #set($PAGE_COUNT = $osc_tool.page_count($__obj_count, $__page_size))
+    #set($p = $link.param("p",1))
+	#if($p <= $PAGE_COUNT)
+    #set($pre_page = $p - 1)
+    #set($next_page = $p + 1)
+	#if($p > 2)
+    	#set($begin_idx = $p - 2)
+	#else
+		#set($begin_idx = 1)
+	#end	
+    #set($end_idx = $begin_idx + 5)
+    #if($end_idx > $PAGE_COUNT)#set($end_idx = $PAGE_COUNT)#end
+   <div class="pager">		
+		#if($begin_idx > 1)<a href="${__p_uri}">1</a>#end
+        #foreach($idx in [$begin_idx..$end_idx])#if($idx != $p)<a href="${__p_uri}p=$idx">$idx</a>#else$idx#end#end
+		#if($end_idx < $PAGE_COUNT)<a href="${__p_uri}p=$PAGE_COUNT">$PAGE_COUNT</a>#end
+        ##if($p > 1)<span class='home'><a href="${__p_uri}p=1">$resource.wml("pager.first")</a></span><span class='prev'><a href="${__p_uri}p=$pre_page">$resource.wml("pager.prev")</a></span>#end
+        ##if($p < $PAGE_COUNT)<span class='next'><a href="${__p_uri}p=$next_page">$resource.wml("pager.next")</a></span><span class='end'><a href="${__p_uri}p=$PAGE_COUNT">$resource.wml("pager.last")</a></span>#end
+    </div>
+	#end
+#end
+#end
+
+#macro(new_wap_pager $__uri $__obj_count $__page_size)
+#if($__uri.indexOf("?")>=0)#set($param_char='&')#else#set($param_char='?')#end
+#if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+	#set($__p_uri = "${__uri}${param_char}")
+#else
+	#set($__p_uri = $__uri)
+#end
+#set($PAGE_COUNT = $osc_tool.page_count($__obj_count, $__page_size))
+#set($_this_page = $link.param("p",1))
+#if($PAGE_COUNT > 1)
+<div>
+	#if($_this_page>1)
+	#set($pre_page = $_this_page - 1)
+	<a href="${__p_uri}p=$pre_page" data-role="button" data-inline="true" data-icon="arrow-l">上一页</a>#end
+	#if($_this_page < $PAGE_COUNT)
+	#set($next_page = $_this_page + 1)
+	<a href="${__p_uri}p=$next_page" data-role="button" data-inline="true" data-icon="arrow-r" data-iconpos="right">下一页</a>#end
+	#if($_this_page>1 && $_this_page < $PAGE_COUNT)<br/>#end
+	&nbsp;页次 $_this_page/$PAGE_COUNT#if($_this_page>1&&$_this_page < $PAGE_COUNT)#end
+</div>
+#end
+#end
+
+#macro(lportrait $__user)
+#if($__user)
+#set($___user_name = $format.html(${__user.name}))#end
+#if($__user && $format.not_empty(${__user.portrait}))<img src="$link.upload("user/$__user.LargePortrait()")" align="absmiddle" alt="$___user_name" title="$___user_name" class="LargePortrait"/>#else<img src="$link.img("portrait.gif")" align="absmiddle" alt="$!___user_name" title="$!___user_name" class="LargePortrait"/>#end
+#end
+
+#macro(sportrait $__user)
+#if($__user)
+#set($___user_name = $format.html(${__user.name}))
+#else
+#set($___user_name = '非会员用户')
+#end
+#if($__user && $format.not_empty(${__user.portrait}))<img src="$link.upload("user/$__user.SmallPortrait()")" align="absmiddle" alt="$___user_name" title="$___user_name" class="SmallPortrait" user="${__user.id}"/>#else<img src="$link.img("portrait.gif")" align="absmiddle" alt="$!___user_name" title="$!___user_name" class="SmallPortrait" user="${__user.id}"/>#end
+#end
+
+#macro(auto_syntax_highlighter)
+<script type="text/javascript" src="$link.js('syntax-highlighter-2.1.382/scripts/brush.js')"></script>
+<link type="text/css" rel="stylesheet" href="$link.js('syntax-highlighter-2.1.382/styles/shCore.css')"/>
+<link type="text/css" rel="stylesheet" href="$link.js('syntax-highlighter-2.1.382/styles/shThemeDefault.css')"/>
+<script type='text/javascript'><!--
+$(document).ready(function(){
+	SyntaxHighlighter.config.clipboardSwf = '$link.js('syntax-highlighter-2.1.382/scripts/clipboard.swf')';
+	SyntaxHighlighter.all();
+});
+//-->
+</script>
+#end
+
+#macro(make_ke_coding)
+<style>
+.ke-icon-code {
+	background-image: url($link.img('code.gif'));
+	background-position: 0px 0px;
+	width: 16px;
+	height: 16px;
+}
+.ke-icon-quote {
+	background-image: url($link.img('quote.gif'));
+	background-position: 0px 0px;
+	width: 16px;
+	height: 16px;
+}
+</style>
+<script type='text/javascript'>
+<!--
+$(document).ready(function(){
+KE.lang['code'] = "插入程序代码或脚本";
+KE.plugin['code'] = {
+	click : function(id) {
+		KE.util.selection(id);
+		var dialog = new KE.dialog({
+			id : id,
+			cmd : 'code',
+			file : 'code/insert_code.html',
+			width : 530,
+			height : 300,
+			title : KE.lang['code'],
+			yesButton : KE.lang['yes'],
+			noButton : KE.lang['no']
+		});
+		dialog.show();
+	},
+	check : function(id) {
+		var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+		var lang = KE.$('ic_lang', dialogDoc).value;
+		var source = KE.$('ic_source', dialogDoc).value;
+		if(lang == ''){
+			alert('编程语言必须选择');
+			return false;
+		}
+		if(source == ''){
+			alert('请输入程序代码或者脚本');
+			return false;
+		}
+		return true;
+	},
+	exec : function(id) {
+		KE.util.select(id);
+		var iframeDoc = KE.g[id].iframeDoc;
+		var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+		if (!this.check(id)) return false;
+		var lang = KE.$('ic_lang', dialogDoc).value;
+		var source = KE.$('ic_source', dialogDoc).value;
+		this.insert(id, lang, source);
+	},
+	insert : function(id, lang,source) {
+		var html = '<pre class="brush:' + lang + '; toolbar: true; auto-links: false;">';
+		html += html_encode(source);
+		html += '</pre><p> </p>';
+		KE.util.insertHtml(id, html);
+		KE.layout.hide(id);
+		KE.util.focus(id);
+	}
+};
+
+KE.lang['quote'] = "引用某段文字";
+KE.plugin['quote'] = {
+	click : function(id) {
+		/*
+		KE.util.selection(id);
+		val html = KE.selectedHtml(id);
+		alert(html);
+		insert(id, html);
+		*/
+		KE.util.selection(id);
+		var dialog = new KE.dialog({
+			id : id,
+			cmd : 'quote',
+			file : 'quote/insert_quote.html',
+			width : 530,
+			height : 300,
+			title : KE.lang['quote'],
+			yesButton : KE.lang['yes'],
+			noButton : KE.lang['no']
+		});
+		dialog.show();
+	},
+	check : function(id) {
+		var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+		var source = KE.$('ic_source', dialogDoc).value;
+		if(source == ''){
+			alert('请输入要引用的文字内容');
+			return false;
+		}
+		return true;
+	},
+	exec : function(id) {
+		KE.util.select(id);
+		var iframeDoc = KE.g[id].iframeDoc;
+		var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+		if (!this.check(id)) return false;
+		var source = KE.$('ic_source', dialogDoc).value;
+		this.insert(id, source);
+	},
+	insert : function(id, source) {
+		var html = '<blockquote>';
+		html += html_encode(source);
+		html += '</blockquote><br/>';
+		KE.util.insertHtml(id, html);
+		KE.layout.hide(id);
+		KE.util.focus(id);
+	}
+};
+});
+
+//-->
+</script>
+#end

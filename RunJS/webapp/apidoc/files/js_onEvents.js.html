@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\onEvents.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\onEvents.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+/**
+ *系统事件，个模块在某特定条件下自动触发的事件，为了更便于查看，将 {{#crossLink &quot;Plugins&quot;}}{{/crossLink}} 中的 onEvents 抽离出来单独说明
+ *@class onEvents
+ */
+onEvents = (function () {
+	
+	/**
+	 *当编辑器视图初始化或重置后时调用
+	 *@method onEditorViewInit
+	 *@param {Editor} editor 编辑器模块实例
+	 */
+	onEvents.prototype.onEditorViewInit = function(editor) {
+		
+	};
+
+	/**
+	 *当顶部菜单视图初始化或重置后调用
+	 *@method onMenuViewInit
+	 *@param {Menu} menu 菜单模块实例
+	 */
+	onEvents.prototype.onMenuViewInit = function(menu) {
+		// body...
+	};
+
+	/**
+	 *当左边的资源管理器初始化或重置后调用
+	 *@method onExplorerViewInit
+	 *@param {Explorer} explorer 资源管理器模块实例
+	 */
+	onEvents.prototype.onExplorerViewInit = function(explorer) {
+		// body...
+	};
+
+	/**
+	 *上下文菜单加载后调用
+	 *@method onContextMenuLoad
+	 *@param {Object} menu 上下文菜单jQuery包装对象
+	 */
+	onEvents.prototype.onContextMenuLoad = function(menu) {
+		// body...
+	};
+
+	/**
+	 *上下文菜单消失后调用
+	 *@method onContextMenuRemove
+	 *@param {Object} menu 上下文菜单jQuery包装对象
+	 */
+	onEvents.prototype.onContextMenuRemove = function(menu) {
+		// body...
+	};
+
+	/**
+	 *上下文菜单显示前调用
+	 *@method beforeContextMenuLoad
+	 *@param {Object} menu 上下文菜单jQuery包装对象
+	 */
+	onEvents.prototype.beforeContextMenuLoad = function(menu) {
+		// body...
+	};
+
+	/**
+	 *当对话框弹出后调用
+	 *@method onDialogLoad
+	 *@param {Object} dialog Zebra Dialog 窗口实例
+	 */
+	onEvents.prototype.onDialogLoad = function(dialog) {
+		// body...
+	};
+
+	/**
+	 *当引入脚本时调用
+	 *@method onScriptImport
+	 *@param {String} script 如果当前是从toolbar区域引入的则返回脚本的唯一标识，否则则返回引入的脚本链接地址
+	 */
+	onEvents.prototype.onScriptImport = function(script) {
+		// body...
+	};
+
+	/**
+	 *当HTML编辑器内容有改变时调用
+	 *@method onHtmlEditorChange
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的HTML编辑器
+	 */
+	onEvents.prototype.onHtmlEditorChange = function(cm) {
+		// body...
+	};
+
+	/**
+	 *当JavaScript编辑器视图内容变化时调用
+	 *@method onJsEditorChange
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的JavaScript编辑器
+	 */
+	onEvents.prototype.onJsEditorChange = function(cm) {
+		// body...
+	};
+	
+	/**
+	 *当CSS编辑器内容变化时调用
+	 *@method onCssEditorChange
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的CSS编辑器
+	 */
+	onEvents.prototype.onCssEditorChange = function(cm) {
+		// body...
+	};
+
+	/**
+	 *当Html编辑器中光标变动时调用
+	 *@method onHtmlCursorActivity
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的HTML编辑器
+	 */
+	onEvents.prototype.onHtmlCursorActivity = function(cm) {
+		// body...
+	};
+
+	/**
+	 *当Js编辑器中光标变动时调用
+	 *@method onJsCursorActivity
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的JavaScript编辑器
+	 */
+	onEvents.prototype.onJsCursorActivity = function(cm) {
+		// body...
+	};
+
+	/**
+	 *当Css编辑器中光标变动时调用
+	 *@method onCssCursorActivity
+	 *@param {CodeMirror} cm CodeMirror 实例，当前的CSS编辑器
+	 */
+	onEvents.prototype.onCssCursorActivity = function(cm) {
+		// body...
+	};
+}();
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="oschina">
+	<property name="debug" value="true"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+	<property name="encoding" value="UTF-8"/>
+    <property name="build.classes.dir" value="webapp/WEB-INF/classes"/>
+    <property name="lucene.dir" value="webapp/WEB-INF/lucene_idx"/>
+	
+    <path id="oschina.classpath">
+        <pathelement location="${build.classes.dir}"/>
+		<fileset dir="packages" includes="*.jar" />
+		<fileset dir="webapp/WEB-INF/lib" includes="*.jar" />
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build.classes.dir}"/>
+        <copy includeemptydirs="false" todir="${build.classes.dir}">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+	
+    <target depends="init" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="${debug}" encoding="${encoding}" destdir="${build.classes.dir}" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="oschina.classpath"/>
+        </javac>
+    </target>
+	
+    <target name="clean">
+        <delete dir="${build.classes.dir}"/>
+    </target>
+
+</project>

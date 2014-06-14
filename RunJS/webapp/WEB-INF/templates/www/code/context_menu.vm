@@ -1,0 +1,116 @@
+$request.setAttribute("close_comment",true)
+#set($type = $link.param("p1","code"))
+#set($ident = $link.param("p2",""))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#if($type=="code")
+    #if($code)
+    #set($prj = $Project.Get($code.project))
+	#set($plugin = $PluginBean.GetPluginByCode($code.id))
+    <div class="setting_menu version_menu_${prj.id}_${code.ident}">
+    	<ul>
+			<li class="sub_menu">
+				插件<span>&raquo;</span>
+                <ul class="sub_menu">
+    			#if($plugin)
+        			#if($plugin.IsSysPlugin())
+        				#set($words = "系统")
+        			#else
+        				#set($words = "用户")
+        			#end
+    				#if($plugin.IsChecked())
+    					<li onclick="runjs.uncheckPlugin(${plugin.id},true);">
+    						关闭此${words}插件
+    					</li>
+    				#else
+    					<li onclick="runjs.checkPlugin(${plugin.id},true);">启用此${words}插件</li>
+    				#end
+    			#else
+    				#set($isPlugin = $PluginBean.GetPluginByCode($code.id))
+    				#if(!$isPlugin)
+    				#if($g_user.IsAdmin())<li onclick="runjs.setSysPlugin(${code.id},1);">设置为系统插件</li>#end
+    				<li onclick="runjs.setSysPlugin(${code.id},0);">设置为用户插件</li>
+    				#end
+    			#end
+				</ul>
+			</li>
+ 			<li class="sub_menu">
+				分类<span>&raquo;</span>
+				<ul class="sub_menu">
+    			#set($catalogs = $CatalogBean.listCatalogByUser($g_user.id))
+    			<li onclick="runjs.explorer.createCatalog(${code.id},'${code.ident}');">新建分类</li>
+    			#if($catalogs && $catalogs.size()>0)
+    				#if($code.catalog==0)
+    				<li onclick="runjs.explorer.moveToCatalog(${code.id},'${code.ident}');">添加到分类</li>
+    				#else
+    				<li onclick="runjs.explorer.moveToCatalog(${code.id},'${code.ident}');">移动到分类</li>
+    				#end
+				#end
+				</ul>
+            </li>
+    	</ul>
+    	<ul>
+			#if($code.IsPosted())<li><a href="http://runjs.cn/detail/${code.ident}" target="_blank">查看发布详情</a></li>#end
+    		<li><a href="http://sandbox.runjs.cn/show/${code.ident}" target="_blank">全屏预览</a></li>
+    		<li><a href="http://runjs.cn/action/api/get_zip?id=${code.id}" target="_blank">打包下载</a></li>
+    	</ul>
+    	<ul>
+    		#if($code.IsPosted())<li onclick="runjs.explorer.update_publish('${code.ident}',${code.id},'${code.name}');">更新发布信息</li>#end
+    		<li onclick="runjs.explorer.rename_code('${code.ident}',${code.id})">
+				重命名<span>Alt+R</span>
+			</li>
+    		<li onclick="runjs.explorer.delete_code(${code.project})"><em class="red">删除</em><span>Alt+D</span></li>
+    	</ul>
+    </div>
+    <script type="text/javascript">
+    	$(".version_menu_${prj.id}_${code.id}").ready(function(){
+    		runjs.altHotKey = {
+    			R:{event:runjs.explorer.rename_code,data:'${code.ident}'},
+    			D:{event:runjs.explorer.delete_code,data:'${code.ident}'}
+    		}
+    	});
+    </script>
+	#end
+#elseif($type=="catalog")
+#set($catalog = $link.param("p3",0))
+#set($one = $CatalogBean.Get($catalog))
+#set($cname = $format.text(${one.name}))
+#if($one)
+<div class="setting_menu catalog_menu2_${catalog}">
+ 	<ul>
+		<li onclick="runjs.explorer.rename_catalog(${catalog},'${cname}')">重命名<span>Alt+R</span></li>
+	</ul>
+	<ul>
+		<li onclick="runjs.explorer.delete_catalog(${catalog},'${cname}')"><em class="red">删除</em><span>Alt+D</span></li>
+	</ul>
+</div>
+<script type="text/javascript">
+	$(".catalog_menu2_${catalog}").ready(function(){
+		runjs.altHotKey = {
+			R:{event:runjs.explorer.rename_catalog,data:{cid:${catalog},cname:'${cname}'}},
+			D:{event:runjs.explorer.delete_catalog,data:{cid:${catalog},cname:'${cname}'}}
+		}
+	});
+</script>
+#end
+#end
+<style>
+	.setting_menu ul.sub_menu{z-index: 1000;border-bottom: none;position: absolute;left: 100px;line-height: 26px;font-size: 14px;width: 220px;}
+	.setting_menu li.sub_menu ul.sub_menu{position:absolute;display:none;}
+</style>
+<script type="text/javascript">
+$(".setting_menu li.sub_menu").mouseover(function(){
+	var sub_menu = $(this).find("ul.sub_menu:eq(0)");
+	var menu = $(".setting_menu");
+	sub_menu.show();
+	/*sub_menu.css({
+		top:$(this).parent().offset().top
+	})*/
+});
+$(".setting_menu li").click(function(){
+	if($(this).find("select").length==0)
+		$(".setting_menu").remove();
+});
+$(".setting_menu li.sub_menu").mouseout(function(){
+	var sub_menu = $(this).find("ul.sub_menu").hide();
+});
+</script>

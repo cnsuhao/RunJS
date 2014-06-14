@@ -1,0 +1,13 @@
+#set($page=$link.param("p1",1))
+#set($dys=$msg_tool.getAlldynamics($page,15))
+#if($dys && $dys.size()>0 && $page <= 20)
+#foreach($dy in $dys)
+	#show_dynamic2($dy)
+#end
+#else
+<script>						
+$("#get_more").remove();
+$(".userOperate ul").append("<div id='no_more_div'>没有更多了，<a href='/square'>去广场看看？</a></div>");
+</script>
+#end
+$request.setAttribute("close_comment",true)

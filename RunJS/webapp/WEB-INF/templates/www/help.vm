@@ -1,0 +1,256 @@
+#set($qa=$link.param("p1","runjs"))
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title> RunJS 常见问题帮助</title>
+		<link rel="stylesheet" type="text/css" href='$link.css("index.css?20121212")'>
+<script src="/js/sandbox/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script>
+RURL=location.href;
+$(document).ready(function() {
+    $(".select").mouseover(function() {
+    	$(this).find("ul").show();
+    }).mouseout(function() {
+    	$(this).find("ul").hide();
+    });
+    
+    $(".select li").click(function() {
+    	$(this).parent().hide();
+    });
+	
+	$("#help_index ul li").mouseover(function(){
+		$(this).css({"background-color":"#1F2A2F"});
+	});
+	$("#help_index ul li").mouseleave(function(){
+		$(this).css({"background-color":"#2B3A41"});
+		//$(".item_focus").css({"background-color":"#1F2A2F"});
+	});
+	#**
+	$(window).scroll(function() {
+		$('#help_index').css({'position':'fixed','top':'50px','left':'0px','z-index':'999'});
+	});
+	*#
+	$("#help_index ul li").click(function(){
+		$("#help_index ul li").removeClass("item_focus");
+		$(this).addClass("item_focus");
+		var idx = $(this).index();
+		$(".content_main .item").hide();
+		$(".content_main .item:eq(" + idx + ")").show();
+	});
+});
+function login(type){
+	var url = "http://runjs.cn/action/openid/before_login?op=" + type;
+	openwindow(url, 'loginPage', 800, 600);
+}
+function logout(uid){
+	jQuery.post("/action/ajax/logout",'uid='+uid, function(msg) {
+		location.href="/";
+	});
+}
+
+function openwindow(url, name, iWidth, iHeight) {
+var url; // 转向网页的地址;
+var name; // 网页名称，可为空;
+var iWidth; // 弹出窗口的宽度;
+var iHeight; // 弹出窗口的高度;
+var iTop = (window.screen.availHeight - 30 - iHeight) / 2; // 获得窗口的垂直位置;
+var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; // 获得窗口的水平位置;
+window.open(url,name,
+	'height='
+			+ iHeight
+			+ ',,innerHeight='
+			+ iHeight
+			+ ',width='
+			+ iWidth
+			+ ',innerWidth='
+			+ iWidth
+			+ ',top='
+			+ iTop
+			+ ',left='
+			+ iLeft
+			+ ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+}
+</script>
+<style>
+.content_main{padding:20px 20px;display:inline-block;width:950px;margin-left:20px;min-height:700px;}
+.content_main h1{text-align: center;}
+.content_main h3{font-weight:bold;margin:10px 0;color:#DEBD00;}
+.content_main p{color:#EEE;}
+.content_main li img{margin-top:15px;}
+.content_main .item {margin-bottom:50px;display:none;}
+#help_index{width:250px;display:inline-block;float:left;margin-top:20px;}
+#help_index ul{margin:10px 0px;}
+#help_index ul li{
+    height:40px;
+    padding:8px 15px 0 15px;
+    background-color:#2B3A41;
+    line-height:30px;
+	cursor:pointer;
+}
+.item_focus{
+	color:#359CCB;
+	font-weight:bold;
+	background-color:#1F2A2F;
+}
+</style>
+	</head>
+	<body class="help_header">
+	<!--     头部header开始    -->
+     <div class="header">
+		<a href="/">
+        <div class="logo">
+            <h3>RunJS</h3>
+        </div>
+		</a>
+        <div class="headerMenu">
+			<div class="menuItem btnGroup login">
+				#if(!$g_user)
+				<div class="select" id="login" >
+				<div class="title">登录<div class="arrow_bottom"></div></div>
+                <ul>
+                    <li><a href="javascript:login('oschina')">开源中国</a></li>
+					<li><a href="javascript:login('qq')">腾讯QQ</a></li>
+					<li><a href="javascript:login('weibo')">新浪微博</a></li>
+					<li><a href="javascript:login('google')">Google</a></li>
+					<li><a href="javascript:login('github')">Github</a></li>
+					<li><a href="javascript:login('hotmail')">Hotmail</a></li>
+					<li><a href="javascript:login('yahoo')">Yahoo</a></li>
+				</ul>
+    			</div>
+				#else
+					<div class="btn" id="logout" onclick="javascript:logout($g_user.id);">退出($format.html(${g_user.name}))</div>
+				#end
+			</div>
+		</div>
+    </div>
+<div style="min-width:1280px;">
+<div id='help_index'>
+	<div style="margin-left:15px;font-size:20px;color:#359CCB;">问题索引：</div>
+	<ul>
+		<li>RunJS 是什么？</li>
+		<li>如何在 RunJS 上创建代码？</li>
+		<li>如何保存我的代码？</li>
+		<li>如何 Fork 别人的代码？</li>
+		<li>如何分享我的代码？</li>
+		<li>如何上传图片、js等资源文件?</li>
+		<li>如何使用第三方js库？</li>
+		<li>如何做 Ajax 调用的演示？</li>
+		<li>如何在其他浏览器中查看效果？</li>
+		<li>如何在外站嵌入RunJS的代码？</li>
+		<li>如何使用 CoffeeScript 和 Less？</li>
+		<li>插件使编辑器无法正常使用咋办？</li>
+		<li>Bugs？ 意见和建议？</li>
+	</ul>
+</div>
+<div class="content_main">
+	<ul>
+		<h1>RunJS 常见问题帮助</h1>
+		<a name="runjs"></a>
+		<li #if($qa=="runjs")style="display:block;"#end class="item">
+			<h3>RunJS 是什么？</h3>
+			<p>RunJS 是一个在线的 HTML、Javascript、CSS 等 web 前端代码的编辑分享平台，拥有实时预览、高亮显示、代码格式化等功能，我们提供 OSChina、微博、qq、github、google、yahoo、hotmail这七种登录方式，你只需要有七种任意一个帐号就可以点击右上角的登录按钮来立即体验RunJS。</p>
+			<img src='$link.img("help/index.png")'/>
+		</li>
+		<a name="create"></a>
+		<li class="item" #if($qa=="create")style="display:block;"#end>
+			<h3>如何在 RunJS 上创建代码？ </h3>
+			<p>可以在 RunJS 的首页点击编辑器进入编辑器界面，登录后点击左边栏右上角的加号来添加代码。</p>
+			<img src='$link.img("help/create.png")'/>
+		</li>
+		<a name="save"></a>
+		<li class="item" #if($qa=="save")style="display:block;"#end>
+			<h3>如何保存我的代码？ </h3>
+			<p>在创建完代码后，您可以随时在编辑器中修改代码，可以点击左上方的保存按钮或者摁下 Ctrl+S来保存代码。</p>
+			<img src='$link.img("help/save.png")'/>
+		</li>
+		<a name="fork"></a>
+		<li class="item" #if($qa=="fork")style="display:block;"#end>
+			<h3>Fork 是什么?如何 Fork 别人的代码？</h3>
+			<p>Fork 就是分支的意思，如果你熟悉 Github，想必你对 Fork 不会陌生，这里的 Fork 也一样，你可以通过在代码详情页面的代码展示框点击右上角的 Fork 按钮，或者在查看源码页面点击左上角的 Fork 按钮来 Fork 别人的代码，这样你就拥有了当前代码的一份拷贝，可以自行维护。</p>
+			<img src='$link.img("help/fork.png")'/>
+		</li>
+		<a name="post"></a>
+		<li class="item" #if($qa=="post")style="display:block;"#end>
+			<h3>如何分享我的代码？</h3>
+			<p>你可以将你写好的代码发布出去，这样别人就可以查看你的作品，就可以评论、Fork、顶你的代码。你也可以很方便的将代码分享出去。</p>
+			<img src='$link.img("help/post.png")'/>
+		</li>
+		<a name="upload"></a>
+		<li class="item" #if($qa=="upload")style="display:block;"#end>
+			<h3>如何上传图片、js、css 等资源文件?</h3>
+			<p>在编辑器页面，你可以在左边栏下方的资源文件中看到你上传的资源文件，并可以在这里进行上传、删除、插入等操作。</p>
+			<img src='$link.img("help/upload.png")'/>
+		</li>
+		<a name="jslib"></a>
+		<li class="item" #if($qa=="jslib")style="display:block;"#end>
+			<h3>如何使用一些第三方 js 库？</h3>
+			<p>RunJS 已经提供了大量的常见 js 库（在 HTML 编辑器上方可以快速引用），如果您需要的库不在这其中，可以告诉我们，或者自行上传文件进行引用。</p>
+			<img src='$link.img("help/jslib.png")'/>
+		</li>
+		<a name="ajax"></a>
+		<li class="item" #if($qa=="ajax")style="display:block;"#end>
+			<h3>如何在代码中做 Ajax 调用的演示？</h3>
+			<p>RunJS 提供了 Ajax 的 Echo API，可以方便用户测试 Ajax 功能，<a href="http://www.oschina.net/question/82993_78609" target="_blank">点击这里</a>查看详细使用方法。</p>
+			
+			<img src='$link.img("help/ajax.png")'/>
+		</li>
+		<a name="ie"></a>
+		<li class="item"  #if($qa=="ie")style="display:block;"#end>
+			<h3>如何在其他浏览器和低版本IE中查看代码效果？</h3>
+			<p>由于 RunJS 的编辑器只支持 IE9 及其以上的版本，对于低版本 IE，可以点击左边栏代码名称右边的扳手，在菜单中选择全屏预览，然后在你需要的浏览器中访问新弹出的页面的URL即可。</p>
+			<img src='$link.img("help/ie.png")'/>
+		</li>
+		<a name="gist"></a>
+		<li class="item" #if($qa=="gist")style="display:block;"#end style="">
+			<h3>如何在外站嵌入 RunJS 的代码(gist)？</h3>
+			<p>RunJS 推出的一个叫做 Gist 的小功能，假如你在 RunJS 上写好了代码，你可以通过在你自己的网站中加入如下 script 标签来引用该代码，代码将被语法着色，另外你还可以选择不同的主题样式。</p>
+			<br>
+			<span style="color:#DEBD00;font-weight:bold;">使用办法：</span><span>$format.html("<script src='http://runjs.cn/gist/xxxxxxxx/yyyy/zzzzzz'></script>")</span>
+			<ul>
+				<li style="list-style-type: disc;margin:8px 0 8px 30px;">xxxxxxxx(代码标识符)：使用代码的标识符替换掉，代码标识符可以在代码详情页和编辑器页面的 URL 中找到</li>
+				<li style="list-style-type: disc;margin:8px 0 8px 30px;">yyyy(代码类型)：有(js、css、html、all)四种方式供选择，可以根据需要来定制。</li>
+				<li style="list-style-type: disc;margin:8px 0 8px 30px;">zzzzzz(主题样式)：有(default、eclipse、django、emacs、fadetogrey、midnight、rdark)这七种主题样式可供选择，默认为default样式。</li>
+			</ul>
+			<br>
+			<span style="color:#DEBD00;font-weight:bold;">注：</span><span>URL中所有字母均为小写。</span>		
+			<p>例如，在这个页面里我嵌入如下代码：</p>
+			<p>$format.html("<script src='http://runjs.cn/gist/gew5wreh/all/rdark'></script>")</p>
+			<br>
+			<p>将出现如下效果：</p>
+			<script src="http://runjs.cn/gist/gew5wreh/all/rdark"></script>
+		</li>
+		<a name="less"></a>
+		<li class="item" #if($qa=="less")style="display:block;"#end style="">
+			<h3>如何使用 CoffeeScript 和 Less 来写代码？</h3>
+			<p>现在已经可以直接在 RunJS 上用 <a href="http://www.oschina.net/p/coffeescript" target="_blank">CoffeeScript</a> 来编写脚本，用<a href="http://www.oschina.net/p/lesscss" target="_blank">Less CSS</a> 来编写样式。</p>
+			<p>RunJS 默认是使用 JavaScript 和 CSS ，可以像如下方式来启用CoffeeScript 鼠标移到 JavaScript 面板中，点击 JavaScript 如下图所示：</p>
+			<img src='$link.img("help/coffee.png")'/>
+			<p>点击后将会弹出脚本选择对话框，选择 CoffeeScript 后然后确定：</p>
+			<img src='$link.img("help/coffee2.png")'/>
+			<p>同理进入 CSS 编辑面板点击 CSS 就可以选择用 Less CSS 编写样式：</p>
+			<img src='$link.img("help/less2.png")'/>
+			<br>
+			<p>关于CoffeeScript和Less的详细说明请看这里：<a href="http://www.oschina.net/p/coffeescript">CoffeeScript</a> 和 <a>Less</a></p>
+		</li>
+		<a name="plugin"></a>
+		<li class="item" #if($qa=="plugin")style="display:block;"#end style="">
+			<h3>当用户插件使编辑器无法正常使用怎么办？</h3><br>
+			<p>1、关闭所有用户插件。<br><br><a href="http://runjs.cn/code?plugin=off">点击此处重置</a> 所有用户插件，该操作将关闭所有已启用的用户插件。</p><br>
+			<p>2、检查，调试 有问题的插件。</p><br>
+			<p>3、启用所有用户插件。<br><br><a href="http://runjs.cn/code?plugin=on">点击此处启用</a> 所有用户插件，该操作将启用所有已启用的用户插件。或手动逐个启用用户插件。</p><br>
+		</li>
+		<a name="bug"></a>
+		<li class="item" #if($qa=="bug")style="display:block;"#end>
+			<h3>发现了 RunJS 的 bug 或者有建议？</h3>
+			<p>发现任何 bug，或者有任何建议，欢迎以任何方式告知我们，可以点击<a href="http://runjs.cn/code" target="_blank">编辑器页面</a>的右上角的设置，其中有提交建议反馈的选项。 </p>
+			<img src='$link.img("help/bug.png")'/>
+		</li>
+	</ul>
+</div>
+</div>
+    <div class="footer">
+      <p>© <a href="http://www.oschina.net">开源中国</a> | <a href="/help"> RunJS 帮助</a> | <span style="color:#AAA;">感谢</span><a href="http://www.51idc.com" target="_blank">51IDC</a><span style="color:#AAA;">提供服务器和带宽</span> | <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备12009483号-7</a> | <script src="http://s17.cnzz.com/stat.php?id=5147163&web_id=5147163" language="JavaScript"></script></p>
+    </div>
+	</body>
+</html>		

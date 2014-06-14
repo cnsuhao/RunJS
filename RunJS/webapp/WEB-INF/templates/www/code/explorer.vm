@@ -1,0 +1,158 @@
+#set($host = "http://runjs.cn")
+#set($shost = "http://sandbox.runjs.cn")
+#set($ident = $link.param("p1",""))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#if($g_user)
+	#set($projects = $project.getAllProjectByUser($g_user.id))
+	#set($catalogs = $CatalogBean.listCatalogByUser($g_user.id))
+#end
+<div class="mainproject">
+<div class="maintitle" id="my_project">我的代码<div id="create_project" class="add_project" title="创建新代码" onclick="runjs.explorer.create_wizard();"></div></div>
+#if(false && (!$catalogs || $catalogs.size()==0))
+#if($projects)
+<ul class="projects">
+	#if($projects && $projects.size()==0)
+		<li class="tip"><p style="color:#AAA;">还没有创建任何代码</p><br><p><a href="javascript:runjs.explorer.create_wizard();" id="create_code">马上创建</a></p></li>
+	#elseif($projects)
+    	#foreach($p in $projects)
+    	#set($count = $velocityCount)
+    	#set($versions = $project.getAllVersionByProject($p.id))
+    	#if($code)
+    	#set($selected = ($code.project==$p.id))
+    	#end
+    	<li class="project#if($selected) prj_selected#end #if($count!=$projects.size())code_seperator#end"  id="prj_${p.id}">
+    		#set($v = ${versions.get(0)})
+    		#set($vn = $format.text(${p.name}))
+            <div class="title">
+    			<a class="title_name" title="${vn}" href="javascript:runjs.loadCode('${v.ident}');">${vn}</a>
+    			<a class="rename" id="code_menu_${v.ident}" title="代码管理" href="javascript:runjs.explorer.showCodeMenu($('#code_menu_${v.ident}'),'${v.ident}',${p.id});"></a>
+    		</div>
+        </li>
+    	#end
+	#end
+</ul>
+#end
+#else
+<ul class="projects">
+	#if($projects && $projects.size()==0)
+		<li class="tip"><p style="color:#AAA;">还没有创建任何代码</p><br><p><a href="javascript:runjs.explorer.create_wizard();" id="create_code">马上创建</a></p></li>
+	#else
+		#set($selected = false)
+    	#foreach($catalog in $catalogs)
+		#if($catalog)
+    		#set($selected = $catalog.id==$code.catalog)
+        	<li class="catalog project#if($selected) dropped prj_selected#end" id="catalog_${catalog.id}">
+    			#set($codes2 = $CodeBean.listCodeByCatalog($g_user.id,$catalog.id))
+    			#set($cname = $format.text(${catalog.name}))
+                <div class="title"><a class="title_name" title="${cname}">$cname #if($codes2 && $codes2.size()>0)($codes2.size())#end</a><a class="rename" title="分类管理" id="catalog_menu_${catalog.id}" href="javascript:runjs.explorer.showCatalogMenu($('#catalog_menu_${catalog.id}'),${catalog.id});"></a></div>
+        		#if($codes2 && $codes2.size()>0)
+    			<ul class="versions">
+        			#foreach($one in $codes2)
+    				#if($one && $code)
+    				#set($selected = ($code.id==$one.id))
+    				#set($oname = $format.text(${one.name}))
+    				<li class="version#if($selected) selected#end" ident="${one.ident}">
+        				<a class="url#if($selected) current#end"  href="javascript:runjs.loadCode('${one.ident}');">${oname}</a>
+                        <a class="delete#if($selected) current#{else} nocurrent#end" id="code_menu_${one.ident}"   href="javascript:runjs.explorer.showCodeMenu($('#code_menu_${one.ident}'),'${one.ident}',${one.project});"></a>
+        			</li>
+    				#end
+    				#end
+                </ul>
+    			#end
+            </li>
+    		#end
+		#end
+		#set($codes = $CodeBean.listCodeByCatalog($g_user.id,0))
+		#if($codes && $codes.size()>0)
+		#foreach($v in $codes)
+		#if($v && $code)
+    	#set($selected = ($code.project==$v.project))
+    	<li class="project#if($selected) prj_selected#end"  id="code_${v.id}">
+    		#set($vn = $format.text(${v.name}))
+            <div class="title">
+    			<a class="title_name" title="${vn}" href="javascript:runjs.loadCode('${v.ident}');">${vn}</a>
+    			<a class="rename" id="code_menu_${v.ident}" title="代码管理" href="javascript:runjs.explorer.showCodeMenu($('#code_menu_${v.ident}'),'${v.ident}',${v.project});"></a>
+    		</div>
+        </li>
+		#end
+		#end
+		#end
+	#end
+</ul>
+#end
+</div>
+<div class="mainresource">
+<div class="maintitle" id="my_resource">资源文件<div id="add_resource" class="add_project" title="上传新资源"></div></div>
+<ul class="resources projects">
+	#set($images = $project.getUserFileList($g_user.id,1))
+	#set($css = $project.getUserFileList($g_user.id,2))
+	#set($js = $project.getUserFileList($g_user.id,3))
+	#set($json = $project.getUserFileList($g_user.id,4))
+	#set($xml = $project.getUserFileList($g_user.id,5))
+	#if($images && $css && $js && $xml && $json)
+	#set($totalCount = $images.size() + $css.size() + $js.size() + $xml.size() + $json.size())
+	#end
+	#if($totalCount>0)
+	#if($images && $images.size()>0)
+	<li class="image_resource resource project">
+        <div class="title"><a class="title_name" title="图片资源">图片 #if($images && $images.size()>0)(<span id="imagesCount">${images.size()}</span>)#end</a></div>
+		<ul class="versions">
+		#foreach($r in $images)
+            <li class="version" id="file_${r.id}">
+				<a class="rurl" href="${shost}${r.path}" target="_blank">$format.text($format.abbr(${r.name},20))</a>
+				<a class="rdelete" title="删除" href="javascript:runjs.explorer.delete_resource('images',${r.id});">删除</a>
+			</li>
+		#end
+        </ul>
+	</li>
+	#end
+	#if($css && $css.size()>0)
+	<li class="css_resource resource project">
+        <div class="title"><a class="title_name" title="CSS资源">CSS #if($css && $css.size()>0)(<span id="cssCount">${css.size()}</span>)#end</a></div>
+		<ul class="versions">
+		#foreach($r in $css)
+            <li class="version" id="file_${r.id}">
+				<a class="rurl" href="${shost}${r.path}" target="_blank" title="${r.name}">$format.text($format.abbr(${r.name},20))</a>
+				<a class="rdelete" title="删除" href="javascript:runjs.explorer.delete_resource('css',${r.id});">删除</a>
+			</li>
+		#end
+        </ul>
+	</li>
+	#end
+	#if($js && $js.size()>0)
+	<li class="js_resource resource project">
+        <div class="title"><a class="title_name" title="JS资源">JavaScript #if($js && $js.size()>0)(<span id="jsCount">${js.size()}</span>)#end</a></div>
+		<ul class="versions">
+		#foreach($r in $js)
+            <li class="version" id="file_${r.id}">
+				<a class="rurl" href="${shost}${r.path}" target="_blank" title="${r.name}">$format.text($format.abbr(${r.name},20))</a>
+				<a class="rdelete" title="删除" href="javascript:runjs.explorer.delete_resource('js',${r.id});">删除</a>
+			</li>
+		#end
+        </ul>
+	</li>
+	#end
+	#if($json && $json.size()>0 || $xml && $xml.size()>0)
+	<li class="other_resource resource project">
+        <div class="title"><a class="title_name" title="其它资源">XML & JSON #if($json && $json.size()>0 || $xml && $xml.size())#set($countOther=$json.size()+$xml.size())(<span id="otherCount">${countOther}</span>)#end</a></div>
+		<ul class="versions">
+		#foreach($r in $json)
+            <li class="version" id="file_${r.id}">
+				<a class="rurl" href="${r.path}" resource="${r.name}" target="_blank" title="${r.name}">$format.text($format.abbr(${r.name},20))</a>
+				<a class="rdelete" title="删除" href="javascript:runjs.explorer.delete_resource('other',${r.id});">删除</a>
+			</li>
+		#end
+		#foreach($r in $xml)
+            <li class="version" id="file_${r.id}">
+				<a class="rurl" href="${r.path}" resource="${r.name}" target="_blank" title="${r.name}">$format.text($format.abbr(${r.name},20))</a>
+				<a class="rdelete" title="删除" href="javascript:runjs.explorer.delete_resource('other',${r.id});">删除</a>
+			</li>
+		#end
+        </ul>
+	</li>
+	#end
+	#else
+    <li class="tip"><p style="color:#AAA;">还没有上传任何资源</p><br><p><a href="javascript:runjs.explorer.add_resource();" id="upload_now">马上上传</a></p></li>	
+	#end
+</ul>
+</div>

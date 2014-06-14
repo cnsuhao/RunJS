@@ -1,0 +1,157 @@
+#set($type=$link.param("p1",""))#set($ident2=$link.param("p2",""))#set($code2 = $project.getCodeByIdent($ident,$g_user))$request.setAttribute("close_comment",true)#if(($template_type && $template_type.equals("html")) || $type.equals("html"))#if($code2)$format.text($code2.html)#else
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script class="jquery library" src="/js/sandbox/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<title>RunJS 演示代码</title>
+  </head>
+<body>
+    <div class='content'>
+    <div style='padding-right:40px'>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div style='padding-right:20px'>
+      <div></div>
+      <div></div>
+      <div style='margin-right:122px'>
+      </div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div style='margin-right:142px'></div>
+    </div>
+    <div>
+      <div></div>
+      <div style='margin-right:82px' class="play"></div>
+      <div  class="play"></div>
+      <div style='margin-right:42px'></div>
+    </div>
+    <div>
+      <div></div>
+      <div style='margin-right:62px' class="play"></div>
+      <div class="play"></div>
+      <div class="play"></div>
+      <div style='margin-right:42px'></div>
+    </div>
+    <div>
+      <div></div>
+      <div style='margin-right:42px' class="play"></div>
+      <div class="play"></div>
+      <div class="play"></div>
+      <div class="play"></div>
+      <div style='margin-right:42px'></div>
+    </div>
+    <div>
+      <div></div>
+      <div style='margin-right:62px' class="play"></div>
+      <div class="play"></div>
+      <div class="play"></div>
+      <div style='margin-right:42px'></div>
+    </div>
+    <div>
+      <div></div>
+      <div style='margin-right:82px' class="play"></div>
+      <div class="play"></div>
+      <div style='margin-right:42px'></div>
+    </div>
+    <div>
+      <div style='margin-right:22px'></div>
+      <div style='margin-right:142px'></div>
+    </div>
+    <div>
+      <div style='margin-right:42px'></div>
+      <div></div>
+      <div style='margin-right:102px'></div>
+    </div>
+    <div>
+      <div style='margin-right:62px'></div>
+      <div></div>
+      <div style='margin-right:82px'></div>
+    </div>
+    <div>
+      <div style='margin-right:42px'></div>
+      <div></div>
+      <div style='margin-right:102px'></div>
+    </div>
+    <div>
+      <div style='margin-right:22px'></div>
+      <div></div>
+      <div style='margin-right:122px'></div>
+    </div>    
+    <div>
+      <div></div>
+      <div></div>
+      <div style='margin-right:142px'></div>
+    </div>      
+    <div>
+      <div></div>
+      <div style='margin-right:162px'></div>
+    </div>
+  </div>
+  </body>
+</html>
+#end
+#elseif(($template_type && $template_type.equals("css")) || $type.equals("css"))
+#if($code2)$format.text($code2.css)#else
+body{
+	margin:50px;
+  background-color:#2C3437;
+}
+.content{
+  display:inline-block;
+  width:350px;
+  height:239px;
+  margin-right:-4px;
+}
+.play{
+	cursor:pointer;
+	background-color:#060;
+}
+div>div{
+  display:block;
+  height:20px;
+}
+div>div>div{
+  width:16px;
+  height:16px;
+  background-color:#FFF;
+  display:inline-block;
+  float:right;
+  margin:2px;
+}
+#end
+#elseif(($template_type && $template_type.equals("js")) || $type.equals("js"))
+#if($code2)$format.text($code2.js)#else
+$(document).ready(function(){
+	animate();
+  $(".play").click(animate).mouseover(function(){
+  	$(".play").css({"background-color":"#A55"});
+  }).mouseout(function(){
+  	$(".play").css({"background-color":"#060"});
+  });
+});
+function animate(){
+	  $('div>div>div').each(function(id){
+    $(this).css({
+      position: 'relative',
+      top: '-200px',
+      opacity: 0
+    });
+    var wait = Math.floor((Math.random()*3000)+1);
+    $(this).delay(wait).animate({
+      top: '0px',
+      opacity: 1
+    },1000);
+  });
+}
+#end
+#end

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Explorer</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Explorer Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_explorer.js.html#l58"><code>js\explorer.js:58</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>按视图划分，Explorer负责处理左边资源管理器视图的显示及操作</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Explorer" class="method item"> 
+          <h3 class="name"><code>Explorer</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_explorer.js.html#l58"><code>js\explorer.js:58</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_add_resource">add_resource</a> </li> 
+             <li class="index-item method"> <a href="#method_create_wizard">create_wizard</a> </li> 
+             <li class="index-item method"> <a href="#method_createCatalog">createCatalog</a> </li> 
+             <li class="index-item method"> <a href="#method_delete_catalog">delete_catalog</a> </li> 
+             <li class="index-item method"> <a href="#method_delete_code">delete_code</a> </li> 
+             <li class="index-item method"> <a href="#method_delete_resource">delete_resource</a> </li> 
+             <li class="index-item method"> <a href="#method_fold_view">fold_view</a> </li> 
+             <li class="index-item method"> <a href="#method_initView">initView</a> </li> 
+             <li class="index-item method"> <a href="#method_moveToCatalog">moveToCatalog</a> </li> 
+             <li class="index-item method"> <a href="#method_removeMenu">removeMenu</a> </li> 
+             <li class="index-item method"> <a href="#method_rename_catalog">rename_catalog</a> </li> 
+             <li class="index-item method"> <a href="#method_rename_code">rename_code</a> </li> 
+             <li class="index-item method"> <a href="#method_update_publish">update_publish</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_Events">Events</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr private"> <a href="#attr_defaultParams">defaultParams</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_add_resource" class="method item"> 
+            <h3 class="name"><code>add_resource</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l114"><code>js\explorer.js:114</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>弹出资源上传对话框并处理上传</p> 
+            </div> 
+           </div> 
+           <div id="method_create_wizard" class="method item"> 
+            <h3 class="name"><code>create_wizard</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l92"><code>js\explorer.js:92</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>弹出代码创建流程对话框</p> 
+            </div> 
+           </div> 
+           <div id="method_createCatalog" class="method item"> 
+            <h3 class="name"><code>createCatalog</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cid</code> </li> 
+              <li class="arg"> <code>ident</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l256"><code>js\explorer.js:256</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>创建分类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码ID</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_delete_catalog" class="method item"> 
+            <h3 class="name"><code>delete_catalog</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cid</code> </li> 
+              <li class="arg"> <code>cname</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l392"><code>js\explorer.js:392</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>删除分类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>分类ID</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cname</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>分类新名称</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_delete_code" class="method item"> 
+            <h3 class="name"><code>delete_code</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>id</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l227"><code>js\explorer.js:227</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>删除代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">id</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码ID</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_delete_resource" class="method item"> 
+            <h3 class="name"><code>delete_resource</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>type</code> </li> 
+              <li class="arg"> <code>id</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l327"><code>js\explorer.js:327</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>删除资源文件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>资源类型：css,js,image,other</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">id</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>资源ID</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_fold_view" class="method item"> 
+            <h3 class="name"><code>fold_view</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l503"><code>js\explorer.js:503</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>显示/隐藏Explorer视图</p> 
+            </div> 
+           </div> 
+           <div id="method_initView" class="method item"> 
+            <h3 class="name"><code>initView</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>show</code> </li> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>async</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l72"><code>js\explorer.js:72</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>资源管理器视图初始化</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">show</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否显示资源管理器</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">async</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否采取异步方式初始化视图</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_moveToCatalog" class="method item"> 
+            <h3 class="name"><code>moveToCatalog</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cid</code> </li> 
+              <li class="arg"> <code>ident</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l297"><code>js\explorer.js:297</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>移动到分类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码ID</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_removeMenu" class="method item"> 
+            <h3 class="name"><code>removeMenu</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l484"><code>js\explorer.js:484</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>移除所有设置上下文菜单</p> 
+            </div> 
+           </div> 
+           <div id="method_rename_catalog" class="method item"> 
+            <h3 class="name"><code>rename_catalog</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cid</code> </li> 
+              <li class="arg"> <code>cname</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l358"><code>js\explorer.js:358</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>重命名分类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>分类ID，若cname为空，则cid的值应为：{cname:&quot;&quot;,cid:id}</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cname</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>分类新名称</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_rename_code" class="method item"> 
+            <h3 class="name"><code>rename_code</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>cid</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l194"><code>js\explorer.js:194</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>重命名代码</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>代码ID</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_update_publish" class="method item"> 
+            <h3 class="name"><code>update_publish</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>cid</code> </li> 
+              <li class="arg"> <code>name</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l160"><code>js\explorer.js:160</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>更新代码的发布信息</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cid</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+                <p>需更新的代码id</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>需更新的代码新名称</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_Events" class="property item"> 
+            <h3 class="name"><code>Events</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l22"><code>js\explorer.js:22</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>事件绑定规则定义，详情见 <a href="..\classes\Utils.html" class="crosslink">Utils</a> 类中的 <a href="..\classes\Utils.html#method_binder" class="crosslink">binder</a> 方法</p> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_defaultParams" class="attr item private"> 
+            <a name="config_defaultParams"></a> 
+            <h3 class="name"><code>defaultParams</code></h3> 
+            <span class="type"></span> 
+            <span class="flag private">private</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_explorer.js.html#l11"><code>js\explorer.js:11</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>默认配置参数</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

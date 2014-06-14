@@ -1,0 +1,48 @@
+#set($ident = $link.param("p1",""))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#if($code)
+#set($htmlType = $code.GetHTMLType())
+#set($cssType = $code.GetCSSType())
+#set($jsType = $code.GetJSType())
+#else
+#set($htmlType = 1)
+#set($cssType = 1)
+#set($jsType = 1)
+#end
+#set($plugin = $PluginBean.GetPluginByCode($code.id))
+#set($host = "http://runjs.cn")
+#set($shost = "http://sandbox.runjs.cn")
+<fieldset class="editorSet left">
+	<div class="editor html top">
+        <span class="quick_tools"><span>HTML</span><img src="/img/arrow-out.png" width="14"/></span>
+		#set($template_type = "html")
+		<textarea rows="10" cols="40" id="code_html">#invoke("template.vm")</textarea>
+	</div>
+	<div class="handler handler_horizontal"></div>
+	<div class="editor js bottom">
+        <span class="quick_tools"><span onclick="runjs.editor.chooseJsType();">#if($jsType==1)JavaScript#elseif($jsType==2)CoffeeScript#end</span><img src="/img/arrow-out.png" width="14"/></span>
+		#set($template_type = "js")
+		<textarea rows="10" cols="40" id="code_js">#invoke("template.vm")</textarea>
+	</div>
+</fieldset>
+<div class="handler handler_vertical"></div>
+<fieldset class="editorSet right">
+	<div class="editor css top">
+        <span class="quick_tools"><span onclick="runjs.editor.chooseCssType();">#if($cssType==1)CSS#elseif($cssType==2)LESS#end</span><img src="/img/arrow-out.png" width="14"/></span>
+		#set($template_type = "css")
+		<textarea rows="10" cols="40" id="code_css">#invoke("template.vm")</textarea>
+	</div>
+	<div class="handler handler_horizontal"></div>
+	<div class="editor preview bottom">
+        <span class="quick_tools">
+			<span>
+				#if($code)<a href="${shost}/show/${code.ident}" target="_blank">预览</a>#{else}预览#end
+			</span>
+			<img src="/img/arrow-out.png" width="14"/>
+		</span>
+		#if($g_user && $code && $code.user!=$g_user.id)
+			#set($isNotMyCode=true)
+		#end
+		<iframe #if($isNotMyCode)src="$shost/show/${code.ident}"#elseif($plugin)src="$host/plugin/${code.ident}"#end id="preview" frameborder="0"></iframe>
+	</div>
+</fieldset>

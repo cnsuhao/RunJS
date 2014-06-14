@@ -1,0 +1,377 @@
+1、jdk最好用oracle的官方版本，先卸掉系统上的openjdk
+2、jdk安装完成后要设置环境变量，在/etc/profile 或者/etc/environment中添加JAVA_HOME，添加Java命令的PATH
+3、检查系统是否还有未分区的磁盘(一般为数据盘，比较大)，如果有先分区，然后格式化，最后挂载到一个指定的数据目录(例如/data).
+4、将一些体积会增长的软件放在/data下，例如nginx（日志），tomcat（日志），数据库数据文件，服务器应用程序（上传等）
+5、nginx最好采用编译安装的方式安装，configure的时候要带上--with-http_stub_status_module 以便以后做监控。带上--prefix参数可以指定--prefix=/data/nginx-1.x.x指明nginx的安装目录。
+6、tomcat需要修改一些配置
+	删除webapps下面的所有文件（都是没有用的文件）
+	catalina.sh中设置一些启动参数
+	CATALINA_OPTS="-Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.EPollSelectorProvider"
+	JAVA_OPTS="-server -Xms512m -Xmx1024m"
+	删除logging.properties中的一些用不到的日志配置以防tomcat产生大量的无用的日志
+	删除server.xml中的无用的配置，保留如下信息
+	################################################################
+	server.xml文件
+	################################################################
+	
+	<Server port="8006" shutdown="SHUTDOWN">
+	  <Service name="Catalina">
+	    <Executor name="tomcatThreadPool" namePrefix="HTTP-9080-exec-"
+		maxThreads="500" minSpareThreads="10" maxIdleTime="60000"/>
+	    <Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"
+		connectionTimeout="20000" redirectPort="443"/>
+
+	    <Engine name="Catalina" defaultHost="localhost">
+
+	      <Host name="localhost"  appBase="webapps">
+		<Context path="" docBase="/data/runjs/webapp" allowLinking="true" reloadable="false" sessionCookiePath="/" sessionCookieName="RUNJS_SESSION" useHttpOnly="true"/>
+	     </Host>
+	    </Engine>
+	  </Service>
+	</Server>
+	
+	配置好tomcat，复制一份一模一样的为tomcat2，并把监听的两个端口改掉（例如改为8106，8081），做备用。
+
+7、nginx配置
+主要是三个文件，
+################################################################
+gzip.conf
+################################################################
+
+gzip  			on;
+gzip_min_length         1024;
+gzip_comp_level         5;
+gzip_buffers            8 16k;
+gzip_http_version       1.1;
+gzip_proxied            any;
+gzip_types              text/plain application/x-javascript text/css;
+################################################################
+proxy.conf
+################################################################
+
+proxy_redirect          off;
+proxy_set_header        Host $host;
+proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+client_max_body_size    100m;
+client_body_buffer_size 256k;
+proxy_connect_timeout   500;
+proxy_send_timeout      500;
+proxy_read_timeout      500;
+
+proxy_buffer_size       128k;
+proxy_buffers           4 256k;
+proxy_busy_buffers_size 256k;
+proxy_temp_file_write_size 256k;
+
+
+################################################################
+nginx.conf文件
+################################################################
+
+user  nobody;
+worker_processes  2;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+worker_rlimit_nofile 8192;
+
+events {
+    use epoll;
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    server_tokens off;
+
+    keepalive_timeout           60 20;
+    client_header_timeout       3m;
+    client_body_timeout         3m;
+    send_timeout                3m;
+
+    client_header_buffer_size           16k;
+    large_client_header_buffers         4 32k;
+    server_names_hash_max_size          512;
+    server_names_hash_bucket_size       64;
+
+    sendfile        on;
+    tcp_nopush      on;
+    tcp_nodelay     on;
+
+    upstream runjs_tomcats {
+	ip_hash;
+        server   127.0.0.1:8080;
+        #server   127.0.0.1:8081;
+    }
+    
+    include gzip.conf;
+
+    log_format  runjs_log
+        '$remote_addr - $remote_user [$time_local] $request '
+        '"$status" $body_bytes_sent "$http_referer" '
+        '"$http_user_agent" "$http_x_forwarded_for"';
+#####################################################################
+
+    server {
+	listen 80;
+	server_name www.runjs.cn;
+	location / {
+	    rewrite (.*) http://runjs.cn$1 permanent;
+	}
+    }
+
+    server {
+	listen 80;
+	server_name runjs.cn;
+
+        access_log  logs/runjs.log;
+        #access_log /dev/null;
+	error_log /dev/null;
+
+	if ($request_method !~ ^(GET|POST|HEAD)$ ) {
+	    return 405;
+	}
+
+	location ~ ^/NginxStatus {
+            stub_status on;
+            access_log off;
+            #auth_basic              "valid-user";
+            #auth_basic_user_file  /opt/ngx/conf/oschina_pw;
+        }
+
+	#location ~ ^/mrtg {
+        #    auth_basic          "valid-user";
+        #    auth_basic_user_file /opt/ngx/conf/oschina_pw;
+        #    access_log off;
+        #    root /opt/mrtg;
+        #}
+
+        #location ~ ^/awstats/ {
+        #    root /data/oschina/webapp;
+	#    index awstats.www.oschina.net.html;
+        #    access_log off;
+        #    error_log off;
+        #    auth_basic              "valid-user";
+        #    auth_basic_user_file  /opt/ngx/conf/oschina_pw;
+        #}
+
+	location ~ /.svn/ {
+	    return 404;
+	}
+
+	location ~ ^/(WEB-INF)/ {
+	    return 404;
+        }
+
+	
+        location ~ ^/(show)/{
+	    return 404;
+        }
+
+
+        location ~ \.(apk|torrent|htm|html|asp|php|gif|jpg|jpeg|png|bmp|ico|rar|css|js|zip|java|jar|txt|flv|swf|mid|doc|ppt|xls|pdf|txt|mp3|wma|xml|json)$ {
+            root /data/runjs/webapp;
+            expires 30d;
+        }
+	
+	location / {
+	    proxy_pass http://runjs_tomcats;
+	    include proxy.conf;
+	}
+
+    }
+
+    server {
+        listen 80;
+        server_name sandbox.runjs.cn;
+
+        access_log  logs/runjs.log;
+        #access_log /dev/null;
+        error_log /dev/null;
+
+        if ($request_method !~ ^(GET|POST|HEAD)$ ) {
+            return 405;
+        }
+
+        location ~ /.svn/ {
+            return 404;
+        }
+
+        location ~ ^/(WEB-INF)/ {
+            return 404;
+        }
+
+	location ~ ^/(js/sandbox|uploads/rs)/ {
+	    root /data/runjs/webapp;
+	}
+
+        location ~ ^/(show|action/ajax/echo)/{
+            proxy_pass http://runjs_tomcats;
+            include proxy.conf;
+        }
+
+    }
+
+}
+
+8、mysql配置
+################################################################
+my.cnf文件
+################################################################
+
+[client]
+password        = 
+port            = 3306
+socket          = /tmp/mysql.sock
+max_allowed_packet = 48M
+
+# Here follows entries for some specific programs
+
+# The MySQL server
+
+[mysqld]
+datadir=/data/mysql
+event_scheduler=ON
+default-storage-engine=INNODB
+#default-character-set=utf8
+character-set-server = utf8
+port            = 3306
+wait_timeout	= 600
+interactive_timeout	= 600
+connect_timeout = 20
+socket          = /tmp/mysql.sock
+
+#back_log = 1024
+max_connections = 1024
+max_connect_errors = 128
+open_files_limit = 8192
+
+key_buffer_size = 1024M
+
+sort_buffer_size = 16M
+read_buffer_size = 16M
+join_buffer_size = 16M
+read_rnd_buffer_size = 4M
+bulk_insert_buffer_size = 16M
+
+myisam_max_sort_file_size = 100G
+myisam_sort_buffer_size=64M
+
+thread_cache_size = 64
+#thread_concurrency = 16
+thread_stack = 512k
+
+query_cache_limit = 2M
+query_cache_size = 64M
+query_cache_min_res_unit= 2k
+
+table_cache = 1024
+tmp_table_size = 64M
+max_heap_table_size = 256M
+max_tmp_tables = 256
+bulk_insert_buffer_size = 4M
+skip-name-resolve
+slow_query_log
+long_query_time = 1
+
+innodb_data_home_dir = /data/mysql
+innodb_data_file_path = ibdata1:10M:autoextend
+innodb_log_group_home_dir = /data/mysql
+innodb_file_per_table = 1
+innodb_open_files = 2048
+
+#memlock
+innodb_buffer_pool_size = 2G
+innodb_additional_mem_pool_size=32M
+innodb_log_file_size = 64M
+innodb_lock_wait_timeout = 50
+innodb_flush_log_at_trx_commit = 0
+### small swap / IO
+innodb_flush_method = O_DIRECT
+innodb_write_io_threads = 2
+innodb_read_io_threads = 4
+innodb_thread_concurrency = 2
+innodb_log_files_in_group = 2
+innodb_max_dirty_pages_pct = 90
+
+
+[mysqldump]
+quick
+max_allowed_packet = 24M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+default-character-set=utf8
+
+[isamchk]
+key_buffer = 128M
+sort_buffer_size = 128M
+read_buffer = 2M
+write_buffer = 2M
+
+[myisamchk]
+key_buffer = 128M
+sort_buffer_size = 128M
+read_buffer = 2M
+write_buffer = 2M
+
+
+9、更新程序
+一、更新静态资源以及vm文件
+
+cd /data/runjs
+svn up
+
+二、更新Java类、properties等需要编译的文件
+cd /data/runjs
+svn up
+sh build.sh
+/data/tomcat2/startup.sh
+ps -ef | grep tomcat
+确认tomcat2已经启动
+
+cd /data/nginx/conf
+vi nginx.conf
+将代理切换到tomcat2
+/data/nginx/sbin/nginx -s reload
+重新载入nginx配置。
+
+/data/tomcat1/bin/shutdown.sh
+查看tomcat1是否已经被停掉
+ps -ef | grep tomcat
+如果没停掉，kill 【id】 的方式干掉他，要确定干掉的是tomcat1的进程而不是tomcat2的进程
+/data/tomcat1/bin/startup.sh
+ps -ef | grep tomcat
+确认tomcat1已经启动
+
+cd /data/nginx/conf
+vi nginx.conf
+将代理切换到tomcat2
+/data/nginx/sbin/nginx -s reload
+重新载入nginx配置。
+
+/data/tomcat2/bin/shutdown.sh
+查看tomcat2是否已经被停掉
+ps -ef | grep tomcat
+如果没停掉，kill 【id】 的方式干掉他，要确定干掉的是tomcat2的进程.
+
+至此，更新操作完毕。
+
+
+
+
+
+
+
+
+tip：
+
+tail 命令加上-f参数可以持续监控文件末尾追加的内容。

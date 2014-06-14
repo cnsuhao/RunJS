@@ -1,0 +1,48 @@
+#set($host = "http://runjs.cn")
+#set($html = "<div style='font-family: 微软雅黑, Verdana, sans-serif, 宋体;color:#A00;text-align:center;'>参数错误，了解更多请访问&nbsp;<a href='${host}'>RunJS</a></div>")
+#if($code)
+    ##判断代码类型
+    #if($type == "js")
+    	#if($code.GetJSType() == 1 && $code.js && $code.js.length()>0)
+    		#set($html = "<p class='code_title'>JavaScript&nbsp;:</p>")
+    		#set($html=$html + $project.render_code(${code.js},"js"))
+    	#elseif($code.GetJSType() == 2 && $code.js && $code.js.length()>0)
+    		#set($html = "<p class='code_title'>CoffeeScript&nbsp;:</p>")
+    		#set($html=$html + $project.render_code(${code.js},"coffeescript"))
+    	#end
+    #elseif($type == "css" && $code.css && $code.css.length()>0)
+    	#if($code.GetCSSType() == 1)
+    		#set($html = "<p class='code_title'>CSS&nbsp;:</p>")
+    		#set($html=$html + $project.render_code(${code.css},"css"))
+    	#elseif($code.GetCSSType() == 2 && $code.css && $code.css.length()>0)
+    		#set($html = "<p class='code_title'>LESS&nbsp;:</p>")
+    		#set($html=$html + $project.render_code(${code.css},"less"))
+    	#end
+    #elseif($type == "html" && $code.html && $code.html.length()>0)
+    	#set($html = "<p class='code_title'>HTML&nbsp;:</p>")
+    	#set($html= $html + $project.render_code(${code.html},"html"))
+    #elseif($type == "all")
+    	#set($html = "")
+		#if($code.html && $code.html.length()>0)
+			#set($html = "<p class='code_title'>HTML&nbsp;:</p>")
+			#set($html=$html + $project.render_code(${code.html},"html"))
+		#end
+    	#if($code.GetJSType() == 1 && $code.js && $code.js.length()>0)
+    		#set($js=$project.render_code(${code.js},"js"))
+    		#set($html=$html + "<p class='code_title'>JavaScript&nbsp;:</p>" + $js)
+    	#elseif($code.GetJSType() == 2 && $code.js && $code.js.length()>0)
+    		#set($js=$project.render_code(${code.js},"coffeescript"))
+    		#set($html=$html + "<p class='code_title'>CoffeeScript&nbsp;:</p>" + $js)
+    	#end
+    	#if($code.GetCSSType() == 1 && $code.css && $code.css.length()>0)
+    		#set($css=$project.render_code(${code.css},"css"))
+    		#set($html=$html + "<p class='code_title'>CSS&nbsp;:</p>" + $css)
+    	#elseif($code.GetCSSType() == 2 && $code.css && $code.css.length()>0)
+    		#set($css=$project.render_code(${code.css},"less"))
+    		#set($html=$html + "<p class='code_title'>LESS&nbsp;:</p>" + $css)
+    	#end
+	#end
+    document.write('<div class="runjs_gist"><div class="gist_header"><span class="gist_code" style="color:black;">$format.html(${code.name}) : </span><span class="gist_code"><a href="${host}/detail/${ident}" target="_blank">在线演示</a></span><span class="gist_code"><a href="${host}/code/${ident}" target="_blank">查看源码</a></span></div><div class="gist_content">'+'$project.escape($html)'+'</div><div class="gist_bottom"><span class="powerby">Powered By <a href="${host}">RunJS</a></span></div></div>');
+#else
+	document.write('<div class="runjs_gist"><div class="gist_header"></div><div class="gist_content">'+"<div style='font-family: 微软雅黑, Verdana, sans-serif, 宋体;color:#A00;text-align:center;'>该代码不存在或已被原作者删除，了解更多请访问&nbsp;<a href='${host}'>RunJS</a></div>"+'</div><div class="gist_bottom"><a href="${host}/help/gist" target="_blank" title="查看如何使用 gist">?</a></span><span class="powerby">Powered By <a href="${host}" target="_blank">RunJS</a></span></div></div>');
+#end

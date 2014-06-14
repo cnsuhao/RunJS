@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      个性插件 - RunJS
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <style>
+	.content_main ul{margin:10px 0 10px 10px;}
+    .content_main ul li{margin:10px 0;line-height:25px}
+    .content_main p{margin:10px 0;}
+    img{border:1px solid #201818;height:250px;margin:10px;}
+    img.bigImage{height:500px;}
+	</style>
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/sandbox/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+		RURL=location.href;
+		$(function(){
+            $(".select").mouseover(function() {
+            	$(this).find("ul").show();
+            }).mouseout(function() {
+            	$(this).find("ul").hide();
+            });
+            
+            $(".select li").click(function() {
+            	$(this).parent().hide();
+            });
+		});
+		function login(type){
+			var url = "http://runjs.cn/action/openid/before_login?op=" + type;
+			openwindow(url, 'loginPage', 800, 600);
+		}
+		function logout(uid){
+        	jQuery.post("/action/ajax/logout",'uid='+uid, function(msg) {
+        		location.href="/plugin";
+        	});
+        }
+		
+		function openwindow(url, name, iWidth, iHeight) {
+		var url; // 转向网页的地址;
+		var name; // 网页名称，可为空;
+		var iWidth; // 弹出窗口的宽度;
+		var iHeight; // 弹出窗口的高度;
+		var iTop = (window.screen.availHeight - 30 - iHeight) / 2; // 获得窗口的垂直位置;
+		var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; // 获得窗口的水平位置;
+		window.open(url,name,
+			'height='
+					+ iHeight
+					+ ',,innerHeight='
+					+ iHeight
+					+ ',width='
+					+ iWidth
+					+ ',innerWidth='
+					+ iWidth
+					+ ',top='
+					+ iTop
+					+ ',left='
+					+ iLeft
+					+ ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+		}
+	</script>
+  </head>
+  <body>
+    <div class="header">
+      <a href="/">
+        <div class="logo">
+          <h3>
+            RunJS
+          </h3>
+        </div>
+      </a>
+        <div class="headerMenu">
+			<div class="menuItem btnGroup login">
+				#if(!$g_user)
+				<div class="select" id="login" >
+				<div class="title">登录<div class="arrow_bottom"></div></div>
+                <ul>
+                    <li><a href="javascript:login('oschina')">开源中国</a></li>
+					<li><a href="javascript:login('qq')">腾讯QQ</a></li>
+					<li><a href="javascript:login('weibo')">新浪微博</a></li>
+					<li><a href="javascript:login('google')">Google</a></li>
+					<li><a href="javascript:login('github')">Github</a></li>
+					<li><a href="javascript:login('hotmail')">Hotmail</a></li>
+					<li><a href="javascript:login('yahoo')">Yahoo</a></li>
+				</ul>
+    			</div>
+				#else
+					<div class="btn" id="logout" onclick="javascript:logout($g_user.id);">退出($format.html(${g_user.name}))</div>
+				#end
+			</div>
+		</div>
+    </div>
+    <div class="index_content">
+      <div class="content_main">
+    	<br/>
+    	<h3 style="font-weight: bold;">一、插件能干什么？ </h3>
+    	<ul>
+    		<li>1、添加新功能特性。<br>例如在下面 “如何开发个性插件” 中提到的的 CSS Color Picker，或者 “自动保存” 、 “JavaScript 代码补全” 和 “记住上次编辑状态” 功能等，都能够为编辑器添加新的特性。<br></li>
+    		<li>2、制作新的主题。<br>插件中的 CSS 将覆盖当前样式表样式，从而达到制作新主题的目的<br></li>
+    		<li>3、修复编辑器Bug<br>编辑器可能存在某些小Bug，可以通过基于原型的方式重写系统方法，达到Bug修复的目的。<br></li>
+    	</ul>
+        <h3 style="font-weight: bold;">二、如何开发个性插件？</h3>
+		<ul>
+			<li>
+				下面将给出一个用户插件示例：
+				<br/>
+				<p>
+					<b>
+						CSS Color Picker
+					</b>
+					: CSS 视图中的颜色选择器，让开发者快速选择想要的颜色
+				</p>
+				<p>
+					<b>
+						效果
+					</b>
+					：	
+				</p>
+				<p>
+					<img src="/img/plugins/plugin_demo_colorpi.png">
+				</p>
+				<p>
+					<b>
+						步骤
+					</b>
+					：	
+				</p>
+			</li>
+			<li>
+				1、选择“创建用户插件”。
+				<br>
+				点击左边 “我的代码” 的加号打开“项目创建向导”,并选择“创建用户插件”
+				<p>
+					<img src="/img/plugins/step1_1.jpg">
+					<img src="/img/plugins/step1_2.jpg">
+				</p>
+			</li>
+			<li>
+				2、完成插件创建向导。
+				<br>
+				在弹出的对话框中的 “步骤1” 填写插件名称为：CssColorPicker；点击 “下一步”，在 “步骤2” 中 选定引入 “onEditorViewInit ” 方法，然后滑到底部，选定引入 “onCssCursorActivitiy” 方法，点击 “完成”（更多关于自动引入方法的使用请查看 
+				<a href="http://runjs.cn/apidoc/classes/onEvents.html" target="_blank">
+					API 文档
+				</a>
+				）。
+				<p>
+					<img src="/img/plugins/colorpicker_3.png">
+					<img src="/img/plugins/colorpicker_4.png">
+					<img src="/img/plugins/colorpicker_42.png">
+				</p>
+			</li>
+			<li>
+				3、构建插件示例代码。
+				<br>
+				如下构建代码：
+				<p>
+					<img class="bigImage" src="/img/plugins/colorpicker_all.png">
+				</p>
+				<p>
+					<b>
+						代码
+					</b>
+					：	
+				</p>
+				<p>
+					<script type="text/javascript" src="http://runjs.cn/gist/9o6ojuxg/all/rdark">
+					</script>
+				</p>
+			</li>
+			<li>
+				4、保存及预览。
+				<br>
+				保存后即可在 “预览” 视图中起效
+				<br/>
+				<br/>
+			</li>
+			<li>
+				5、调试。
+				<br>
+				调试在插件开发过程中很重要，为此，RunJS 开发了一种 “插件开发模式”，你可以看到，平常你所见到的右下角的 “预览” 视图此时变成了一个编辑器，没错，这就是一个全功能的 RunJS 编辑器，该编辑器已经应用了你当前编写的插件代码，按 “Ctrl+4” 最大化 “预览” 视图来调试你当前的功能，以防止破坏性的代码在正式启用该插件时使 RunJS 编辑器无法使用。若出现因用户插件错误代码导致RunJS无法使用的，
+				<a href="http://runjs.cn/code?plugin?plugin=true" target="_blank">
+					请点击此处重置
+				</a>
+				，该操作将关闭当前所有的用户编写的插件，以便恢复 RunJS 编辑器正常功能，并再次调试、启用
+				<br/>
+				<br/>
+			</li>
+			<li>
+				6、启用插件。
+				<br>
+				点击左边资源管理器中当前代码的小扳手，在 “插件” 选项中选择 “应用此插件”，如果需要关闭时，也可以在此关闭。
+				<p>
+					<img src="/img/plugins/setting.png">
+					<img src="/img/plugins/colorpicker_on.png">
+				</p>
+			</li>
+			<li>
+				7、插件起效。
+				<br>
+				页面刷新后，刚编写的插件即刻起效。
+			</li>
+		</ul>
+		<h3>三、RunJS API 文档</h3><br>
+		该 API 文档可直接用于插件的开发，以下各类都在 Global_Variables全局变量 中实例化，可以直接使用。
+		<ul>
+			<li><a href="http://runjs.cn/apidoc/classes/Global_Variables.html" target="_blank">Global_Variables</a>：全局变量定义，定义了 全局状态信息、用户账户相关信息、用户设置信息</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Utils.html" target="_blank">Utils</a>：模块工具类，初始化各模块视图、自定绑定事件以及其他辅助功能</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Plugins.html" target="_blank">Plugins</a>：插件辅助类，用来创建、管理插件</li>
+			<li><a href="http://runjs.cn/apidoc/classes/onEvents.html" target="_blank">onEvents</a>：系统事件，各模块在某特定条件下自动触发的事件，为了更便于查看，将 <a href="http://runjs.cn/apidoc/classes/Plugins.html" target="_blank">Plugins</a> 中抽离出来单独说明</li>
+			<li><a href="http://runjs.cn/apidoc/classes/RunJS.html" target="_blank">RunJS</a>：RunJS 核心类，管理其他各个模块间的相互调用，以及系统流程处理等</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Editor.html" target="_blank">Editor</a>：按视图划分，Editor 负责编辑器视图的显示及操作</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Explorer.html" target="_blank">Explorer</a>：按视图划分，Explorer 负责处理左边资源管理器视图的显示及操作</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Menu.html" target="_blank">Menu</a>：按视图划分，Menu负责处理顶部菜单视图的显示及操作</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Dialog.html" target="_blank">Dialog</a>：该类用来处理弹出框，使用 <a href="http://www.oschina.net/p/zebra_dialog" target="_blank">Zebra Dialog</a> 插件实现</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Plugin.html" target="_blank">Plugin</a>：插件类</li>
+			<li><a href="http://runjs.cn/apidoc/classes/Resource.html" target="_blank">Resource</a>：常用 JavaScript 库。</li>
+		</ul>
+	</div>
+    </div>
+	<div class="footer">
+      <p>© RunJS(RunJS.cn) | <a href="/help"> RunJS 帮助</a> | 粤ICP备12009483号-7</p>
+    </div>		
+	</body>
+</html>

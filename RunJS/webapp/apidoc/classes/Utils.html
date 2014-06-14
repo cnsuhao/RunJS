@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Utils</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Utils Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_utils.js.html#l9"><code>js\utils.js:9</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>模块工具类，用来初始化各模块视图、自定绑定事件以及其他辅助功能等</p> 
+        </div> 
+        <div class="constructor"> 
+         <h2>Constructor</h2> 
+         <div id="method_Utils" class="method item"> 
+          <h3 class="name"><code>Utils</code></h3> 
+          <span class="paren">()</span> 
+          <div class="meta"> 
+           <p> Defined in <a href="../files/js_utils.js.html#l9"><code>js\utils.js:9</code></a> </p> 
+          </div> 
+          <div class="description"> 
+          </div> 
+         </div> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab methods"><a href="#methods">Methods</a></li> 
+          <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section methods"> 
+            <h3>Methods</h3> 
+            <ul class="index-list methods"> 
+             <li class="index-item method"> <a href="#method_binder">binder</a> </li> 
+             <li class="index-item method"> <a href="#method_buildString">buildString</a> </li> 
+             <li class="index-item method"> <a href="#method_className">className</a> </li> 
+             <li class="index-item method"> <a href="#method_doNothing">doNothing</a> </li> 
+             <li class="index-item method"> <a href="#method_errorHandler">errorHandler</a> </li> 
+             <li class="index-item method"> <a href="#method_getHttpLink">getHttpLink</a> </li> 
+             <li class="index-item method"> <a href="#method_initParams">initParams</a> </li> 
+             <li class="index-item method"> <a href="#method_initParams">initParams</a> </li> 
+             <li class="index-item method"> <a href="#method_initStatus">initStatus</a> </li> 
+             <li class="index-item method"> <a href="#method_isArray">isArray</a> </li> 
+             <li class="index-item method"> <a href="#method_isDifClass">isDifClass</a> </li> 
+             <li class="index-item method"> <a href="#method_isEmpty">isEmpty</a> </li> 
+             <li class="index-item method"> <a href="#method_isFunc">isFunc</a> </li> 
+             <li class="index-item method"> <a href="#method_isIframe">isIframe</a> </li> 
+             <li class="index-item method"> <a href="#method_isIframe">isIframe</a> </li> 
+             <li class="index-item method"> <a href="#method_isNotArray">isNotArray</a> </li> 
+             <li class="index-item method"> <a href="#method_isNotEmpty">isNotEmpty</a> </li> 
+             <li class="index-item method"> <a href="#method_isNotFunc">isNotFunc</a> </li> 
+             <li class="index-item method"> <a href="#method_isSameClass">isSameClass</a> </li> 
+             <li class="index-item method"> <a href="#method_load">load</a> </li> 
+             <li class="index-item method"> <a href="#method_openwindow">openwindow</a> </li> 
+             <li class="index-item method"> <a href="#method_stopDefault">stopDefault</a> </li> 
+             <li class="index-item method"> <a href="#method_typeOf">typeOf</a> </li> 
+             <li class="index-item method"> <a href="#method_updateUrl">updateUrl</a> </li> 
+            </ul> 
+           </div> 
+           <div class="index-section attrs"> 
+            <h3>Attributes</h3> 
+            <ul class="index-list attrs"> 
+             <li class="index-item attr"> <a href="#attr_g_utils">g_utils</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="methods" class="api-class-tabpanel"> 
+           <h2 class="off-left">Methods</h2> 
+           <div id="method_binder" class="method item"> 
+            <h3 class="name"><code>binder</code></h3> 
+            <span class="paren">()</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l18"><code>js\utils.js:18</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>事件自动绑定 events:<br /> 事件映射列表 映射规则：<br /> &quot;event(事件) -&gt; selector(选择器)&quot;:&quot;handler(事件处理器)&quot;<br /> events = { <br /> &quot;click-&gt;[document]&quot;:&quot;doc<em>click</em>handler&quot; <br /> }<br /> <span style="color:#A00">[注]</span>如果selector带有中括号[]则表明为系统全局变量，如window,document<br /> 需要以 call(module) 的方式把上下文设置成当前的模块实例</p> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>g_utils.binder.call(module)
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_buildString" class="method item"> 
+            <h3 class="name"><code>buildString</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>arguments</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">String</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l442"><code>js\utils.js:442</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>利用数组的join构造字符串，提高字符串拼接效率</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">arguments</code> <span class="type">String | Number</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">String</span>: 拼接后的字符串 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_className" class="method item"> 
+            <h3 class="name"><code>className</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>obj</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type"></span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l340"><code>js\utils.js:340</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获取当前模块名</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">obj</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <p>className(g_utils);//返回 &quot;Utils&quot;</p> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_doNothing" class="method item"> 
+            <h3 class="name"><code>doNothing</code></h3> 
+            <span class="paren">()</span> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l402"><code>js\utils.js:402</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>返回 true 且啥也不处理的回调函数，用于<a href="..\classes\Dialog.html" class="crosslink">Dialog</a>中设置无所作为的按钮的事件</p> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>dialog.get(&quot;confrim2&quot;,doNothing,doNow);//doNow 为回调函数
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_errorHandler" class="method item"> 
+            <h3 class="name"><code>errorHandler</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>msg</code> </li> 
+              <li class="arg"> <code>success</code> </li> 
+              <li class="arg"> <code>error</code> </li> 
+              <li class="arg"> <code>diy</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l181"><code>js\utils.js:181</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>处理服务器端返回的JSON类型数据结果，判断是否为出错信息，并提供两种方式处理错误</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">msg</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>服务器传来待处理的 JSON 格式字符串</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">success</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>无错误时的回调函数，该回调将获得处理过后的 JSON 数据</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">error</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>服务器端传来错误信息时调用，将返回出错 JSON 数据</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">diy</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否立即使用 error 回调函数处理错误，true为立即使用error处理，false和undefined为系统使用弹窗显示错误然后再调用error回调处理</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_getHttpLink" class="method item"> 
+            <h3 class="name"><code>getHttpLink</code></h3> 
+            <span class="paren">()</span> 
+            <span class="returns-inline"> <span class="type">String</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l238"><code>js\utils.js:238</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>获得以“http://”开头的链接地址，并加上当前域的HOST名称,例如 g_utils.getHttpLink(&quot;/code/abcdefg&quot;)将返回&quot;http://runjs.cn/code/abcdefg&quot;</p> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">String</span>: link 返回处理好的链接地址 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_initParams" class="method item"> 
+            <h3 class="name"><code>initParams</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>ident</code> </li> 
+              <li class="arg"> <code>afterInit</code> </li> 
+              <li class="arg"> <code>async</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l113"><code>js\utils.js:113</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化视图 自动像viewLink+&quot;/&quot;+ident路径请求模版，返回后插入到target中，初始化完成执行afterInit回调，并将当前对象当作调用上下文对象</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">ident</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>代码的唯一标识</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">afterInit</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>当视图初始化好后调用的回调函数</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">async</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否采用异步方式加载数据，true或undefined时为异步方式，false为同步方式</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>g_utils.initView.call(module,ident,callback,async)
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_initParams" class="method item"> 
+            <h3 class="name"><code>initParams</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>params</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l88"><code>js\utils.js:88</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始化参数：初始化arguments第一个参数（json格式），将其设置为当前对象的成员属性， params为json格式数据<br /></p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">params</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>JSON类型数据</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>g_utils.initParams.call(module)
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_initStatus" class="method item"> 
+            <h3 class="name"><code>initStatus</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>link</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l227"><code>js\utils.js:227</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>初始状态信息，该方法用来从服务器端加载一段js，用eval执行来初始化全局变量</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">link</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>请求链接地址</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_isArray" class="method item"> 
+            <h3 class="name"><code>isArray</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>array</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l320"><code>js\utils.js:320</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断是否为数组</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">array</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isDifClass" class="method item"> 
+            <h3 class="name"><code>isDifClass</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cur</code> </li> 
+              <li class="arg"> <code>cur2</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l373"><code>js\utils.js:373</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断两个对象为不同类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cur</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cur2</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isEmpty" class="method item"> 
+            <h3 class="name"><code>isEmpty</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>obj</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l265"><code>js\utils.js:265</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断当前对象是否为空</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">obj</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: empty 当为 null,undefined,&quot;&quot; 将返回true 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isFunc" class="method item"> 
+            <h3 class="name"><code>isFunc</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>fun</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l285"><code>js\utils.js:285</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断是否为函数</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">fun</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isIframe" class="method item"> 
+            <h3 class="name"><code>isIframe</code></h3> 
+            <span class="paren">()</span> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l433"><code>js\utils.js:433</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断当前不处在iframe中</p> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isIframe" class="method item"> 
+            <h3 class="name"><code>isIframe</code></h3> 
+            <span class="paren">()</span> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l424"><code>js\utils.js:424</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断当前是否处在iframe中</p> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isNotArray" class="method item"> 
+            <h3 class="name"><code>isNotArray</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>arr</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l330"><code>js\utils.js:330</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断不是数组</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">arr</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isNotEmpty" class="method item"> 
+            <h3 class="name"><code>isNotEmpty</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>obj</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l275"><code>js\utils.js:275</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断当前对象是否非空</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">obj</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isNotFunc" class="method item"> 
+            <h3 class="name"><code>isNotFunc</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>fun</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l295"><code>js\utils.js:295</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断不是函数</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">fun</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_isSameClass" class="method item"> 
+            <h3 class="name"><code>isSameClass</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cur</code> </li> 
+              <li class="arg"> <code>cur2</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l359"><code>js\utils.js:359</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断两个对象是否为相同的类</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cur</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">cur2</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_load" class="method item"> 
+            <h3 class="name"><code>load</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>link</code> </li> 
+              <li class="arg"> <code>async</code> </li> 
+              <li class="arg"> <code>callback</code> </li> 
+              <li class="arg"> <code>data</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">String</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l158"><code>js\utils.js:158</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>采用同步或异步方式加载远端资源</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">link</code> <span class="type">String</span> 
+               <div class="param-description"> 
+                <p>请求链接地址</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">async</code> <span class="type">Boolean</span> 
+               <div class="param-description"> 
+                <p>是否采用异步方式加载数据</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">callback</code> <span class="type">Function</span> 
+               <div class="param-description"> 
+                <p>采用异步方式的回调函数</p> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">data</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>发送请求时附带参数数据</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">String</span>: responseText 采用同步方式时直接返回结果，采用异步方式时将返回 undefined 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_openwindow" class="method item"> 
+            <h3 class="name"><code>openwindow</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>url</code> </li> 
+              <li class="arg"> <code>name</code> </li> 
+              <li class="arg"> <code>iWidth</code> </li> 
+              <li class="arg"> <code>iHeight</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l384"><code>js\utils.js:384</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>以 window.open 方式打开弹窗</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">url</code> <span class="type">String</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">name</code> <span class="type">String</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">iWidth</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">iHeight</code> <span class="type">Number</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_stopDefault" class="method item"> 
+            <h3 class="name"><code>stopDefault</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>event</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l217"><code>js\utils.js:217</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>阻止浏览器默认事件</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">event</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+                <p>浏览器事件对象</p> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+           <div id="method_typeOf" class="method item"> 
+            <h3 class="name"><code>typeOf</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>cur</code> </li> 
+              <li class="arg"> <code>type</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <span class="returns-inline"> <span class="type">Boolean</span> </span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l305"><code>js\utils.js:305</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>判断 cur 是否为 type 类型</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">cur</code> <span class="type">Object</span> 
+               <div class="param-description"> 
+               </div> </li> 
+              <li class="param"> <code class="param-name">type</code> <span class="type">String</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+            <div class="returns"> 
+             <h4>Returns:</h4> 
+             <div class="returns-description"> 
+              <span class="type">Boolean</span>: 
+             </div> 
+            </div> 
+            <div class="example"> 
+             <h4>Example:</h4> 
+             <div class="example-content"> 
+              <pre class="code prettyprint"><code>typeOf(&quot;Hello&quot;,&quot;string&quot;);//将返回true
+</code></pre> 
+             </div> 
+            </div> 
+           </div> 
+           <div id="method_updateUrl" class="method item"> 
+            <h3 class="name"><code>updateUrl</code></h3> 
+            <div class="args"> 
+             <span class="paren">(</span>
+             <ul class="args-list inline commas"> 
+              <li class="arg"> <code>url</code> </li> 
+             </ul>
+             <span class="paren">)</span> 
+            </div> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l413"><code>js\utils.js:413</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>更新浏览器地址栏链接地址</p> 
+            </div> 
+            <div class="params"> 
+             <h4>Parameters:</h4> 
+             <ul class="params-list"> 
+              <li class="param"> <code class="param-name">url</code> <span class="type">String</span> 
+               <div class="param-description"> 
+               </div> </li> 
+             </ul> 
+            </div> 
+           </div> 
+          </div> 
+          <div id="attrs" class="api-class-tabpanel"> 
+           <h2 class="off-left">Attributes</h2> 
+           <div id="attr_g_utils" class="attr item"> 
+            <a name="config_g_utils"></a> 
+            <h3 class="name"><code>g_utils</code></h3> 
+            <span class="type"></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_utils.js.html#l259"><code>js\utils.js:259</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>Utils 类实例[全局]</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

@@ -1,0 +1,237 @@
+#set($dys=$msg_tool.getAlldynamics(1,15))
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="RunJS,在线编写、展示html、js、css代码，拥有实时预览、分享、Fork、代码高亮、自动完成等多项特性，提供文件上传、多种登录方式。" />
+	<meta name="keywords" content="RunJS runjs JavaScript CSS HTML 在线运行 展示 效果"/>
+	<title>RunJS - 在线编辑、展示、分享、交流你的 JavaScript 代码</title>
+		<link rel="stylesheet" type="text/css" href='/css/index.css?20121126'>
+		<script src="/js/sandbox/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			URL=location.href;
+    		$(document).ready(function() {
+            	$(".getIn .dl").mouseenter(function() {
+            		$(this).find("dt").stop().animate({
+            			opacity : 0
+            		}, "normal");
+            		$(this).find(".description").stop().animate({
+            			opacity : 0
+            		}, "normal");
+            		$(this).find(".ribbonWrapper").stop().animate({
+            			opacity : 0
+            		}, "normal");
+            		$(this).find(".gradientBg").stop().animate({
+            			opacity : 0
+            		}, "slow");
+            	});
+            
+            	$(".getIn .dl").mouseleave(function() {
+            		$(this).find("dt").stop().animate({
+            			opacity : 1
+            		}, "slow");
+            		$(this).find(".description").stop().animate({
+            			opacity : 1
+            		}, "slow");
+            		$(this).find(".ribbonWrapper").stop().animate({
+            			opacity : 1
+            		}, "slow");
+            		$(this).find(".gradientBg").stop().animate({
+            			opacity : 1
+            		}, "normal");
+            	});
+				
+				$(".select").mouseover(function() {
+        			$(this).find("ul").show();
+        		}).mouseout(function() {
+        			$(this).find("ul").hide();
+        		});
+        
+        		$(".select li").click(function() {
+        			$(this).parent().hide();
+        		});
+				$(".msg_ul li a").click(function(){
+					jQuery.post("/action/msg/readMsg","id"=+$(this).parent().attr("id"));
+				});
+				//公告无限滚动
+    			var notice_ul = $(".notice ul");
+				var notice_lis = notice_ul.find("li");
+    			var count = notice_lis.length;
+				var width = 0;
+				jQuery.each(notice_lis,function(idx,li){
+					width += $(li).width();
+				});
+    			notice_ul.css({width:width+20*count});
+				var margin_left = 0;
+				var direction = "left";
+				var stop = false;
+				setInterval(function(){
+					if(stop)
+						return;
+					notice_ul.css("margin-left",margin_left);
+					var li = $(".notice ul li:eq(0)");
+					if(margin_left + li.width()+20 <= 0){
+						var li2 = li.clone();
+						$(".notice ul").append(li2);
+						li.remove();
+						margin_left = 0;
+						notice_ul.css("margin-left",margin_left);
+					}
+					margin_left=margin_left-1;
+				},20);
+				$(".notice").mouseover(function(){
+					stop = true;
+				}).mouseout(function(){
+					stop = false;
+				});
+            });
+
+			function login(type){
+				var url = "http://runjs.cn/action/openid/before_login?op=" + type;
+				openwindow(url, 'loginPage', 800, 600);
+			}
+			function logout(uid){
+            	jQuery.post("/action/ajax/logout",'uid='+uid, function(msg) {
+            		location.href="/";
+            	});
+            }
+			
+			function openwindow(url, name, iWidth, iHeight) {
+    			var url; // 转向网页的地址;
+    			var name; // 网页名称，可为空;
+    			var iWidth; // 弹出窗口的宽度;
+    			var iHeight; // 弹出窗口的高度;
+    			var iTop = (window.screen.availHeight - 30 - iHeight) / 2; // 获得窗口的垂直位置;
+    			var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; // 获得窗口的水平位置;
+    			window.open(url,name,
+    				'height='
+    						+ iHeight
+    						+ ',,innerHeight='
+    						+ iHeight
+    						+ ',width='
+    						+ iWidth
+    						+ ',innerWidth='
+    						+ iWidth
+    						+ ',top='
+    						+ iTop
+    						+ ',left='
+    						+ iLeft
+    						+ ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+			}
+		</script>
+	</head>
+	<body>
+	<!--     头部header开始    -->
+     <div class="header">
+        <div class="logo" onclick="javascript:location.href='/'">
+            <h3>RunJS</h3>
+        </div>
+        <div class="headerMenu">
+			<div class="menuItem btnGroup login">
+				#if(!$g_user)
+				<div class="select" id="login" >
+				<div class="title">登录<div class="arrow_bottom"></div></div>
+                <ul>
+                    <li><a href="javascript:login('oschina')">OSChina</a></li>
+					<li><a href="javascript:login('qq')">腾讯QQ</a></li>
+					<li><a href="javascript:login('weibo')">新浪微博</a></li>
+					<li><a href="javascript:login('google')">Google</a></li>
+					<li><a href="javascript:login('github')">Github</a></li>
+					<li><a href="javascript:login('hotmail')">Hotmail</a></li>
+					<li><a href="javascript:login('yahoo')">Yahoo</a></li>
+				</ul>
+    			</div>
+				#else
+					<div class="btn" id="logout" onclick="javascript:logout($g_user.id);">退出($format.html(${g_user.name}))</div>
+				#end
+			</div>
+		</div>
+    </div>
+	<div class="index_content">
+      <h2> RunJS - 在线编辑、展示、分享、交流你的  JavaScript 代码</h2>
+      <div class="getIn clearfix">
+        <dl class="dl" onclick="location.href='/square'">
+          <dt>广场</dt>
+          <dd class="ribbonWrapper">
+            <div class="ribbon">NEW</div>
+          </dd>
+          <dd class="gradientBg"></dd>
+          <dd class="description">展示最新最热的优质代码</dd>
+          <dd class="img"><img src='$link.img("square.jpg")' width="300" height="150" alt="展示最新最热的优质代码"/>
+          </dd>        
+        </dl>
+        <dl class="dl" onclick="location.href='/editor'">
+          <dt>编辑器</dt>
+          <dd class="gradientBg"></dd>
+          <dd class="description">在线编辑、实时预览你的  JavaScript 代码</dd>
+          <dd class="img"><img src='$link.img("editor.jpg")' width="300" height="150" alt="在线编辑、实时预览你的 JavaScript 代码" />
+          </dd>
+        </dl> 
+        <dl class="grayDl">
+          <dt>个性插件</dt>
+          <dd class="ribbonWrapper">
+            <div class="ribbon gray">即将上线</div>
+          </dd>
+          <dd class="description">自由扩展、自我增强、打造属于自己的编辑器</dd>        
+        </dl>
+      </div>
+      <div class="content_main clearfix">
+        <div class="notice clearfix">
+          <h3>公告</h3>
+          <ul>
+            <li>RunJS 首页改版啦！</li>
+            <li>RunJS 推出 Gist 功能！</li>
+            <li>RunJS 最新推出代码广场！</li>
+            <li>RunJS 增加对 CoffeeScript 的支持！</li>
+			<li>RunJS 增加对 Less 的支持！</li>
+            <li>RunJS 新增用户动态显示！</li>
+            <li>RunJS 新增代码分类功能！</li>
+            <li>RunJS 即将上线个性插件功能！</li>
+          </ul>
+        </div>
+        <div class="userOperate">
+          <ul>
+			#foreach($dy in $dys)
+				#show_dynamic2($dy)
+			#end
+          </ul>
+        </div>
+		#**
+		#if($g_user)
+    		#set($msgs = $msg_tool.getUnreadMsgByUser($g_user.id))
+			#if($msgs && $msgs.size()>0)
+    		<div class="help">
+    			<h3>$msgs.size()条未读通知</h3>
+    			<ul class="msg_ul">
+    			#foreach($msg in $msgs)
+    				#if($msg && $velocityCount < 6)<li id="$msg.id">$msg.content</li>#end
+    			#end
+    			</ul>
+    		</div>
+			#end
+		#end
+		*#
+		<div class="help">
+          <h3>常见问题帮助</h3>
+          <ul>
+            <li><a href="/help#runjs" target="_blank">RunJS 是什么？</a></li>
+            <li><a href="/help#create" target="_blank">怎样在RunJS 上创建代码？</a></li>
+            <li><a href="/help#save" target="_blank">怎样保存我的代码？ </a></li>
+            <li><a href="/help#fork" target="_blank">Fork 是什么?怎么 Fork 别人的代码？</a></li>
+            <li><a href="/help#post" target="_blank">什么是发布？发布可以做什么？</a></li>
+            <li><a href="/help#upload" target="_blank">怎样上传图片、js、css 等资源文件？</a></li>
+            <li><a href="/help#jslib" target="_blank">我的代码中需要使用一些第三方 js 库怎么办？</a></li>
+			<li><a href="/help#ajax" target="_blank">我的代码需要带有 Ajax 调用的演示怎么办？</a></li>
+		 	<li><a href="/help#ie" target="_blank">我想在低版本的 IE 中查看代码效果怎么办？</a></li>
+		  	<li><a href="/help#bug" target="_blank">发现了 RunJS 的 bug 或者有建议？</a></li>
+		  </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+        © RunJS(RunJS.cn) | <a href="/help"> RunJS 帮助</a> | 粤ICP备12009483号-7
+      </p>
+    </div>
+	</body>
+</html>

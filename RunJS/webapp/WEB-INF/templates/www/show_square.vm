@@ -1,0 +1,17 @@
+#set($id=$link.param("p1",0))
+#set($sc = $Square.getSquareCodeById($id))
+#if($sc)
+	${sc.html}
+    #if($sc.GetCSSType() == 1)
+	<style>${sc.css}</style>
+	#elseif($sc.GetCSSType() == 2)
+	<style>$project.less_compile(${sc.css})</style>
+	#end
+    #if($sc.GetJSType() == 1)
+		<script>${sc.js}</script>
+	#elseif($sc.GetJSType() == 2)
+		<script>$project.coffee_compile(${sc.js})</script>
+	#end
+#else
+	$response.sendError(404)
+#end

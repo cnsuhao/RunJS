@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>浏览器不被支持</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="zh-CN" />
+        <meta name="author" content="开源中国-RunJS" />
+        <meta name="Copyright" content="开源中国-RunJS" />
+        <meta name="description" content="开源中国-RunJS,在线编辑、保存html、js、css代码，拥有实时预览、版本管理、分享、Fork等多项特性" />
+        <meta name="keywords" content="RunJS 开源中国 OSC"/>
+        <style>
+    		body{background-color: #2b3a41;color: #fff;font-family: 微软雅黑, Verdana, sans-serif, 宋体}
+            ul, li, h1, p{padding: 0;margin: 0;}
+            .ieError{margin: 0 auto;width: 500px;margin-top: 100px;}
+            .erroeMessage{height: 100px;}
+            .ieError h1{float: left;background: url(/img/runjs.png) no-repeat;text-indent: -9999px;height: 100px;width: 300px;}
+            .ieError em{display: block;font-style: normal;font-size: 33px;font-weight: bold;color: #ff0;}
+            .browser ul{list-style: none;}
+            .browser p{height: 30px;}
+            .browser li{float: left;margin-right: 30px;}
+			.browser img{border:0;}
+		</style>
+        <!--[if lt IE 10]>
+        <script type="text/javascript">
+        	var unsupport = true;
+        </script>
+        <![endif]-->
+        <script type="text/javascript">
+        	if(typeof unsupport == "undefined"){
+				location.href = "/";
+			}
+        </script>
+    </head>
+    <body>
+        <div class="ieError">
+          <div class="erroeMessage">
+            <h1>runjs</h1>
+            <p>
+              <em>Oh, no!</em>
+				不支持 IE10 以下浏览器！
+            </p>
+          </div>
+          <div class="browser">
+            <p>建议安装以下浏览器：</p>
+            <ul>
+              <li><a href="http://www.google.cn/intl/zh-CN/chrome/browser/" title="下载chrome"><img src="/img/chrome.png" /></a></li>
+              <li><a href="http://firefox.com.cn/" title="下载Firefox"><img src="/img/firefox.png" /></a></li>
+              <li><a href="http://www.apple.com.cn/safari/" title="下载safari"><img src="/img/safari.png" /></a></li>
+              <li><a href="http://cn.opera.com/" title="下载opera"><img src="/img/opera.png" /></a></li>
+            </ul>
+          </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\explorer.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\explorer.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+/**
+ * 按视图划分，Explorer负责处理左边资源管理器视图的显示及操作
+ * @class Explorer
+ */
+Explorer = (function() {
+
+	var PT = Explorer.prototype;
+
+	var instance;
+
+	/**
+	 * 默认配置参数
+	 * @attribute defaultParams
+	 * @private
+	 */
+	PT.defaultParams = {
+		viewLink : editor_path+&quot;/explorer&quot;,
+		cmenuLink : editor_path+&quot;/context_menu&quot;,
+		ident : &quot;&quot;
+	}
+
+	/**
+	 * 事件绑定规则定义，详情见 {{#crossLink &quot;Utils&quot;}}{{/crossLink}} 类中的 {{#crossLink
+	 * &quot;Utils/binder&quot;}}{{/crossLink}} 方法
+	 * 
+	 * @property Events
+	 * @type {JSON}
+	 */
+	PT.Events = {
+		&quot;click-&gt;.fold_control&quot; : &quot;fold_view&quot;,
+		&quot;click-&gt;#add_resource&quot; : &quot;add_resource&quot;,
+		&quot;mouseover-&gt;.mainproject li.project&quot; : function() {
+			$(this).find(&quot;.rename&quot;).show();
+		},
+		&quot;mouseout-&gt;.mainproject li.project&quot; : function() {
+			$(this).find(&quot;.rename&quot;).hide();
+		},
+		&quot;click-&gt;.mainresource .title&quot; : function() {
+			$(this).parent().toggleClass(&quot;dropped&quot;);
+		},
+		&quot;click-&gt;.mainproject .catalog .title .title_name&quot; : function() {
+			$(this).parent().parent().toggleClass(&quot;dropped&quot;);
+		},
+		&quot;mouseover-&gt;.mainresource li.version&quot; : function() {
+			$(this).find(&quot;.rdelete&quot;).show();
+		},
+		&quot;mouseout-&gt;.mainresource li.version&quot; : function() {
+			$(this).find(&quot;.rdelete&quot;).hide();
+		},
+		&quot;mouseover-&gt;.mainproject li.version&quot; : function() {
+			$(this).find(&quot;.delete&quot;).removeClass(&quot;nocurrent&quot;).addClass(&quot;current&quot;);
+		},
+		&quot;mouseout-&gt;.mainproject li.version&quot; : function() {
+			$(this).find(&quot;.delete&quot;).removeClass(&quot;current&quot;).addClass(&quot;nocurrent&quot;);
+		}
+	};
+
+	/** 
+	 * @class Explorer
+	 * @constructor
+	 */
+	function Explorer() {
+		instance = this;
+		this.arg = arguments;
+		this.clazz = className(this);
+		g_utils.initParams.call(this, this.defaultParams);
+		if (this.show)
+			this.initView.call(this);
+		return this;
+	}
+
+	/**
+	 * 资源管理器视图初始化
+	 * @method initView
+	 * @param {boolean} show 是否显示资源管理器
+	 * @param {String} ident 代码唯一标识
+	 * @param {Boolean} async 是否采取异步方式初始化视图
+	 */
+	PT.initView = function(show, ident,async) {
+		if (isEmpty(show)) {
+			show = this.show;
+		}
+		this.toggle(show);
+		if (isEmpty(ident))
+			ident = this.ident;
+		g_utils.initView.call(this, ident, function(ident, view) {
+			$(window).resize();
+		},async);
+		g_utils.binder.call(this);
+	}
+
+	/**
+	 * 弹出代码创建流程对话框
+	 * @method create_wizard
+	 */
+	PT.create_wizard = function() {
+		var d = dialog.get(&quot;create_wizard&quot;, doNothing);
+		var button = d.dialog.find(&quot;.wizard_button li&quot;);
+		var info = d.dialog.find(&quot;.wizard_info li&quot;);
+		var onButton = d.dialog.find(&quot;.wizard_button li&quot;);
+		var onInfo = d.dialog.find(&quot;.wizard_info li.on&quot;);
+		onButton.click(function() {
+			d.close();
+		});
+		button.mouseover(function() {
+			$(&quot;.wizard_button li&quot;).removeClass(&quot;on&quot;);
+			$(this).addClass(&quot;on&quot;);
+			onInfo.removeClass(&quot;on&quot;);
+			var idx = $(this).index();
+			info.hide().eq(idx).show();
+		});
+	};
+
+	/**
+	 * 弹出资源上传对话框并处理上传
+	 * @method add_resource
+	 */
+	PT.add_resource = function() {
+		var doNow = function(d, rd) {
+			var method = dialog.getField(d, &quot;[name='method']:checked&quot;, 0);
+			if (method.val() == &quot;file&quot;) {
+				var form = dialog.getField(d, &quot;form&quot;, 0);
+				var success = function(msg) {
+					instance.initView(true);
+					rd.close();
+				};
+				var fail = function(msg) {
+					dialog.errorMsg(d, msg.msg);
+				};
+				var suc = function(msg) {
+					g_utils.errorHandler(msg, success, fail, true);
+				};
+				form.ajaxForm({
+					success : suc
+				}).submit();
+			} else {
+				var url = dialog.getField(d, &quot;[name='url']&quot;, 0);
+				if (isEmpty($.trim(url.val()))) {
+					dialog.errorMsg(d, &quot;上传URL不能为空！&quot;);
+					url.focus();
+					return false;
+				}
+				var success = function(msg) {
+					instance.initView(true);
+					rd.close();
+				};
+				var fail = function(msg) {
+					dialog.errorMsg(d, msg.msg);
+				};
+				var callback = function(msg) {
+					g_utils.errorHandler(msg, success, fail, true);
+				};
+				Api.ajax.add_url_file(url.val(), callback);
+			}
+			return false;
+		};
+		dialog.get(&quot;upload&quot;, doNothing, doNow);
+	};
+
+	/**
+	 * 更新代码的发布信息
+	 * @method update_publish
+	 * @param {String} ident 代码唯一标识
+	 * @param {Number} cid 需更新的代码id
+	 * @param {String} name 需更新的代码新名称
+	 */
+	PT.update_publish = function(ident, cid, name) {
+		if (isNotEmpty(ident) &amp;&amp; isNotEmpty(name)) {
+			var doNow = function(d, rd) {
+				dialog.errorMsg(d, &quot;&quot;);
+				var des = dialog.getField(d, &quot;textarea&quot;, 0);
+				if (isEmpty(des)) {
+					dialog.errorMsg(d, &quot;描述信息不能为空&quot;);
+					des.focus();
+					return false;
+				}
+				var success = function(msg) {
+					rd.close();
+				};
+				var fail = function(msg) {
+					dialog.errorMsg(d, msg.msg);
+					des.focus();
+				};
+				var callback = function(msg) {
+					g_utils.errorHandler(msg, success, fail, true);
+				};
+				Api.ajax.update_info(cid, name, des.val(), callback);
+				return false;
+			};
+			dialog.get(&quot;update_publish/&quot; + ident, doNothing, doNow);
+		}
+	}
+
+	/**
+	 * 重命名代码
+	 * @method rename_code
+	 * @param {String} ident 代码唯一标识
+	 * @param {Number} cid 代码ID
+	 */
+	PT.rename_code = function(ident, cid) {
+		if (isEmpty(ident))
+			return false;
+		var doNow = function(d, rd) {
+			var name = dialog.getField(d, &quot;input&quot;, 0);
+			if (isEmpty(name.val())) {
+				dialog.errorMsg(d, &quot;新名称不能为空&quot;);
+				name.focus();
+				return false;
+			}
+			var success = function(msg) {
+				$(&quot;#code_&quot; + cid + &quot; .title_name&quot;).html(name.val());
+				$(&quot;li[ident='&quot;+ident+&quot;'] .url&quot;).html(name.val());
+				rd.close();
+			};
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.code_rename(cid, name.val(), callback);
+			return false;
+		};
+		dialog.get(&quot;rename/&quot; + ident, doNothing, doNow);
+	}
+
+	/**
+	 * 删除代码
+	 * @method delete_code
+	 * @param {Number} id 代码ID
+	 */
+	PT.delete_code = function(id) {
+		var doNow = function(d, rd) {
+			var captcha = dialog.valueOf(d, &quot;input&quot;, 0);
+			if ($.trim(captcha).length == 0) {
+				captcha.focus();
+				dialog.errorMsg(d, &quot;验证码不能为空&quot;);
+				return false;
+			}
+			var success = function(msg) {
+				runjs.initAll();
+				rd.close();
+			}
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.delete_project(captcha, id, callback);
+			return false;
+		}
+		dialog.get(&quot;delete_code&quot;, doNothing, doNow);
+	}
+
+	/**
+	 * 创建分类
+	 * @method createCatalog
+	 * @param {Number} cid 代码ID
+	 * @param {String} ident 代码唯一标识
+	 */
+	PT.createCatalog = function(cid, ident) {
+		var doNow = function(d, rd) {
+			var name = dialog.getField(d, &quot;input&quot;, 0);
+			if ($.trim(name.val()).length == 0) {
+				name.focus();
+				dialog.errorMsg(d, &quot;分类名称不能为空&quot;);
+				return false;
+			}
+			var success;
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			var once = true;
+			success = function(msg) {
+				runjs.explorer.initView(true);
+				rd.close();
+				var doConfirm = function(d, rd1) {
+					rd = rd1;
+					Api.ajax.move_to_catalog(cid, msg.id, callback);
+					return false;
+				};
+				if (once) {
+					dialog.get(&quot;doConfirm2&quot;, doNothing, doConfirm, &quot;&lt;p&gt;是否将当前代码添加到分类\&quot;&quot; + msg.name + &quot;\&quot;？&lt;/p&gt;&lt;p&gt;&lt;span class='errorMsg'&gt;&lt;/span&gt;&lt;/p&gt;&quot;);
+					once = false;
+				}
+			}
+			Api.ajax.add_catalog(name.val(), callback);
+			return false;
+		};
+		dialog.get(&quot;create_catalog&quot;, doNothing, doNow);
+	};
+
+	/**
+	 * 移动到分类
+	 * @method moveToCatalog
+	 * @param {Number} cid 代码ID
+	 * @param {String} ident 代码唯一标识
+	 */
+	PT.moveToCatalog = function(cid, ident) {
+		var doNow = function(d, rd) {
+			var catalog = dialog.getField(d, &quot;input[type='radio']:checked&quot;, 0);
+			if (catalog.length == 0) {
+				dialog.errorMsg(d, &quot;请选择一个分类&quot;);
+				return false;
+			}
+			var cat = catalog.attr(&quot;id&quot;).split(&quot;_&quot;)[2];
+			var success = function(msg) {
+				runjs.explorer.initView(true);
+				rd.close();
+			}
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.move_to_catalog(cid, cat, callback);
+			return false;
+		};
+		dialog.get(&quot;choose_catalog&quot;, doNothing, doNow);
+	};
+
+	/**
+	 * 删除资源文件
+	 * @method delete_resource
+	 * @param {String} type 资源类型：css,js,image,other
+	 * @param {Number} id 资源ID
+	 */
+	PT.delete_resource = function(type, id) {
+		if (isEmpty(type) || !typeOf(id, 'number'))
+			return;
+		var doNow = function(d, rd) {
+			var captcha = dialog.valueOf(d, &quot;input&quot;, 0);
+			if ($.trim(captcha).length == 0) {
+				dialog.errorMsg(d, &quot;验证码不能为空&quot;);
+				return false;
+			}
+			var success = function(msg) {
+				instance.initView();
+				rd.close();
+			}
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.delete_file(captcha, id, callback);
+			return false;
+		}
+		dialog.get(&quot;delete_file&quot;, doNothing, doNow);
+	}
+
+	/**
+	 * 重命名分类
+	 * @method rename_catalog
+	 * @param {Number} cid 分类ID，若cname为空，则cid的值应为：{cname:&quot;&quot;,cid:id}
+	 * @param {String} cname 分类新名称
+	 */
+	PT.rename_catalog = function(cid, cname) {
+		if (isEmpty(cname)) {
+			cname = cid.cname;
+			cid = cid.cid;
+		}
+		var doNow = function(d, rd) {
+			var name = dialog.getField(d, &quot;input&quot;, 0);
+			if (isEmpty(name.val())) {
+				dialog.errorMsg(d, &quot;新名称不能为空&quot;);
+				name.focus();
+				return false;
+			}
+			var success = function(msg) {
+				runjs.explorer.initView(true);
+				rd.close();
+			};
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.rename_catalog(name.val(), cid, callback);
+			return false;
+		};
+		dialog.get(&quot;rename_catalog/&quot; + cid, doNothing, doNow);
+	};
+
+	/**
+	 * 删除分类
+	 * @method delete_catalog
+	 * @param {Number} cid 分类ID
+	 * @param {String} cname 分类新名称
+	 */
+	PT.delete_catalog = function(cid, cname) {
+		if (isEmpty(cname)) {
+			cname = cid.cname;
+			cid = cid.cid;
+		}
+		var doNow = function(d, rd) {
+			var success = function(msg) {
+				runjs.explorer.initView(true);
+				rd.close();
+			};
+			var fail = function(msg) {
+				dialog.errorMsg(d, msg.msg);
+			}
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail, true);
+			}
+			Api.ajax.delete_catalog(cid, callback);
+			return false;
+		};
+		dialog.get(&quot;doConfirm2&quot;, doNothing, doNow, &quot;删除分类不会删除该分类下的代码，确认删除分类\&quot;&quot; + cname + &quot;\&quot;？&quot;);
+	};
+
+	PT.showCatalogMenu = function(cur, cid) {
+		var clazz = &quot;catalog_menu2_&quot; + cid;
+		if ($(&quot;.setting_menu&quot;).length != 0) {
+			var menu = $(&quot;.setting_menu&quot;).remove();
+			if (menu.attr(&quot;class&quot;).indexOf(clazz) &gt; 0)
+				return;
+		}
+		var menu = instance.loadContextMenu(g_status.ident, 'catalog', cid);
+		plugins.fireEvent(&quot;beforeContextMenuLoad&quot;, menu);
+		var pos = {
+			top : cur.offset().top + 10,
+			left : 210
+		};
+		if (isNotEmpty($.trim(menu))) {
+			$(&quot;.setting_menu&quot;).remove();
+			$(&quot;body&quot;).append(menu);
+			$(&quot;.setting_menu&quot;).css(pos);
+			plugins.fireEvent(&quot;onContextMenuLoad&quot;, menu);
+		}
+		$(&quot;.setting_menu&quot;).ready(function() {
+			var cur = $(&quot;.setting_menu&quot;);
+			cur.unbind(&quot;mouseleave&quot;);
+			cur.mouseenter(function() {
+				cur.mouseleave(function() {
+					cur.remove();
+					plugins.fireEvent(&quot;onContextMenuRemove&quot;, menu);
+				})
+				cur.unbind(&quot;mouseenter&quot;);
+			});
+		});
+	};
+
+	PT.showCodeMenu = function(cur, ident, pid) {
+		var clazz = &quot;version_menu_&quot; + pid + &quot;_&quot; + ident;
+		if ($(&quot;.setting_menu&quot;).length != 0) {
+			var menu = $(&quot;.setting_menu&quot;).remove();
+			if (menu.attr(&quot;class&quot;).indexOf(clazz) &gt; 0)
+				return;
+		}
+		var menu = instance.loadContextMenu(ident);
+		plugins.fireEvent(&quot;beforeContextMenuLoad&quot;, menu);
+		var pos = {
+			top : cur.offset().top + 10,
+			left : 210
+		};
+		if (isNotEmpty($.trim(menu))) {
+			$(&quot;.setting_menu&quot;).remove();
+			$(&quot;body&quot;).append(menu);
+			$(&quot;.setting_menu&quot;).css(pos);
+			plugins.fireEvent(&quot;onContextMenuLoad&quot;, menu);
+		}
+		$(&quot;.setting_menu&quot;).ready(function() {
+			var cur = $(&quot;.setting_menu&quot;);
+			cur.unbind(&quot;mouseleave&quot;);
+			cur.mouseenter(function() {
+				cur.mouseleave(function() {
+					cur.remove();
+					plugins.fireEvent(&quot;onContextMenuRemove&quot;, menu);
+				})
+				cur.unbind(&quot;mouseenter&quot;);
+			});
+		});
+	}
+
+	/**
+	 * 移除所有设置上下文菜单
+	 * @method removeMenu
+	 */
+	PT.removeMenu = function() {
+		return $(&quot;.setting_menu&quot;).remove();
+	}
+
+	PT.loadContextMenu = function(ident, type, catalog) {
+		if (isEmpty(ident))
+			return;
+		if (isEmpty(type))
+			type = &quot;code&quot;;
+		if (isEmpty(catalog))
+			catalog = &quot;&quot;;
+		var menu = g_utils.load(instance.cmenuLink + &quot;/&quot; + type + &quot;/&quot; + ident + &quot;/&quot; + catalog, false);
+		return menu;
+	}
+
+	/**
+	 * 显示/隐藏Explorer视图
+	 * @method fold_view
+	 */
+	PT.fold_view = function() {
+		var show = $(&quot;.core_margin1&quot;).length == 1
+		instance.target.toggle();
+		instance.core.toggleClass(&quot;core_margin1&quot;).toggleClass(&quot;core_margin&quot;);
+		if (show) {
+			instance.fold.toggleClass(&quot;off&quot;).toggleClass(&quot;on&quot;).css({
+				left : 215
+			});
+		} else {
+			instance.fold.toggleClass(&quot;on&quot;).toggleClass(&quot;off&quot;).css({
+				left : 2
+			});
+			;
+		}
+		$(window).resize();
+	}
+
+	PT.toggle = function(show) {
+		if (show) {
+			this.target.show();
+			this.fold.show();
+			this.core.removeClass(&quot;core_margin1&quot;).addClass(&quot;core_margin&quot;);
+		} else {
+			this.target.hide();
+			this.fold.hide();
+			this.core.removeClass(&quot;core_margin&quot;).addClass(&quot;core_margin1&quot;);
+		}
+	}
+
+	return Explorer;
+
+})();
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

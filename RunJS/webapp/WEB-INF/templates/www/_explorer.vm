@@ -1,0 +1,102 @@
+#set($show_explorer =  $g_user && $g_user.id == $code.user || !$code && $projects && $projects.size()==0)
+#if($show_explorer)
+<div class="explorer">
+	<div class="mainproject">
+    <div class="maintitle" id="my_project">我的项目<div id="create_project" class="add_project" title="创建新项目"></div></div>
+    #if($projects)
+	<ul class="projects">
+    	#foreach($p in $projects)
+		#set($count = $velocityCount)
+		#set($versions = $project.getAllVersionByProject($p.id))
+		#if($code)
+		#set($selected = ($code.project==$p.id))
+		#else
+		#set($selected = ($count==1))
+		#end
+		<li class="project#if($selected) dropped prj_selected#end" id="prj_${p.id}">
+			#set($pn = $format.abbr(${p.name},10))
+            <div class="title"><a class="title_name" title="${p.name}">${pn}</a><a class="rename" title="项目管理" href="javascript:controls.control_event.showProjectMenu(${p.id});"></a></div>
+			<ul class="versions">
+			#foreach($v in $versions)
+				#if($code)
+					#set($selected = ($code.project==$p.id) && ($code.id==$v.id))
+				#else
+					#set($selected = ($count==1) && ($velocityCount==1))
+					#set($code = $v)
+				#end
+				<li class="version#if($selected) selected#end" ident="${v.ident}">
+					#set($vn = "["+${v.num}+"] "+${v.name})
+					#if(${v.name})
+						#set($vname = $format.html($vn))
+					#else
+						#set($vname = '版本'+${v.num})
+					#end
+					<a class="url#if($selected) current#end" title="#if(${v.name})${v.name}#{else}版本${v.num}#end" href="$link.root("/code/${v.ident}")">$vname
+					</a>
+                    <a class="delete#if($selected) current#{else} nocurrent#end" title="'${vname}'管理" href="javascript:controls.control_event.showVersionMenu('${v.ident}',${v.id},${v.project}#if($versions.size()==1),true#end)"></a>
+				</li>
+			#end
+            </ul>
+        </li>
+		#end
+		#if($projects && $projects.size()==0)
+			<li class="tip"><p style="color:#AAA;">还没有创建任何项目</p><br><p><a href="javascript:controls.control_event.create_project();">马上创建</a></p></li>
+		#end
+
+	</ul>
+	#end
+    </div>
+	<div class="mainresource">
+    <div class="maintitle" id="my_resource">资源文件<div id="add_resource" class="add_project" title="上传新资源"></div></div>
+    <ul class="resources projects">
+		#set($images = $project.getUserFileList($g_user.id,1))
+		#set($css = $project.getUserFileList($g_user.id,2))
+		#set($js = $project.getUserFileList($g_user.id,3))
+		#set($totalCount = $images.size() + $css.size() + $js.size() )
+		#if($totalCount>0)
+		#if($images && $images.size()>0)
+		<li class="image_resource project dropped">
+            <div class="title"><a class="title_name" title="图片资源">图片 #if($images && $images.size()>0)(<span id="imagesCount">${images.size()}</span>)#end</a></div>
+			<ul class="versions">
+			#foreach($r in $images)
+                <li class="version" id="file_${r.id}">
+					<a class="rurl" href="${r.path}" target="_blank">$format.abbr(${r.name},20)</a>
+					<a class="rdelete" title="删除" href="javascript:controls.control_event.delete_file(${r.id},'imagesCount')">删除</a>
+				</li>
+			#end
+            </ul>
+		</li>
+		#end
+		#if($css && $css.size()>0)
+		<li class="css_resource project dropped">
+            <div class="title"><a class="title_name" title="CSS资源">CSS #if($css && $css.size()>0)(<span id="cssCount">${css.size()}</span>)#end</a></div>
+			<ul class="versions">
+			#foreach($r in $css)
+                <li class="version" id="file_${r.id}">
+					<a class="rurl" href="${r.path}" target="_blank" title="${r.name}">$format.abbr(${r.name},20)</a>
+					<a class="rdelete" title="删除" href="javascript:controls.control_event.delete_file(${r.id},'cssCount')">删除</a>
+				</li>
+			#end
+            </ul>
+		</li>
+		#end
+		#if($js && $js.size()>0)
+		<li class="js_resource project dropped">
+            <div class="title"><a class="title_name" title="JS资源">JavaScript #if($js && $js.size()>0)(<span id="jsCount">${js.size()}</span>)#end</a></div>
+			<ul class="versions">
+			#foreach($r in $js)
+                <li class="version" id="file_${r.id}">
+					<a class="rurl" href="${r.path}" target="_blank" title="${r.name}">$format.abbr(${r.name},20)</a>
+					<a class="rdelete" title="删除" href="javascript:controls.control_event.delete_file(${r.id},'jsCount')">删除</a>
+				</li>
+			#end
+            </ul>
+		</li>
+		#end
+		#else
+        <li class="tip"><p style="color:#AAA;">还没有上传任何资源</p><br><p><a href="javascript:controls.control_event.upload();">马上上传</a></p></li>	
+		#end
+	</ul>
+    </div>
+</div>
+#end

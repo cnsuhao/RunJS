@@ -1,0 +1,402 @@
+#set($ident=$link.param("p1"))
+#set($page=$link.param("p",1))
+#set($page_size=10)
+#set($code = $project.getCodeByIdent($ident,$g_user))	
+#if($code)
+	#set($is_plugin=$PluginBean.IsPlugin($code.id))
+	#set($prj = $Project.Get($code.project))
+	#set($owner = $User.Get($code.user))
+	#set($comments = $project.getCommentByCode($code.id,$page,$page_size,false))
+	#set($comment_count=$project.getCommentCountByCode($code.id))
+	#set($forks = $project.getAllForkProject($code.id))
+	#set($others = $project.getAllPosted($owner.id,$code.id))
+	#set($shost = "http://sandbox.runjs.cn")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>
+			##去掉版本的概念
+            $format.html(${code.name})#*-#if($code.name)$code.name#{else}版本$code.num#end*#
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="zh-CN" />
+        <meta name="author" content="RunJS" />
+        <meta name="description" content="RunJS,在线编辑、保存html、js、css代码，拥有实时预览、分享、Fork、代码高亮、自动完成等多项特性，提供文件上传、多种登录方式。" />
+		<meta name="keywords" content="RunJS runjs JavaScript CSS HTML 在线运行 展示 效果"/>
+		<script type="text/javascript" src="$link.action("visit/code?id=${code.id}")" defer="defer"></script>
+		<link rel="stylesheet" href="/css/detail.css?20130326" type="text/css">
+		<link rel="stylesheet" href="/css/zebra_dialog.css?20121030" type="text/css">
+        <script language="javascript" type="text/javascript">
+        	if(top.location!=self.location)top.location=self.location;
+        </script>
+        <script src="/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/js/zebra_dialog.src.js?20121030"></script>
+        <script class="jquery library" src="/js/jquery.form-2.82.js" type="text/javascript">
+        </script>
+    	<script type="text/javascript" src="/js/api.js?20121030"></script>
+        <!--[if IE 6]>
+        <script type="text/javascript">
+        	var isIE6 = true;
+        </script>
+        <![endif]-->
+		<script type="text/javascript">
+			RURL=location.href;
+    		#if($g_user && $g_user.portrait && $g_user.portrait.length()>0)
+    		#set($portrait = $g_user.portrait)
+    		#else
+    		#set($portrait = "http://gravatar.com/avatar/${project.MD5($g_user.email)}size=100")
+    		#end
+			var love_count=$project.getVoteCountById($code.id);
+    		var Code = {
+    			id:${code.id},
+    			ident:'${code.ident}'
+    		}
+    		var User = {
+				user:#{if}($g_user)${g_user.id}#{else}0#{end},
+				v_code:#{if}($g_user)'${g_user.GetVCode()}'#{else}''#{end},
+    			portrait:#{if}($g_user)'${portrait}'#{else}''#{end},
+				name:#{if}($g_user)'${g_user.name}'#{else}''#{end},
+				space:#{if}($g_user.space_url)'${g_user.space_url}'#{else}undefined#{end}
+    		}
+    	</script>
+        <script src="/js/detail.js?20121212" type="text/javascript"></script>
+    </head>
+    <body>
+        <!--     头部header开始    -->
+        <div class="header">
+			<a href="/">
+            <div class="logo">
+				##去掉版本的概念
+                <h3>$format.html(${code.name})</h3>
+            </div>
+			</a>
+            <div class="headerMenu">
+				<div class="menuItem btnGroup login">
+					<div class="btn" onclick="javascript:location.href='/square'">广场</div>
+					<div class="btn" onclick="javascript:location.href='/code'">编辑器</div>
+					<div class="btn prelogin"#if($g_user) style="display:none;"#end>登录</div>
+					<div class="btn" id="logout"#if(!$g_user) style="display:none;"#end>退出#if($g_user)(${g_user.name})#end</div>
+				</div>
+			</div>
+        </div>
+        <!--     头部header结束    -->
+        <!--     主体mainContent开始    -->
+        <div id="detail_mainContent" class="detail_wrapper clearfix">
+			<div>
+			#**
+			#if($is_plugin)
+				<a href="/code/$code.ident" target="_blank" title="这是一个RunJS插件">
+					<img src='$link.img("icon/plugin.png")' class="plugin_icon" width="32px" height="32px" alt="plugin"></img>
+				</a>
+			#end
+			*#
+            <span class="detail_projectName">
+				$format.html(${code.name})
+            </span>
+			#if($code.fork!=0)
+				#set($f_code=$project.getCodeById($code.fork))
+				#set($f_pro=$project.getProjectById($f_code.project))
+				#if($f_code)
+				<span class="detail_author_time" style="margin-left:15px;">
+					Fork自：<a href="/detail/$f_code.ident" target="_blank">$format.html(${f_pro.name})#*#if($f_code.name)${f_pro.name}-${f_code.name}#else${f_pro.name}#end*#</a>
+				</span>
+				#end
+			#end
+			<span class="detail_author_time" style="margin-left:15px">By $format.html($owner.name) 更新于$date.friendly_time($request,$code.update_time)</span>
+            </div>
+			<!--     left开始    -->
+            <div class="detail_mainContent_left clearfix">
+				#if($g_user)
+    				<button onclick='javascrpt:location.href="/code/${code.ident}/fork";' class="button" style="margin-top:10px;float:right;">Fork</button>
+    			#else
+    				<button onclick='javascript:void(0);' class="prelogin button" style="float:right;">Fork</button>
+    			#end
+    			<div class="detail_proDescription">
+                    &nbsp;$format.html($code.description)
+                </div>
+                <div class="detail_show">
+					<iframe id="code_detail" #if(!$is_plugin) src="${shost}/show/$code.ident" #else src="${shost}/show_plugin/$code.ident" #end  allowtransparency="true" frameborder="0" scrolling="no">
+					</iframe>
+				</div>
+        <div class="detail_interactArea clearfix">
+            <div class="detail_interactArea_share">
+                <span>分享到</span>
+    			<a title="新浪微博" href="http://v.t.sina.com.cn/share/share.php?title=代码分享：$format.html(${code.name})：$format.html(${code.description})，%23RunJS%23&url=http://www.runjs.cn/detail/${code.ident}&source=bookmark&appkey=1683392632&pic=" target="_blank">
+					<img src="/img/weibo.gif" width="24">
+				</a>
+    			<a title="腾讯微博" href="http://share.v.t.qq.com/index.php?c=share&a=index&url=http://www.runjs.cn/detail/${code.ident}&appkey=8608625f2c2b3e593fa14c86539077b3&site=&title=代码分享：$format.html(${code.name})：$format.html(${code.description})，%23RunJS%23" target="_blank">
+					<img src="/img/weibo_tencent.gif" width="24">
+				</a>
+				#**
+				<span class="vote_up">顶:</span>
+				#if($g_user)
+					#if($code.IsVotedByUser($g_user.id))
+						$project.getVoteCountById($code.id)
+					#else
+						<a onclick="javascript:Api.ajax.vote('$code.id',1,function(a){alert(a);})">我要顶</a>
+					#end
+				#else
+					$project.getVoteCountById($code.id)
+				#end
+				*#
+    		</div>
+			<!--<div class="detail_interactArea_read">
+				阅<span>（12）</span>
+            </div>-->
+            <div class="detail_interactArea_like">
+				#if($g_user && $g_user.id!=$code.user)
+					#if($code.IsVotedByUser($g_user.id))
+						<a style="background-image: url(../img/liked.gif)" href="javascript:void(0);">
+						已喜欢
+    					<span>（$project.getVoteCountById($code.id)）</span>
+    					</a>
+					#else
+						<a href="javascript:love('$code.id')">喜欢（$project.getVoteCountById($code.id)）</a>
+					#end
+				#elseif(!$g_user)
+					<a class="prelogin">
+					喜欢<span>（$project.getVoteCountById($code.id)）</span>
+					</a>
+				#else
+					<a href="javascript:void(0);">
+					喜欢<span>（$project.getVoteCountById($code.id)）</span>
+					</a>
+				#end
+
+            </div>
+			
+			<a href="javascript:show_gist();" title="在网页中引用该代码" id="show_gist">引用代码（Gist）</a>
+				#set($gist_ = "<script src='http://runjs.cn/gist/"+$code.ident+"/all'></script>")
+				<span id="gist_span" style="display:none;"><input value='$format.html($gist_)' id="gist_input" style="margin:0 10px 0 10px;width:250px;color:black;" onclick="this.focus();this.select();"></input><a href="http://runjs.cn/help/gist">关于Gist</a></span>
+            
+			<div class="detail_interactArea_fullScreen">
+			缩放:
+			<select id="view_scale" value="1">
+				<option value="1">100%</option>
+				<option value="0.5">50%</option>
+				<option value="2">200%</option>
+            </select>
+            <a href="http://sandbox.runjs.cn/show/$code.ident" target="_blank"><img src="/img/full_screen.png" width="24"/>全屏查看</a>
+			<a href="/code/$code.ident" target="_blank">查看源码</a>
+			#if($code.status == 1)
+			##管理员可见
+			#if($g_user && $g_user.IsAdmin())
+    			#if($Square.IsCodeInSquare($code.id))
+    				#set($sc=$Square.getSquareCodeByIdent($code.ident))
+    				##如果不是最新
+    				#if(!$sc.IsNewest())
+    					<a href="javascript:update_to_square('$code.id')">更新到广场</a>
+					#end
+					<a href="javascript:delete_from_square('$sc.id')">从广场删除</a>
+    				##如果没有添加到广场
+    			#else
+    				<a href="javascript:add_to_square('$code.id')">加到广场</a>
+    			#end
+			#end
+			#else
+				未发布
+			#end
+            </div>
+		</div>
+        <div class="detail_commentForkArea">
+        <div class="detail_commentForkArea_TabH3 clearfix">
+            <h3 class="focus comment">
+                全部评论
+                <span>
+                    #if($comments && $comments.size()>0)($comment_count)#end
+                </span>
+            </h3>
+            <h3  class="nofocus fork">
+                Fork
+                <span>
+                    #if($forks && $forks.size()>0)(${forks.size()})#end
+                </span>
+            </h3>
+        </div>
+		<a name="comment"></a>
+        <div class="detail_comment">
+            <div class="detail_comment_input clearfix">
+                <textarea name="content" onblur="(this.value=='')?this.value='觉得怎么样？赶紧说几句':this.value" onfocus="if(this.value=='觉得怎么样？赶紧说几句'){this.value='';};this.select();">觉得怎么样？赶紧说几句</textarea>
+                #if($g_user)
+				<button class="detail_comment_button button" type="button">发表评论</button>
+				#else
+				<button class="button prelogin" type="button" style="	float: right;margin-top: 5px;">登录后评论</button>
+				#end
+            </div>
+			#pager2("/detail/$ident",$comment_count,$page_size,"comment")
+            <ul class="detail_comment_list">
+				#if($comments && $comments.size()>0)
+    				#foreach($c in $comments)
+        				#set($user = $User.Get($c.user))
+                		#if(${user.portrait} && $user.portrait.length()>0)
+							#set($p = $user.portrait)
+                		#else
+							#set($p = "http://gravatar.com/avatar/${project.MD5($user.email)}size=100")
+                		#end
+                        <li id="comment_${c.id}">
+                            <img src="${p}" width="48" height="48">
+                            <p>
+        						<strong>$format.html(${user.name})</strong>
+        						<span class="time">$date.friendly_time($request,$c.create_time)</span>
+        						<span class="delete">#if($g_user.IsAdmin($c))<a href="javascript:removeComment(${c.id});">删除</a>#end</span>
+        					</p>
+                            <p>$format.html(${c.content})</p>
+                		</li>
+    				#end
+				#else
+				<li class="zeroComment" style="text-align:center;">还没有人评论哦，赶紧抢个沙发吧~~</li>
+				#end
+        	</ul>
+			#if($comments && $comments.size()>4)#pager2("/detail/$ident",$comment_count,$page_size,"comment")#end
+        </div>
+        <div class="detail_fork">
+			#**
+			#if($g_user)
+    		<button class="detail_fork_button button" type="button" onclick="javascript:location.href='/code/${code.ident}/fork'">Fork该代码</button>
+            #end
+			*#
+			<ul class="detail_fork_list">
+    			#if(${owner.portrait} && $owner.portrait.length()>0)
+        		#set($p0 = $owner.portrait)
+        		#else
+        		#set($p0 = "http://gravatar.com/avatar/${project.MD5($owner.email)}size=100")
+        		#end
+				#if($forks && $forks.size()>0)
+    				#foreach($f in $forks)
+        				#set($user = $User.Get($f.user))
+                		#if(${user.portrait} && $user.portrait.length()>0)
+							#set($p = $user.portrait)
+                		#else
+							#set($p = "http://gravatar.com/avatar/${project.MD5($user.email)}size=100")
+                		#end
+        				<li>
+            				<img src="${p}" width="48" height="48" alt="头像">
+                            <p>
+                                <strong>$format.html(${user.name})</strong>
+            					在<span class="time"> $date.friendly_time($request,$f.create_time) </span>Fork了此代码
+            				</p>
+							#set($codes=$project.getAllVersionByProject($f.id))
+							##如果fork此代码的项目中代码存在，将其最新版的链接放在下面
+							#if($codes && $codes.size()>0)
+								<p><a href="/detail/$codes.get(0).ident" target="_blank">查看该Fork</a></p>
+							#end
+                    	</li>
+        			#end
+				#else
+					<div style="text-align:center;">还没有人Fork此代码哦，赶紧来#if($g_user)<a onclick='javascrpt:location.href="/code/${code.ident}/fork";'>Fork</a>#else<a onclick='javascript:void(0);' class="prelogin">Fork</a>#end吧！</div>
+				#end
+            </ul>
+        </div>
+    </div>
+</div>
+<!--     left结束    -->
+<div class="detail_mainContent_right">
+<div class="detail_description clearfix">
+    <dl class="detail_author clearfix">
+        <dt class="detail_author_name">
+            <span title="$format.html($owner.name)">$format.html($format.abbr($owner.name,10))</span>
+        </dt>
+        <dd class="detail_author_img" >
+            ##<a href="#if($owner.space_url)$owner.space_url#{else}javascript:void(0);#end">
+				#if($owner.portrait && $owner.portrait.trim().length()>0)
+					#set($p_img=$owner.portrait)
+				#else
+					#set($p_img="http://gravatar.com/avatar/${project.MD5($owner.email)}?size=100")
+				#end
+                <img src="$p_img" width="100" height="100" data-type="image/jpeg"/>
+            ##</a>
+        </dd>
+		<dd class="detail_author_time">$date.friendly_time($request,$owner.create_time)加入RunJS</dd>
+        <dd class="detail_author_attention">
+            <p>#show_from($owner)</p>
+			##<a href="/detail/">最新代码：</a>
+        </dd>
+    </dl>
+</div>
+	<div class="ads mt20">
+    ##<img src="http://a.adroll.com/a/HM7/3F2/HM73F2WMO5DZDD66WCQGGZ.gif" width="300">
+    </div>
+	#set($dys=$msg_tool.getDynamicsByUser($owner.id,1,5))
+	<div class="detail_dynamics mt20">
+		<h3>Ta的最近动态</h3>
+		#if($dys && $dys.size()>0)
+		<ul>
+			#foreach($dy in $dys)
+				<li style="overflow:hidden;">#show_dynamic($dy)</li>
+			#end
+		</ul>
+		#else
+			<div>他最近没有什么动态哦</div>
+		#end
+	</div>
+	#if($others && $others.size()>0)
+    <div class="detail_otherProject mt20">
+        <h3>
+            Ta发布的其他代码#if($others && $others.size()>0)($others.size())#end
+        </h3>
+        <ul>
+			#set($hiddenCount = 5)
+			#if($others && $others.size())
+    			#foreach($o in $others)
+        			#set($p = $Project.Get($o.project))
+        			
+        			<li #if($velocityCount>$hiddenCount)style="display:none;"#end>
+                        <p>&nbsp;$velocityCount. <a href="/detail/$o.ident">$format.html(${o.name})</a></p>
+						<p style="color:#AAA;font-size:10px;">&nbsp;&nbsp;${o.GetCommentCount()}评/${o.getForkCountById($o.id)}Fork，更新于$date.friendly_time($request,$o.update_time)。</p>
+                    </li>
+        			#if($velocityCount>$hiddenCount && $velocityCount == $others.size())
+						<li style="text-align:right;font-size:12px;" id="view_all_li"><a href="javascript:viewAll(this);">查看全部</a></li>
+        			#end
+    			#end
+			#end
+        </ul>
+    </div>
+	#end
+	<div class="mt20">
+		<script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7090564139599510";
+        /* runjs-details-bottom-right */
+        google_ad_slot = "6600766914";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+	</div>
+</div>
+</div>
+<div id="user_login" style="display:none;">
+	<div class="user_login setting">
+        <a openid="oschina" href="javascript:login('oschina');">
+			<img src="/img/login_oschina.gif" width="100" height="36"/>
+		</a>
+		<a openid="weibo" href="javascript:login('weibo');">
+			<img src="/img/login_weibo.gif" width="100" height="36"/>
+		</a>
+		<a openid="qq" href="javascript:login('qq');">
+			<img src="/img/login_qq.gif" width="100" height="36"/>
+		</a>
+		<a openid="github" href="javascript:login('github');" class="small" style="margin-left:20px;">
+			<img src="/img/login_github.gif" width="75" height="27"/>
+		</a>
+		<a openid="hotmail" class="small" href="javascript:login('hotmail');">
+			<img src="/img/login_msn.gif" width="75" height="27"/>
+		</a>
+		<a openid="yahoo" class="small"  href="javascript:login('yahoo');">
+			<img src="/img/login_yahoo.gif" width="75" height="27"/>
+		</a>
+		<a openid="google" class="small" style="margin-right:0px;" href="javascript:login('google');">
+			<img src="/img/login_google.gif" width="75" height="27">
+		</a>
+   </div>
+</div>
+<div id="footer">
+      <p>© <a href="http://www.oschina.net">开源中国</a> | <a href="/help"> RunJS 帮助</a> | <span style="color:#AAA;">感谢</span><a href="http://www.51idc.com" target="_blank">51IDC</a><span style="color:#AAA;">提供服务器和带宽</span> | <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备12009483号-7</a> | <script src="http://s17.cnzz.com/stat.php?id=5147163&web_id=5147163" language="JavaScript"></script></p>
+</div>
+</body>
+</html>
+#else
+	$response.sendError(404)
+#end

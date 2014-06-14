@@ -1,0 +1,49 @@
+#if(!$once)
+#set($ident = $link.param("p1",""))
+#set($code = $project.getCodeByIdent($ident,$g_user))
+#end
+#if($g_user)
+	#set($msg_count = $msg_tool.getUnreadCount($g_user.id))
+#else
+	#set($msg_count=0)
+#end
+<div class="menuItem btnGroup login">
+	<div class="select" id="logout" #if(!$g_user) style="display:none;"#end>
+        <span id="msg_count" #if($msg_count==0)style="display:none;"#{else} title="${msg_count}条未读提醒"#{end}>$msg_count</span>
+        #if($g_user)
+		<div class="title">${g_user.name}<div class="arrow_bottom"></div></div>
+        <ul>
+            <li><a href="javascript:runjs.logout();">退出登录</a></li>
+		</ul>
+		#end
+	</div>
+	<div class="btn" id="prelogin"#if($g_user) style="display:none;"#end onclick='javascript:runjs.dialog.get("login");'>登录</div>
+    <div class="btn" id="help">帮助(<span style="text-decoration:underline;">F1</span>)</div>
+    <div class="btn" id="editor_setting">设置</div>
+</div>
+<div class="btnGroup menuItem">
+	##代码不存在、已登录并是自己的代码、
+	#if(!$code  || ($g_user && $g_user.id == $code.user))
+		<div class="btn" id="save">保存(<span style="text-decoration:underline;">S</span>)</div>
+	#end
+	#if($code)
+		#if($g_user && $g_user.id == $code.user)
+			#if($code.IsPosted())
+			<div class="btn share" style="border-left:0;border-right:0;" id="share">分享</div>
+			#else
+			<div class="btn publish" style="border-left:0;" onclick="runjs.checkProxy('publish',${code.id});">发布</div>
+			<div class="btn share" style="border-left:0;border-right:0;" id="share">分享</div>
+			#end
+		#end
+		<div class="btn" id="fork" onclick="runjs.checkProxy('fork');">Fork</div>
+	#else
+		<div class="btn share" style="border-left:0;" id="share">分享</div>
+	#end
+</div>
+<div class="view_control menuItem">
+    <div class="view">视图：</div>
+	<div class="view"><input type="checkbox" id="html_view" checked='checked'/><label for="html_view">HTML</label></li></div>
+	<div class="view"><input type="checkbox" id="js_view" checked='checked'/><label for="js_view">JavaScript</label></li></div>
+	<div class="view"><input type="checkbox" id="css_view" checked='checked'/><label for="css_view">CSS</label></li></div>
+	<div class="view"><input type="checkbox" id="pre_view" checked='checked'/><label for="pre_view">预览</label></li></div>
+</div>

@@ -1,0 +1,130 @@
+#set($p1=$link.param("p1"))
+#set($page_size=6)
+#if($p1 && $p1 == "hot")
+	#set($rank="hot")
+	#set($page=$link.param("p",1))
+	#set($scs=$Square.listHotSquarecode($page,$page_size))
+#else
+	#set($rank="new")
+	#set($page=$link.param("p",1))
+	#set($scs=$Square.listSquarecode($page,$page_size))
+#end
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="description" content="RunJS,在线编写、展示html、js、css代码，拥有实时预览、分享、Fork、代码高亮、自动完成等多项特性，提供文件上传、多种登录方式。" />
+        <meta name="keywords" content="RunJS runjs JavaScript CSS HTML 在线运行 展示 效果"/>
+        <title>RunJS 广场，最新最热代码展示</title>
+		<script src="/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="$link.action("visit/square?id=1")" defer="defer"></script>
+		<link rel="stylesheet" href="/css/square.css?20121207" type="text/css">
+		<script src="/js/square.js?20121204" type="text/javascript"></script>
+		<!--[if IE 6]>
+        <script type="text/javascript">
+        	var isIE6 = true;
+        </script>
+        <![endif]-->
+		<!--[if lt IE 8]>
+        <style>
+		.booth{margin:0 1% 30px 0;}
+		.booth:nth-child(3n) {
+			margin-right: 0;
+		}
+        </style>
+        <![endif]-->
+	</head>
+	<body>
+		<!--     头部header开始    -->
+         <div class="header">
+			<a href="/">
+            <div class="logo">
+                <h3>RunJS广场</h3>
+            </div>
+			</a>
+			<div class="headerMenu">
+    			<div class="menuItem btnGroup login">
+    				#if(!$g_user)
+    				<div class="select" id="login" >
+        				<div class="title">登录<div class="arrow_bottom"></div></div>
+                        <ul>
+                            <li><a href="javascript:login('oschina')">开源中国</a></li>
+        					<li><a href="javascript:login('qq')">腾讯QQ</a></li>
+        					<li><a href="javascript:login('weibo')">新浪微博</a></li>
+        					<li><a href="javascript:login('google')">Google</a></li>
+        					<li><a href="javascript:login('github')">Github</a></li>
+        					<li><a href="javascript:login('hotmail')">Hotmail</a></li>
+        					<li><a href="javascript:login('yahoo')">Yahoo</a></li>
+        				</ul>
+        			</div>
+    				#else
+    					<div class="btn" id="logout" onclick="javascript:logout($g_user.id);">退出($format.html(${g_user.name}))</div>
+    				#end
+    			</div>
+			</div>
+        </div>
+		
+	<div class="squareMenu clearfix">
+      <ul>
+      	<li #if($rank=="new")class="focus"#end><a href="/square">推荐</a></li>
+        <li #if($rank=="hot")class="focus"#end><a href="/square/hot">最热</a></li>
+        ##<li>最新</li>
+      </ul>
+	  #*
+      <div id="search" class="search">
+        <input type="text" class="search_input"/>
+        <input type="submit" value="搜索" class="search_button"/>
+      </div>
+	  *#
+     </div>
+    <div class="squareContent clearfix">
+      <ul id="code_list">
+#foreach($sc in $scs)
+	#if($sc)
+		#set($code=$sc.GetCodeBySquare())
+		#if($code)
+        <li class="booth">
+          <div class="booth_show">
+			<a class="cover-link" href="/detail/$code.ident" target="_blank"></a>
+			<iframe src="http://sandbox.runjs.cn/show_square/$sc.id" allowtransparency="true" frameborder="0" scrolling="no" style=""></iframe>
+          <div class="booth_description">
+              <h2 class="f20">$format.html($code.name)</h2>
+              <p class="f13">$format.html($code.description)</p>
+            </div></div>
+          <div class="booth_message f13">
+            <div class="booth_state">
+              <a href="/detail/$code.ident" class="booth_state_comment" target="_blank">$project.getCommentCount($code.id)</a>
+              <a href="/detail/$code.ident" class="booth_state_fork" target="_blank">$project.getForkCount($code.id)</a>
+            </div>
+			#set($user=$User.Get($code.user))
+			#if($user)
+            <div class="booth_auther">
+              <a href="/detail/$code.ident" target="_blank">
+				#if($user.portrait && $user.portrait.length()>0)
+					#set($p = $user.portrait)
+        		#else
+					#set($p = "http://gravatar.com/avatar/${project.MD5($user.email)}size=100")
+                #end
+				<img src="${p}" alt="$user.name" />$format.html($user.name)
+              </a>
+            </div>
+			#end
+          </div>
+         </li>
+		#end
+	#end
+#end
+</ul>
+    </div>
+	<div>
+	</div>
+   <div class="loading f20">
+		#set($square_count=$Square.GetSquareCodeCount())
+		#if($rank=="hot")
+			#pager("/square/hot",$Square.HotSquareCount(),$page_size)
+		#else
+			#pager("/square",$square_count,$page_size)
+		#end
+    </div>
+	</body>
+</html>

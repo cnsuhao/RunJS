@@ -1,0 +1,414 @@
+#set($ident = $link.param("p2",""))
+#set($tab = $link.param("t",""))
+#if($g_user)
+#set($projects = $project.getAllProjectByUser($g_user.id))
+#set($images = $project.getUserFileList($g_user.id,1))
+#set($css = $project.getUserFileList($g_user.id,2))
+#set($js = $project.getUserFileList($g_user.id,3))
+#set($totalCount = $images.size() + $css.size() + $js.size() )
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="开源中国-RunJS,在线编辑、保存html、js、css代码，拥有实时预览、版本管理、分享、Fork等多项特性" />
+<meta name="keywords" content="RunJS 开源中国 OSC"/>
+<title>$g_user.name</title>
+<link rel="stylesheet" href="/css/style1.css" type="text/css"/>
+<script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form-2.82.js"></script>
+<style>
+body{
+	overflow:auto;
+}
+.headerMenu{
+    box-shadow: 0 0 2px 2px #CCC;
+    -webkit-box-shadow: 0 0 2px 2px #CCC;
+    background: url(../img/bg.gif) repeat-x;
+}
+.btn{
+	color:white;
+	border: 1px solid #185A7A;
+	-webkit-box-shadow: inset 0px 1px 1px rgba(255, 255, 255, .2), 0 1px 3px
+		#306F8C;
+	-moz-box-shadow: inset 0px 1px 1px rgba(255, 255, 255, .2), 0 1px 3px
+		#306F8C;
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, .2), 0 1px 3px #306F8C;
+}
+.mainresource{
+margin:10px 30px;
+min-width:1000px;
+border:1px solid #CCCCCC;
+}
+#space_title{height:100px;}
+#space_content{margin:15px 15px;}
+.type_tab{
+	border-bottom:3px solid #ccc;
+}
+.type_tab a{
+	top:3px;
+	position: relative;
+	display:inline-block;
+	//border-bottom:3px solid #357999;
+	height:40px;
+	background-color:#EAEAEA;
+	text-decoration:none;
+}
+.type_tab h3{
+    line-height:36px;
+    font-size:18px;
+    margin:0 8px 0 8px;
+	color:black;
+}
+.type_tab .tab_active{
+	color:#357999;
+	border-bottom:3px solid #357999;
+}
+.user_info{
+	margin:15px 15px 15px 15px; 
+	height:100px;
+}
+.user_info .portrait{padding:5px 5px;border:1px solid #AAA;}
+.user_info span{
+	float: left;
+}
+.user_info .info .username{font-size:18px;margin:3px 5px 5px 20px;font-weight:bold;}
+.user_info .info .time{font-size:15px;margin:3px 5px 5px 20px;}
+.space_projects .pro_li{
+	height:210px;
+	width:30%;
+	display:inline-block;
+	vertical-align:text-top;
+	margin: 20px 10px;
+}
+.my_files ul{
+	min-height:210px;
+	width:30%;
+	margin: 20px 10px;
+	display:inline-block;
+	vertical-align:text-top;
+}
+.pro_title span,.pro_title span a,.ver_li span,.ver_li img,.file_li span,.file_li img{
+	vertical-align:middle;
+}
+.pro_title{
+	margin-bottom:10px;
+}
+.ver_li,.file_li{
+	padding:5px 0 2px 10px;
+}
+.ver_li a,.file_li a,.pro_li a{
+	text-decoration:none;
+	color:#005580;
+}
+.space_projects .pro_li li,.file_li{
+	margin:0 0 0 30px;
+	height:25px;
+	font-size:10pt;
+}
+.pro_title{
+	height:30px;
+	background-color:#EEEEEE;
+}
+.pro_li .pro_title .title_name{
+	margin-left:10px;
+}
+.c_time{
+    color: #888888;
+    font-size: 9pt;
+    margin-left: 10px;
+    font-family: Arial,宋体;
+}
+.c_action{
+	color:#0000AA;
+	text-decoration:none;
+	margin-right:10px;
+	font-size:9pt;
+	float:right;
+}
+.icon {
+	width:25px;
+	height:25px;
+	top: 11px;
+	background-image: url('$link.img("icons.png")');
+	background-repeat: no-repeat;
+	background-size: 216px 127px;
+	display:inline-block;
+}
+.fork_pro {
+	background-position: -145px -100px;
+	right: 100px;
+}
+.normal_pro{
+	background-position: -100px -100px;
+	right: 100px;
+}
+</style>
+<script>
+$(document).ready(function (){
+	$(".pro_title").mouseover(function(){
+		$(this).find(".actions").show();
+	}).mouseout(function(){
+		$(this).find(".actions").hide();
+	});
+	$(".ver_li").mouseover(function(){
+		$(this).css("background-color","#eeeeee");
+		$(this).find(".actions").show();
+	}).mouseout(function(){
+		$(this).css("background-color","#F6F6F6");
+		$(this).find(".actions").hide();
+	});
+	$(".file_li").mouseover(function(){
+		$(this).css("background-color","#eeeeee");
+		$(this).find(".actions").show();
+	}).mouseout(function(){
+		$(this).css("background-color","#F6F6F6");
+		$(this).find(".actions").hide();
+	});
+	$("#s_logout").click(function(){
+    	jQuery.get("/action/ajax/logout",function(msg){
+			location.href="/";
+    	});
+	});
+	$(".tab").click(function(){
+		$(".tab").removeClass("tab_active");
+		$(this).addClass("tab_active");
+		$(".tab_content").hide();
+		$("."+$(this).attr("rel")).show();
+	});
+	$("#upload").click(function(){
+		$("#upload_form").ajaxForm({
+			success:function(msg){
+				msg = eval("("+msg+")");
+				if(msg.error)
+					alert(msg.msg);
+				else{
+					location.href="/profile/"+"$g_user.ident"+"?t=file";
+				}
+			}
+		});
+	});
+});
+function delete_code(v_code,pro_id,ver,sign,is_one){
+	if(1==is_one){
+		if(confirm("删除最后一个代码将会删除整个项目，确定要删除么？"))
+			jQuery.post("/action/project/delete_project",{
+        		"v_code":v_code,
+        		"id":pro_id
+        	},function(msg){
+        		msg=eval("("+msg+")");
+        		if(msg.error){
+        			alert(msg.msg);
+        		}
+        		else{
+        			location.href="/profile/"+"$g_user.ident";
+        		}
+        	});
+	}
+	else{
+    	if(confirm("确定要删除该代码么？删除该代码后将不可恢复。"))
+        	jQuery.post("/action/project/delete_version",{
+        		"uid":uid,
+        		"pro_id":pro_id,
+        		"ver":ver,
+        		"sign":sign
+        	},function(msg){
+        	msg=eval("("+msg+")");
+        		if(msg.sign==sign){
+        			location.href="/profile/"+"$g_user.ident";
+        		}
+        		else{
+        			alert(msg.msg);
+        		}
+        	});
+	}
+}
+function delete_project(v_code,id){
+	if(confirm("确定要删除该项目么？删除该代码后该项目的所有版本都将被删除且不可恢复。"))
+	jQuery.post("/action/project/delete_project",{
+		"v_code":v_code,
+		"id":id
+	},function(msg){
+		msg=eval("("+msg+")");
+		if(msg.error){
+			alert(msg.msg);
+		}
+		else{
+			location.href="/profile/"+"$g_user.ident";
+		}
+	});
+}
+function delete_file(v_code,id){
+	if(confirm("确定要删除该文件么？"))
+	jQuery.post("/action/file/delete_file",{
+		"v_code":v_code,
+		"id":id
+	},function(msg){
+		msg=eval("("+msg+")");
+		if(msg.error){
+			alert(msg.msg);
+		}
+		else{
+			location.href="/profile/"+"$g_user.ident"+"?t=file";
+		}
+	});
+}
+</script>
+</head>
+<body>
+	<div class="header">
+	<div class="logo" onclick="javascript:location.href='/'"></div>
+	<div class="headerMenu">
+		<div class="menuItem btnGroup login">
+			<div class="btn" id="s_logout">退出#if($g_user)(${g_user.name})#end</div>
+        </div>
+	</div>
+	</div>
+	<div class="mainresource">
+		<div id="space_title">
+			<div class="user_info">
+                <span class="portrait">
+                    <img src="$g_user.portrait" alt="头像" width="80" height="80">
+                </span>
+				<span class="info">
+					<p class="username">$g_user.name</p>
+					<p class="time">$date.friendly_time($request,$g_user.create_time)加入RunJS，来自$g_user.getType()</p>
+					#if($g_user.blog && $g_user.blog.length() > 0)
+						<p class="time">博客：<a href="$g_user.blog" target="_blank">$g_user.blog</a></p>
+					#end
+				</span>
+            </div>
+		</div>
+		<div id="space_content">
+			<div class="type_tab">
+				<a class='tab #if($tab!="file")tab_active#end' rel="my_project" href='javascript:void(0);'><h3>我的项目#if($projects)($projects.size())#end</h3></a>
+				<a class='tab #if($tab=="file")tab_active#end' rel='my_files' href='javascript:void(0);'><h3>资源文件($totalCount)</h3></a>
+				##<a href="javascript:void(0);"><h3>我Fork的项目</h3></a>
+				##<a href="javascript:void(0);"><h3>我的收藏</h3></a>
+			</div>
+			<div class="tab_content my_project" #if($tab=="file")style="display:none;"#end>
+                #if($projects && 0!=$projects.size())
+    			<ul class="space_projects">
+                	#foreach($p in $projects)
+                		#set($versions = $project.getAllVersionByProject($p.id))
+        				<li class="pro_li" id="prj_${p.id}">
+                            <div class="pro_title">
+								<span
+								#if($versions && $versions.size()>0 && 0!=$versions.get(0).fork)
+								#set($p_code=$project.getCodeById($versions.get(0).fork))
+									class="icon fork_pro"
+									title="我Fork的项目"
+								#else
+									class="icon normal_pro"
+									title="我的项目"
+								#end
+								></span>
+								<span class="pro_title" title="${p.name}">${p.name}</span>
+								#if($versions && $versions.size()>0 && 0!=$versions.get(0).fork)
+                    				#set($f_code=$project.getCodeById($versions.get(0).fork))
+                    				#set($f_pro=$project.getProjectById($f_code.project))
+                    				#if($f_code)
+                    				<span class="c_time">Fork自：<a href="/detail/$f_code.ident" target="_blank">#if($f_code.name)$f_pro.name/$f_code.name#else$f_pro.name#end</a></span>
+                    				#end
+                    			#end
+								<span class="actions" style="display:none;">
+								<a class="c_action" href='javascript:delete_project("$g_user.GetVCode()","$p.getId()");' title="删除该项目">删除</a>
+								</span>
+							</div>
+        					<ul class="versions">
+        					#foreach($v in $versions)
+        						<li class="ver_li">
+        							#set($vn = "["+${v.num}+"] "+${v.name})
+									#if($v.IsPosted())
+										<img src='$link.img("icon/tick.png")' alt="已发布" title="已发布"></img>
+									#end
+        							<span class="code_title"><a href='$link.root("/code/${v.ident}")' target="_blank">#if(${v.name})${v.name}#{else}版本${v.num}#end</a></span>
+									<span class="c_time">更新于$date.friendly_time($request,$p.update_time)</span>
+									#if($v.IsPosted())
+										<span class="c_time"><a href="/detail/$v.ident" title="查看评论和Fork" target="_blank">($project.getCommentCount($v.id)评/$project.getForkCount($v.id)Fork)</a></span>
+									#end
+									<span class="actions" style="display:none;">
+    									<a class="c_action" href='javascript:delete_code("$g_user.GetVCode()","$v.project","$v.num","$v.sign","$versions.size()");' title="删除该代码">删除</a>
+									</span>
+        						</li>
+								#if($velocityCount == 5)
+									#break
+								#end
+							#end
+							#if($versions.size() > 5 && $versions.get(0).ident)
+								<li class="ver_li"><a href='/code/$versions.get(0).ident' target="_blank">查看所有版本($versions.size())>></a></li>
+							#end
+                            </ul>
+							#**
+							#if($versions && $versions.size()>0)
+							<iframe class="preview" src="/show/$versions.get(0).ident" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+							#end
+							*#
+						</li>
+					#end
+    			</ul>
+				#else
+					<div style="margin:20px 10px 0 20px;height:26px;">您还没有任何项目哦，赶紧去<a href="/">创建一个</a>吧！</div>
+    			#end
+			</div>
+			<div class="tab_content my_files" #if($tab!="file")style="display:none;"#end>
+				<div style="margin:20px 10px 0 20px;">
+				<form id="upload_form" action="/action/file/add_file" method="post" enctype="multipart/form-data">
+					<label>上传资源文件（仅限JavaScript、CSS、图片）：<input type="file" name="file" accept="application/x-javascript,image/jpeg,image/jpg,image/png,image/gif,image/bmp,text/css"></input></label>
+					<button id="upload">上传</button>
+				</form>
+				</div>
+				#if($totalCount>0)
+					#if($images && $images.size()>0)
+    					<ul>
+						<div class="pro_title">
+							<span class="icon normal_pro"></span>
+							<span title="图片资源">图片</span>
+						</div>
+        				#foreach($r in $images)
+                            <li class="file_li">
+    							<a href="${r.path}" target="_blank" title="${r.name}">${r.name}</a>
+								<span class="c_time">上传于$date.friendly_time($request,$r.create_time)</span>
+    							<span class="actions" style="display:none;">
+    								<a class="c_action" href='javascript:delete_file("$g_user.GetVCode()","$r.id");' title="删除该文件">删除</a>
+								</span>
+    						</li>
+    					#end
+                        </ul>
+					#end
+					#if($css && $css.size()>0)
+    					<ul>
+						<div class="pro_title"><span class="icon normal_pro"></span><span title="CSS资源">CSS</span></div>
+        				#foreach($r in $css)
+                            <li class="file_li">
+    							<a  href="${r.path}" target="_blank" title="${r.name}">${r.name}</a>
+								<span class="c_time">上传于$date.friendly_time($request,$r.create_time)</span>
+    							<span class="actions" style="display:none;">
+    								<a class="c_action danger" href='javascript:delete_file("$g_user.GetVCode()","$r.id");' title="删除该文件">删除</a>
+								</span>
+    						</li>
+    					#end
+                        </ul>
+					#end
+					#if($js && $js.size()>0)
+    					<ul>
+						<div class="pro_title"><span class="icon normal_pro"></span><span title="JS资源">JavaScript</span></div>
+        				#foreach($r in $js)
+                            <li class="file_li">
+    							<a href="${r.path}" target="_blank" title="${r.name}">${r.name}</a>
+								<span class="c_time">上传于$date.friendly_time($request,$r.create_time)</span>
+    							<span class="actions" style="display:none;">
+    								<a class="c_action danger" href='javascript:delete_file("$g_user.GetVCode()","$r.id");' title="删除该文件">删除</a>
+								</span>
+    						</li>
+    					#end
+                        </ul>
+					#end
+				#end
+				</div>
+		</div>
+	</div>
+</body>
+</html>
+#else
+	$link.redirect("/");
+#end

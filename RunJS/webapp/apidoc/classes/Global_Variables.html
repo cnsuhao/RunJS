@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>Global_Variables</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1>Global_Variables Class</h1> 
+        <div class="box meta"> 
+         <div class="foundat">
+           Defined in: 
+          <a href="../files/js_global_variables.js.html#l1"><code>js\global_variables.js:1</code></a> 
+         </div> 
+        </div> 
+        <div class="box intro"> 
+         <p>全局变量定义，定义了 全局状态信息、用户账户相关信息、用户设置信息</p> 
+        </div> 
+        <div id="classdocs" class="tabview"> 
+         <ul class="api-class-tabs"> 
+          <li class="api-class-tab index"><a href="#index">Index</a></li> 
+          <li class="api-class-tab properties"><a href="#properties">Properties</a></li> 
+         </ul> 
+         <div> 
+          <div id="index" class="api-class-tabpanel index"> 
+           <h2 class="off-left">Item Index</h2> 
+           <div class="index-section properties"> 
+            <h3>Properties</h3> 
+            <ul class="index-list properties"> 
+             <li class="index-item property"> <a href="#property_dialog">dialog</a> </li> 
+             <li class="index-item property"> <a href="#property_editor_path">editor_path</a> </li> 
+             <li class="index-item property"> <a href="#property_flow">flow</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status">g_status</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.codeid">g_status.codeid</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.codename">g_status.codename</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.cssType">g_status.cssType</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.hasNoCode">g_status.hasNoCode</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.host">g_status.host</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.htmlType">g_status.htmlType</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.ident">g_status.ident</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.isDemo">g_status.isDemo</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.isMyCode">g_status.isMyCode</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.isOtherCode">g_status.isOtherCode</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.jsType">g_status.jsType</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.login">g_status.login</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.mode">g_status.mode</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.posted">g_status.posted</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.shost">g_status.shost</a> </li> 
+             <li class="index-item property"> <a href="#property_g_status.sign">g_status.sign</a> </li> 
+             <li class="index-item property"> <a href="#property_g_utils">g_utils</a> </li> 
+             <li class="index-item property"> <a href="#property_runjs">runjs</a> </li> 
+             <li class="index-item property"> <a href="#property_runjs.editor">runjs.editor</a> </li> 
+             <li class="index-item property"> <a href="#property_runjs.explorer">runjs.explorer</a> </li> 
+             <li class="index-item property"> <a href="#property_runjs.menu">runjs.menu</a> </li> 
+             <li class="index-item property"> <a href="#property_Setting">Setting</a> </li> 
+             <li class="index-item property"> <a href="#property_Setting.fontfamily">Setting.fontfamily</a> </li> 
+             <li class="index-item property"> <a href="#property_Setting.fontsize">Setting.fontsize</a> </li> 
+             <li class="index-item property"> <a href="#property_Setting.theme">Setting.theme</a> </li> 
+             <li class="index-item property"> <a href="#property_User">User</a> </li> 
+             <li class="index-item property"> <a href="#property_User.admin">User.admin</a> </li> 
+             <li class="index-item property"> <a href="#property_User.user">User.user</a> </li> 
+             <li class="index-item property"> <a href="#property_User.v_code">User.v_code</a> </li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div id="properties" class="api-class-tabpanel"> 
+           <h2 class="off-left">Properties</h2> 
+           <div id="property_dialog" class="property item"> 
+            <h3 class="name"><code>dialog</code></h3> 
+            <span class="type">Unknown</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l53"><code>js\global_variables.js:53</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Dialog.html" class="crosslink">Dialog</a> 实例</p> 
+            </div> 
+           </div> 
+           <div id="property_editor_path" class="property item"> 
+            <h3 class="name"><code>editor_path</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l175"><code>js\global_variables.js:175</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>编辑器所在路径</p> 
+            </div> 
+           </div> 
+           <div id="property_flow" class="property item"> 
+            <h3 class="name"><code>flow</code></h3> 
+            <span class="type">Unknown</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l59"><code>js\global_variables.js:59</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Flow.html" class="crosslink">Flow</a> 实例</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status" class="property item"> 
+            <h3 class="name"><code>g_status</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l65"><code>js\global_variables.js:65</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>全局状态信息,通过 runjs.initStatus(ident) 可更新当前代码状态信息</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.codeid" class="property item"> 
+            <h3 class="name"><code>g_status.codeid</code></h3> 
+            <span class="type">Nubmer</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l113"><code>js\global_variables.js:113</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>代码ID</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.codename" class="property item"> 
+            <h3 class="name"><code>g_status.codename</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l119"><code>js\global_variables.js:119</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>代码名称</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.cssType" class="property item"> 
+            <h3 class="name"><code>g_status.cssType</code></h3> 
+            <span class="type">Number</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l155"><code>js\global_variables.js:155</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>CSS代码类型，1为CSS，2为LESS</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.hasNoCode" class="property item"> 
+            <h3 class="name"><code>g_status.hasNoCode</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l89"><code>js\global_variables.js:89</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>当前用户是否为存在代码</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.host" class="property item"> 
+            <h3 class="name"><code>g_status.host</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l131"><code>js\global_variables.js:131</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>host路径</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.htmlType" class="property item"> 
+            <h3 class="name"><code>g_status.htmlType</code></h3> 
+            <span class="type">Number</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l149"><code>js\global_variables.js:149</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>HTML代码类型</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.ident" class="property item"> 
+            <h3 class="name"><code>g_status.ident</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l125"><code>js\global_variables.js:125</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>代码唯一表示，<span style="color:#A00">[注]</span>该属性被频繁使用</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.isDemo" class="property item"> 
+            <h3 class="name"><code>g_status.isDemo</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l95"><code>js\global_variables.js:95</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>当前代码是否为示例代码</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.isMyCode" class="property item"> 
+            <h3 class="name"><code>g_status.isMyCode</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l77"><code>js\global_variables.js:77</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>当前代码是否为我的代码</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.isOtherCode" class="property item"> 
+            <h3 class="name"><code>g_status.isOtherCode</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l83"><code>js\global_variables.js:83</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>当前代码是否为他人的代码</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.jsType" class="property item"> 
+            <h3 class="name"><code>g_status.jsType</code></h3> 
+            <span class="type">Number</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l161"><code>js\global_variables.js:161</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>JavaScript代码类型，1为JavaScript，2为CoffeeScript</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.login" class="property item"> 
+            <h3 class="name"><code>g_status.login</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l71"><code>js\global_variables.js:71</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>是否已登录</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.mode" class="property item"> 
+            <h3 class="name"><code>g_status.mode</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l143"><code>js\global_variables.js:143</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>开发模式，'code'为一般模式，'plugin'为插件开发模式</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.posted" class="property item"> 
+            <h3 class="name"><code>g_status.posted</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l101"><code>js\global_variables.js:101</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>当前代码是否已发布</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.shost" class="property item"> 
+            <h3 class="name"><code>g_status.shost</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l137"><code>js\global_variables.js:137</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>沙盒路径</p> 
+            </div> 
+           </div> 
+           <div id="property_g_status.sign" class="property item"> 
+            <h3 class="name"><code>g_status.sign</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l107"><code>js\global_variables.js:107</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>代码签名，每次保存过后签名将改变，防止两个编辑器同时编辑同一份代码导致代码丢失</p> 
+            </div> 
+           </div> 
+           <div id="property_g_utils" class="property item"> 
+            <h3 class="name"><code>g_utils</code></h3> 
+            <span class="type">Unknown</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l169"><code>js\global_variables.js:169</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Utils.html" class="crosslink">Utils</a> 实例</p> 
+            </div> 
+           </div> 
+           <div id="property_runjs" class="property item"> 
+            <h3 class="name"><code>runjs</code></h3> 
+            <span class="type"><a href="..\classes\RunJS.html" class="crosslink">RunJS</a></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l7"><code>js\global_variables.js:7</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\RunJS.html" class="crosslink">RunJS</a> 实例</p> 
+            </div> 
+           </div> 
+           <div id="property_runjs.editor" class="property item"> 
+            <h3 class="name"><code>runjs.editor</code></h3> 
+            <span class="type"><a href="..\classes\Editor.html" class="crosslink">Editor</a></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l23"><code>js\global_variables.js:23</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Editor.html" class="crosslink">Editor</a> 实例，以 runjs.editor 访问该实例</p> 
+            </div> 
+           </div> 
+           <div id="property_runjs.explorer" class="property item"> 
+            <h3 class="name"><code>runjs.explorer</code></h3> 
+            <span class="type"><a href="..\classes\Explorer.html" class="crosslink">Explorer</a></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l32"><code>js\global_variables.js:32</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Explorer.html" class="crosslink">Explorer</a> 实例，以 runjs.explorer 访问该实例</p> 
+            </div> 
+           </div> 
+           <div id="property_runjs.menu" class="property item"> 
+            <h3 class="name"><code>runjs.menu</code></h3> 
+            <span class="type"><a href="..\classes\Menu.html" class="crosslink">Menu</a></span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l44"><code>js\global_variables.js:44</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p><a href="..\classes\Menu.html" class="crosslink">Menu</a> 实例，以 runjs.menu 访问该实例</p> 
+            </div> 
+           </div> 
+           <div id="property_Setting" class="property item"> 
+            <h3 class="name"><code>Setting</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l208"><code>js\global_variables.js:208</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>用户设置信息</p> 
+            </div> 
+           </div> 
+           <div id="property_Setting.fontfamily" class="property item"> 
+            <h3 class="name"><code>Setting.fontfamily</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l226"><code>js\global_variables.js:226</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>字体类型</p> 
+            </div> 
+           </div> 
+           <div id="property_Setting.fontsize" class="property item"> 
+            <h3 class="name"><code>Setting.fontsize</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l220"><code>js\global_variables.js:220</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>字体大小</p> 
+            </div> 
+           </div> 
+           <div id="property_Setting.theme" class="property item"> 
+            <h3 class="name"><code>Setting.theme</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l214"><code>js\global_variables.js:214</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>编辑器主题，&quot;night&quot;|&quot;default&quot;</p> 
+            </div> 
+           </div> 
+           <div id="property_User" class="property item"> 
+            <h3 class="name"><code>User</code></h3> 
+            <span class="type">JSON</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l182"><code>js\global_variables.js:182</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>用户相关属性</p> 
+            </div> 
+           </div> 
+           <div id="property_User.admin" class="property item"> 
+            <h3 class="name"><code>User.admin</code></h3> 
+            <span class="type">Boolean</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l200"><code>js\global_variables.js:200</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>是否为管理员</p> 
+            </div> 
+           </div> 
+           <div id="property_User.user" class="property item"> 
+            <h3 class="name"><code>User.user</code></h3> 
+            <span class="type">Number</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l188"><code>js\global_variables.js:188</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>用户ID</p> 
+            </div> 
+           </div> 
+           <div id="property_User.v_code" class="property item"> 
+            <h3 class="name"><code>User.v_code</code></h3> 
+            <span class="type">String</span> 
+            <div class="meta"> 
+             <p> Defined in <a href="../files/js_global_variables.js.html#l194"><code>js\global_variables.js:194</code></a> </p> 
+            </div> 
+            <div class="description"> 
+             <p>用户安全标识，与服务器端进行ajax交互式所需参数</p> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>

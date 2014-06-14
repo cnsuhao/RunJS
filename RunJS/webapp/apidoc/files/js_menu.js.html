@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>js\menu.js</title> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css" /> 
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css" /> 
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles" />  
+  <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script> 
+ </head> 
+ <body class="yui3-skin-sam"> 
+  <div id="doc"> 
+   <div class="header"> 
+    <a href="/"> 
+     <div class="logo"> 
+      <h3>RunJS</h3> 
+     </div> </a> 
+    <div class="headerMenu"> 
+     <div class="menuItem btnGroup login"></div> 
+    </div> 
+   </div> 
+   <div id="bd" class="yui3-g"> 
+    <div class="yui3-u-1-4"> 
+     <div id="docs-sidebar" class="sidebar apidocs"> 
+      <div id="api-list"> 
+       <h2 class="off-left">APIs</h2> 
+       <div id="api-tabview" class="tabview"> 
+        <ul class="tabs"> 
+         <li><a href="#api-classes">Classes</a></li> 
+         <li><a href="#api-modules">Modules</a></li> 
+        </ul> 
+        <div id="api-tabview-filter"> 
+         <input type="search" id="api-filter" placeholder="Type to filter APIs" /> 
+        </div> 
+        <div id="api-tabview-panel"> 
+         <ul id="api-classes" class="apis classes"> 
+          <li><a href="../classes/Dialog.html">Dialog</a></li> 
+          <li><a href="../classes/Editor.html">Editor</a></li> 
+          <li><a href="../classes/Explorer.html">Explorer</a></li> 
+          <li><a href="../classes/Global_Variables.html">Global_Variables</a></li> 
+          <li><a href="../classes/Menu.html">Menu</a></li> 
+          <li><a href="../classes/onEvents.html">onEvents</a></li> 
+          <li><a href="../classes/Plugin.html">Plugin</a></li> 
+          <li><a href="../classes/Plugins.html">Plugins</a></li> 
+          <li><a href="../classes/Resource.html">Resource</a></li> 
+          <li><a href="../classes/RunJS.html">RunJS</a></li> 
+          <li><a href="../classes/Utils.html">Utils</a></li> 
+         </ul> 
+         <ul id="api-modules" class="apis modules"> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="yui3-u-3-4"> 
+     <div id="api-options">
+       Show: 
+      <label for="api-show-inherited"> <input type="checkbox" id="api-show-inherited" checked="" /> Inherited </label> 
+      <label for="api-show-protected"> <input type="checkbox" id="api-show-protected" /> Protected </label> 
+      <label for="api-show-private"> <input type="checkbox" id="api-show-private" /> Private </label> 
+      <label for="api-show-deprecated"> <input type="checkbox" id="api-show-deprecated" /> Deprecated </label> 
+     </div> 
+     <div class="apidocs"> 
+      <div id="docs-main"> 
+       <div class="content"> 
+        <h1 class="file-heading">File: js\menu.js</h1> 
+        <div class="file"> 
+         <pre class="code prettyprint linenums">
+/**
+ * 按视图划分，Menu负责处理顶部菜单视图的显示及操作
+ * @class Menu
+ */
+Menu = (function() {
+
+	var PT = Menu.prototype;
+	
+	var instance;
+
+	/**
+	 * 默认配置参数
+	 * @attribute defaultParams
+	 * @private
+	 */
+	PT.defaultParams = {
+		viewLink : editor_path+&quot;/menu&quot;,
+		msgLink:&quot;/msg&quot;,
+		interval_time:1000*60
+	}
+
+	/**
+	 * 事件绑定规则定义，详情见 {{#crossLink &quot;Utils&quot;}}{{/crossLink}} 类中的 {{#crossLink
+	 * &quot;Utils/binder&quot;}}{{/crossLink}} 方法
+	 * 
+	 * @property Events
+	 * @type {JSON}
+	 */
+	PT.Events = {
+		&quot;click-&gt;#save&quot; : function() {
+			flow.of(runjs).save(1)
+		},
+		&quot;click-&gt;#share&quot; : function() {
+			flow.of(runjs).share(1)
+		},
+		&quot;click-&gt;#editor_setting&quot; : &quot;editor_setting&quot;,
+		&quot;mouseover-&gt;#logout&quot; : function() {
+			$(this).find(&quot;ul&quot;).show()
+		},
+		&quot;mouseout-&gt;#logout&quot; : function() {
+			$(this).find(&quot;ul&quot;).hide()
+		},
+		&quot;click-&gt;#help&quot; : &quot;help&quot;,
+		&quot;change-&gt;.fontsize select&quot; : &quot;setFont&quot;,
+		&quot;click-&gt;#msg_count&quot;:&quot;view_notify&quot;
+	};
+
+	/** 
+	 * @class Menu
+	 * @constructor
+	 */
+	function Menu() {
+		this.arg = arguments;
+		this.clazz = className(this);
+		g_utils.initParams.call(this, this.defaultParams);
+		this.initView.call(this);
+		instance = this;
+		this.checkMsg = setInterval(function(){
+			checkMsg();
+		},instance.interval_time);
+		return this;
+	}
+	
+	/**
+	 * 检查是否有最新的消息提醒
+	 * @method checkMsg
+	 * @private
+	 */
+	var checkMsg = function(){
+		g_utils.load(instance.msgLink,true,function(msg){
+			var count = parseInt(msg);
+			if(count==0){
+				$(&quot;#msg_count&quot;).hide();
+			}else{
+				instance.showMsg(count);
+			}
+		});
+	};
+
+	/**
+	 * 菜单视图初始化
+	 * @method initView
+	 * @param {String} ident 代码唯一标识
+	 * @param {Boolean} async 是否采取异步方式初始化视图
+	 */
+	PT.initView = function(ident,async) {
+		if (isEmpty(ident))
+			ident = g_status.ident;
+		g_utils.initView.call(this, ident, function(ident, view) {
+
+		},async);
+		g_utils.binder.call(this);
+	}
+
+	/**
+	 * 显示编辑器菜单，并处理其中的设置
+	 * @method editor_setting
+	 */
+	PT.editor_setting = function() {
+		var d = dialog.get(&quot;editor_setting&quot;, doNothing).dialog;
+		$(&quot;#setting_list li&quot;).click(function() {
+			var idx = $(this).index();
+			dialog.onSettingItemClick(d,idx);
+		});
+		// 初始化设置值
+		// 主题初始化
+		$(&quot;.theme_list li&quot;).removeClass(&quot;current&quot;);
+		$(&quot;.theme_list li.&quot; + Setting.theme).addClass(&quot;current&quot;);
+		// 字体初始化
+		var ff = dialog.getField(d, &quot;.fontsize select&quot;, 0);
+		var fs = dialog.getField(d, &quot;.fontsize select&quot;, 1);
+		if (isNotEmpty(Setting.fontfamily))
+			ff.val(Setting.fontfamily);
+		if (isNotEmpty(Setting.fontsize))
+			fs.val(Setting.fontsize);
+	}
+	
+	/**
+	 * 显示消息提醒
+	 * @method showMsg
+	 * @param {Number} count 显示提醒条数
+	 */
+	PT.showMsg = function(count){
+		$(&quot;#msg_count&quot;).show().html(count);
+	};
+	
+	/**
+	 * 标记提醒已读
+	 * @method ready_msg
+	 * @param {Array} ids 需要标记的id数组或唯一id
+	 */
+	PT.read_msg = function(ids){
+		var success = function(msg){
+			var ids2 = $.makeArray(ids)
+			$.each(ids2,function(i,id){
+				$(&quot;#m_&quot;+id).replaceWith('&lt;span class=&quot;btn_read&quot;&gt;已阅&lt;/span&gt;');
+			});
+			checkMsg();
+		};
+		var callback = function(msg) {
+			g_utils.errorHandler(msg, success, doNothing);
+		}
+		Api.ajax.read_msg(ids,callback);
+	};
+	
+	/**
+	 * 查看消息提醒
+	 * @method view_notify
+	 */
+	PT.view_notify=function(){
+		var clear_all_msg = function(d,rd){
+			var success = function(msg){
+				$(&quot;#msg_count&quot;).hide();
+				rd.close();
+			};
+			var fail = function(msg){
+				rd.close();
+			};
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail);
+			}
+			Api.ajax.read_all_msg(0,callback);
+			return false;
+		};
+		var d = dialog.get(&quot;view_notify&quot;,doNothing,clear_all_msg).dialog;
+		$(&quot;.setting_list li&quot;).click(function() {
+			var idx = $(this).index();
+			dialog.onSettingItemClick(d,idx);
+		});
+	}
+
+	/**
+	 * 显示帮助菜单
+	 * @method help
+	 */
+	PT.help = function() {
+		dialog.get(&quot;f1_help&quot;, doNothing);
+		$(&quot;.setting_list li&quot;).click(function() {
+			var idx = $(this).index();
+			$(&quot;.setting_list li&quot;).removeClass(&quot;item_focus&quot;);
+			$(this).addClass(&quot;item_focus&quot;);
+			$(&quot;.setting_right .right_content &quot;).removeClass(&quot;setting_on&quot;).addClass(&quot;setting_off&quot;);
+			$(&quot;.setting_right .right_content :eq(&quot; + idx + &quot;)&quot;).removeClass(&quot;setting_off&quot;).addClass(&quot;setting_on&quot;);
+			$(&quot;.list_item_focus&quot;).css({
+				top : 10 + idx * 41
+			});
+		});
+	}
+	
+	/**
+	 * 设置编辑器主题
+	 * @method setTheme
+	 * @param {String} theme 主题类型
+	 * @param {Boolean} store 是否保存到服务器
+	 */
+	PT.setTheme = function(theme, store) {
+		if (isNotEmpty(store) &amp;&amp; store &amp;&amp; g_status.login) {
+			var success = function(msg) {
+				Setting.theme = theme;
+				runjs.editor.setTheme();
+				$(&quot;.theme_list li&quot;).removeClass(&quot;current&quot;);
+				$(&quot;.theme_list li.&quot; + Setting.theme).addClass(&quot;current&quot;);
+			};
+			var fail = function(msg) {
+			};
+			var callback = function(msg) {
+				g_utils.errorHandler(msg, success, fail);
+			}
+			Api.ajax.setting(&quot;theme&quot;, theme, callback);
+		} else {
+			Setting.theme = theme;
+			runjs.editor.setTheme();
+			$(&quot;.theme_list li&quot;).removeClass(&quot;current&quot;);
+			$(&quot;.theme_list li.&quot; + Setting.theme).addClass(&quot;current&quot;);
+		}
+
+	}
+
+	/**
+	 * 设置字体，字体根据当前绑定的select元素值来设置
+	 * @method setFond
+	 */
+	PT.setFont = function() {
+		var cur = $(this);
+		if (cur.attr(&quot;class&quot;).indexOf(&quot;size&quot;) &gt; -1) {
+			// 设置font-size
+			Setting.fontsize = $(cur).val();
+			runjs.editor.setCMFont();
+			if (g_status.login) {
+				var callback = function(msg) {
+					g_utils.errorHandler(msg, doNothing, doNothing);
+				}
+				Api.ajax.setting(&quot;fontsize&quot;, Setting.fontsize, callback);
+			}
+		} else {
+			// 设置font-family
+			Setting.fontfamily = $(cur).val();
+			runjs.editor.setCMFont();
+			if (g_status.login) {
+				var callback = function(msg) {
+					g_utils.errorHandler(msg, doNothing, doNothing);
+				}
+				Api.ajax.setting(&quot;fontfamily&quot;, Setting.fontfamily, callback);
+			}
+		}
+	}
+
+	/**
+	 * 添加建议，该方法必须在弹出help窗口后才能被调用
+	 * @method addAdvice
+	 */
+	PT.addAdvice = function() {
+		var d = $(&quot;#editorSetting&quot;);
+		var email = dialog.getField(d, &quot;input&quot;, 0);
+		var content = dialog.getField(d, &quot;textarea&quot;, 0);
+		var captcha = dialog.getField(d, &quot;input&quot;, 1);
+		if ($.trim(email.val()).length == 0) {
+			dialog.errorMsg(d, &quot;Email 不能为空&quot;, &quot;.advice&quot;);
+			email.focus();
+			return false;
+		} else if (email.val().match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == null) {
+			dialog.errorMsg(d, &quot;Email 格式错误&quot;, &quot;.advice&quot;);
+			email.focus();
+			return false;
+		}
+		if ($.trim(content.val()).length == 0 || $.trim(content.val()).length &gt; 1000) {
+			dialog.errorMsg(d, &quot;反馈内容长度为1~1000字符&quot;, &quot;.advice&quot;);
+			content.focus();
+			return false;
+		}
+		if ($.trim(captcha.val()).length == 0) {
+			dialog.errorMsg(d, &quot;验证码不能为空&quot;, &quot;.advice&quot;);
+			captcha.focus();
+			return false;
+		}
+		var success = function(msg) {
+			d.find(&quot;.advice&quot;).html('&lt;div style=&quot;text-align:center;color:#40AA53;font-size:20px;font-weight:bold;top:150px;position:relative;&quot;&gt;感谢您的反馈和意见！&lt;/div&gt;');
+		};
+		var fail = function(msg) {
+			dialog.errorMsg(d, msg.msg, &quot;.advice&quot;);
+		};
+		var callback = function(msg) {
+			g_utils.errorHandler(msg, success, fail,true);
+		};
+		Api.ajax.add_advice(captcha.val(), g_status.ident, email.val(), content.val(), callback);
+	}
+
+	return Menu;
+
+})();
+    </pre> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="../assets/vendor/prettify/prettify-min.js"></script> 
+  <script>prettyPrint();
+  </script> 
+  <script src="../assets/js/yui-prettify.js"></script> 
+  <script src="../assets/../api.js"></script> 
+  <script src="../assets/js/api-filter.js"></script> 
+  <script src="../assets/js/api-list.js"></script> 
+  <script src="../assets/js/api-search.js"></script> 
+  <script src="../assets/js/apidocs.js"></script>   
+  <script type="text/javascript">document.write('<link rel="stylesheet" href="/css/runjs_api.css" id="site_styles">');
+  </script>
+ </body>
+</html>
