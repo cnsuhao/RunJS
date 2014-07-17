@@ -4,7 +4,7 @@
  */
 Plugins = (function() {
 
-		var _plugins_ = {}, instance;
+	var _plugins_ = {}, instance;
 
 	/**
 	 * 定义所有的系统事件
@@ -19,9 +19,9 @@ Plugins = (function() {
 	 * @type {Array}
 	 */
 	Plugins.prototype.onEventsDescription = [ "当编辑器视图初始化或重置后时调用", "当左边的资源管理器初始化或重置后调用", "当顶部菜单视图初始化或重置后调用", "上下文菜单加载后调用", "上下文菜单消失后调用", "上下文菜单显示前调用", "当对话框弹出后调用", "当引入脚本时调用", "当HTML编辑器内容有改变时调用", "当JavaScript编辑器视图内容变化时调用", "当CSS编辑器内容变化时调用","当Html编辑器中光标变动时调用","当Js编辑器中光标变动时调用","当Css编辑器中光标变动时调用" ];
-
+	
 	var events_stack = {};
-
+	
 	/**
 	 * @class Plugins
 	 * @constructor
@@ -128,7 +128,7 @@ Plugins = (function() {
 			return _plugins_[ident];
 		}
 	}
-
+	
 	/**
 	 * 判断是为有效系统事件，即是否为<a href="#attr_onEvents">onEvent</a>中成员
 	 * @private
@@ -139,7 +139,7 @@ Plugins = (function() {
 	var isValidOnEvent = function(name) {
 		return onEvents.indexOf(name) > -1;
 	};
-
+	
 	/**
 	 * 判断不是有效系统事件，即不为 <a href="#attr_onEvents">onEvents</a> 中成员
 	 * @private
@@ -222,7 +222,7 @@ Plugin = (function() {
 		PT.ident = id;
 		instance = this;
 	}
-
+	
 	/**
 	 * 默认初始方法
 	 * @method init
@@ -240,6 +240,6 @@ Plugin = (function() {
 	PT.addEvent = function(name, event) {
 		plugins.addEvent(instance, name, event);
 	};
-
+	
 	return Plugin;
 })();

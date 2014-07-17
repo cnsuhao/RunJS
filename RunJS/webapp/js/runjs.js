@@ -1,6 +1,6 @@
 /**
  * RunJS 核心类，管理其他各个模块间的相互调用，以及系统流程处理等
- *
+ * 
  * @class RunJS
  */
 RunJS = (function() {
@@ -11,7 +11,7 @@ RunJS = (function() {
 
 	/**
 	 * 默认配置参数
-	 *
+	 * 
 	 * @attribute defaultParams
 	 * @private
 	 */
@@ -21,7 +21,7 @@ RunJS = (function() {
 
 	/**
 	 * 流程事件栈，在处理如“保存”、“fork”这些需要用流程处理的业务时，需要用到事件栈来调用接下来需要做的
-	 *
+	 * 
 	 * @property event_stack
 	 * @type {Array}
 	 */
@@ -32,7 +32,7 @@ RunJS = (function() {
 	/**
 	 * 事件绑定规则定义，详情见 {{#crossLink "Utils"}}{{/crossLink}} 类中的 {{#crossLink
 	 * "Utils/binder"}}{{/crossLink}} 方法
-	 *
+	 * 
 	 * @property Events
 	 * @type {JSON}
 	 */
@@ -63,10 +63,10 @@ RunJS = (function() {
 	/**
 	 * 系统处理流程之[保存]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br>
 	 * 流程化处理能更好的控制逻辑
-	 *
+	 * 
 	 * @method save
 	 * @param {Number} step 流程步骤
-	 * @example
+	 * @example 
 	 * 	flow.of(runjs).save(1);//使用流程化的保存操作
 	 */
 	PT.sys_flows.save = function(step) {
@@ -108,7 +108,7 @@ RunJS = (function() {
 	/**
 	 * 系统处理流程之[分享]，流程处理将对各项状态进行检查，例如：检查是否登录、检查是否存在代码、检查代码是否为自己所有等<br>
 	 * 流程化处理能更好的控制逻辑
-	 *
+	 * 
 	 * @method share
 	 * @param {Number} step 流程步骤
 	 * @example
@@ -152,7 +152,7 @@ RunJS = (function() {
 	/**
 	 * 系统处理流程之[Fork]，流程处理将对各项状态进行检查，例如：检查是否登录、检查代码是否为Demo等<br>
 	 * 流程化处理能更好的控制逻辑
-	 *
+	 * 
 	 * @method fork
 	 * @param {Number} step 流程步骤
 	 * @example
@@ -183,7 +183,7 @@ RunJS = (function() {
 
 	/**
 	 * 窗口关闭前判断是否有代码未保存
-	 *
+	 * 
 	 * @method before_close
 	 */
 	PT.before_close = function() {
@@ -194,7 +194,7 @@ RunJS = (function() {
 
 	/**
 	 * 禁用enter键
-	 *
+	 * 
 	 * @method enter_forbidden
 	 */
 	PT.enter_forbidden = function(cur, event) {
@@ -206,7 +206,7 @@ RunJS = (function() {
 
 	/**
 	 * fork操作，将当前代码复制一份，自我维护，为系统Fork流程中最终执行的一步
-	 *
+	 * 
 	 * @method fork
 	 */
 	PT.fork = function() {
@@ -237,7 +237,7 @@ RunJS = (function() {
 
 	/**
 	 * save操作，保存当前各编辑器代码，为系统保存流程中最后一步
-	 *
+	 * 
 	 * @method save
 	 */
 	PT.save = function() {
@@ -269,7 +269,7 @@ RunJS = (function() {
 
 	/**
 	 * 在操作前（调用handler）检查是否需要先保存代码
-	 *
+	 * 
 	 * @method checkProxy
 	 * @param {String} handler 回调函数，该函数调用定义在系统流程中或者在当前类的原型中扩展（RunJS.prototype.save）
 	 * @param {Object} data 回调参数
@@ -339,7 +339,7 @@ RunJS = (function() {
 
 	/**
 	 * 将代码转换为系统插件
-	 *
+	 * 
 	 * @method setSysPlugin
 	 * @param {Number} pid 代码id
 	 * @param {Number} sys sys为1系统插件，0为用户插件
@@ -390,7 +390,7 @@ RunJS = (function() {
 
 	/**
 	 * 发布代码，发布代码即将当前代码设置为所有人可见
-	 *
+	 * 
 	 * @method publish
 	 * @param {Number} id 代码id
 	 */
@@ -425,7 +425,7 @@ RunJS = (function() {
 
 	/**
 	 * 弹出分享对话框
-	 *
+	 * 
 	 * @method share
 	 */
 	PT.share = function() {
@@ -441,7 +441,7 @@ RunJS = (function() {
 
 	/**
 	 * 创建代码
-	 *
+	 * 
 	 * @method create_project
 	 * @param {String} type 代码类型：demo,simple,blank,plugin
 	 */
@@ -501,7 +501,7 @@ RunJS = (function() {
 
 	/**
 	 * 创建插件
-	 *
+	 * 
 	 * @method create_sys_plugin
 	 * @param {String} sys sys为“user”则为用户插件，否则为系统插件
 	 */
@@ -605,7 +605,7 @@ RunJS = (function() {
 
 	/**
 	 * 初始化所有视图，重新加载代码
-	 *
+	 * 
 	 * @method loadCode
 	 * @param {String} ident 代码唯一标识
 	 */
@@ -621,7 +621,7 @@ RunJS = (function() {
 
 	/**
 	 * 刷新验证码,上下文之 this 需要为验证码图片
-	 *
+	 * 
 	 * @method refresh_captcha
 	 */
 	PT.refresh_captcha = function() {
@@ -630,7 +630,7 @@ RunJS = (function() {
 
 	/**
 	 * 检查当前编辑状态，用于防止某个新操作使得代码未保存
-	 *
+	 * 
 	 * @method checkEditedStatus
 	 * @param {Function} doIt 检查通过回调
 	 * @param {Function} cancelIt 检查未通过回调
@@ -656,7 +656,7 @@ RunJS = (function() {
 
 	/**
 	 * 初始化所有试图
-	 *
+	 * 
 	 * @method initAll
 	 * @param {String} ident 代码唯一标识
 	 * @param {Boolean} async 是否采用异步方式加载视图
@@ -684,7 +684,7 @@ RunJS = (function() {
 
 	/**
 	 * 初始化全局状态
-	 *
+	 * 
 	 * @method initStatus
 	 * @param {String} ident 代码唯一标识
 	 */
@@ -694,7 +694,7 @@ RunJS = (function() {
 
 	/**
 	 * 弹出登录框
-	 *
+	 * 
 	 * @method openid_login
 	 */
 	PT.openid_login = function() {
@@ -707,7 +707,7 @@ RunJS = (function() {
 
 	/**
 	 * 退出登录
-	 *
+	 * 
 	 * @method logout
 	 */
 	PT.logout = function() {
@@ -722,7 +722,7 @@ RunJS = (function() {
 
 	/**
 	 * 添加Ctrl快捷键
-	 *
+	 * 
 	 * @method addCtrlHotKey
 	 * @param {JSON} hk key:function
 	 */
@@ -736,7 +736,7 @@ RunJS = (function() {
 
 	/**
 	 * 快捷键处理
-	 *
+	 * 
 	 * @method shotcuts
 	 * @param {Object} cur 事件绑定对象
 	 * @param {Object} event 事件对象
@@ -796,7 +796,7 @@ RunJS = (function() {
 
 	/**
 	 * 重新调整窗口，当窗口变化时调用此方法来是得各视图显示正确
-	 *
+	 * 
 	 * @method window_resize
 	 */
 	PT.window_resize = function() {
