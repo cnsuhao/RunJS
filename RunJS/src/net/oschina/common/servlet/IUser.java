@@ -20,6 +20,12 @@ public interface IUser {
 	 * @return
 	 */
 	public long getId();
+	
+	/**
+	 * 用户随机码
+	 * @return
+	 */
+	public String getIdent();
 
 	/**
 	 * 返回用户角色

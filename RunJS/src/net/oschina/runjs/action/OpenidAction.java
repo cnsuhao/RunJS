@@ -205,8 +205,7 @@ public class OpenidAction {
 	 */
 	public void setLoginCookie(RequestContext ctx, User new_u)
 			throws IOException {
-		String new_value = RequestContext._GenLoginKey(new_u, ctx.ip(),
-				ctx.header("user-agent"));
+		String new_value = RequestContext._GenLoginKey(new_u, ctx.ip(),ctx.header("user-agent"), new_u.getIdent());
 		// 此处要加上HTTPOnly以防js可以取到cookie。cookie的有效期为session。
 		Cookie oscid = new Cookie(RequestContext.COOKIE_LOGIN, new_value);
 		oscid.setHttpOnly(true);

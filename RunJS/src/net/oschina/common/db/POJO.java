@@ -131,10 +131,6 @@ public class POJO implements Serializable {
 		CacheManager.evict(CacheRegion(), obj_id);
 	}
 
-	public POJO Get(java.math.BigInteger id) {
-		if(id == null) return null;
-		return Get(id.longValue());
-	}
 	/**
 	 * 根据主键读取对象详细资料，根据预设方法自动判别是否需要缓存
 	 * @param id

@@ -54,8 +54,7 @@ public class SquareCode extends Pojo {
 
 	@SuppressWarnings("unchecked")
 	public List<SquareCode> listSquarecode(int page, int count) {
-		String sql = "SELECT id FROM " + this.TableName()
-				+ " ORDER BY create_time DESC";
+		String sql = "SELECT id FROM " + this.TableName() + " ORDER BY create_time DESC";
 		List<Long> ids = QueryHelper.query_slice_cache(long.class,
 				this.CacheRegion(), NEW_LIST, 500, sql, page, count);
 		return this.LoadList(ids);
@@ -85,8 +84,7 @@ public class SquareCode extends Pojo {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<SquareCode> listHotSquarecode(int page, int count) {
-		String sql = "SELECT id FROM " + this.TableName()
-				+ " WHERE create_time > ?";
+		String sql = "SELECT id FROM " + this.TableName() + " WHERE create_time > ?";
 		List<Integer> ids = (List<Integer>) CacheManager.get("1h", HOT_LIST);
 		if (ids == null) {
 			Calendar cur = Calendar.getInstance();
@@ -95,8 +93,8 @@ public class SquareCode extends Pojo {
 			Collections.sort(ids, new Comparator<Integer>() {
 				@Override
 				public int compare(Integer o1, Integer o2) {
-					SquareCode sc1 = SquareCode.INSTANCE.Get(o1);
-					SquareCode sc2 = SquareCode.INSTANCE.Get(o2);
+					SquareCode sc1 = SquareCode.INSTANCE.Get(o1.longValue());
+					SquareCode sc2 = SquareCode.INSTANCE.Get(o2.longValue());
 					if (sc1 == null)
 						return 1;
 					else if (sc2 == null)

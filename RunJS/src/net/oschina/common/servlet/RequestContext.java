@@ -546,7 +546,7 @@ public class RequestContext {
 	 * @param save
 	 */
 	public void saveUserInCookie(IUser user, boolean save) {
-		String new_value = _GenLoginKey(user, ip(), header("user-agent"));
+		String new_value = _GenLoginKey(user, ip(), header("user-agent"), user.getIdent());
 		int max_age = save ? MAX_AGE : -1;
 		deleteCookie(COOKIE_LOGIN, true);
 		cookie(COOKIE_LOGIN, new_value, max_age, true);
@@ -748,9 +748,10 @@ public class RequestContext {
 	 * @param user
 	 * @param ip
 	 * @param user_agent
+	 * @param ident 用户随机标识
 	 * @return
 	 */
-	public static String _GenLoginKey(IUser user, String ip, String user_agent) {
+	public static String _GenLoginKey(IUser user, String ip, String user_agent, String ident) {
 		user_agent = _CleanUserAgent(user_agent);
 		StringBuilder sb = new StringBuilder();
 		sb.append(user.getId());
@@ -760,6 +761,8 @@ public class RequestContext {
 		sb.append(GetUASign(user_agent));
 		sb.append('|');
 		sb.append(System.currentTimeMillis());
+		sb.append('|');
+		sb.append(ident);
 		return encrypt(sb.toString());
 	}
 
@@ -792,8 +795,9 @@ public class RequestContext {
 		if (StringUtils.isBlank(uuid))
 			return null;
 		String ck = decrypt(uuid);
+		System.out.println(ck);
 		final String[] items = StringUtils.split(ck, '|');
-		if (items != null && items.length == 4) {
+		if (items != null && items.length == 5) {
 			// String ua = _CleanUserAgent(header("user-agent"));
 			// int ua_code = ua.hashCode();
 			// int old_ua_code = Integer.parseInt(items[3]);
@@ -810,6 +814,10 @@ public class RequestContext {
 
 				public long getId() {
 					return NumberUtils.toLong(items[0], -1L);
+				}
+				
+				public String getIdent() {
+					return items[4];
 				}
 
 				public byte getRole() {
