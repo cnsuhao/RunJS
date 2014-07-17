@@ -6,13 +6,13 @@ RunJS 是一个在线的 HTML、Javascript、CSS 等 web 前端代码的编辑�
 
 如何在本地运行 RunJS
 
- 1.下载项目源码：git clone http://git.oschina.net/oschina/RunJS.git
- 2.创建空数据库，并使用 RunJS/RunJS/docs/runjs.sql 脚本建表，假设数据库名为 runjs
- 3.修改数据库连接配置 RunJS/RunJS/src/jdbc.properties 的 jdbc.jdbcUrl,jdbc.user,jdbc.password 为你数据库的信息
- 4.打开 build.sh (Windows 下是 build.bat) 将 JAVA_HOME 变量指向 JDK 安装的路径
- 5.非 Windows 系统需要给 build.sh 设置可执行权限 chmod +x build.sh
- 6.执行 build.sh(bat) 进行项目编译
- 7.使用你习惯的应用服务器，如 Tomcat 创建新应用指向 RunJS/RunJS/webapp 。如 <Context path="" docBase="/Users/winterlau/workdir/RunJS/RunJS/webapp"/>
+ 1.下载项目源码：git clone http://git.oschina.net/oschina/RunJS.git  
+ 2.创建空数据库，并使用 RunJS/RunJS/docs/runjs.sql 脚本建表，假设数据库名为 runjs  
+ 3.修改数据库连接配置 RunJS/RunJS/src/jdbc.properties 的 jdbc.jdbcUrl,jdbc.user,jdbc.password 为你数据库的信息  
+ 4.打开 build.sh (Windows 下是 build.bat) 将 JAVA_HOME 变量指向 JDK 安装的路径  
+ 5.非 Windows 系统需要给 build.sh 设置可执行权限 chmod +x build.sh  
+ 6.执行 build.sh(bat) 进行项目编译  
+ 7.使用你习惯的应用服务器，如 Tomcat 创建新应用指向 RunJS/RunJS/webapp 。如 <Context path="" docBase="/Users/winterlau/workdir/RunJS/RunJS/webapp"/>  
  8.打开浏览器访问即可，目前 oauth 登陆配置只能使用开源中国的账号进行登录
 
 更多介绍请看 <a href="http://runjs.cn/help" target="_blank">http://runjs.cn/help</a>
