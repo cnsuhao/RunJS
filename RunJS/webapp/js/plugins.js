@@ -105,6 +105,7 @@ Plugins = (function() {
 	 * @method init
 	 */
 	Plugins.prototype.init = function() {
+		initEventsStack();
 		$.each(_plugins_, function(ident, plugin) {
 			try {
 				var cur = _plugins_[ident] = $.extend(new Plugin(ident), new _plugins_[ident].plugin(_plugins_[ident].opt));

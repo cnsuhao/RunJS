@@ -675,6 +675,11 @@ RunJS = (function() {
 			instance.editor.initView(ident, async);
 		instance.explorer.initView(true, ident, async);
 		instance.menu.initView(ident, async);
+		try{
+			instance.plugins.init();
+		}catch(e){
+			Console.log(e);
+		}
 	}
 
 	/**
