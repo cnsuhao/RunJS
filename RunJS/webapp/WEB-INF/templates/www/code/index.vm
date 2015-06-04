@@ -11,7 +11,7 @@
 </script>
 <![endif]-->
 <script type="text/javascript">
-	if(unsupport == true){
+	if(window.unsupport == true){
 		location.href = "/unsupport";
 	}
 </script>
