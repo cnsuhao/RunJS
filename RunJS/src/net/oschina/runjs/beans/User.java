@@ -45,6 +45,7 @@ public class User extends Pojo implements IUser {
 	private int status;
 	private int email_validated;
 	private int online;
+	private String validated_id;
 	// 帐号来源
 	private String type;
 	private byte role = User.ROLE_GENERAL;
@@ -197,6 +198,19 @@ public class User extends Pojo implements IUser {
 		String sql = "SELECT * FROM " + this.TableName()
 				+ " WHERE type = ? AND account = ?";
 		return QueryHelper.read(User.class, sql, op, account);
+	}
+
+	/**
+	* 查询用户
+	*
+	* @param op
+	* @param validated_id
+	* @return
+	*/
+	public User getUserByValidatedId(String op, String validated_id) {
+		String sql = "SELECT * FROM " + this.TableName()
+			+ " WHERE type = ? AND validated_id= ?";
+		return QueryHelper.read(User.class, sql, op, validated_id);
 	}
 
 	/**
@@ -373,5 +387,13 @@ public class User extends Pojo implements IUser {
 
 	public void setBlog(String blog) {
 		this.blog = blog;
+	}
+
+	public String getValidated_id() {
+		return validated_id;
+	}
+
+	public void setValidated_id(String validated_id) {
+		this.validated_id = validated_id;
 	}
 }

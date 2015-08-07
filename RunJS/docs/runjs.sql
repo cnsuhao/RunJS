@@ -253,6 +253,7 @@ CREATE TABLE `osc_users` (
   `account` varchar(64) DEFAULT NULL,
   `space_url` varchar(64) DEFAULT NULL,
   `blog` varchar(64) DEFAULT NULL,
+  `validated_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_user_email` (`email`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=27794 DEFAULT CHARSET=utf8;

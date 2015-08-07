@@ -148,8 +148,14 @@ public class OpenidAction {
 				|| p.getProviderId().equals("google"))
 			blog = p.getLocation();
 
+		String validated_id = p.getValidatedId();
 		// 查询是否为新用户
 		user = User.INSTANCE.getUserByAccount(p.getProviderId(), email);
+
+		// 如果是开源中国登陆，用关联id查询，防止email变更代码丢失
+		if (user == null && p.getProviderId().equals("oschina") && !StringUtils.isBlank(validated_id)) {
+			user = User.INSTANCE.getUserByValidatedId(p.getProviderId(), validated_id);
+		}
 
 		if (user == null) {
 			// 新用户，将其信息插入数据库（email单一）
@@ -160,6 +166,8 @@ public class OpenidAction {
 				new_u.setEmail(email);
 			// account是唯一标识（同一个来源的时候）
 			new_u.setAccount(email);
+			// validated_id 为第三方ID
+			new_u.setValidated_id(validated_id);
 			new_u.setName(name);
 			new_u.setBlog(blog);
 			new_u.setCreate_time(new Timestamp(new Date().getTime()));
@@ -190,6 +198,10 @@ public class OpenidAction {
 		} else {
 			// 已有用户
 			user.UpdateField("online", User.ONLINE);
+			// 如果是开源中国登陆，更新id，刷新老数据
+			if (p.getProviderId().equals("oschina") && StringUtils.isBlank(user.getValidated_id()) && !StringUtils.isBlank(validated_id)) {
+				user.UpdateField("validated_id", validated_id);
+			}
 			setLoginCookie(ctx, user);
 			ctx.redirect(ctx.contextPath() + SUCCESS_URL);
 			return;
