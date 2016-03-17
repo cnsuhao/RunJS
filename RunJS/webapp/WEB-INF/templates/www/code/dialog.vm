@@ -260,13 +260,16 @@ $request.setAttribute("close_comment",true)
     			<div class="right_content advice #if($opt=="4")setting_on#{else}setting_off#end">
                     <p style="font-weight:bold;font-size:14pt;color:#A00;">建议和反馈</p>
     				<hr>
-    				<p><label>Email:<br><input type="text" id="advice_email" name="email" size="40" value="#if($g_user && $g_user.email)${g_user.email}#end"></input></label></p>
-                    <p><label>建议内容:</label><br><textarea id="advice_content" name="content" style="width:400px;height:140px;"></textarea></p>
-    				<p><span class="errorMsg"></span></p>
-    				<p>验证码：<img src="/action/project/captcha" class="captcha" style="cursor:pointer;vertical-align:middle;" width="60" height="23" onclick="$(this).attr('src','/action/project/captcha?'+(new Date().getTime()));"/>
-    					<input id="captcha_advice" type="text" size="4"/>
-    					<button onclick="runjs.menu.addAdvice();">提交建议</button>
-    				</p>
+                    <p>
+                        请到 <a href="https://git.oschina.net/oschina/RunJS/issues">https://git.oschina.net/oschina/RunJS/issues</a> 提交 Issue
+                    </p>
+##    				<p><label>Email:<br><input type="text" id="advice_email" name="email" size="40" value="#if($g_user && $g_user.email)${g_user.email}#end"></input></label></p>
+##                    <p><label>建议内容:</label><br><textarea id="advice_content" name="content" style="width:400px;height:140px;"></textarea></p>
+##    				<p><span class="errorMsg"></span></p>
+##    				<p>验证码：<img src="/action/project/captcha" class="captcha" style="cursor:pointer;vertical-align:middle;" width="60" height="23" onclick="$(this).attr('src','/action/project/captcha?'+(new Date().getTime()));"/>
+##    					<input id="captcha_advice" type="text" size="4"/>
+##    					<button onclick="runjs.menu.addAdvice();">提交建议</button>
+##    				</p>
     			</div>
     			<div class="right_content about #if($opt=="5")setting_on#{else}setting_off#end">
 					<p style="font-weight:bold;font-size:14pt;color:#A00;">关于RunJS</p>

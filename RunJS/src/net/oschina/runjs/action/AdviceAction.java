@@ -1,6 +1,7 @@
 package net.oschina.runjs.action;
 
 import java.io.IOException;
+import java.lang.System;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -22,6 +23,10 @@ import net.oschina.runjs.beans.User;
 import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.Gson;
+
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class AdviceAction {
 	private Gson gson = new Gson();
@@ -55,9 +60,7 @@ public class AdviceAction {
 	}
 
 	public static boolean send(Advice advice) {
-		return AdviceAction.send("smtp.163.com", "jack230230", "jack330",
-				"RunJS received an advice!", advice.toString(),
-				"jack230230@163.com", "wangzhenwei@makingware.com");
+		return AdviceAction.send("RunJS received an advice!", advice.toString());
 	}
 
 	/**
@@ -78,12 +81,20 @@ public class AdviceAction {
 	 * @param to
 	 *            收件人邮箱
 	 */
-	public static boolean send(String smtp, final String user,
-			final String password, String subject, String content, String from,
-			String to) {
+	public static boolean send(String subject, String content) {
 		try {
+            Configuration config = new PropertiesConfiguration(AdviceAction.class.getResource("/").getPath()+"mail.properties");
+
+            final String smtp = config.getString("smtp");
+            final String port = config.getString("port");
+            final String user = config.getString("user");
+            final String password = config.getString("password");
+            final String from = config.getString("from");
+            final String to = config.getString("to");
+
 			Properties props = new Properties();
 			props.put("mail.smtp.host", smtp);
+			props.put("mail.smtp.port", port);
 			props.put("mail.smtp.auth", "true");
 			Session ssn = Session.getInstance(props, new Authenticator() {
 				@Override
@@ -116,9 +127,7 @@ public class AdviceAction {
 
 	// 测试发邮件
 	public static void main(String[] args) {
-		AdviceAction.send("smtp.163.com", "jack230230", "jack330",
-				"test 163 mail", "can you receive this email?",
-				"jack230230@163.com", "916978237@qq.com");
+		AdviceAction.send("test oschina mail", "can you receive this email?");
 	}
 }
 
