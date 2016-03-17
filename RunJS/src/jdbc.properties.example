@@ -5,9 +5,9 @@ jdbc.show_sql=false
 
 # Database Configurations
 jdbc.driverClass=com.mysql.jdbc.Driver
-jdbc.jdbcUrl=jdbc:mysql://192.168.1.11:3306/runjs
-jdbc.user=oschina
-jdbc.password=oschina123
+jdbc.jdbcUrl=jdbc:mysql://127.0.0.1:3306/runjs
+jdbc.user=root
+jdbc.password=
 jdbc.maxPoolSize=200
 jdbc.minPoolSize=2
 jdbc.initialPoolSize=2
