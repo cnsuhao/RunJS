@@ -886,7 +886,7 @@ if (typeof (SyntaxHighlighter) == 'undefined')
 				multiLineSingleQuotedString : new XRegExp(
 						"'([^\\\\']|\\\\.)*'", 'gs'),
 				xmlComments : /(&lt;|<)!--[\s\S]*?--(&gt;|>)/gm,
-				url : /\w+:\/\/[\w-.\/?%&=:@;#]*/g,
+				url : /\w+:\/\/[\w\\-\\.\/?%&=:@;#]*/g,
 
 				/** <?= ?> tags. */
 				phpScriptTags : {
@@ -2584,7 +2584,7 @@ typeof (exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter
 	function Brush() {
 		function process(match, regexInfo) {
 			var constructor = SyntaxHighlighter.Match, code = match[0], tag = new XRegExp(
-					'(&lt;|<)[\\s\\/\\?]*(?<name>[:\\w-\\.]+)', 'xg')
+					'(&lt;|<)[\\s\\/\\?]*(?<name>[:\\w\\-\\.]+)', 'xg')
 					.exec(code), result = [];
 
 			if (match.attributes != null) {
