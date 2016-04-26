@@ -129,6 +129,24 @@ public class Plugin extends Pojo {
 		return this.LoadList(ids);
 	}
 
+    @SuppressWarnings("unchecked")
+    public List<Plugin> GetUserAndSysPlugins(User user) {
+        if (user == null || user.getId() <= 0)
+            return null;
+        String sql = "SELECT id FROM "
+                + this.TableName()
+                + " WHERE `type` = ? AND `status` = ? AND `user` = ? ORDER BY create_time";
+        List<Long> ids = QueryHelper.query(long.class, sql, 1, 2,
+                user.getId());
+        String sql_sys = "SELECT id FROM " + this.TableName()
+                + " WHERE `type` = ? AND `status` = ? ORDER BY create_time";
+        List<Long> ids_sys = QueryHelper.query_cache(long.class,
+                this.CacheRegion(), SYS_PLUGIN_LIST, sql, Plugin.SYS_PLUGIN,
+                Plugin.CHECKED);
+        ids.addAll(ids_sys);
+        return this.LoadList(ids);
+    }
+
 	@Override
 	public boolean Delete() {
 		EvictListCache();
