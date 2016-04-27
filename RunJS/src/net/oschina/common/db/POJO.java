@@ -175,8 +175,6 @@ public class POJO implements Serializable {
 		return (int)QueryHelper.stat("SELECT COUNT(*) FROM " + TableName());
 	}
 
-	@SuppressWarnings("rawtypes")
-	private final static List emptyList = new ArrayList();
 	/**
 	 * 批量加载项目
 	 * @param pids
@@ -187,8 +185,9 @@ public class POJO implements Serializable {
 		if(p_pids==null)
 			return null;
 		
-		if(p_pids.size()==0)
-			return emptyList;
+		if(p_pids.size()==0){
+            return new ArrayList();
+        }
 		
 		final List<Long> pids = new ArrayList<Long>(p_pids.size());
 		for(Number obj : (List<Number>)p_pids){
