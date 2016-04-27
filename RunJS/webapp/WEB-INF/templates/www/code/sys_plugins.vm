@@ -4,8 +4,7 @@ $request.setAttribute("close_comment",true)
 #if($mode=="plugin")
  	#set($plugins = $PluginBean.GetEditPlugins($g_user))
 #else
-## 	#set($plugins = $PluginBean.GetUserAndSysPlugins($g_user))
-	#set($plugins = $PluginBean.GetSysPlugins())
+	#set($plugins = $PluginBean.GetUserAndSysPlugins($g_user))
 #end
 #if($type=="js")
     $response.setContentType("text/javascript")
