@@ -795,7 +795,6 @@ public class RequestContext {
 		if (StringUtils.isBlank(uuid))
 			return null;
 		String ck = decrypt(uuid);
-		System.out.println(ck);
 		final String[] items = StringUtils.split(ck, '|');
 		if (items != null && items.length == 5) {
 			// String ua = _CleanUserAgent(header("user-agent"));
