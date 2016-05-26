@@ -132,7 +132,7 @@ public class Plugin extends Pojo {
 
     @SuppressWarnings("unchecked")
     public List<Plugin> GetUserAndSysPlugins(User user) {
-        if (GetSysPlugins().size() > 0) {
+        if (GetSysPlugins().size() > 0 && GetUserPlugins(user, 1, 2) != null) {
             List<Plugin> list = new ArrayList(GetSysPlugins());
             list.addAll(GetUserPlugins(user, 1, 2));
             return list;
