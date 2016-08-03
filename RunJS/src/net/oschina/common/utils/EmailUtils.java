@@ -11,8 +11,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import net.oschina.runjs.action.AdviceAction;
-
 public class EmailUtils {
 	public static boolean send(String subject, String content) {
 		return EmailUtils.send("smtp.163.com", "jack230230", "jack330",
@@ -74,10 +72,4 @@ public class EmailUtils {
 		}
 	}
 
-	// 测试发邮件
-	public static void main(String[] args) {
-		AdviceAction.send("smtp.163.com", "jack230230", "jack330",
-				"test 163 mail", "can you receive this email?",
-				"jack230230@163.com", "916978237@qq.com");
-	}
 }
